@@ -6,7 +6,6 @@ use Yii;
 use yii\base\Behavior;
 use yii\base\ModelEvent;
 use yii\db\ActiveRecord;
-use yii\db\ActiveQuery;
 use yii\db\Expression;
 use yii\db\Exception;
 
@@ -19,6 +18,15 @@ use yii\db\Exception;
  */
 class RTSphinx extends Behavior
 {
+    public function events()
+    {
+        return array(
+            ActiveRecord::EVENT_BEFORE_INSERT => 'afterSave',
+            ActiveRecord::EVENT_BEFORE_UPDATE => 'afterSave',
+            ActiveRecord::EVENT_BEFORE_DELETE => 'afterDelete',
+        );
+    }
+
     /**
      * Method for getting index data
      *
@@ -68,7 +76,7 @@ class RTSphinx extends Behavior
         if ($this->_command === null) {
             $conn = is_object($this->sphinxDbComponent) ? $this->sphinxDbComponent : Yii::$app->{$this->sphinxDbComponent};
             $conn->setActive(true);
-            $this->_command = new SphinxDbCommand($conn);
+            $this->_command = new SphinxCommand($conn);
         }
         return $this->_command->setSql($sql);
     }
