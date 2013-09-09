@@ -3,8 +3,6 @@
 namespace frontend\controllers;
 
 use common\components\ClientApi;
-use common\components\PushUpdateClient;
-use React\HttpClient\Client;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
