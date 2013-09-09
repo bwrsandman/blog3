@@ -1,17 +1,16 @@
-var io = require('socket.io').listen(89);
-var jayson = require('jayson');
-var rpc_server = jayson.server({
+var io = require('socket.io').listen(89),
+    jayson = require('jayson');
+
+var rpc_api = {
     notify: function(type, message, callback) {
         callback(null, {
             status: 'ok'
         });
-        io.sockets.emit('notify', {
-            type: type,
-            message: message
-        });
+
+        io.sockets.emit('notify', [type, message]);
     }
-});
+};
 
-rpc_server.http().listen(3000); //server json-rpc api
 
+jayson.server(rpc_api).http().listen(3000); //server json-rpc api
 
