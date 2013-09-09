@@ -1,4 +1,4 @@
-var socket = io.connect('http://blog3.ru:89');
+var news = io.connect('http://blog3.ru:89');
 
 var events = {
     notify: function (type, message) {
@@ -16,7 +16,7 @@ var events = {
 };
 
 for (var i in events) {
-    socket.on(i, function(data) {
+    news.on(i, function(data) {
         events[i].apply(null, data)
     });
 }
