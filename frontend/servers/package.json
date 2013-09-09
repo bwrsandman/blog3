@@ -1,0 +1,24 @@
+{
+  "name": "push.server",
+  "description": "push server",
+  "keywords": [
+    "websocket",
+    "socket",
+    "realtime",
+    "socket.io",
+    "comet",
+    "ajax"
+  ],
+  "author": {
+    "name": "Alex Sharov",
+    "email": "www.pismeco@gmail.com"
+  },
+  "dependencies": {
+    "socket.io": "0.9.15",
+    "jayson": "1.0.11"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "readmeFilename": "Readme.md"
+}

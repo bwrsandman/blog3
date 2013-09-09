@@ -21,11 +21,11 @@ class AppAsset extends AssetBundle
 		'css/site.css',
 	);
 	public $js = array(
-        'js/push_client.js',
+        'socket.io/socket.io.js',
+        'js/push_client.js'
 	);
 	public $depends = array(
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
-        'frontend\servers\SocketIoAsset'
 	);
 }

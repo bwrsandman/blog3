@@ -2,6 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\components\ClientApi;
+use common\components\PushUpdateClient;
+use React\HttpClient\Client;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
@@ -21,9 +24,17 @@ class SiteController extends Controller
 		);
 	}
 
+
+    public function actionPush()
+    {
+        $client = new ClientApi();
+        $client->add('go', 'forward');
+    }
+
+
 	public function actionIndex()
 	{
-		return $this->render('index');
+    	return $this->render('index');
 	}
 
 	public function actionLogin()
