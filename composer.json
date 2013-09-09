@@ -18,8 +18,7 @@
 		"yiisoft/yii2": "dev-master",
 		"yiisoft/yii2-composer": "dev-master",
         "react/react": "0.3.*",
-        "nizsheanez/JsonRpc": "dev-master",
-        "nizsheanez/Sphinx": "dev-master"
+        "nizsheanez/JsonRpc": "dev-master"
     },
 	"scripts": {
 		"post-create-project-cmd": [
@@ -30,10 +29,6 @@
         {
             "type":"git",
             "url":"https://github.com/nizsheanez/JsonRpc"
-        },
-        {
-            "type":"git",
-            "url":"https://github.com/nizsheanez/Sphinx"
         }
     ],
 	"extra": {

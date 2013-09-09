@@ -9,7 +9,7 @@ class ClientApi extends Client
     public function __construct($url = null)
     {
         if (!$url) {
-            $this->url = 'localhost:3000';
+            $this->url = 'http://localhost:3000';
         }
     }
 }
