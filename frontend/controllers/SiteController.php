@@ -32,6 +32,7 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
+        $a = new \ESphinxResult(array());
     	return $this->render('index');
 	}
 
