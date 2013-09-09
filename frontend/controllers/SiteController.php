@@ -23,10 +23,10 @@ class SiteController extends Controller
 	}
 
 
-    public function actionPush()
+    public function actionPush($type = 'success', $message = null)
     {
         $client = new ClientApi();
-        $client->add('go', 'forward');
+        $client->notify($type, $message ? $message : 'nope');
     }
 
 
