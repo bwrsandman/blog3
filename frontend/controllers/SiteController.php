@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\components\ClientApi;
+use sergebezborodov\sphinx\Result;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
@@ -32,7 +33,7 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
-        $a = new \ESphinxResult(array());
+        $a = new Result(array());
     	return $this->render('index');
 	}
 
