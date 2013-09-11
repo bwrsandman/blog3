@@ -20,7 +20,7 @@ return array(
 		'charset' => 'utf8',
 	),
     'components.sphinxDb' => array(
-        'class' => 'common\components\sphinx\Connection',
+        'class' => 'nizsheanez\sphinx\Connection',
         'dsn' => 'mysql:host=localhost;port=9306;dbname=rt',
         'username' => 'root',
         'password' => '',
