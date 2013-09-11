@@ -11,20 +11,18 @@ use common\models\User;
 use yii\web\HttpException;
 use yii\helpers\Security;
 
-class Rt extends \nizsheanez\sphinx\ActiveRecord
+class SphinxPost extends \nizsheanez\sphinx\ActiveRecord
 {
     public static function tableName()
     {
-        return 'rt';
+        return 'rt_index';
     }
 
     public static function getIndexedAttributes()
     {
         return array(
             'id',
-            'title',
-            'content',
-
+            'title'
         );
     }
 }
@@ -50,12 +48,12 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
-        $a = new Rt;
-        $a->title = 'Privet22';
-        $a->id = 1;
-        $a->update();
-        $b = Rt::find()->all();
-        print_r($b);die;
+//        $a = new SphinxPost();
+//        $a->title = 'Privet22';
+//        $a->id = 1;
+//        $a->update();
+//        $b = SphinxPost::find()->all();
+//        print_r($b);die;
     	return $this->render('index');
 	}
 
