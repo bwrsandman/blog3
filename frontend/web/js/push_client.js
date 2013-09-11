@@ -1,4 +1,5 @@
-var news = io.connect('http://blog3.ru:89');
+var search_socket = io.connect('http://blog3.ru:89');
+
 
 var events = {
     notify: function (type, message) {
@@ -12,11 +13,14 @@ var events = {
                 });
 
         $('.site-index:first').prepend(notify_container)
+    },
+    search: function(data) {
+        console.log(data);
     }
 };
 
 for (var i in events) {
-    news.on(i, function(data) {
-        events[i].apply(null, data)
+    search_socket.on(i, function(data) {
+        events[i].call(null, data)
     });
 }
