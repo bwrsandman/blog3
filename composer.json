@@ -19,8 +19,9 @@
 		"yiisoft/yii2-composer": "dev-master",
         "react/react": "0.3.*",
         "nizsheanez/JsonRpc": "dev-master",
-        "nizsheanez/sphinx": "dev-master",
-        "nizsheanez/sphinxForYii2": "dev-master"
+        "nizsheanez/yii2-sphinx-tools": "dev-master",
+        "rsol/fenom": "dev-default",
+        "twig/twig": "1.13.*"
     },
 	"scripts": {
 		"post-create-project-cmd": [
@@ -33,12 +34,8 @@
             "url":"https://github.com/nizsheanez/JsonRpc"
         },
         {
-            "type":"git",
-            "url":"https://github.com/nizsheanez/sphinx"
-        },
-        {
             "type": "git",
-            "url": "https://github.com/nizsheanez/sphinxForYii2.git"
+            "url": "https://github.com/nizsheanez/yii2-sphinx-tools.git"
         }
     ],
 	"extra": {
