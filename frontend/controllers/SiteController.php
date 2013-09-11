@@ -3,7 +3,6 @@
 namespace frontend\controllers;
 
 use common\components\ClientApi;
-use sergebezborodov\sphinx\Result;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
@@ -11,6 +10,24 @@ use frontend\models\ContactForm;
 use common\models\User;
 use yii\web\HttpException;
 use yii\helpers\Security;
+
+class Rt extends \nizsheanez\sphinx\ActiveRecord
+{
+    public static function tableName()
+    {
+        return 'rt';
+    }
+
+    public static function getIndexedAttributes()
+    {
+        return array(
+            'id',
+            'title',
+            'content',
+
+        );
+    }
+}
 
 class SiteController extends Controller
 {
@@ -33,9 +50,15 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
-        $a = new Result(array());
+        $a = new Rt;
+        $a->title = 'Privet2';
+        $a->id = 1;
+        $a->update();
+        $b = Rt::find()->all();
+        print_r($b);die;
     	return $this->render('index');
 	}
+
 
 	public function actionLogin()
 	{
