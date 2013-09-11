@@ -18,7 +18,7 @@
 		"yiisoft/yii2": "dev-master",
 		"yiisoft/yii2-composer": "dev-master",
         "react/react": "0.3.*",
-        "nizsheanez/JsonRpc": "dev-master",
+        "nizsheanez/yii2-json-rpc": "dev-master",
         "nizsheanez/yii2-sphinx-tools": "dev-master",
         "rsol/fenom": "dev-default",
         "twig/twig": "1.13.*"

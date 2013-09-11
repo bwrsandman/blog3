@@ -51,7 +51,7 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
         $a = new Rt;
-        $a->title = 'Privet2';
+        $a->title = 'Privet22';
         $a->id = 1;
         $a->update();
         $b = Rt::find()->all();
