@@ -26,7 +26,7 @@ return array(
         'assetManager' => array(
 //            'bundles' => require(__DIR__ . '/assets.php'),
             'converter'=>array(
-                'class'=>'app\extensions\assetparser\Converter',
+                'class'=>'nizsheanez\assetConverter\Converter',
                 'force'=>false,
                 'dist' => '@webroot/css',
             )
