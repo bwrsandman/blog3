@@ -20,7 +20,7 @@
         "react/react": "0.3.*",
         "nizsheanez/yii2-json-rpc": "dev-master",
         "nizsheanez/yii2-sphinx-tools": "dev-master",
-        "nizsheanez/yii2-asset-parser": "dev-master",
+        "nizsheanez/yii2-asset-converter": "dev-master",
         "rsol/fenom": "dev-default",
         "twig/twig": "1.13.*"
     },
@@ -36,11 +36,11 @@
         },
         {
             "type": "git",
-            "url": "https://github.com/nizsheanez/yii2-sphinx-tools.git"
+            "url": "https://github.com/nizsheanez/yii2-sphinx-tools"
         },
         {
             "type": "git",
-            "url": "https://github.com/nizsheanez/assetparser"
+            "url": "https://github.com/nizsheanez/yii2-asset-converter"
         }
     ],
 	"extra": {
