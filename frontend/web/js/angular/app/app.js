@@ -9,17 +9,23 @@ app.config(['$translateProvider', function($translateProvider) {
     $translateProvider.translations(translations);
 }]);
 
+app.config(['$locationProvider', function($locationProvider) {
+    $locationProvider.html5Mode(true);
+}]);
+
 app.config(['$routeProvider', function($routeProvider) {
+
+    var dir = 'js/angular/app/';
     $routeProvider.when('/list', {
-        templateUrl: 'js/angular/app/partials/list.html',
+        templateUrl: dir + 'partials/list.html',
         controller: 'PlacesListController'
     });
     $routeProvider.when('/add', {
-        templateUrl: 'js/angular/app/partials/form.html',
+        templateUrl: dir + 'partials/form.html',
         controller: 'PlacesFormController'
     });
     $routeProvider.when('/edit/:placeId', {
-        templateUrl: 'js/angular/app/partials/form.html',
+        templateUrl: dir + 'partials/form.html',
         controller: 'PlacesFormController'
     });
     $routeProvider.otherwise({

@@ -23,6 +23,14 @@ return array(
 			'class' => 'yii\web\User',
 			'identityClass' => 'common\models\User',
 		),
+        'assetManager' => array(
+//            'bundles' => require(__DIR__ . '/assets.php'),
+            'converter'=>array(
+                'class'=>'app\extensions\assetparser\Converter',
+                'force'=>false,
+                'dist' => '@webroot/css',
+            )
+        ),
 		'log' => array(
 			'targets' => array(
 				array(
