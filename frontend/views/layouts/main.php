@@ -20,7 +20,7 @@ AppAsset::register($this);
 	<title><?php echo Html::encode($this->title); ?></title>
 	<?php $this->head(); ?>
 </head>
-<body>
+<body >
 	<?php $this->beginBody(); ?>
 	<?php
 		NavBar::begin(array(
