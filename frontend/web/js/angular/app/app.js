@@ -16,7 +16,7 @@ app.config(['$locationProvider', function($locationProvider) {
 app.config(['$routeProvider', function($routeProvider) {
 
     var dir = 'js/angular/app/';
-    $routeProvider.when('/list', {
+    $routeProvider.when('/', {
         templateUrl: dir + 'partials/list.html',
         controller: 'PlacesListController'
     });

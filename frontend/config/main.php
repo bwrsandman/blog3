@@ -29,6 +29,7 @@ return array(
                 'class'=>'nizsheanez\assetConverter\Converter',
                 'force'=>false,
                 'dist' => '@webroot/css',
+                'baseUrl' => 'css',
             )
         ),
 		'log' => array(
