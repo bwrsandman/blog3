@@ -18,7 +18,7 @@ class AppAsset extends AssetBundle
 	public $basePath = '@webroot';
 	public $baseUrl = '@web';
 	public $css = array(
-		'css/site.css',
+		'less/site.less',
 	);
 	public $js = array(
 //        'socket.io/socket.io.js',
