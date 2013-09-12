@@ -4,6 +4,12 @@
  */
 $this->title = 'My Yii Application';
 ?>
+<div ng-app="personalmaps">
+    <div ng-controller="PlacesListController">
+        <div pm-google-map></div>
+        <div ng-view></div>
+    </div>
+</div>
 <div class="site-index">
 
 	<div class="jumbotron">
