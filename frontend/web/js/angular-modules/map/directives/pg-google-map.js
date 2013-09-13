@@ -1,4 +1,4 @@
-app.directive('pmGoogleMap', function factory($window, $rootScope, Places) {
+angular.module('MapApp').directive('pmGoogleMap', function factory($window, $rootScope, Places) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
