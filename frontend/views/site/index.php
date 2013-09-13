@@ -5,10 +5,10 @@
 $this->title = 'My Yii Application';
 ?>
 <div ng-app="MapApp">
-<!--    <div ng-controller="PlacesListController">-->
-<!--        <div pm-google-map></div>-->
-<!--        <div ng-view></div>-->
-<!--    </div>-->
+    <div ng-controller="PlacesListController">
+        <div pm-google-map></div>
+        <div ng-view></div>
+    </div>
 </div>
 <div class="site-index">
 

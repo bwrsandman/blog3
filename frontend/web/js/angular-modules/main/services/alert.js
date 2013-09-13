@@ -3,6 +3,7 @@
 angular.module('MainApp').factory('alertService', function($rootScope) {
     var alertService = {};
 
+
     // create an array of alerts available globally
     $rootScope.alerts = [];
 
@@ -13,6 +14,10 @@ angular.module('MainApp').factory('alertService', function($rootScope) {
     alertService.closeAlert = function(index) {
         $rootScope.alerts.splice(index, 1);
     };
+
+    $rootScope.$on('notification:add', function(event, data) {
+        alertService.add(data.type, data.msg);
+    });
 
     return alertService;
 });
