@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PlacesListController', ['$scope', '$rootScope', 'Places', '$dialog', 'lang'
+angular.module('MapApp').controller('PlacesListController', ['$scope', '$rootScope', 'Places', '$dialog', 'lang'
     , function($scope, $rootScope, Places, $dialog, lang) {
         $scope.curLang = lang;
 

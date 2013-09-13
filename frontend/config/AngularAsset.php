@@ -26,10 +26,15 @@ class AngularAsset extends AssetBundle
         'js/bower_components/angular-ui-router/release/angular-ui-router.min.js',
 //        'js/angular-modules/angular-translate.min.js',
         'js/bower_components/angular-translate/angular-translate.js',
-        'js/angular-modules/app/app.js',
-        'js/angular-modules/app/services/places.js',
-        'js/angular-modules/app/controllers/list.js',
-        'js/angular-modules/app/controllers/form.js',
-        'js/angular-modules/app/directives/pg-google-map.js',
+
+        'js/angular-modules/app.js',
+
+        'js/angular-modules/main/services/alert.js',
+        'js/angular-modules/main/controllers/root.js',
+
+        'js/angular-modules/map/services/places.js',
+        'js/angular-modules/map/controllers/list.js',
+        'js/angular-modules/map/controllers/form.js',
+        'js/angular-modules/map/directives/pg-google-map.js',
     );
 }

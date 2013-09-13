@@ -20,7 +20,7 @@ AppAsset::register($this);
 	<title><?php echo Html::encode($this->title); ?></title>
 	<?php $this->head(); ?>
 </head>
-<body >
+<body ng-app="MainApp">
 	<?php $this->beginBody(); ?>
 	<?php
 		NavBar::begin(array(
@@ -48,7 +48,10 @@ AppAsset::register($this);
 		NavBar::end();
 	?>
 
-	<div class="container">
+	<div class="container" ng-controller='RootCtl'>
+        <div>
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
 	<?php echo Breadcrumbs::widget(array(
 		'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
 	)); ?>

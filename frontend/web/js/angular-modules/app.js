@@ -2,18 +2,18 @@
 
 var lang = 'ru';
 
-var app = angular.module('personalmaps', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate']).value('lang', lang);
+angular.module('MapApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate']).value('lang', lang);
 
-app.config(['$translateProvider', function($translateProvider) {
+angular.module('MapApp').config(['$translateProvider', function($translateProvider) {
     // add translation table
     $translateProvider.translations(translations);
 }]);
 
-app.config(['$locationProvider', function($locationProvider) {
+angular.module('MapApp').config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode(true);
 }]);
 
-app.config(function($stateProvider, $urlRouterProvider){
+angular.module('MapApp').config(function($stateProvider, $urlRouterProvider){
 
     var dir = 'js/angular/app/';
     $stateProvider.state('/', {
@@ -35,3 +35,5 @@ app.config(function($stateProvider, $urlRouterProvider){
 
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
+
+angular.module('MainApp', ['ui.router', 'ui.bootstrap', 'MapApp']);

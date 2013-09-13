@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('Places', ['$http', '$rootScope', function($http, $rootScope) {
+angular.module('MapApp').factory('Places', ['$http', '$rootScope', function($http, $rootScope) {
 
     var places = [];
 

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PlacesFormController'
+angular.module('MapApp').controller('PlacesFormController'
     , ['$scope', '$rootScope', 'Places', '$routeParams', '$location'
         , function($scope, $rootScope, Places, $routeParams, $location) {
 
