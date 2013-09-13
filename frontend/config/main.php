@@ -28,8 +28,7 @@ return array(
             'converter'=>array(
                 'class'=>'nizsheanez\assetConverter\Converter',
                 'force'=>false,
-                'dist' => '@webroot/compiled',
-                'baseUrl' => 'compiled',
+                'dist' => 'compiled',
             )
         ),
 		'log' => array(

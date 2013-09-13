@@ -2,7 +2,7 @@
 
 var lang = 'ru';
 
-var app = angular.module('personalmaps', ['ui.bootstrap', 'pascalprecht.translate']).value('lang', lang);
+var app = angular.module('personalmaps', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate']).value('lang', lang);
 
 app.config(['$translateProvider', function($translateProvider) {
     // add translation table
@@ -13,25 +13,25 @@ app.config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode(true);
 }]);
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(function($stateProvider, $urlRouterProvider){
 
     var dir = 'js/angular/app/';
-    $routeProvider.when('/', {
+    $stateProvider.state('/', {
         templateUrl: dir + 'partials/list.html',
         controller: 'PlacesListController'
     });
-    $routeProvider.when('/add', {
+    $stateProvider.state('/add', {
         templateUrl: dir + 'partials/form.html',
         controller: 'PlacesFormController'
     });
-    $routeProvider.when('/edit/:placeId', {
+    $stateProvider.state('/edit/:placeId', {
         templateUrl: dir + 'partials/form.html',
         controller: 'PlacesFormController'
     });
-    $routeProvider.otherwise({
-        redirectTo: '/list'
-    });
-}]);
+//    $urlRouterProvider.otherwise({
+//        redirectTo: '/list'
+//    });
+});
 
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
