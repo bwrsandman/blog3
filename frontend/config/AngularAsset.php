@@ -19,13 +19,17 @@ class AngularAsset extends AssetBundle
 	public $baseUrl = '@web';
 	public $js = array(
         '//maps.googleapis.com/maps/api/js?sensor=false',
-        'js/angular/angular.js',
-        'js/angular/ui-bootstrap-tpls-0.4.0.min.js',
-        'js/angular/angular-translate.min.js',
-        'js/angular/app/app.js',
-        'js/angular/app/services/places.js',
-        'js/angular/app/controllers/list.js',
-        'js/angular/app/controllers/form.js',
-        'js/angular/app/directives/pg-google-map.js',
+        'js/bower_components/angular/angular.js',
+//        'js/bower_components/angular-bootstrap/ui-bootstrap.js',
+//        'js/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+        '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.4.0/ui-bootstrap-tpls.min.js',
+        'js/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+//        'js/angular-modules/angular-translate.min.js',
+        'js/bower_components/angular-translate/angular-translate.js',
+        'js/angular-modules/app/app.js',
+        'js/angular-modules/app/services/places.js',
+        'js/angular-modules/app/controllers/list.js',
+        'js/angular-modules/app/controllers/form.js',
+        'js/angular-modules/app/directives/pg-google-map.js',
     );
 }
