@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('MapApp').controller('PlacesListController', ['$scope', '$rootScope', 'Places', '$dialog', 'lang'
-    , function($scope, $rootScope, Places, $dialog, lang) {
+angular.module('MapApp').controller('PlacesListController', ['$scope', '$rootScope', 'Places', '$dialog', 'lang', 'alertService'
+    , function($scope, $rootScope, Places, $dialog, lang, alertService) {
         $scope.curLang = lang;
+        alertService.add('danger', 'nooooo!!!');
+        $rootScope.$broadcast('notification:add',{type:"success", msg:'yes!'});
 
         $scope.places = Places.getAll();
 
