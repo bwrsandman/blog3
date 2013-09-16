@@ -23,7 +23,8 @@
         "nizsheanez/yii2-asset-converter": "1.*",
         "rsol/fenom": "dev-default",
         "twbs/bootstrap": "3.*",
-        "twig/twig": "1.13.*"
+        "twig/twig": "1.13.*",
+        "dropbox/dropbox-sdk": "1.1.*"
     },
 	"scripts": {
 		"post-create-project-cmd": [
