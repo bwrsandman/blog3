@@ -18,9 +18,9 @@
 		"yiisoft/yii2": "dev-master",
 		"yiisoft/yii2-composer": "dev-master",
         "react/react": "0.3.*",
-        "nizsheanez/yii2-json-rpc": "dev-master",
+        "nizsheanez/yii2-json-rpc": "1.*",
         "nizsheanez/yii2-sphinx-tools": "dev-master",
-        "nizsheanez/yii2-asset-converter": "dev-master",
+        "nizsheanez/yii2-asset-converter": "1.*",
         "rsol/fenom": "dev-default",
         "twbs/bootstrap": "3.*",
         "twig/twig": "1.13.*"
