@@ -1,0 +1,15 @@
+{
+    "name": "myProject",
+    "version": "1.0.0",
+    "dependencies": {
+        "angular": "~1.*",
+        "angular-bootstrap": "0.*",
+        "angular-complete": "1.*",
+        "angular-ui": "0.*",
+        "angular-translate": "1.*",
+        "angular-ui-router": "0.*",
+        "dropstore-ng": "1.*",
+        "chosen": "0.*",
+        "lodash": "1.*"
+    }
+}

@@ -9,7 +9,7 @@ class RpcController extends Controller
 {
 	public function actions()
 	{
-		return array(
+        return array(
 			'index' => array(
 				'class' => '\nizsheanez\JsonRpc\Action',
 			),

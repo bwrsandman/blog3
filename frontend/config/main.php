@@ -27,8 +27,6 @@ return array(
 //            'bundles' => require(__DIR__ . '/assets.php'),
             'converter'=>array(
                 'class'=>'nizsheanez\assetConverter\Converter',
-                'force'=>false,
-                'dist' => 'compiled',
             )
         ),
 		'log' => array(
