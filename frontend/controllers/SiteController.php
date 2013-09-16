@@ -10,22 +10,9 @@ use frontend\models\ContactForm;
 use common\models\User;
 use yii\web\HttpException;
 use yii\helpers\Security;
+use Dropbox\AppInfo;
+use Dropbox\WebAuthNoRedirect;
 
-class SphinxPost extends \nizsheanez\sphinx\ActiveRecord
-{
-    public static function tableName()
-    {
-        return 'rt_index';
-    }
-
-    public static function getIndexedAttributes()
-    {
-        return array(
-            'id',
-            'title'
-        );
-    }
-}
 
 class SiteController extends Controller
 {
@@ -48,12 +35,15 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
-//        $a = new SphinxPost();
-//        $a->title = 'Privet22';
-//        $a->id = 1;
-//        $a->update();
-//        $b = SphinxPost::find()->all();
-//        print_r($b);die;
+        $appInfo = AppInfo::loadFromJsonFile(Yii::getAlias('@common/config/dropbox.json'));
+        $webAuth = new WebAuthNoRedirect($appInfo, "PHP-Example/1.0");
+        $authorizeUrl = $webAuth->start();
+        echo "1. Go to: " . $authorizeUrl . "\n";
+        echo "2. Click \"Allow\" (you might have to log in first).\n";
+        echo "3. Copy the authorization code.\n";
+        $authCode = \trim(\readline("Enter the authorization code here: "));
+        die;
+
     	return $this->render('index');
 	}
 
