@@ -33,8 +33,8 @@ class SiteController extends Controller
     }
 
 
-	public function actionIndex()
-	{
+    public function dropbox()
+    {
         $appInfo = AppInfo::loadFromJsonFile(Yii::getAlias('@common/config/dropbox.json'));
         $webAuth = new WebAuthNoRedirect($appInfo, "PHP-Example/1.0");
         $authorizeUrl = $webAuth->start();
@@ -43,6 +43,10 @@ class SiteController extends Controller
         echo "3. Copy the authorization code.\n";
         $authCode = \trim(\readline("Enter the authorization code here: "));
         die;
+    }
+
+	public function actionIndex()
+	{
 
     	return $this->render('index');
 	}

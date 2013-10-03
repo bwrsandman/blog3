@@ -5,6 +5,8 @@
 cd ${basedir}
 
 sudo rm -rf ${env_dir}
+rm -rf ${basedir}vendor/**/.git
+
 sudo mkdir ${env_dir}
 
 sudo chown -R www-data:www-data ${basedir}
@@ -25,11 +27,14 @@ sudo chown -R www-data:www-data ${basedir}
 #configuring
 echo '-----------configuring-----------'
 sudo cp -R ${overlays}* ${env_dir}
+sudo -u www-data php ${basedir}init 0
+
 #sed -f ${overlays}production.sed ${app_dir}config/constants.php.tpl > ${app_dir}config/constants.php
 #sed -f ${overlays}production.sed ${app_dir}config/production.php.tpl > ${app_dir}config/production.php
 
 sudo chown -R www-data:www-data ${basedir}
 
+sudo -u www-data php composer.phar --prefer-source -o
 #clear
 #echo '-----------clear-----------'
 #rm -rf ${webroot}assets
