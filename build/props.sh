@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 basedir=/var/www/blog3.ru/
 build_dir=${basedir}build/
@@ -16,3 +16,4 @@ backend_runtime=${backend_app_dir}runtime/
 overlays=/var/overlays/blog3.ru/
 
 yii=${basedir}yii
+

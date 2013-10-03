@@ -1,8 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
-. props.sh
+. ./props.sh
 
-cd ${deploy_dir}
+cd ${basedir}
+
+sudo rm -rf ${env_dir}
+sudo mkdir ${env_dir}
+
+sudo chown -R www-data:www-data ${basedir}
 
 #git pull
 #echo '-----------git pull-----------'
@@ -19,11 +24,11 @@ cd ${deploy_dir}
 
 #configuring
 echo '-----------configuring-----------'
-cp -R ${overlays}* ${env_dir}
+sudo cp -R ${overlays}* ${env_dir}
 #sed -f ${overlays}production.sed ${app_dir}config/constants.php.tpl > ${app_dir}config/constants.php
 #sed -f ${overlays}production.sed ${app_dir}config/production.php.tpl > ${app_dir}config/production.php
 
-chown -R www-data:www-data ${basedir}
+sudo chown -R www-data:www-data ${basedir}
 
 #clear
 #echo '-----------clear-----------'
