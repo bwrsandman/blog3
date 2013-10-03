@@ -19,8 +19,9 @@
 		"yiisoft/yii2-composer": "dev-master",
         "react/react": "0.3.*",
         "nizsheanez/yii2-json-rpc": "1.*",
-        "nizsheanez/yii2-sphinx-tools": "dev-master",
+        "nizsheanez/yii2-sphinx-tools": "1.*",
         "nizsheanez/yii2-asset-converter": "1.*",
+        "nizsheanez/yii2-doc-block-generator": "dev-master",
         "rsol/fenom": "dev-default",
         "twbs/bootstrap": "3.*",
         "twig/twig": "1.13.*",
@@ -39,6 +40,10 @@
         {
             "type": "git",
             "url": "https://github.com/nizsheanez/yii2-sphinx-tools"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/nizsheanez/yii2-doc-block-generator"
         },
         {
             "type": "git",
