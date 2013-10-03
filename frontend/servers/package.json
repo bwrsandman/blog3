@@ -1,5 +1,6 @@
 {
   "name": "push.server",
+  "version": "0.0.1",
   "description": "push server",
   "keywords": [
     "websocket",
@@ -14,8 +15,10 @@
     "email": "www.pismeco@gmail.com"
   },
   "dependencies": {
-    "socket.io": "0.9.15",
-    "jayson": "1.0.11"
+    "socket.io": "0.9",
+    "jayson": "1",
+    "redis": "0.8",
+    "express" : "3"
   },
   "engines": {
     "node": ">= 0.4.0"
