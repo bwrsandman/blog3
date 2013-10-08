@@ -24,14 +24,12 @@ class YiiComponentMethod extends DocBlockLine
      */
     public function __toString()
     {
-        try
-        {
+        try {
             $type = $this->type ? $this->type : $this->oldType;
             $comment = $this->comment ? $this->comment : $this->oldComment;
-            return $this->getLine($this->tag, $type, $this->name . '()' , $comment);
+            return $this->getLine($this->tag, $type, $this->name . '()', $comment);
 
-        } catch (Exception $e)
-        {
+        } catch (Exception $e) {
             Yii::app()->handleException($e);
         }
     }
@@ -46,10 +44,8 @@ class YiiComponentMethod extends DocBlockLine
     {
         $this->setTypeAndComment($object);
 
-        if (method_exists($object, 'behaviors'))
-        {
-            foreach ($object->behaviors() as $id => $data)
-            {
+        if (method_exists($object, 'behaviors')) {
+            foreach ($object->behaviors() as $id => $data) {
                 $this->populate($object->asa($id));
             }
         }
@@ -81,16 +77,13 @@ class YiiComponentMethod extends DocBlockLine
      */
     public function setTypeAndComment(CComponent $object)
     {
-        if ($object instanceof CActiveRecord)
-        {
+        if ($object instanceof CActiveRecord) {
             $scopes = $object->scopes();
-            if (isset($scopes[$this->name]))
-            {
+            if (isset($scopes[$this->name])) {
                 $this->type = get_class($object);
             }
         }
     }
-
 
 
     public function setOldValues($object)

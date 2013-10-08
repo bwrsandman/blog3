@@ -49,7 +49,7 @@ class GenerateController extends Controller
      */
     protected function getPropertyIterator($object)
     {
-        $class                                   = $this->propertyIteratorOptions['class'];
+        $class = $this->propertyIteratorOptions['class'];
         $this->propertyIteratorOptions['object'] = $object;
         return new $class($this->propertyIteratorOptions);
     }
@@ -60,36 +60,32 @@ class GenerateController extends Controller
      */
     public function actionIndex()
     {
-        foreach (new $this->filesIterator as $fileInfo)
-        {
-            if (!$fileInfo->isFile())
-            {
+        foreach (new $this->filesIterator as $fileInfo) {
+            if (!$fileInfo->isFile()) {
                 continue;
             }
-            $class  = $this->getClassByFile($fileInfo);
+            $class = $this->getClassByFile($fileInfo);
             $object = $this->getClassInstance($class);
-            if (!$object)
-            {
+            if (!$object) {
                 continue;
             }
             if ($object instanceof \yii\db\ActiveRecord) {
                 return false;
             }
 
-            $docBlock     = $this->getDockBlock($class, $object);
-            $file         = $fileInfo->getPath() . '/' . $fileInfo->getFileName();
-            $content      = file_get_contents($file);
-            $start        = strpos($content, '/**');
-            $secondStart = strpos($content, 'class '.$class);
-            $end          = strpos($content, '*/') + strlen('*/');
+            $docBlock = $this->getDockBlock($class, $object);
+            $file = $fileInfo->getPath() . '/' . $fileInfo->getFileName();
+            $content = file_get_contents($file);
+            $start = strpos($content, '/**');
+            $secondStart = strpos($content, 'class ' . $class);
+            $end = strpos($content, '*/') + strlen('*/');
             if ($secondStart < $start) {
                 $end = $start = $secondStart;
             }
             $oldDockBlock = substr($content, $start, $end);
-            if ($docBlock !== $oldDockBlock)
-            {
+            if ($docBlock !== $oldDockBlock) {
                 $fileBeginContent = substr($content, 0, $start);
-                $fileContent  = substr($content, $end);
+                $fileContent = substr($content, $end);
                 file_put_contents($file, $fileBeginContent . $docBlock . $fileContent);
             }
         }
@@ -109,17 +105,14 @@ class GenerateController extends Controller
 
     protected function getClassInstance($class)
     {
-        try
-        {
+        try {
             $reflection = new ReflectionClass($class);
 
-            if (!$reflection->isInstantiable() || !$reflection->isSubclassOf($this->baseClass))
-            {
+            if (!$reflection->isInstantiable() || !$reflection->isSubclassOf($this->baseClass)) {
                 return false;
             }
             $object = new $class;
-        } catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return false;
         }
         return $object;
@@ -134,13 +127,12 @@ class GenerateController extends Controller
      */
     protected function getDockBlock($class, $object)
     {
-        $props  = $this->getPropertyIterator($object);
+        $props = $this->getPropertyIterator($object);
         $parser = DocBlockParser::parseClass($class);
 
         //add commets and stars :-)
         $result = "/** \n";
-        foreach (explode("\n", $this->getRawDockBlock($parser, $props)) as $line)
-        {
+        foreach (explode("\n", $this->getRawDockBlock($parser, $props)) as $line) {
             $result .= " * " . trim($line) . PHP_EOL;
         }
         return $result . " */";
@@ -149,7 +141,7 @@ class GenerateController extends Controller
 
     /**
      * @param DocBlockParser $parser
-     * @param Iterator       $props
+     * @param Iterator $props
      *
      * @return string docBlock without stars, only text
      */
@@ -158,12 +150,10 @@ class GenerateController extends Controller
         $docBlock = "";
 
         //description
-        if ($parser->shortDescription)
-        {
+        if ($parser->shortDescription) {
             $docBlock .= $parser->shortDescription . "\n\n";
         }
-        if ($parser->longDescription)
-        {
+        if ($parser->longDescription) {
             $docBlock .= $parser->longDescription . "\n\n";
         }
 
@@ -171,8 +161,7 @@ class GenerateController extends Controller
         $docBlock .= implode(iterator_to_array($props));
 
         //other
-        foreach ($parser->other as $type => $line)
-        {
+        foreach ($parser->other as $type => $line) {
             $docBlock .= "@$type $line\n";
         }
         return $docBlock;

@@ -7,7 +7,8 @@ use yii\web\Controller;
 
 class ApiController extends Controller
 {
-    public function placess() {
+    public function placess()
+    {
         echo
         '[
             {
