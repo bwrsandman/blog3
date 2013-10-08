@@ -16,18 +16,25 @@ angular.module('MapApp').config(['$locationProvider', function($locationProvider
 angular.module('MapApp').config(function($stateProvider, $urlRouterProvider){
 
     var dir = 'js/angular/app/';
-    $stateProvider.state('/', {
-        templateUrl: dir + 'partials/list.html',
-        controller: 'PlacesListController'
-    });
-    $stateProvider.state('/add', {
+    var config = {
+        '/': {
+            templateUrl: dir + 'partials/list.html',
+            controller: 'PlacesListController'
+        },
+        '/add': {
+            templateUrl: dir + 'partials/form.html',
+                controller: 'PlacesFormController'
+        },
+        '/edit/:placeId': {
         templateUrl: dir + 'partials/form.html',
-        controller: 'PlacesFormController'
-    });
-    $stateProvider.state('/edit/:placeId', {
-        templateUrl: dir + 'partials/form.html',
-        controller: 'PlacesFormController'
-    });
+            controller: 'PlacesFormController'
+        }
+    };
+
+    for (var i in config) {
+        $stateProvider.state(i, config[i]);
+    }
+
 //    $urlRouterProvider.otherwise({
 //        redirectTo: '/list'
 //    });

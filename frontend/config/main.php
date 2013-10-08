@@ -24,9 +24,9 @@ return array(
 			'identityClass' => 'common\models\User',
 		),
         'assetManager' => array(
-//            'bundles' => require(__DIR__ . '/assets.php'),
             'converter'=>array(
                 'class'=>'nizsheanez\assetConverter\Converter',
+                'force' => true
             )
         ),
 		'log' => array(
