@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\ClientApi;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
@@ -47,7 +48,7 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
-
+        
     	return $this->render('index');
 	}
 

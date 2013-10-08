@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
 	public $js = array(
 //        'socket.io/socket.io.js',
 //        'js/push_client.js',
+        'js/less-1.4.1.min.js',
 	);
 	public $depends = array(
 		'yii\web\YiiAsset',

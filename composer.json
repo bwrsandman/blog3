@@ -22,7 +22,8 @@
         "nizsheanez/yii2-asset-converter": "1.*",
         "twbs/bootstrap": "3.*",
         "twig/twig": "1.13.*",
-        "dropbox/dropbox-sdk": "1.1.*"
+        "dropbox/dropbox-sdk": "1.1.*",
+        "evernote/evernote": "1.*"
     },
 	"scripts": {
 		"post-create-project-cmd": [
