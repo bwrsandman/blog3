@@ -8,26 +8,26 @@ use common\models\LoginForm;
 
 class SiteController extends Controller
 {
-	public function actionIndex()
-	{
-		return $this->render('index');
-	}
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
 
-	public function actionLogin()
-	{
-		$model = new LoginForm();
-		if ($model->load($_POST) && $model->login()) {
-			return $this->goHome();
-		} else {
-			return $this->render('login', array(
-				'model' => $model,
-			));
-		}
-	}
+    public function actionLogin()
+    {
+        $model = new LoginForm();
+        if ($model->load($_POST) && $model->login()) {
+            return $this->goHome();
+        } else {
+            return $this->render('login', array(
+                'model' => $model,
+            ));
+        }
+    }
 
-	public function actionLogout()
-	{
-		Yii::$app->user->logout();
-		return $this->goHome();
-	}
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+        return $this->goHome();
+    }
 }

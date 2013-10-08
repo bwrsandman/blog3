@@ -7,16 +7,17 @@ use yii\web\Controller;
 
 class RpcController extends Controller
 {
-	public function actions()
-	{
+    public function actions()
+    {
         return array(
-			'index' => array(
-				'class' => '\nizsheanez\JsonRpc\Action',
-			),
-		);
+            'index' => array(
+                'class' => '\nizsheanez\JsonRpc\Action',
+            ),
+        );
     }
 
-    public function search($data) {
+    public function search($data)
+    {
         echo json_encode(array(
             array(
                 'title' => 1,

@@ -20,29 +20,30 @@ use yii\helpers\Html;
  */
 class Alert extends \yii\bootstrap\Alert
 {
-	private $_doNotRender = false;
-	public function init()
-	{
-		if ($this->body = \Yii::$app->getSession()->getFlash('error')) {
-			Html::addCssClass($this->options, 'alert-danger');
-		} elseif ($this->body = \Yii::$app->getSession()->getFlash('success')) {
-			Html::addCssClass($this->options, 'alert-success');
-		} elseif ($this->body = \Yii::$app->getSession()->getFlash('info')) {
-			Html::addCssClass($this->options, 'alert-info');
-		} elseif ($this->body = \Yii::$app->getSession()->getFlash('warning')) {
-			Html::addCssClass($this->options, 'alert-warning');
-		} else {
-			$this->_doNotRender = true;
-			return;
-		}
+    private $_doNotRender = false;
 
-		parent::init();
-	}
+    public function init()
+    {
+        if ($this->body = \Yii::$app->getSession()->getFlash('error')) {
+            Html::addCssClass($this->options, 'alert-danger');
+        } elseif ($this->body = \Yii::$app->getSession()->getFlash('success')) {
+            Html::addCssClass($this->options, 'alert-success');
+        } elseif ($this->body = \Yii::$app->getSession()->getFlash('info')) {
+            Html::addCssClass($this->options, 'alert-info');
+        } elseif ($this->body = \Yii::$app->getSession()->getFlash('warning')) {
+            Html::addCssClass($this->options, 'alert-warning');
+        } else {
+            $this->_doNotRender = true;
+            return;
+        }
 
-	public function run()
-	{
-		if (!$this->_doNotRender) {
-			parent::run();
-		}
-	}
+        parent::init();
+    }
+
+    public function run()
+    {
+        if (!$this->_doNotRender) {
+            parent::run();
+        }
+    }
 }

@@ -15,15 +15,14 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-	public $basePath = '@webroot';
-	public $baseUrl = '@web';
-	public $css = array(
-		'css/site.css',
-	);
-	public $js = array(
-	);
-	public $depends = array(
-		'yii\web\YiiAsset',
-		'yii\bootstrap\BootstrapAsset',
-	);
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
+    public $css = array(
+        'css/site.css',
+    );
+    public $js = array();
+    public $depends = array(
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    );
 }

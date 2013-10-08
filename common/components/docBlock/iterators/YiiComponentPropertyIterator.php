@@ -8,7 +8,7 @@
  */
 class YiiComponentPropertyIterator extends ArrayIterator
 {
-    public  $object;
+    public $object;
 
     /**
      * Need for automatical align of strings
@@ -43,23 +43,20 @@ class YiiComponentPropertyIterator extends ArrayIterator
 
 
     /**
-     * @param array      $initOptions
+     * @param array $initOptions
      * @param CComponent $object
      */
     public function __construct($initOptions)
     {
-        foreach ($initOptions as $key => $val)
-        {
+        foreach ($initOptions as $key => $val) {
             $this->$key = $val;
         }
         $props = array();
-        foreach ($this->generatePropertiesFor as $item)
-        {
+        foreach ($this->generatePropertiesFor as $item) {
             $props = array_merge($props, $this->$item);
         }
 
-        foreach ($this->generateMethodsFor as $item)
-        {
+        foreach ($this->generateMethodsFor as $item) {
             $props = array_merge($props, $this->$item);
         }
 
@@ -74,19 +71,13 @@ class YiiComponentPropertyIterator extends ArrayIterator
 
         //filter it
         $class = get_class($this->object);
-        while ($class = get_parent_class($class))
-        {
+        while ($class = get_parent_class($class)) {
             $parser = DocBlockParser::parseClass($class);
-            if (in_array($name, $this->generatePropertiesFor))
-            {
+            if (in_array($name, $this->generatePropertiesFor)) {
                 $parentProps = array_keys($parser->properties);
-            }
-            elseif (in_array($name, $this->generateMethodsFor))
-            {
+            } elseif (in_array($name, $this->generateMethodsFor)) {
                 $parentProps = array_keys($parser->methods);
-            }
-            else
-            {
+            } else {
                 throw new CException("Allowed types values is 'attributes', 'events', 'accessors', 'relations', 'scopes'");
             }
             /*array_map(function ($item)
@@ -100,20 +91,15 @@ class YiiComponentPropertyIterator extends ArrayIterator
         }
 
         //instant it
-        if (in_array($name, $this->generatePropertiesFor))
-        {
+        if (in_array($name, $this->generatePropertiesFor)) {
             $result = $this->instantAll($props, $this->propertyOptions);
-        }
-        elseif (in_array($name, $this->generateMethodsFor))
-        {
+        } elseif (in_array($name, $this->generateMethodsFor)) {
             $result = $this->instantAll($props, $this->methodOptions);
         }
 
         $filteredResult = array();
-        foreach($result as $key => $val)
-        {
-            if ($val->canDraw())
-            {
+        foreach ($result as $key => $val) {
+            if ($val->canDraw()) {
                 $filteredResult[$key] = $val;
             }
         }
@@ -135,8 +121,8 @@ class YiiComponentPropertyIterator extends ArrayIterator
      */
     protected function createLineInstance($prop, $lineOptions)
     {
-        $property           = Yii::createComponent($lineOptions);
-        $property->name     = $prop;
+        $property = Yii::createComponent($lineOptions);
+        $property->name = $prop;
         $property->iterator = $this;
         $property->populate($this->object);
         $property->afterPopulate();
@@ -148,14 +134,10 @@ class YiiComponentPropertyIterator extends ArrayIterator
     public function instantAll($props, $optioins)
     {
         $result = array();
-        foreach ($props as $prop)
-        {
-            if (is_string($prop))
-            {
+        foreach ($props as $prop) {
+            if (is_string($prop)) {
                 $result[$prop] = $this->createLineInstance($prop, $optioins);
-            }
-            else
-            {
+            } else {
                 $result[] = $prop;
             }
         }
@@ -195,25 +177,17 @@ class YiiComponentPropertyIterator extends ArrayIterator
         //try to get or set all @property from current doc, for finding user writable properties
         $parser = DocBlockParser::parseClass(get_class($object));
         $tmp = array();
-        foreach ($parser->properties as $prop => $data)
-        {
-            if (array_key_exists($prop, $props))
-            {
+        foreach ($parser->properties as $prop => $data) {
+            if (array_key_exists($prop, $props)) {
                 continue;
             }
 
-            try
-            {
+            try {
                 $object->$prop;
-            }
-            catch(Exception $e)
-            {
-                try
-                {
+            } catch (Exception $e) {
+                try {
                     $object->$prop = true;
-                }
-                catch (Exception $e)
-                {
+                } catch (Exception $e) {
                     continue;
                 }
             }
@@ -223,18 +197,13 @@ class YiiComponentPropertyIterator extends ArrayIterator
         $res = $this->instantAll($tmp, $this->propertyOptions);
 
         $tmp = array();
-        foreach ($parser->methods as $method => $data)
-        {
-            if (array_key_exists($method, $props))
-            {
+        foreach ($parser->methods as $method => $data) {
+            if (array_key_exists($method, $props)) {
                 continue;
             }
-            try
-            {
+            try {
                 $object->$method();
-            }
-            catch(Exception $e)
-            {
+            } catch (Exception $e) {
                 continue;
             }
 
@@ -254,20 +223,15 @@ class YiiComponentPropertyIterator extends ArrayIterator
     public function getAccessors($object)
     {
         $props = array();
-        foreach (get_class_methods($object) as $method)
-        {
-            if (strncasecmp($method, 'set', 3) === 0 || strncasecmp($method, 'get', 3) === 0)
-            {
+        foreach (get_class_methods($object) as $method) {
+            if (strncasecmp($method, 'set', 3) === 0 || strncasecmp($method, 'get', 3) === 0) {
                 $props[] = lcfirst(substr($method, 3));
             }
         }
 
-        if (method_exists($object, 'behaviors'))
-        {
-            foreach ($object->behaviors() as $id => $data)
-            {
-                if ($object->asa($id))
-                {
+        if (method_exists($object, 'behaviors')) {
+            foreach ($object->behaviors() as $id => $data) {
+                if ($object->asa($id)) {
                     Yii::log('If your components, implement "behaviors" method, than it must attach in constructor',
                         CLogger::LEVEL_WARNING, 'DocBlockCommand');
                     continue;
@@ -288,10 +252,8 @@ class YiiComponentPropertyIterator extends ArrayIterator
     public function getEvents($object)
     {
         $events = array();
-        foreach (get_class_methods($object) as $method)
-        {
-            if (strncasecmp($method, 'on', 2) === 0)
-            {
+        foreach (get_class_methods($object) as $method) {
+            if (strncasecmp($method, 'on', 2) === 0) {
                 $events[] = $method;
             }
         }
@@ -317,10 +279,8 @@ class YiiComponentPropertyIterator extends ArrayIterator
      */
     public function getMaxLenOfType()
     {
-        if ($this->_maxLenOfType === null)
-        {
-            for ($max = 0, $it = clone $this, $it->rewind(); $it->valid(); $it->next())
-            {
+        if ($this->_maxLenOfType === null) {
+            for ($max = 0, $it = clone $this, $it->rewind(); $it->valid(); $it->next()) {
                 $max = max($max, strlen($it->current()->type));
             }
             $this->_maxLenOfType = $max;
@@ -337,10 +297,8 @@ class YiiComponentPropertyIterator extends ArrayIterator
      */
     public function getMaxLenOfName()
     {
-        if ($this->_maxLenOfName === null)
-        {
-            for ($max = 0, $it = clone $this, $it->rewind(); $it->valid(); $it->next())
-            {
+        if ($this->_maxLenOfName === null) {
+            for ($max = 0, $it = clone $this, $it->rewind(); $it->valid(); $it->next()) {
                 $max = max($max, $it->current()->getNameLen());
             }
             $this->_maxLenOfName = $max;
@@ -357,10 +315,8 @@ class YiiComponentPropertyIterator extends ArrayIterator
      */
     public function getMaxLenOfTag()
     {
-        if ($this->_maxLenOfTag === null)
-        {
-            for ($max = 0, $it = clone $this, $it->rewind(); $it->valid(); $it->next())
-            {
+        if ($this->_maxLenOfTag === null) {
+            for ($max = 0, $it = clone $this, $it->rewind(); $it->valid(); $it->next()) {
                 $max = max($max, $it->current()->getTagLen());
             }
             $this->_maxLenOfTag = $max;
@@ -371,8 +327,7 @@ class YiiComponentPropertyIterator extends ArrayIterator
 
     public function addComment(&$array, $message)
     {
-        if ($this->addIllustrationCommetns && $array)
-        {
+        if ($this->addIllustrationCommetns && $array) {
             $message = Yii::t($this->commentCategory, $message, null, 'docBlockMessage',
                 $this->commentLanguage);
             array_unshift($array, new DocBlockComment($message));

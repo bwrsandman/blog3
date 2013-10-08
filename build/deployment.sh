@@ -34,7 +34,9 @@ sudo -u www-data php ${basedir}init 0
 
 sudo chown -R www-data:www-data ${basedir}
 
-sudo -u www-data php composer.phar --prefer-source -o
+#sudo -u www-data php composer.phar --prefer-source -o
+
+
 #clear
 #echo '-----------clear-----------'
 #rm -rf ${webroot}assets
