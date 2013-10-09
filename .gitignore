@@ -1,4 +1,5 @@
 /yii
 /composer.lock
 .idea
-environments
+environments/dev
+environments/prod

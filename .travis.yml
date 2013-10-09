@@ -13,14 +13,17 @@ services:
   - memcached
 
 before_script:
+  - sudo apt-get update && sudo apt-get upgrade
   - composer self-update && composer --version && composer install
   - mysql -e 'CREATE DATABASE blog3;';
 #  - tests/unit/data/travis/memcache-setup.sh
   - npm install -g bower
   - cd frontend/web && bower install && cd ../../
   - cd frontend/servers && npm install && cd ../../
+  - php init travis
 
 script:
+
   - phpunit --coverage-clover frontend/tests/unit/runtime/coveralls/clover.xml --verbose
 
 after_script:
