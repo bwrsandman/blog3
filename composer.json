@@ -21,7 +21,7 @@
         "nizsheanez/yii2-sphinx-tools": "1.*",
         "nizsheanez/yii2-asset-converter": "1.*",
         "twbs/bootstrap": "3.*",
-        "twig/twig": "1.13.*",
+        "twig/twig": "1.14.*",
         "dropbox/dropbox-sdk": "1.1.*",
         "evernote/evernote": "1.*",
         "satooshi/php-coveralls": "dev-master"
