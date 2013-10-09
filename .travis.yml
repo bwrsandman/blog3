@@ -16,7 +16,7 @@ before_script:
   - composer self-update && composer --version && composer install
   - mysql -e 'CREATE DATABASE blog3;';
 #  - tests/unit/data/travis/memcache-setup.sh
-  - gem install bower
+  - npm install -g bower
   - cd frontend/web && bower install && cd ../../
   - cd frontend/servers && npm install && cd ../../
 
