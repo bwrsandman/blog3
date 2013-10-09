@@ -17,7 +17,7 @@
  * ```
  */
 return array(
-	'Development' => array(
+	'development' => array(
 		'path' => 'dev',
 		'writable' => array(
 			// handled by composer.json already
@@ -26,7 +26,7 @@ return array(
 			'yii',
 		),
 	),
-	'Production' => array(
+	'production' => array(
 		'path' => 'prod',
 		'writable' => array(
 			// handled by composer.json already
@@ -35,7 +35,7 @@ return array(
 			'yii',
 		),
 	),
-    'Travis' => array(
+    'travis' => array(
         'path' => 'travis',
         'writable' => array(
             // handled by composer.json already
