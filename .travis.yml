@@ -1,0 +1,28 @@
+language: php
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+env:
+  - CUBRID_VERSION=9.1.0
+
+services:
+  - redis-server
+  - memcached
+
+before_script:
+  - composer self-update && composer --version
+  - mysql -e 'CREATE DATABASE blog3;';
+  - tests/unit/data/travis/memcache-setup.sh
+  - composer install
+  - gem install bower
+  - cd frontend/web && bower update && cd ../../
+  - cd frontend/servers && npm update && cd ../../
+
+script:
+  - phpunit --coverage-clover tests/unit/runtime/coveralls/clover.xml --verbose --exclude-group mssql,oci,wincache,xcache,zenddata
+
+after_script:
+  - php vendor/bin/coveralls
