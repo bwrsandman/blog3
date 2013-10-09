@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use yii\data\ArrayDataProvider;
 use yii\db\ActiveRecord;
 
 class Goal extends ActiveRecord
@@ -21,6 +22,11 @@ class Goal extends ActiveRecord
                 ),
             ),
         );
+    }
+
+    public function search()
+    {
+        return new ArrayDataProvider;
     }
 
 }
