@@ -13,10 +13,9 @@ services:
   - memcached
 
 before_script:
-  - composer self-update && composer --version
+  - composer self-update && composer --version && composer install
   - mysql -e 'CREATE DATABASE blog3;';
-  - tests/unit/data/travis/memcache-setup.sh
-  - composer install
+#  - tests/unit/data/travis/memcache-setup.sh
   - gem install bower
   - cd frontend/web && bower update && cd ../../
   - cd frontend/servers && npm update && cd ../../
