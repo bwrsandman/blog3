@@ -23,7 +23,8 @@
         "twbs/bootstrap": "3.*",
         "twig/twig": "1.13.*",
         "dropbox/dropbox-sdk": "1.1.*",
-        "evernote/evernote": "1.*"
+        "evernote/evernote": "1.*",
+        "satooshi/php-coveralls": "dev-master"
     },
 	"scripts": {
 		"post-create-project-cmd": [

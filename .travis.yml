@@ -6,7 +6,7 @@ php:
   - 5.5
 
 env:
-  - CUBRID_VERSION=9.1.0
+  - ENV='travis'
 
 services:
   - redis-server
@@ -21,7 +21,7 @@ before_script:
   - cd frontend/servers && npm install && cd ../../
 
 script:
-  - phpunit --coverage-clover frontend/tests/unit/runtime/coveralls/clover.xml --verbose --exclude-group mssql,oci,wincache,xcache,zenddata
+  - phpunit --coverage-clover frontend/tests/unit/runtime/coveralls/clover.xml --verbose
 
 after_script:
-  - php vendor/bin/coveralls
+  - php vendor/satooshi/php-coveralls/composer/bin/coveralls -v
