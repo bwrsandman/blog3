@@ -21,7 +21,7 @@ before_script:
   - cd frontend/servers && npm install && cd ../../
 
 script:
-  - phpunit --coverage-clover tests/unit/runtime/coveralls/clover.xml --verbose --exclude-group mssql,oci,wincache,xcache,zenddata
+  - phpunit --coverage-clover frontend/tests/unit/runtime/coveralls/clover.xml --verbose --exclude-group mssql,oci,wincache,xcache,zenddata
 
 after_script:
   - php vendor/bin/coveralls
