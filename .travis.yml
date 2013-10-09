@@ -17,8 +17,8 @@ before_script:
   - mysql -e 'CREATE DATABASE blog3;';
 #  - tests/unit/data/travis/memcache-setup.sh
   - gem install bower
-  - cd frontend/web && bower update && cd ../../
-  - cd frontend/servers && npm update && cd ../../
+  - cd frontend/web && bower install && cd ../../
+  - cd frontend/servers && npm install && cd ../../
 
 script:
   - phpunit --coverage-clover tests/unit/runtime/coveralls/clover.xml --verbose --exclude-group mssql,oci,wincache,xcache,zenddata
