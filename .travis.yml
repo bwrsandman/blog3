@@ -28,3 +28,10 @@ script:
 
 after_script:
   - php vendor/satooshi/php-coveralls/composer/bin/coveralls -v
+
+notifications:
+  email:
+    recipients:
+      - www.pismeco@gmail.com
+    on_success: change # default: change
+    on_failure: change # default: always
