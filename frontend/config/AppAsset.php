@@ -21,13 +21,13 @@ class AppAsset extends AssetBundle
 		'less/site.less',
 	);
 	public $js = array(
-//        'socket.io/socket.io.js',
-//        'js/push_client.js',
-        'js/less-1.4.1.min.js',
+        'socket.io/socket.io.js',
+        'js/push_client.js',
+//        'js/less-1.4.1.min.js',
 	);
 	public $depends = array(
 		'yii\web\YiiAsset',
-//		'yii\bootstrap\BootstrapAsset',
+		'yii\bootstrap\BootstrapAsset',
         'frontend\config\AngularAsset'
 	);
 }

@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(89),
+var io = require('socket.io').listen(8080),
     jayson = require('jayson');
 
 var rpc_client = jayson.client.http('http://blog3.ru/index.php?r=rpc/index');

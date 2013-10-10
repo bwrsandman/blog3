@@ -1,4 +1,4 @@
-var search_socket = io.connect('http://blog3.ru:89');
+var search_socket = io.connect('http://blog3.ru:8080');
 
 
 var events = {

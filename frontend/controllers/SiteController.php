@@ -50,6 +50,13 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionDelete($id = null)
+    {
+        if ($id == null) {
+
+        }
+        $goal = Goal::find($id);
+    }
 
     public function actionLogin()
     {
