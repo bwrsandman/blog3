@@ -16,15 +16,6 @@ use Dropbox\WebAuthNoRedirect;
 
 class SiteController extends Controller
 {
-    public function actions()
-    {
-        return array(
-            'captcha' => array(
-                'class' => 'yii\captcha\CaptchaAction',
-            ),
-        );
-    }
-
 
     public function actionPush($type = 'success', $message = null)
     {
@@ -32,6 +23,29 @@ class SiteController extends Controller
         $client->notify($type, $message ? $message : 'nope');
     }
 
+
+    public function actionGoals()
+    {
+        $data = array(
+            array(
+                'title' => 1,
+                'completed' => false,
+            ),
+            array(
+                'title' => 2,
+                'completed' => false,
+            ),
+            array(
+                'title' => 3,
+                'completed' => false,
+            ),
+            array(
+                'title' => 4,
+                'completed' => false,
+            )
+        );
+        Yii::$app->response->setData($data);
+    }
 
     public function dropbox()
     {

@@ -46,3 +46,7 @@ angular.module('MainApp').config(function($stateProvider, $urlRouterProvider){
 //        redirectTo: '/list'
 //    });
 });
+
+$(document).ready(function () {
+    $('.first-load:first').remove();
+});

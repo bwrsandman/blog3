@@ -8,8 +8,18 @@ angular.module('MainApp').factory('goalStorage', function () {
     var STORAGE_ID = 'todos-angularjs';
 
     return {
-        get: function () {
-            return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+        get: function (callback) {
+            var service = this;
+            var goals = localStorage.getItem(STORAGE_ID);
+            if (goals != undefined) {
+                callback(JSON.parse(goals));
+            } else {
+                io.send('site/goals', {}, function(data) {
+                    service.put(data);
+                    goals = localStorage.getItem(STORAGE_ID);
+                    callback(JSON.parse(goals));
+                });
+            }
         },
 
         put: function (todos) {

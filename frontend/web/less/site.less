@@ -1,5 +1,32 @@
 @import "../../../vendor/twbs/bootstrap/less/bootstrap.less";
 
+.text-rendering(@model) {
+  -webkit-text-rendering: @model;
+  -moz-text-rendering: @model;
+  -ms-text-rendering: @model;
+  -o-text-rendering: @model;
+  text-rendering: @model;
+}
+
+.font-smoothing(@model) {
+  -webkit-font-smoothing: @model;
+  -moz-font-smoothing: @model;
+  -ms-font-smoothing: @model;
+  -o-font-smoothing: @model;
+  font-smoothing: @model;
+}
+
+.first-load {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  z-index: 10000;
+}
+
 body {
   padding-top: 70px;
 
@@ -20,7 +47,6 @@ body {
   }
 }
 
-
 #todoapp {
   background: #fff;
   background: rgba(255, 255, 255, 0.9);
@@ -29,8 +55,7 @@ body {
   position: relative;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
-  0 25px 50px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
 }
 
 #todoapp:before {
@@ -63,11 +88,7 @@ body {
   color: #b3b3b3;
   color: rgba(255, 255, 255, 0.3);
   text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
-  -webkit-text-rendering: optimizeLegibility;
-  -moz-text-rendering: optimizeLegibility;
-  -ms-text-rendering: optimizeLegibility;
-  -o-text-rendering: optimizeLegibility;
-  text-rendering: optimizeLegibility;
+  .text-rendering(optimizeLegibility);
 }
 
 #header {
@@ -85,13 +106,7 @@ body {
   z-index: 2;
   border-bottom: 1px solid #6c615c;
   background: #8d7d77;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(132, 110, 100, 0.8)),to(rgba(101, 84, 76, 0.8)));
-  background: -webkit-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: -moz-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: -o-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: -ms-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#9d8b83', EndColorStr='#847670');
+  #gradient > .vertical(rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
 }
@@ -110,16 +125,8 @@ body {
   padding: 6px;
   border: 1px solid #999;
   box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -ms-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  .box-sizing(border-box);
+  .font-smoothing(antialiased);
 }
 
 #new-todo {
@@ -164,126 +171,110 @@ label[for='toggle-all'] {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+  li {
+    position: relative;
+    font-size: 24px;
+    border-bottom: 1px dotted #ccc;
 
-#todo-list li {
-  position: relative;
-  font-size: 24px;
-  border-bottom: 1px dotted #ccc;
-}
+    .toggle {
+      text-align: center;
+      width: 40px;
+      /* auto, since non-WebKit browsers doesn't support input styling */
+      height: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      border: none; /* Mobile Safari */
+      -webkit-appearance: none;
+      /*-moz-appearance: none;*/
+      -ms-appearance: none;
+      -o-appearance: none;
+      appearance: none;
+    }
 
-#todo-list li:last-child {
-  border-bottom: none;
-}
+    .toggle:after {
+      content: '✔';
+      line-height: 43px; /* 40 + a couple of pixels visual adjustment */
+      font-size: 20px;
+      color: #d9d9d9;
+      text-shadow: 0 -1px 0 #bfbfbf;
+    }
 
-#todo-list li.editing {
-  border-bottom: none;
-  padding: 0;
-}
+    .toggle:checked:after {
+      color: #85ada7;
+      text-shadow: 0 1px 0 #669991;
+      bottom: 1px;
+      position: relative;
+    }
 
-#todo-list li.editing .edit {
-  display: block;
-  width: 506px;
-  padding: 13px 17px 12px 17px;
-  margin: 0 0 0 43px;
-}
+    label {
+      word-break: break-word;
+      padding: 15px;
+      margin-left: 45px;
+      display: block;
+      line-height: 1.2;
+      .transition(color 0.4s);
+    }
+    .destroy {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      bottom: 0;
+      width: 40px;
+      height: 40px;
+      margin: auto 0;
+      font-size: 22px;
+      color: #a88a8a;
+      .transition(all 0.2s);
+    }
+    .destroy:hover {
+      text-shadow: 0 0 1px #000, 0 0 10px rgba(199, 107, 107, 0.8);
+      .scale(1.3);
+    }
 
-#todo-list li.editing .view {
-  display: none;
-}
+    .destroy:after {
+      content: '✖';
+    }
+    .edit {
+      display: none;
+    }
+  }
 
-#todo-list li .toggle {
-  text-align: center;
-  width: 40px;
-  /* auto, since non-WebKit browsers doesn't support input styling */
-  height: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  border: none; /* Mobile Safari */
-  -webkit-appearance: none;
-  /*-moz-appearance: none;*/
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-}
+  li:hover .destroy {
+    display: block;
+  }
 
-#todo-list li .toggle:after {
-  content: '✔';
-  line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-  font-size: 20px;
-  color: #d9d9d9;
-  text-shadow: 0 -1px 0 #bfbfbf;
-}
+  li.editing:last-child {
+    margin-bottom: -1px;
+  }
 
-#todo-list li .toggle:checked:after {
-  color: #85ada7;
-  text-shadow: 0 1px 0 #669991;
-  bottom: 1px;
-  position: relative;
-}
+  li:last-child {
+    border-bottom: none;
+  }
 
-#todo-list li label {
-  word-break: break-word;
-  padding: 15px;
-  margin-left: 45px;
-  display: block;
-  line-height: 1.2;
-  -webkit-transition: color 0.4s;
-  -moz-transition: color 0.4s;
-  -ms-transition: color 0.4s;
-  -o-transition: color 0.4s;
-  transition: color 0.4s;
-}
+  li.editing {
+    border-bottom: none;
+    padding: 0;
 
-#todo-list li.completed label {
-  color: #a9a9a9;
-  text-decoration: line-through;
-}
+    .edit {
+      display: block;
+      width: 506px;
+      padding: 13px 17px 12px 17px;
+      margin: 0 0 0 43px;
+    }
 
-#todo-list li .destroy {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 10px;
-  bottom: 0;
-  width: 40px;
-  height: 40px;
-  margin: auto 0;
-  font-size: 22px;
-  color: #a88a8a;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
-}
+    .view {
+      display: none;
+    }
+  }
 
-#todo-list li .destroy:hover {
-  text-shadow: 0 0 1px #000,
-  0 0 10px rgba(199, 107, 107, 0.8);
-  -webkit-transform: scale(1.3);
-  -moz-transform: scale(1.3);
-  -ms-transform: scale(1.3);
-  -o-transform: scale(1.3);
-  transform: scale(1.3);
-}
+  li.completed label {
+    color: #a9a9a9;
+    text-decoration: line-through;
+  }
 
-#todo-list li .destroy:after {
-  content: '✖';
-}
-
-#todo-list li:hover .destroy {
-  display: block;
-}
-
-#todo-list li .edit {
-  display: none;
-}
-
-#todo-list li.editing:last-child {
-  margin-bottom: -1px;
 }
 
 #footer {
@@ -306,11 +297,7 @@ label[for='toggle-all'] {
   left: 0;
   height: 50px;
   z-index: -1;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),
-  0 6px 0 -3px rgba(255, 255, 255, 0.8),
-  0 7px 1px -3px rgba(0, 0, 0, 0.3),
-  0 43px 0 -6px rgba(255, 255, 255, 0.8),
-  0 44px 2px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 6px 0 -3px rgba(255, 255, 255, 0.8), 0 7px 1px -3px rgba(0, 0, 0, 0.3), 0 43px 0 -6px rgba(255, 255, 255, 0.8), 0 44px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 #todo-count {
@@ -325,20 +312,19 @@ label[for='toggle-all'] {
   position: absolute;
   right: 0;
   left: 0;
-}
+  li {
+    display: inline;
+  }
 
-#filters li {
-  display: inline;
-}
+  li a {
+    color: #83756f;
+    margin: 2px;
+    text-decoration: none;
+  }
+  li a.selected {
+    font-weight: bold;
+  }
 
-#filters li a {
-  color: #83756f;
-  margin: 2px;
-  text-decoration: none;
-}
-
-#filters li a.selected {
-  font-weight: bold;
 }
 
 #clear-completed {
@@ -364,10 +350,9 @@ label[for='toggle-all'] {
   font-size: 12px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
   text-align: center;
-}
-
-#info a {
-  color: inherit;
+  a {
+    color: inherit;
+  }
 }
 
 /*
@@ -389,15 +374,14 @@ label[for='toggle-all'] {
     left: -15px;
     width: 65px;
     height: 41px;
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
+    .rotate(90deg);
     -webkit-appearance: none;
     appearance: none;
   }
 }
 
-.hidden{
-  display:none;
+.hidden {
+  display: none;
 }
 
 hr {
@@ -407,96 +391,90 @@ hr {
   border-bottom: 1px dashed #F7F7F7;
 }
 
-.learn a {
-  font-weight: normal;
-  text-decoration: none;
-  color: #b83f45;
-}
+.learn {
+  a {
+    font-weight: normal;
+    text-decoration: none;
+    color: #b83f45;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #787e7e;
+  }
+  h3,
+  h4,
+  h5 {
+    margin: 10px 0;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #000;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+  ul {
+    padding: 0;
+    margin: 0 0 30px 25px;
+  }
+  li {
+    line-height: 20px;
+  }
+  p {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.3;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-.learn a:hover {
-  text-decoration: underline;
-  color: #787e7e;
-}
-
-.learn h3,
-.learn h4,
-.learn h5 {
-  margin: 10px 0;
-  font-weight: 500;
-  line-height: 1.2;
-  color: #000;
-}
-
-.learn h3 {
-  font-size: 24px;
-}
-
-.learn h4 {
-  font-size: 18px;
-}
-
-.learn h5 {
-  margin-bottom: 0;
-  font-size: 14px;
-}
-
-.learn ul {
-  padding: 0;
-  margin: 0 0 30px 25px;
-}
-
-.learn li {
-  line-height: 20px;
-}
-
-.learn p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.3;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .quote {
   border: none;
   margin: 20px 0 60px 0;
-}
+  p {
+    font-style: italic;
+  }
 
-.quote p {
-  font-style: italic;
-}
+  p:before {
+    content: '“';
+    font-size: 50px;
+    opacity: .15;
+    position: absolute;
+    top: -20px;
+    left: 3px;
+  }
 
-.quote p:before {
-  content: '“';
-  font-size: 50px;
-  opacity: .15;
-  position: absolute;
-  top: -20px;
-  left: 3px;
-}
+  p:after {
+    content: '”';
+    font-size: 50px;
+    opacity: .15;
+    position: absolute;
+    bottom: -42px;
+    right: 3px;
+  }
+  footer {
+    position: absolute;
+    bottom: -40px;
+    right: 0;
 
-.quote p:after {
-  content: '”';
-  font-size: 50px;
-  opacity: .15;
-  position: absolute;
-  bottom: -42px;
-  right: 3px;
-}
+    img {
+      border-radius: 3px;
+    }
+    a {
+      margin-left: 5px;
+      vertical-align: middle;
+    }
 
-.quote footer {
-  position: absolute;
-  bottom: -40px;
-  right: 0;
-}
+  }
 
-.quote footer img {
-  border-radius: 3px;
-}
-
-.quote footer a {
-  margin-left: 5px;
-  vertical-align: middle;
 }
 
 .speech-bubble {
@@ -515,26 +493,29 @@ hr {
   border-top-color: rgba(0, 0, 0, .04);
 }
 
-/**body*/.learn-bar > .learn {
-           position: absolute;
-           width: 272px;
-           top: 8px;
-           left: -300px;
-           padding: 10px;
-           border-radius: 5px;
-           background-color: rgba(255, 255, 255, .6);
-           transition-property: left;
-           transition-duration: 500ms;
-         }
+/**body*/
+.learn-bar > .learn {
+  position: absolute;
+  width: 272px;
+  top: 8px;
+  left: -300px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .6);
+  transition-property: left;
+  transition-duration: 500ms;
+}
 
 @media (min-width: 899px) {
   /**body*/.learn-bar {
   width: auto;
   margin: 0 0 0 300px;
 }
+
   /**body*/.learn-bar > .learn {
              left: 8px;
            }
+
   /**body*/.learn-bar #todoapp {
              width: 550px;
              margin: 130px auto 40px auto;

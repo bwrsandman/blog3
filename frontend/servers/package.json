@@ -18,7 +18,10 @@
     "socket.io": "0.9",
     "jayson": "1",
     "redis": "0.8",
-    "express" : "3"
+    "express" : "3",
+    "sockjs-client" : "*",
+    "express.io" : "*"
+
   },
   "engines": {
     "node": ">= 0.4.0"
