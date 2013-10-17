@@ -18,9 +18,9 @@ class AngularAsset extends AssetBundle
 	public $basePath = '@webroot';
 	public $baseUrl = '@web';
 	public $js = array(
-        '//maps.googleapis.com/maps/api/js?sensor=false',
+//        '//maps.googleapis.com/maps/api/js?sensor=false',
         'components/angular/angular.js',
-        '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.4.0/ui-bootstrap-tpls.min.js',
+//        '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.4.0/ui-bootstrap-tpls.min.js',
         'components/angular-ui-router/release/angular-ui-router.min.js',
         'components/angular-translate/angular-translate.js',
     );

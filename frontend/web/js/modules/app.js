@@ -17,7 +17,8 @@ angular.module('MapApp').config(['$locationProvider', function($locationProvider
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
 
-angular.module('MainApp', ['ui.router', 'ui.bootstrap']);
+//angular.module('MainApp', ['ui.router', 'ui.bootstrap']);
+angular.module('MainApp', ['ui.router']);
 
 
 angular.module('MainApp').config(function($stateProvider, $urlRouterProvider){
@@ -47,6 +48,10 @@ angular.module('MainApp').config(function($stateProvider, $urlRouterProvider){
 //    });
 });
 
-$(document).ready(function () {
-    $('.first-load:first').remove();
-});
+var showScreen = function () {
+    $(document).ready(function () {
+        var el = $('.first-load:first');
+        el.remove();
+    });
+};
+setTimeout(showScreen, 500);

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, goalStorage, filterFilter) {
-    goalStorage.get(function(data) {
+    goalStorage.get().then(function (data) {
+        showScreen();
+
         var todos = $scope.todos = data;
 
         $scope.newTodo = '';
@@ -16,68 +18,70 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
             }
         }, true);
 
-        if ($location.path() === '') {
-            $location.path('/');
-        }
+        /*
 
-        $scope.location = $location;
+         if ($location.path() === '') {
+         $location.path('/');
+         }
 
-        $scope.$watch('location.path()', function (path) {
-            $scope.statusFilter = (path === '/active') ?
-            { completed: false } : (path === '/completed') ?
-            { completed: true } : null;
-        });
+         $scope.location = $location;
 
-        $scope.addTodo = function () {
-            var newTodo = $scope.newTodo.trim();
-            if (!newTodo.length) {
-                return;
-            }
+         $scope.$watch('location.path()', function (path) {
+         $scope.statusFilter = (path === '/active') ?
+         { completed: false } : (path === '/completed') ?
+         { completed: true } : null;
+         });
 
-            todos.push({
-                title: newTodo,
-                completed: false
-            });
+         $scope.addTodo = function () {
+         var newTodo = $scope.newTodo.trim();
+         if (!newTodo.length) {
+         return;
+         }
 
-            $scope.newTodo = '';
-        };
+         todos.push({
+         title: newTodo,
+         completed: false
+         });
 
-        $scope.editTodo = function (todo) {
-            $scope.editedTodo = todo;
-            // Clone the original todo to restore it on demand.
-            $scope.originalTodo = angular.extend({}, todo);
-        };
+         $scope.newTodo = '';
+         };
 
-        $scope.doneEditing = function (todo) {
-            $scope.editedTodo = null;
-            todo.title = todo.title.trim();
+         $scope.editTodo = function (todo) {
+         $scope.editedTodo = todo;
+         // Clone the original todo to restore it on demand.
+         $scope.originalTodo = angular.extend({}, todo);
+         };
 
-            if (!todo.title) {
-                $scope.removeTodo(todo);
-            }
-        };
+         $scope.doneEditing = function (todo) {
+         $scope.editedTodo = null;
+         todo.title = todo.title.trim();
 
-        $scope.revertEditing = function (todo) {
-            todos[todos.indexOf(todo)] = $scope.originalTodo;
-            $scope.doneEditing($scope.originalTodo);
-        };
+         if (!todo.title) {
+         $scope.removeTodo(todo);
+         }
+         };
 
-        $scope.removeTodo = function (todo) {
-            todos.splice(todos.indexOf(todo), 1);
-        };
+         $scope.revertEditing = function (todo) {
+         todos[todos.indexOf(todo)] = $scope.originalTodo;
+         $scope.doneEditing($scope.originalTodo);
+         };
 
-        $scope.clearCompletedTodos = function () {
-            $scope.todos = todos = todos.filter(function (val) {
-                return !val.completed;
-            });
-        };
+         $scope.removeTodo = function (todo) {
+         todos.splice(todos.indexOf(todo), 1);
+         };
 
-        $scope.markAll = function (completed) {
-            todos.forEach(function (todo) {
-                todo.completed = completed;
-            });
-        };
+         $scope.clearCompletedTodos = function () {
+         $scope.todos = todos = todos.filter(function (val) {
+         return !val.completed;
+         });
+         };
+
+         $scope.markAll = function (completed) {
+         todos.forEach(function (todo) {
+         todo.completed = completed;
+         });
+         };
+         */
     });
-
 
 });

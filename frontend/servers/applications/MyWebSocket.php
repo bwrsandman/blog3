@@ -14,8 +14,8 @@ class MyWebSocket extends \PHPDaemon\Core\AppInstance {
         // Метод timerTask() будет вызываться каждые 5 секунд
         $this->timerTask($appInstance);
 
-        // Наше приложение будет доступно по адресу ws://site.com:8047/myws
-        \PHPDaemon\Servers\WebSocket\Pool::getInstance()->addRoute('myws', function ($client) use ($appInstance) {
+        // Наше приложение будет доступно по адресу ws://site.com:8047/goals
+        \PHPDaemon\Servers\WebSocket\Pool::getInstance()->addRoute('goals', function ($client) use ($appInstance) {
             $session=new MyWebSocketRoute($client, $appInstance); // Создаем сессию
             $session->id=uniqid(); // Назначаем ей уникальный ID
             $this->sessions[$session->id]=$session; //Сохраняем в массив

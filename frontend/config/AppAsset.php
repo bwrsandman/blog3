@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
 	);
 
 	public $js = array(
+        'js/debug.js',
 //        'socket.io/socket.io.js',
         'js/websocket/websocket.js',
         'js/push_client.js',
@@ -33,11 +34,13 @@ class AppAsset extends AssetBundle
 
         'js/modules/app.js',
 
+        'js/modules/main/services/goalsIo.js',
+        'js/modules/main/services/goalStorage.js',
+
+        'js/modules/main/controllers/goal.js',
+
         'js/modules/main/services/alert.js',
         'js/modules/main/controllers/root.js',
-
-        'js/modules/main/services/goalStorage.js',
-        'js/modules/main/controllers/goal.js',
 
 //        'js/modules/map/services/places.js',
 //        'js/modules/map/controllers/list.js',

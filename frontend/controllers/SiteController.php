@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\components\ClientApi;
+use common\models\Goal;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
@@ -26,25 +27,11 @@ class SiteController extends Controller
 
     public function actionGoals()
     {
-        $data = array(
-            array(
-                'title' => 1,
-                'completed' => false,
-            ),
-            array(
-                'title' => 2,
-                'completed' => false,
-            ),
-            array(
-                'title' => 3,
-                'completed' => false,
-            ),
-            array(
-                'title' => 4,
-                'completed' => false,
-            )
-        );
-        Yii::$app->response->setData($data);
+        $models = Goal::find()->asArray()->all();
+        foreach ($models as $k => $v) {
+            $models[$k]['completed'] = (bool)$v['completed'];
+        }
+        Yii::$app->response->setData($models);
     }
 
     public function dropbox()
