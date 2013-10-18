@@ -12,7 +12,7 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
             if (goals != undefined) {
                 defer.resolve(JSON.parse(goals));
             } else {
-                goalsIo.send('site/goals', {}, function(data) {
+                goalsIo.send('goal/all', {}, function(data) {
                     $rootScope.$apply(function() {
 //                        service.put(data);
                         defer.resolve(data);

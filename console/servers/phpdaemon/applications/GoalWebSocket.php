@@ -2,7 +2,7 @@
 use PHPDaemon\Core\Daemon;
 use PHPDaemon\Core\Timer;
 
-class MyWebSocket extends \PHPDaemon\Core\AppInstance {
+class GoalWebSocket extends \PHPDaemon\Core\AppInstance {
 
     public $enableRPC=true; // Без этой строчки не будут работать широковещательные вызовы
     public $sessions=array(); // Здесь будем хранить указатели на сессии подключившихся клиентов
@@ -22,22 +22,17 @@ class MyWebSocket extends \PHPDaemon\Core\AppInstance {
             return $session;
         });
 
+        $root = realpath(__DIR__ . '/../../../../');
+        require $root . '/console_app.php';
+        Yii::$app->setComponents(array(
+            'request' => array(
+                'class' => 'common\components\WebSocketRequest',
+            ),
+            'response' => array(
+                'class' => 'common\components\WebSocketResponse',
+            ),
+        ));
 
-        //yii application instance init
-        defined('YII_DEBUG') or define('YII_DEBUG', true);
-
-        $dir = realpath(__DIR__ . '/../../../');
-
-        require($dir . '/vendor/autoload.php');
-        require($dir . '/vendor/yiisoft/yii2/yii/Yii.php');
-
-        Yii::importNamespaces(require($dir . '/vendor/composer/autoload_namespaces.php'));
-
-        $config = yii\helpers\ArrayHelper::merge(
-            require($dir . '/frontend/config/main.php'),
-            require($dir . '/frontend/config/main-local.php')
-        );
-        new yii\console\Application($config);
     }
 
     function timerTask($appInstance) {
@@ -80,19 +75,10 @@ class MyWebSocketRoute extends \PHPDaemon\WebSocket\Route {
     }
 
     // Этот метод срабатывает сообщении от клиента
-    public function onFrame($data, $type) {
-        $request = new common\components\PhpDaemonRequest();
-        $request->setMessage($data);
-        Yii::$app->setComponent('request', $request);
-
-        $response = new common\components\PhpDaemonResponse();
-        Yii::$app->setComponent('response', $response);
+    public function onFrame($message, $type) {
+        Yii::$app->request->setMessage($message);
         Yii::$app->run();
-
-        $response = json_encode(array(
-            'route' => $request->getRoute(),
-            'response' => Yii::$app->response->getData()
-        ));
+        $response = Yii::$app->response->getMessage();
 
         $this->client->sendFrame($response, 'STRING');
     }

@@ -25,15 +25,6 @@ class SiteController extends Controller
     }
 
 
-    public function actionGoals()
-    {
-        $models = Goal::find()->asArray()->all();
-        foreach ($models as $k => $v) {
-            $models[$k]['completed'] = (bool)$v['completed'];
-        }
-        Yii::$app->response->setData($models);
-    }
-
     public function dropbox()
     {
         $appInfo = AppInfo::loadFromJsonFile(Yii::getAlias('@common/config/dropbox.json'));

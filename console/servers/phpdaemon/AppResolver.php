@@ -15,7 +15,6 @@ class MyAppResolver extends \PHPDaemon\Core\AppResolver {
      * @return string Application's name.
      */
     public function getRequestRoute($req, $upstream) {
-echo 3;die;
         /*
             This method should return application name to handle incoming request ($req).
         */

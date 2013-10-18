@@ -24,8 +24,9 @@ class AppAsset extends AssetBundle
 	public $js = array(
         'js/debug.js',
 //        'socket.io/socket.io.js',
-        'js/websocket/websocket.js',
-        'js/push_client.js',
+        'js/pushClient.js',
+        'js/socketFactory.js',
+
 //        'js/less-1.4.1.min.js',
 
         //        'components/angular-bootstrap/ui-bootstrap.js',
@@ -48,6 +49,7 @@ class AppAsset extends AssetBundle
 //        'js/modules/map/directives/pg-google-map.js',
     );
 	public $depends = array(
+        'frontend\config\WebSocketsAsset',
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
         'frontend\config\AngularAsset'
