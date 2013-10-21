@@ -2,13 +2,15 @@
 use PHPDaemon\Core\Daemon;
 use PHPDaemon\Core\Timer;
 
-class GoalWebSocket extends \PHPDaemon\Core\AppInstance {
+class GoalWebSocket extends \PHPDaemon\Core\AppInstance
+{
 
-    public $enableRPC=true; // Без этой строчки не будут работать широковещательные вызовы
-    public $sessions=array(); // Здесь будем хранить указатели на сессии подключившихся клиентов
+    public $enableRPC = true; // Без этой строчки не будут работать широковещательные вызовы
+    public $sessions = array(); // Здесь будем хранить указатели на сессии подключившихся клиентов
 
     // С этого метода начинается работа нашего приложения
-    public function onReady() {
+    public function onReady()
+    {
         $appInstance = $this;
 
         // Метод timerTask() будет вызываться каждые 5 секунд
@@ -16,9 +18,9 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance {
 
         // Наше приложение будет доступно по адресу ws://site.com:8047/goals
         \PHPDaemon\Servers\WebSocket\Pool::getInstance()->addRoute('goals', function ($client) use ($appInstance) {
-            $session=new MyWebSocketRoute($client, $appInstance); // Создаем сессию
-            $session->id=uniqid(); // Назначаем ей уникальный ID
-            $this->sessions[$session->id]=$session; //Сохраняем в массив
+            $session = new MyWebSocketRoute($client, $appInstance); // Создаем сессию
+            $session->id = uniqid(); // Назначаем ей уникальный ID
+            $this->sessions[$session->id] = $session; //Сохраняем в массив
             return $session;
         });
 
@@ -35,7 +37,8 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance {
 
     }
 
-    function timerTask($appInstance) {
+    function timerTask($appInstance)
+    {
         // Отправляем каждому клиенту свое сообщение
 //        foreach($this->sessions as $id=>$session) {
 //            $session->client->sendFrame('This is private message to client with ID '.$id, 'STRING');
@@ -52,7 +55,8 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance {
     }
 
     // Функция для широковещательного вызова (при вызове срабатывает во всех воркерах)
-    public function sendBcMessage($pid) {
+    public function sendBcMessage($pid)
+    {
 //        foreach($this->sessions as $id=>$session) {
 //            $session->client->sendFrame('==This is broadcast message from worker #'.$pid, 'STRING');
 //        }
@@ -60,31 +64,33 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance {
 
 }
 
-class MyWebSocketRoute extends \PHPDaemon\WebSocket\Route {
+class MyWebSocketRoute extends \PHPDaemon\WebSocket\Route
+{
 
     public $client;
     public $appInstance;
     public $id; // Здесь храним ID сессии
 
-    public function __construct($client,$appInstance) {
-        $this->client=$client;
-        $this->appInstance=$appInstance;
+    public function __construct($client, $appInstance)
+    {
+        $this->client = $client;
+        $this->appInstance = $appInstance;
 //        include dirname(__FILE__).'/../yiiapp.php';
         // comment out the following line to disable debug mode
 
     }
 
     // Этот метод срабатывает сообщении от клиента
-    public function onFrame($message, $type) {
+    public function onFrame($message, $type)
+    {
         Yii::$app->request->setMessage($message);
+        Yii::$app->response->setDaemonRoute($this);
         Yii::$app->run();
-        $response = Yii::$app->response->getMessage();
-
-        $this->client->sendFrame($response, 'STRING');
     }
 
     // Этот метод срабатывает при закрытии соединения клиентом
-    public function onFinish() {
+    public function onFinish()
+    {
         // Удаляем сессию из массива
         unset($this->appInstance->sessions[$this->id]);
     }

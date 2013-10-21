@@ -10,7 +10,7 @@ class WebSocketRequest extends \yii\base\Request
 
     public function setMessage($message)
     {
-        \Yii::configure($this, (array)json_decode($message));
+        \Yii::configure($this, json_decode($message, true));
     }
 
     public function setCallbackId($val)
@@ -50,11 +50,12 @@ class WebSocketRequest extends \yii\base\Request
      */
     public function resolve()
     {
-        return array($this->_route, $this->_params);
+        return array($this->_route, array());
     }
 
     public function validateCsrfToken()
     {
         return true;
     }
+
 }

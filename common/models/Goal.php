@@ -29,4 +29,16 @@ class Goal extends ActiveRecord
         return new ArrayDataProvider;
     }
 
+    public function rules() {
+        return [
+            ['id, title, completed', 'safe', 'on' => 'create'],
+            ['title', 'string', 'min' => 3, 'max' => 1024]
+        ];
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+        $this->completed = (bool)$this->completed;
+    }
+
 }

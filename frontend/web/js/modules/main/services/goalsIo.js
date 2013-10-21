@@ -8,30 +8,15 @@
         url: {
             ws: 'ws://' + document.domain + ':8047/goals'
         },
-        root: 'js/websocket/'
+        root: 'js/websocket/',
+        pushHandler: function() {
+        },
+        errorHandler: function(status, error) {
+        }
     });
 
-    angular.module('MainApp').service('goalsIo', ['$q', function ($q) {
-
-        var goalsIo = $q.defer();
-
-        goalsIo.send = function (url, data, callback) {
-            goalsIo.promise.then(function () {
-                goalsIo.socket.send(url, data, callback);
-            });
-        };
-
-        goalsIo.socket = socket;
-
-        if (goalsIo.socket.isOpened) {
-            goalsIo.resolve();
-        } else {
-            goalsIo.socket.onopen = function () {
-                goalsIo.resolve();
-            };
-        }
-
-        return goalsIo;
+    angular.module('MainApp').service('goalsIo', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
+        return AngularSocketDecorator(socket, $rootScope, alertService);
     }
     ])
     ;

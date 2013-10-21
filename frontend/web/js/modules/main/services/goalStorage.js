@@ -3,29 +3,35 @@
 angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo', function($q, $rootScope, goalsIo) {
     var STORAGE_ID = 'todos-angularjs';
 
-    return {
-        get: function () {
+    var service = {
+        get: function (callback) {
             var service = this,
-                goals = localStorage.getItem(STORAGE_ID),
-                defer = $q.defer();
+                goals = localStorage.getItem(STORAGE_ID);
 
             if (goals != undefined) {
-                defer.resolve(JSON.parse(goals));
+                callback(JSON.parse(goals));
             } else {
                 goalsIo.send('goal/all', {}, function(data) {
-                    $rootScope.$apply(function() {
 //                        service.put(data);
-                        defer.resolve(data);
-                    });
+                        callback(data);
                 });
             }
-
-            return defer.promise;
         },
-
         put: function (todos) {
             localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
+        },
+        add: function(goal, callback) {
+            service.get(function(data) {
+                alert(3);
+                goalsIo.send('goal/create', goal, callback);
+            });
+        },
+        delete : function(goal, callback) {
+            goalsIo.send('goal/delete', goal, function(data) {
+                callback(data);
+            });
         }
     };
+    return service;
 }]);
 
