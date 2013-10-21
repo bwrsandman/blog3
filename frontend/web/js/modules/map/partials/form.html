@@ -3,22 +3,28 @@
     <h4 ng-show="isNew">{{ 'CREATE_PLACE' | translate }}</h4>
     <h4 ng-hide="isNew">{{ 'UPDATE_PLACE' | translate }}</h4>
 
-    <label>{{ 'TITLE' | translate }} *:<br><input type="text" ng-model="place.p_title" name="pTitle" required class="span12">
+    <label>{{ 'TITLE' | translate }} *:<br><input type="text" ng-model="place.p_title" name="pTitle" required
+                                                  class="span12">
         <span class="text-error" ng-show="placeForm.$dirty && placeForm.pTitle.$error.required">{{ 'FIELD_NOT_EMPTY' | translate }}.</span></label>
 
-    <label>{{ 'DESCRIPTION' | translate }} (<a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> {{ 'ENABLED' | translate }}):<br>
+    <label>{{ 'DESCRIPTION' | translate }} (<a href="http://daringfireball.net/projects/markdown/" target="_blank">Markdown</a>
+        {{ 'ENABLED' | translate }}):<br>
         <textarea ng-model="place.p_description" class="span12"></textarea>
     </label>
 
     <label for="placeLat">{{ 'LATITUDE' | translate }}:</label>
+
     <div class="input-append">
-        <input type="text" id="placeLat" ng-model="place.p_lat" placeholder="{{ 'CLICK_ON_THE_MAP' | translate }}" disabled>
+        <input type="text" id="placeLat" ng-model="place.p_lat" placeholder="{{ 'CLICK_ON_THE_MAP' | translate }}"
+               disabled>
         <span class="add-on">&deg;</span>
     </div>
 
     <label for="placeLng">{{ 'LONGITUDE' | translate }}:</label>
+
     <div class="input-append" class="span12">
-        <input type="text" id="placeLng" ng-model="place.p_lng" placeholder="{{ 'CLICK_ON_THE_MAP' | translate }}" disabled>
+        <input type="text" id="placeLng" ng-model="place.p_lng" placeholder="{{ 'CLICK_ON_THE_MAP' | translate }}"
+               disabled>
         <span class="add-on">&deg;</span>
     </div>
 

@@ -34,7 +34,6 @@ class GoalController extends Controller {
     {
         $params = Yii::$app->request->getParams();
         $model = Goal::find($params['id']);
-
         if ($model && $model->delete()) {
             Yii::$app->response->success('Deleted');
         } else {

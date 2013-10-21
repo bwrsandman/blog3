@@ -51,6 +51,7 @@ var JsonWebSocket = function (params) {
                     params: data
                 }));
             });
+            return defer;
         }
     });
 
@@ -88,6 +89,7 @@ var AngularSocketDecorator = function (socket, $rootScope, alertService) {
                 callback(data);
             });
         });
+        return socket;
     };
     socket.errorHandler = function(status, error) {
         $rootScope.$apply(function() {

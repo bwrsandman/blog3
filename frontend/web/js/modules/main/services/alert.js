@@ -1,21 +1,21 @@
 'use strict';
 
-angular.module('MainApp').factory('alertService', function($rootScope) {
+angular.module('MainApp').factory('alertService', function ($rootScope) {
     var alertService = {};
 
 
     // create an array of alerts available globally
     $rootScope.alerts = [];
 
-    alertService.add = function(type, msg) {
+    alertService.add = function (type, msg) {
         $rootScope.alerts.push({'type': type, 'msg': msg});
     };
 
-    alertService.closeAlert = function(index) {
+    alertService.closeAlert = function (index) {
         $rootScope.alerts.splice(index, 1);
     };
 
-    $rootScope.$on('notification:add', function(event, data) {
+    $rootScope.$on('notification:add', function (event, data) {
         alertService.add(data.type, data.msg);
     });
 

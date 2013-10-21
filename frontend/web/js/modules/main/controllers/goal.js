@@ -4,18 +4,15 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
     goalStorage.get(function (data) {
         showScreen();
 
-        var todos = $scope.todos = data;
+        $scope.todos = data;
 
         $scope.newTodo = '';
         $scope.editedTodo = null;
 
         $scope.$watch('todos', function (newValue, oldValue) {
-            $scope.remainingCount = filterFilter(todos, { completed: false }).length;
-            $scope.completedCount = todos.length - $scope.remainingCount;
+            $scope.remainingCount = filterFilter($scope.todos, { completed: false }).length;
+            $scope.completedCount = $scope.todos.length - $scope.remainingCount;
             $scope.allChecked = !$scope.remainingCount;
-            if (newValue !== oldValue) { // This prevents unneeded calls to the local storage
-                goalStorage.put(todos);
-            }
         }, true);
 
 
@@ -40,8 +37,8 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
             goalStorage.add({
                 title: newTodo,
                 completed: false
-            }, function(data) {
-                todos.push(data);
+            }, function (data) {
+                $scope.todos.push(data);
             });
 
             $scope.newTodo = '';
@@ -63,19 +60,18 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
         };
 
         $scope.revertEditing = function (todo) {
-            todos[todos.indexOf(todo)] = $scope.originalTodo;
+            $scope.todos[todos.indexOf(todo)] = $scope.originalTodo;
             $scope.doneEditing($scope.originalTodo);
         };
 
         $scope.removeTodo = function (todo) {
-            goalStorage.delete(todo, function(data) {
-                todos.splice(todos.indexOf(todo), 1);
+            goalStorage.delete(todo, function (data) {
+                $scope.todos.splice($scope.todos.indexOf(todo), 1);
             });
-
         };
 
         $scope.clearCompletedTodos = function () {
-            $scope.todos = todos = todos.filter(function (val) {
+            $scope.todos = todos.filter(function (val) {
                 return !val.completed;
             });
         };

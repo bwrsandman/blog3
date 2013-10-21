@@ -1,34 +1,44 @@
 'use strict';
 
-angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo', function($q, $rootScope, goalsIo) {
-    var STORAGE_ID = 'todos-angularjs';
+angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo', function ($q, $rootScope, goalsIo) {
+    var STORAGE_ID = 'main.goals';
 
     var service = {
+        getCache: function () {
+            var goals = localStorage.getItem(STORAGE_ID);
+            return undefined;
+            return JSON.parse(goals);
+        },
         get: function (callback) {
-            var service = this,
-                goals = localStorage.getItem(STORAGE_ID);
-
+            var service = this;
+            var goals = service.getCache(goals);
             if (goals != undefined) {
-                callback(JSON.parse(goals));
+                callback(goals);
             } else {
-                goalsIo.send('goal/all', {}, function(data) {
-//                        service.put(data);
-                        callback(data);
+                goalsIo.send('goal/all', {}, callback).then(function (data) {
+                    service.put(data);
                 });
             }
         },
         put: function (todos) {
             localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
         },
-        add: function(goal, callback) {
-            service.get(function(data) {
-                alert(3);
-                goalsIo.send('goal/create', goal, callback);
+        add: function (goal, callback) {
+            goalsIo.send('goal/create', goal, callback).then(function (data) {
+                service.get(function(goals) {
+                    goals.push(data);
+                    service.put(goals);
+                });
+
             });
         },
-        delete : function(goal, callback) {
-            goalsIo.send('goal/delete', goal, function(data) {
-                callback(data);
+        delete: function (goal, callback) {
+            goalsIo.send('goal/delete', goal, callback).then(function (data) {
+                service.get(function(goals) {
+                    goals.splice(goals.indexOf(goal), 1);
+                    service.put(goals);
+                });
+
             });
         }
     };

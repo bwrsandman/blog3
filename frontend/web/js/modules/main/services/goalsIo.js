@@ -9,9 +9,9 @@
             ws: 'ws://' + document.domain + ':8047/goals'
         },
         root: 'js/websocket/',
-        pushHandler: function() {
+        pushHandler: function () {
         },
-        errorHandler: function(status, error) {
+        errorHandler: function (status, error) {
         }
     });
 

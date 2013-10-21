@@ -3,8 +3,10 @@
     <ul>
         <li ng-repeat="place in places">
             <a href="" ng-click="show(place)">{{ place.p_title }}</a>
-            <a href="" ng-click="confirm(place)" class="pull-right" rel="tooltip" title="{{ 'DELETE' | translate }}"><i class="icon-trash"></i></a>
-            <a href="/edit/{{place.id}}" class="pull-right" rel="tooltip" title="{{ 'UPDATE' | translate }}"><i class="icon-pencil"></i></a>
+            <a href="" ng-click="confirm(place)" class="pull-right" rel="tooltip" title="{{ 'DELETE' | translate }}"><i
+                    class="icon-trash"></i></a>
+            <a href="/edit/{{place.id}}" class="pull-right" rel="tooltip" title="{{ 'UPDATE' | translate }}"><i
+                    class="icon-pencil"></i></a>
         </li>
     </ul>
 

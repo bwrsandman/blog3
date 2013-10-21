@@ -2,17 +2,17 @@
 
 var lang = 'ru';
 /*
-angular.module('MapApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate']).value('lang', lang);
+ angular.module('MapApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate']).value('lang', lang);
 
-angular.module('MapApp').config(['$translateProvider', function($translateProvider) {
-    // add translation table
-    $translateProvider.translations(translations);
-}]);
+ angular.module('MapApp').config(['$translateProvider', function($translateProvider) {
+ // add translation table
+ $translateProvider.translations(translations);
+ }]);
 
-angular.module('MapApp').config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode(true);
-}]);
-*/
+ angular.module('MapApp').config(['$locationProvider', function($locationProvider) {
+ $locationProvider.html5Mode(true);
+ }]);
+ */
 
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
@@ -21,7 +21,7 @@ var translations = [];
 angular.module('MainApp', ['ui.router']);
 
 
-angular.module('MainApp').config(function($stateProvider, $urlRouterProvider){
+angular.module('MainApp').config(function ($stateProvider, $urlRouterProvider) {
 
     var dir = 'js/angular/app/';
     var config = {
