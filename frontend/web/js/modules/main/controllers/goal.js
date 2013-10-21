@@ -71,14 +71,14 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
         };
 
         $scope.clearCompletedTodos = function () {
-            $scope.todos = todos.filter(function (val) {
+            $scope.todos = $scope.todos.filter(function (val) {
                 return !val.completed;
             });
         };
 
         $scope.markAll = function (completed) {
-            todos.forEach(function (todo) {
-                todo.completed = completed;
+            $scope.todos.forEach(function (todo) {
+                $scope.todos.completed = completed;
             });
         };
     });
