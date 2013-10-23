@@ -1,5 +1,6 @@
 var ParentWebSocketConnection = WebSocketConnection;
 
+//auutoreconnect and callbacks queue
 var WebSocketConnection = function (params) {
     var reConnectionInterval = 500;
     var wrapper  = {
@@ -57,6 +58,7 @@ var WebSocketConnection = function (params) {
     return wrapper;
 };
 
+//json and deffered
 var JsonWebSocket = function (params) {
     var defer = $.Deferred();
 
