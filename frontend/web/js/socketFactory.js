@@ -46,8 +46,9 @@ var JsonWebSocket = function (params) {
             defer.then(function () {
                 var callbackId = socket.pushCallback(callback);
                 socket.send(JSON.stringify({
-                    callbackId: callbackId,
-                    route: url,
+                    jsonrpc: '2.0',
+                    id: callbackId,
+                    method: url,
                     params: data
                 }));
             });
@@ -58,9 +59,9 @@ var JsonWebSocket = function (params) {
     socket.onmessage = function (e) {
         var data = $.parseJSON(e.data);
         //run callback if it's client request, or run default handler if it's server push message
-        if (data.status == 'success') {
-            if (data.callbackId) {
-                var callback = socket.getCallback(data.callbackId);
+        if (data.error == undefined) {
+            if (data.id) {
+                var callback = socket.getCallback(data.id);
                 callback(data.params);
             } else {
                 promise.pushHandler(data);
