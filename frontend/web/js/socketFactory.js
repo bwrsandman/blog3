@@ -1,37 +1,60 @@
 var ParentWebSocketConnection = WebSocketConnection;
-var WebSocketConnection = function (params) {
 
-    var socket = $.extend(new ParentWebSocketConnection(params), {
-        isOpened: false,
-        onopen: function () {
-            socket.isOpened = true;
+var WebSocketConnection = function (params) {
+    var reConnectionInterval = 500;
+    var wrapper  = {
+        socket: {},
+        connect: function() {
+            wrapper.socket = new ParentWebSocketConnection(params);
+            wrapper.socket.onopen = function () {
+                wrapper.isOpened = true;
+                wrapper.onopen();
+            };
+            wrapper.socket.onclose = function () {
+                wrapper.isOpened = false;
+                wrapper.onclose();
+                setTimeout(function() {
+                    wrapper.connect();
+                }, reConnectionInterval);
+            };
+            wrapper.socket.onmessage = function(data) {
+                wrapper.onmessage(data);
+            };
         },
+        onclose: function(){},
+        onmessage: function(data){},
+        onopen: function() {},
+        send: function(data) {
+            wrapper.socket.send(data);
+        },
+        isOpened: false,
         callbacks: [],
         currentCallbackId: 0,
         getCallbackId: function () {
             // This creates a new callback ID for a request
-            socket.currentCallbackId += 1;
-            if (socket.currentCallbackId > 10000) {
-                socket.currentCallbackId = 0;
+            wrapper.currentCallbackId += 1;
+            if (wrapper.currentCallbackId > 10000) {
+                wrapper.currentCallbackId = 0;
             }
-            return socket.currentCallbackId;
+            return wrapper.currentCallbackId;
         },
         pushCallback: function (callback) {
-            var callbackId = socket.getCallbackId();
-            socket.callbacks[callbackId] = {
+            var callbackId = wrapper.getCallbackId();
+            wrapper.callbacks[callbackId] = {
                 time: new Date(),
                 callback: callback
             };
             return callbackId;
         },
         getCallback: function (id) {
-            var callback = socket.callbacks[id].callback;
-            delete socket.callbacks[id];
+            var callback = wrapper.callbacks[id].callback;
+            delete wrapper.callbacks[id];
             return callback;
         }
-    });
+    };
+    wrapper.connect();
 
-    return socket;
+    return wrapper;
 };
 
 var JsonWebSocket = function (params) {
@@ -42,14 +65,14 @@ var JsonWebSocket = function (params) {
     var promise = $.extend(defer.promise(), {
         pushHandler: params.pushHandler,
         errorHandler: params.errorHandler,
-        send: function (url, data, callback) {
+        send: function (method, params, callback) {
             defer.then(function () {
                 var callbackId = socket.pushCallback(callback);
                 socket.send(JSON.stringify({
                     jsonrpc: '2.0',
                     id: callbackId,
-                    method: url,
-                    params: data
+                    method: method,
+                    params: params
                 }));
             });
             return defer;
@@ -62,12 +85,12 @@ var JsonWebSocket = function (params) {
         if (data.error == undefined) {
             if (data.id) {
                 var callback = socket.getCallback(data.id);
-                callback(data.params);
+                callback(data.result);
             } else {
                 promise.pushHandler(data);
             }
         } else {
-            promise.errorHandler(data.status, data.error);
+            promise.errorHandler('error', data.error.message);
         }
     };
 
