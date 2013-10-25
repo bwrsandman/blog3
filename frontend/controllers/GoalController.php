@@ -1,11 +1,10 @@
 <?php
-namespace console\controllers;
+namespace frontend\controllers;
 
 use common\models\Goal;
-use yii\console\Controller;
 use Yii;
 
-class GoalController extends Controller {
+class GoalController extends \yii\base\Controller {
 
     public function actionAll()
     {

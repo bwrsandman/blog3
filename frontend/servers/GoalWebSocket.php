@@ -20,10 +20,11 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance
             return $session;
         });
 
-        $root = realpath(__DIR__ . '/../../');
-        require $root . '/web_socket_app.php';
+        $configs = require(__DIR__ . '/../config/frontend_configs.php');
+        new \nizsheanez\websocket\Application($configs);
+        Yii::$app->setComponent('request', 'nizsheanez\websocket\Request');
+        Yii::$app->setComponent('response', 'nizsheanez\websocket\Response');
     }
-
 }
 
 class GoalWebSocketRoute extends \PHPDaemon\WebSocket\Route
@@ -41,7 +42,8 @@ class GoalWebSocketRoute extends \PHPDaemon\WebSocket\Route
     // Этот метод срабатывает сообщении от клиента
     public function onFrame($message, $type)
     {
-        Yii::$app->request->setMessage($message);
+        Yii::$app->request->setRequestMessage($message);
+        Yii::$app->response->setRequestMessage($message);
         Yii::$app->response->setDaemonRoute($this);
         Yii::$app->run();
     }

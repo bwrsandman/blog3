@@ -35,4 +35,4 @@ class AppResolver extends \PHPDaemon\Core\AppResolver {
 
 }
 
-return new MyAppResolver;
+return new AppResolver;
