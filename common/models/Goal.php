@@ -32,7 +32,9 @@ class Goal extends ActiveRecord
     public function rules() {
         return [
             ['id, title, completed', 'safe', 'on' => 'create'],
-            ['title', 'string', 'min' => 3, 'max' => 1024]
+            ['title', 'string', 'min' => 3, 'max' => 1024, 'on' => 'create'],
+            ['title, completed', 'safe', 'on' => 'edit'],
+            ['title', 'string', 'min' => 3, 'max' => 1024, 'on' => 'edit'],
         ];
     }
 

@@ -40,6 +40,14 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
                 });
 
             });
+        },
+        edit: function (goal, callback) {
+            goalsIo.send('goal/edit', goal, callback).then(function (data) {
+                service.get(function(goals) {
+                    goals[goals.indexOf(goal)] = data;
+                    service.put(goals);
+                });
+            });
         }
     };
     return service;

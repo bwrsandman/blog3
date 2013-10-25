@@ -21,32 +21,21 @@ var translations = [];
 angular.module('MainApp', ['ui.router']);
 
 
-angular.module('MainApp').config(function ($stateProvider, $urlRouterProvider) {
+angular.module('MainApp').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
-    var dir = 'js/angular/app/';
-    var config = {
-        '/': {
-            templateUrl: dir + 'partials/list.html',
-            controller: 'RootCtl'
-        },
-        '/add': {
-            templateUrl: dir + 'partials/form.html',
-            controller: 'RootCtl'
-        },
-        '/edit/:placeId': {
-            templateUrl: dir + 'partials/form.html',
-            controller: 'RootCtl'
-        }
-    };
+    var dir = '/js/modules/main/views';
 
-    for (var i in config) {
-        $stateProvider.state(i, config[i]);
-    }
+    $routeProvider
+        .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'});
+
+    $locationProvider
+        .html5Mode(true)
+        .hashPrefix('!');
 
 //    $urlRouterProvider.otherwise({
 //        redirectTo: '/list'
 //    });
-});
+}]);
 
 var showScreen = function () {
     $(document).ready(function () {

@@ -1,6 +1,4 @@
 <?php
-use PHPDaemon\Core\Daemon;
-use PHPDaemon\Core\Timer;
 
 class GoalWebSocket extends \PHPDaemon\Core\AppInstance
 {

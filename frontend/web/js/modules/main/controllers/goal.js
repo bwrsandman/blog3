@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, goalStorage, filterFilter, alertService) {
+
     goalStorage.get(function (data) {
         showScreen();
 
@@ -45,23 +46,27 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
         };
 
         $scope.editTodo = function (todo) {
+
             $scope.editedTodo = todo;
             // Clone the original todo to restore it on demand.
             $scope.originalTodo = angular.extend({}, todo);
         };
 
-        $scope.doneEditing = function (todo) {
+        $scope.onEditing = function (todo) {
             $scope.editedTodo = null;
             todo.title = todo.title.trim();
-
             if (!todo.title) {
                 $scope.removeTodo(todo);
+            } else {
+                goalStorage.edit(todo, function (data) {
+                    //TODO: what?
+                });
             }
         };
 
         $scope.revertEditing = function (todo) {
-            $scope.todos[todos.indexOf(todo)] = $scope.originalTodo;
-            $scope.doneEditing($scope.originalTodo);
+            $scope.todos[$scope.todos.indexOf(todo)] = $scope.originalTodo;
+            $scope.onEditing($scope.originalTodo);
         };
 
         $scope.removeTodo = function (todo) {

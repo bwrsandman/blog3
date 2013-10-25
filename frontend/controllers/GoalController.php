@@ -2,9 +2,12 @@
 namespace frontend\controllers;
 
 use common\models\Goal;
+use Exception;
+use yii\base\Controller;
 use Yii;
 
-class GoalController extends \yii\base\Controller {
+class GoalController extends Controller
+{
 
     public function actionAll()
     {
@@ -15,28 +18,49 @@ class GoalController extends \yii\base\Controller {
         Yii::$app->response->success($models);
     }
 
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $params = Yii::$app->request->getParams();
-        $goal = new Goal();
-        $goal->scenario = 'create';
-        $goal->attributes = $params;
-        if ($goal->save()) {
-            Yii::$app->response->success(Goal::find($goal->id)->toArray());
+        $model = new Goal();
+        $model->scenario = 'create';
+        $model->attributes = $params;
+        if ($model->save()) {
+            Yii::$app->response->success(Goal::find($model->id)->toArray());
         } else {
-            $errors = $goal->getFirstErrors();
-            $message = count($errors) > 0 ? array_shift($errors) : 'Some internal error';
-            Yii::$app->response->fail($message);
+            Yii::$app->response->fail($model->getErrors());
         }
     }
 
     public function actionDelete()
     {
         $params = Yii::$app->request->getParams();
-        $model = Goal::find($params['id']);
-        if ($model && $model->delete()) {
+        $model = $this->findModel($params);
+        if ($model->delete()) {
             Yii::$app->response->success('Deleted');
         } else {
             Yii::$app->response->fail('Some internal error');
+        }
+    }
+
+    public function actionEdit()
+    {
+        $params = Yii::$app->request->getParams();
+        $model = $this->findModel($params);
+        $model->scenario = 'edit';
+        $model->attributes = $params;
+        if ($model->save()) {
+            Yii::$app->response->success('Edited');
+        } else {
+            Yii::$app->response->fail($model->getErrors());
+        }
+    }
+
+    protected function findModel($params)
+    {
+        if (($model = Goal::find($params['id'])) !== null) {
+            return $model;
+        } else {
+            throw new Exception('The requested goal does not exist.');
         }
     }
 }
