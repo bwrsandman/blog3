@@ -3,7 +3,7 @@
 class GoalWebSocket extends \PHPDaemon\Core\AppInstance
 {
     public $enableRPC = true; // Без этой строчки не будут работать широковещательные вызовы
-    public $sessions = array(); // Здесь будем хранить указатели на сессии подключившихся клиентов
+    public $sessions = []; // Здесь будем хранить указатели на сессии подключившихся клиентов
 
     // С этого метода начинается работа нашего приложения
     public function onReady()

@@ -56,9 +56,9 @@ class SiteController extends Controller
         if ($model->load($_POST) && $model->login()) {
             return $this->goHome();
         } else {
-            return $this->render('login', array(
+            return $this->render('login', [
                 'model' => $model,
-            ));
+            ]);
         }
     }
 
@@ -96,9 +96,9 @@ class SiteController extends Controller
             }
         }
 
-        return $this->render('signup', array(
+        return $this->render('signup', [
             'model' => $model,
-        ));
+        ]);
     }
 
     public function actionRequestPasswordReset()
