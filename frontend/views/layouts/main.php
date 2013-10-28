@@ -28,7 +28,7 @@ NavBar::begin(array(
     'brandLabel' => 'My Company',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => array(
-        'class' => 'navbar-inverse navbar-fixed-top',
+        'class' => 'navbar-inverse navbar-fixed-top top-navigation',
     ),
 ));
 $menuItems = array(
@@ -49,7 +49,7 @@ echo Nav::widget(array(
 NavBar::end();
 ?>
 
-<div class="container" ng-controller='RootCtl'>
+<div class="main-container " ng-controller='RootCtl'>
     <div>
         <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
     </div>
@@ -57,11 +57,21 @@ NavBar::end();
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : array(),
     )); ?>
     <?php echo Alert::widget() ?>
-    <?php echo $content; ?>
+    <div class="row">
+        <div class="navigation col-md-2">
+            <ul class="nav nav-stacked">
+                <li><a href="#">Goals</a></li>
+                <li><a href="#">Account</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6 content-container">
+            <ng-view/>
+        </div>
+    </div>
 </div>
 
 <footer class="footer">
-    <div class="container">
+    <div class="">
         <p class="pull-left">&copy; My Company <?php echo date('Y'); ?></p>
 
         <p class="pull-right"><?php echo Yii::powered(); ?></p>

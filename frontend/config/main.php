@@ -25,6 +25,11 @@ return array(
         'assetManager' => array(
             'converter' => array(
                 'class' => 'nizsheanez\assetConverter\Converter',
+                'parsers' => [
+                    'less' => [ // file extension to parse
+                        'asConsoleCommand' => true,
+                    ]
+                ],
                 'force' => true
             )
         ),

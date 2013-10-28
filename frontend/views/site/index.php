@@ -4,18 +4,6 @@
  */
 $this->title = 'My Yii Application';
 ?>
-<section id="todoapp" ng-controller="GoalCtrl">
-
-    <ng-view />
-
-</section>
-
-<!--<div ng-app="MapApp">-->
-<!--    <div ng-controller="PlacesListController">-->
-<!--        <div pm-google-map></div>-->
-<!--        <div ng-view></div>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="site-index">
 
     <div class="jumbotron">

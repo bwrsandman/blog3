@@ -23,7 +23,8 @@
         "dropbox/dropbox-sdk": "1.1.*",
         "evernote/evernote": "1.*",
         "nizsheanez/yii2-websocket-application": "dev-master",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "dev-master",
+        "geometria-lab/rediska": "dev-master"
     },
 	"scripts": {
 		"post-create-project-cmd": [

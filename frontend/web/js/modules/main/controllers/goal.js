@@ -2,6 +2,10 @@
 
 angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, goalStorage, filterFilter, alertService) {
 
+    var tplBase = '/js/modules/main/';
+    $scope.tpl = {
+      filters: tplBase + 'views/filters.html'
+    };
     goalStorage.get(function (data) {
         showScreen();
 
