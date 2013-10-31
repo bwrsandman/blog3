@@ -13,8 +13,7 @@ services:
 
 before_script:
 # - sudo apt-get update -y && sudo apt-get upgrade -y
-  - pecl install libevent
-  - pecl install proctitle
+  - apt-get install libevent-dev
   - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update && composer --version && composer install
