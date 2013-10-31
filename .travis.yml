@@ -17,7 +17,7 @@ before_install:
  - pear channel-discover pear.phpunit.de
  - pear channel-discover components.ez.no
  - pear channel-discover pear.symfony.com
- - pear install --alldeps phpunit/PHPUnit
+# - pear install --alldeps phpunit/PHPUnit
  - printf "\n" | pecl install event eio
  - printf "\n" | pecl install channel://pecl.php.net/proctitle-0.1.2
  - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
