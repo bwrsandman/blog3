@@ -28,7 +28,6 @@ install:
   - mysql -e 'CREATE DATABASE blog3;';
   - npm install -g bower
   - cd frontend/web && bower install && cd ../../
-  - cd frontend/servers && npm install && cd ../../
 
 before_script:
 # - sudo apt-get update -y && sudo apt-get upgrade -y
