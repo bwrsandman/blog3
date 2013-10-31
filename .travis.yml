@@ -13,8 +13,13 @@ services:
 
 before_install:
  - sudo apt-get install libevent-dev
-  - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+ - sudo pear upgrade pear
+ - sudo pear channel-discover pear.phpunit.de
+ - sudo pear channel-discover components.ez.no
+ - sudo pear channel-discover pear.symfony.com
+ - sudo pear install --alldeps phpunit/PHPUnit
+ - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+ - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 before_script:
 # - sudo apt-get update -y && sudo apt-get upgrade -y
