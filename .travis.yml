@@ -20,8 +20,6 @@ before_install:
 # - pear install --alldeps phpunit/PHPUnit
  - printf "\n" | pecl install event eio
  - printf "\n" | pecl install channel://pecl.php.net/proctitle-0.1.2
- - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
- - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
  - composer self-update && composer --version && composer install
 
 install:
