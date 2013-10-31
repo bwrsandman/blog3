@@ -3,3 +3,4 @@
 .idea
 environments/dev
 environments/prod
+frontend/web/components

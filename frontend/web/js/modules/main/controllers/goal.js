@@ -2,12 +2,10 @@
 
 angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams, $location, goalStorage, filterFilter, alertService) {
 
-
     var tplBase = '/js/modules/main/';
     $scope.tpl = {
       filters: tplBase + 'views/filters.html'
     };
-
 
     if ($routeParams.id) {
         goalStorage.getDetail($routeParams.id, function (data) {
