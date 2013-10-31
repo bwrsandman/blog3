@@ -22,15 +22,17 @@ before_install:
  - printf "\n" | pecl install channel://pecl.php.net/proctitle-0.1.2
  - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
  - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-
-before_script:
-# - sudo apt-get update -y && sudo apt-get upgrade -y
   - composer self-update && composer --version && composer install
+
+install:
   - mysql -e 'CREATE DATABASE blog3;';
-#  - tests/unit/data/travis/memcache-setup.sh
   - npm install -g bower
   - cd frontend/web && bower install && cd ../../
   - cd frontend/servers && npm install && cd ../../
+
+before_script:
+# - sudo apt-get update -y && sudo apt-get upgrade -y
+#  - tests/unit/data/travis/memcache-setup.sh
   - php init travis
 
 script:
