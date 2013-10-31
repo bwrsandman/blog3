@@ -18,8 +18,8 @@ before_install:
  - pear channel-discover components.ez.no
  - pear channel-discover pear.symfony.com
  - pear install --alldeps phpunit/PHPUnit
- - pecl install event eio
- - pecl install channel://pecl.php.net/proctitle-0.1.2
+ - printf "\n" | pecl install event eio
+ - printf "\n" | pecl install channel://pecl.php.net/proctitle-0.1.2
  - echo "extension=proctitle.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
  - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
  - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
