@@ -13,6 +13,8 @@ services:
 
 before_script:
 # - sudo apt-get update -y && sudo apt-get upgrade -y
+  - echo "extension=event.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension=eio.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update && composer --version && composer install
   - mysql -e 'CREATE DATABASE blog3;';
 #  - tests/unit/data/travis/memcache-setup.sh
