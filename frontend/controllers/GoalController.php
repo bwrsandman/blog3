@@ -2,8 +2,8 @@
 namespace frontend\controllers;
 
 use common\models\Goal;
-use Exception;
 use yii\base\Controller;
+use yii\base\Exception;
 use Yii;
 
 class GoalController extends Controller
@@ -15,7 +15,7 @@ class GoalController extends Controller
         foreach ($models as $k => $v) {
             $models[$k]['completed'] = (bool)$v['completed'];
         }
-        Yii::$app->response->success($models);
+        return $models;
     }
 
     public function actionCreate()
@@ -25,10 +25,18 @@ class GoalController extends Controller
         $model->scenario = 'create';
         $model->attributes = $params;
         if ($model->save()) {
-            Yii::$app->response->success(Goal::find($model->id)->toArray());
+            return Goal::find($model->id)->toArray();
         } else {
-            Yii::$app->response->fail($model->getErrors());
+            throw new Exception($model->getErrors());
         }
+    }
+
+    public function actionDetail() {
+        $params = Yii::$app->request->getParams();
+
+        return [
+            'steps' => $this->findModel($params)->getSteps()->asArray()->all()
+        ];
     }
 
     public function actionDelete()
@@ -36,9 +44,9 @@ class GoalController extends Controller
         $params = Yii::$app->request->getParams();
         $model = $this->findModel($params);
         if ($model->delete()) {
-            Yii::$app->response->success('Deleted');
+            return 'Deleted';
         } else {
-            Yii::$app->response->fail('Some internal error');
+            throw new Exception('Some internal error');
         }
     }
 
@@ -49,12 +57,17 @@ class GoalController extends Controller
         $model->scenario = 'edit';
         $model->attributes = $params;
         if ($model->save()) {
-            Yii::$app->response->success('Edited');
+            return 'Edited';
         } else {
-            Yii::$app->response->fail($model->getErrors());
+            throw new Exception($model->getErrors());
         }
     }
 
+    /**
+     * @param $params
+     * @return Goal
+     * @throws \yii\base\Exception
+     */
     protected function findModel($params)
     {
         if (($model = Goal::find($params['id'])) !== null) {

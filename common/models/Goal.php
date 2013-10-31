@@ -43,4 +43,12 @@ class Goal extends ActiveRecord
         $this->completed = (bool)$this->completed;
     }
 
+    /**
+     * @return \yii\db\ActiveRelation
+     */
+    public function getSteps()
+    {
+        return $this->hasMany(Step::className(), ['fk_goal' => 'id']);
+    }
+
 }

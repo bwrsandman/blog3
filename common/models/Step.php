@@ -22,5 +22,4 @@ class Step extends ActiveRecord
             ),
         );
     }
-
 }

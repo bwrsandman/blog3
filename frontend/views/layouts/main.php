@@ -58,15 +58,7 @@ NavBar::end();
     ]); ?>
     <?php echo Alert::widget() ?>
     <div class="row">
-        <div class="navigation col-md-2">
-            <ul class="nav nav-stacked">
-                <li><a href="#">Goals</a></li>
-                <li><a href="#">Account</a></li>
-            </ul>
-        </div>
-        <div class="col-md-6 content-container">
-            <ng-view/>
-        </div>
+        <ng-view/>
     </div>
 </div>
 

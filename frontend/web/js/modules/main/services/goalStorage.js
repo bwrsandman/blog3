@@ -20,6 +20,9 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
                 });
             }
         },
+        getDetail: function(id, callback) {
+            goalsIo.send('goal/detail', {id: id}, callback);
+        },
         put: function (todos) {
             localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
         },

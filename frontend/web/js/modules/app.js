@@ -26,7 +26,9 @@ angular.module('MainApp').config(['$routeProvider', '$locationProvider', functio
     var dir = '/js/modules/main/views';
 
     $routeProvider
-        .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'});
+        .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})
+        .when('/active', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})
+        .when('/goal/:id', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'});
 
     $locationProvider
         .html5Mode(true)

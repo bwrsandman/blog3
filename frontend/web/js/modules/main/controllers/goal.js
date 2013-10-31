@@ -1,11 +1,21 @@
 'use strict';
 
-angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, goalStorage, filterFilter, alertService) {
+angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams, $location, goalStorage, filterFilter, alertService) {
+
 
     var tplBase = '/js/modules/main/';
     $scope.tpl = {
       filters: tplBase + 'views/filters.html'
     };
+
+
+    if ($routeParams.id) {
+        goalStorage.getDetail($routeParams.id, function (data) {
+            $scope.goalDetail = data;
+        });
+    }
+
+
     goalStorage.get(function (data) {
         showScreen();
 
@@ -27,27 +37,13 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
 
         $scope.location = $location;
 
+        $scope.searchFilter = function() {}
+
         $scope.$watch('location.path()', function (path) {
             $scope.statusFilter = (path === '/active') ?
             { completed: false } : (path === '/completed') ?
             { completed: true } : null;
         });
-
-        $scope.addTodo = function () {
-            var newTodo = $scope.newTodo.trim();
-            if (!newTodo.length) {
-                return;
-            }
-
-            goalStorage.add({
-                title: newTodo,
-                completed: false
-            }, function (data) {
-                $scope.todos.push(data);
-            });
-
-            $scope.newTodo = '';
-        };
 
         $scope.editTodo = function (todo) {
 
@@ -85,11 +81,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $location, go
             });
         };
 
-        $scope.markAll = function (completed) {
-            $scope.todos.forEach(function (todo) {
-                $scope.todos.completed = completed;
-            });
-        };
     });
+
 
 });
