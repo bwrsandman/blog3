@@ -1,41 +1,55 @@
-<nav>
-    <div>Today</div>
-    <div>Wall(social)</div>
-    <div>All(social)</div>
-    <div>Yesturday</div>
-    <div>History</div>
-</nav>
-<section id="goals" class="col-md-3" ng-controller="GoalCtrl">
-    <header>
-        <h1>Goals</h1>
+<div ng-controller="GoalCtrl">
+    <tabset>
+        <tab>
+            <tab-heading>
+                <a href="/">Today (22%)</a>
+            </tab-heading>
+            <section id="goals" class="col-md-3">
+                <header>
+                    <form id="search-form">
+                        <input placeholder="Search. What you want?" ng-model="searchStr" autofocus>
+                    </form>
+                </header>
+                <section id="goals-list-container" ng-show="goals.length" ng-cloak>
+                    <goal-list/>
+                </section>
 
-        <form id="search-form">
-            <input placeholder="Search. What you want?" ng-model="searchStr" autofocus>
-        </form>
-    </header>
-    <section id="goals-list-container" ng-show="todos.length" ng-cloak>
-        <ul id="goals-list" class="nav nav-stacked">
-            <li ng-repeat="todo in todos | filter:statusFilter"
-                ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-                <div class="view">
-                    <a href="/goal/{{todo.id}}" ng-click="editTodo(todo)">{{todo.title}}</a>
-                    <button class="destroy" ng-click="removeTodo(todo)"></button>
-                </div>
-            </li>
-        </ul>
+                <ng-include src="tpl.filters"/>
+            </section>
+        </tab>
+        <tab>
+            <tab-heading>
+                <a href="/yesturday">Yesturday (22%)</a>
+            </tab-heading>
+        </tab>
+        <tab>
+            <tab-heading>
+                Wall(social)
+            </tab-heading>
+        </tab>
+
+        <tab>
+            <tab-heading>
+                All(social)
+            </tab-heading>
+        </tab>
+        <tab>
+            <tab-heading>
+                History
+            </tab-heading>
+        </tab>
+
+    </tabset>
+
+    <section id="goal-details">
+        <section id="steps-list-container" ng-show="goalDetail.steps.length" ng-cloak>
+            <ul id="steps-list" class="nav nav-stacked">
+                <li ng-repeat="todo in goalDetail.steps">
+                    <div class="view">
+                        <a href="/step/{{todo.id}}">{{todo.title}}</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
     </section>
-
-    <ng-include src="tpl.filters"/>
-</section>
-
-<section id="goal-details">
-    <section id="steps-list-container" ng-show="goalDetail.steps.length" ng-cloak>
-        <ul id="steps-list" class="nav nav-stacked">
-            <li ng-repeat="todo in goalDetail.steps">
-                <div class="view">
-                    <a href="/step/{{todo.id}}">{{todo.title}}</a>
-                </div>
-            </li>
-        </ul>
-    </section>
-</section>
+</div>

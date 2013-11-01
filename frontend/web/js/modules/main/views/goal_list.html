@@ -1,0 +1,7 @@
+<ul id="goals-list" class="nav nav-stacked">
+    <li ng-repeat="goal in goals | filter:statusFilter"
+        ng-class="{completed: item.completed, editing: item == editedTodo}">
+        <a href="/goal/{{goal.id}}">{{goal.title}}</a>
+        <textarea ui-codemirror ng-model="descriptionsToday[goal.id]"></textarea>
+    </li>
+</ul>

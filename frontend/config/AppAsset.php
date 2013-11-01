@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
 	public $baseUrl = '@web';
 	public $css = array(
 		'less/site.less',
-	);
+    );
 
 	public $js = array(
         'js/debug.js',
@@ -48,6 +48,8 @@ class AppAsset extends AssetBundle
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
         'frontend\config\AngularAsset',
+        'frontend\config\UiCodemirrorAsset',
+        'frontend\config\UiBootstrapAsset',
         'nizsheanez\components\assetBundles\WebSocket',
 	);
 }

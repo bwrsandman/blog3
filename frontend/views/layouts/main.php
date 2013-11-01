@@ -58,7 +58,7 @@ NavBar::end();
     ]); ?>
     <?php echo Alert::widget() ?>
     <div class="row">
-        <ng-view/>
+        <ng-view />
     </div>
 </div>
 

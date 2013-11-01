@@ -17,8 +17,7 @@ var lang = 'ru';
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
 
-//angular.module('MainApp', ['ui.router', 'ui.bootstrap']);
-angular.module('MainApp', ['ui.router']);
+angular.module('MainApp', ['ui.router','ui.codemirror', 'ui.bootstrap']);
 
 
 angular.module('MainApp').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
