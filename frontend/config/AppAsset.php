@@ -48,8 +48,9 @@ class AppAsset extends AssetBundle
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
         'frontend\config\AngularAsset',
-        'frontend\config\UiCodemirrorAsset',
+//        'frontend\config\UiCodemirrorAsset',
         'frontend\config\UiBootstrapAsset',
+        'frontend\config\AngularElasticAsset',
         'nizsheanez\components\assetBundles\WebSocket',
 	);
 }

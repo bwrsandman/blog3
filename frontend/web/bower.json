@@ -10,9 +10,8 @@
         "angular-ui": "0.*",
         "angular-ui-router": "0.*",
         "angular-ui-codemirror": "*",
+        "angular-elastic": "*",
         "dropstore-ng": "1.*",
-        "chosen": "0.*",
-        "lodash": "1.*",
-        "jquery": "2.*"
+        "lodash": "1.*"
     }
 }

@@ -17,10 +17,13 @@ var lang = 'ru';
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
 
-angular.module('MainApp', ['ui.router','ui.codemirror', 'ui.bootstrap']);
+angular.module('MainApp', ['ui.router', 'ui.bootstrap', 'monospaced.elastic']);
 
+angular.module('MainApp').config(['msdElasticConfig', function (config) {
+    config.append = '\n\n';
+}]);
 
-angular.module('MainApp').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('MainApp').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     var dir = '/js/modules/main/views';
 

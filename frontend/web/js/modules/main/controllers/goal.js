@@ -4,12 +4,19 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
 
     var tplBase = '/js/modules/main/';
     $scope.tpl = {
-      filters: tplBase + 'views/filters.html'
+        filters: tplBase + 'views/filters.html'
     };
 
     $scope.descriptionsToday = [];
 
     $scope.goals = [];
+    $scope.goals.range = function (size) {
+        var range = [];
+        for (var i = 0; i < $scope.goals.length; i = i + size) {
+            range.push(i);
+        }
+        return range;
+    }
     $scope.goalDetail = {};
 
     if ($routeParams.id) {
@@ -43,10 +50,12 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
     showScreen();
 });
 
-angular.module('MainApp').directive('goalList', function () {
+angular.module('MainApp').directive('goalDetail', function () {
     return {
-        restrict: 'E',
-        scope: true,
-        templateUrl: '/js/modules/main/views/goal_list.html'
+        restrict: 'A',
+        scope: {
+            goal: '='
+        },
+        templateUrl: '/js/modules/main/views/goal_detail.html'
     };
 });
