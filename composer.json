@@ -16,13 +16,12 @@
 	"require": {
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "dev-master",
-		"yiisoft/yii2-composer": "dev-master",
+        "yiisoft/yii2-debug": "dev-master",
+        "yiisoft/yii2-gii": "dev-master",
         "yiisoft/yii2-bootstrap": "dev-master",
         "nizsheanez/yii2-sphinx-tools": "1.*",
         "nizsheanez/yii2-asset-converter": "1.*",
         "nizsheanez/yii2-websocket-application": "dev-master",
-        "twbs/bootstrap": "3.*",
-        "cboden/Ratchet": "0.*",
         "evernote/evernote": "1.*"
     },
     "scripts": {

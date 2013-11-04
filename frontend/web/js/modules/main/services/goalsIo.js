@@ -6,7 +6,7 @@
 
     var socket = new JsonWebSocket({
         url: {
-            ws: 'ws://' + document.domain + ':8047/goals'
+            ws: 'ws://' + document.domain + ':8047/'
         },
         root: 'js/websocket/',
         pushHandler: function () {

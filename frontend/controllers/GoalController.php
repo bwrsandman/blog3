@@ -31,16 +31,8 @@ class GoalController extends Controller
         }
     }
 
-    public function actionDetail() {
- $k = 0;
-        for ($a=0;$a < 10000; $a++) {
-$k++;
-$k++;
-$k++;
-$k++;
-$k++;
-$k++;
-        }
+    public function actionDetail()
+    {
 
         $params = Yii::$app->request->getParams();
 
