@@ -57,7 +57,6 @@ NavBar::end();
     <?php echo Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
     ]); ?>
-    <?php echo Alert::widget() ?>
     <div class="row">
         <ng-view />
     </div>

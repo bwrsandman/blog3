@@ -22,7 +22,8 @@
         "nizsheanez/yii2-sphinx-tools": "1.*",
         "nizsheanez/yii2-asset-converter": "1.*",
         "nizsheanez/yii2-websocket-application": "dev-master",
-        "evernote/evernote": "1.*"
+        "evernote/evernote": "1.*",
+        "ezyang/htmlpurifier": "4.*"
     },
     "scripts": {
         "post-create-project-cmd": [

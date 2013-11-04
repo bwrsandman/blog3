@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams, $location, goalStorage, filterFilter, alertService) {
+angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams, $location, goalStorage, filterFilter, alertService, $debounce) {
 
     var tplBase = '/js/modules/main/';
     $scope.tpl = {
@@ -29,11 +29,13 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         $scope.goals = data;
     });
 
-    $scope.$watch('goals', function (newValue, oldValue) {
+    function saveList() {
         $scope.remainingCount = filterFilter($scope.goals, { completed: false }).length;
         $scope.completedCount = $scope.goals.length - $scope.remainingCount;
         $scope.allChecked = !$scope.remainingCount;
-    }, true);
+    }
+
+    $scope.$watch('goals', $debounce(saveList, 1000), true);
 
     if ($location.path() === '') {
         $location.path('/');

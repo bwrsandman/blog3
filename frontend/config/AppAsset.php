@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
 
 	public $js = array(
         'js/debug.js',
-        'js/pushClient.js',
+        'js/components.js',
 
 //        'components/angular-bootstrap/ui-bootstrap.js',
 //        'components/angular-bootstrap/ui-bootstrap-tpls.js',
