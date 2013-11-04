@@ -18,36 +18,9 @@ use Dropbox\WebAuthNoRedirect;
 class SiteController extends Controller
 {
 
-    public function actionPush($type = 'success', $message = null)
-    {
-        $client = new ClientApi();
-        $client->notify($type, $message ? $message : 'nope');
-    }
-
-
-    public function dropbox()
-    {
-        $appInfo = AppInfo::loadFromJsonFile(Yii::getAlias('@common/config/dropbox.json'));
-        $webAuth = new WebAuthNoRedirect($appInfo, "PHP-Example/1.0");
-        $authorizeUrl = $webAuth->start();
-        echo "1. Go to: " . $authorizeUrl . "\n";
-        echo "2. Click \"Allow\" (you might have to log in first).\n";
-        echo "3. Copy the authorization code.\n";
-        $authCode = \trim(\readline("Enter the authorization code here: "));
-        die;
-    }
-
     public function actionIndex()
     {
         return $this->render('index');
-    }
-
-    public function actionDelete($id = null)
-    {
-        if ($id == null) {
-
-        }
-        $goal = Goal::find($id);
     }
 
     public function actionLogin()
@@ -66,24 +39,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
         return $this->goHome();
-    }
-
-    public function actionContact()
-    {
-        $model = new ContactForm;
-        if ($model->load($_POST) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            return $this->refresh();
-        } else {
-            return $this->render('contact', array(
-                'model' => $model,
-            ));
-        }
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 
     public function actionSignup()
@@ -140,31 +95,4 @@ class SiteController extends Controller
         ));
     }
 
-    private function sendPasswordResetEmail($email)
-    {
-        $user = User::find(array(
-            'status' => User::STATUS_ACTIVE,
-            'email' => $email,
-        ));
-
-        if (!$user) {
-            return false;
-        }
-
-        $user->password_reset_token = Security::generateRandomKey();
-        if ($user->save(false)) {
-            $fromEmail = \Yii::$app->params['supportEmail'];
-            $name = '=?UTF-8?B?' . base64_encode(\Yii::$app->name . ' robot') . '?=';
-            $subject = '=?UTF-8?B?' . base64_encode('Password reset for ' . \Yii::$app->name) . '?=';
-            $body = $this->renderPartial('/emails/passwordResetToken', array(
-                'user' => $user,
-            ));
-            $headers = "From: $name <{$fromEmail}>\r\n" .
-                "MIME-Version: 1.0\r\n" .
-                "Content-type: text/plain; charset=UTF-8";
-            return mail($fromEmail, $subject, $body, $headers);
-        }
-
-        return false;
-    }
 }

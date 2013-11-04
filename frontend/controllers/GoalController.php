@@ -11,7 +11,6 @@ class GoalController extends Controller
 
     public function actionAll()
     {
-        sleep(10);
         $models = Goal::find()->asArray()->all();
         foreach ($models as $k => $v) {
             $models[$k]['completed'] = (bool)$v['completed'];
@@ -33,6 +32,16 @@ class GoalController extends Controller
     }
 
     public function actionDetail() {
+ $k = 0;
+        for ($a=0;$a < 10000; $a++) {
+$k++;
+$k++;
+$k++;
+$k++;
+$k++;
+$k++;
+        }
+
         $params = Yii::$app->request->getParams();
 
         return [

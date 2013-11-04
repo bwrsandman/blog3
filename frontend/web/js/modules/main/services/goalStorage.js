@@ -18,7 +18,6 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
                 goalsIo.send('goal/all', {}, callback).then(function (data) {
                     service.put(data);
                 });
-                goalsIo.send('goal/all');
             }
         },
         getDetail: function(id, callback) {

@@ -18,6 +18,7 @@ class AppResolver extends \PHPDaemon\Core\AppResolver {
         /*
             This method should return application name to handle incoming request ($req).
         */
+        print_r($req->attrs->server);die;
         if (preg_match('~^/(WebSocketOverCOMET|Example.*)/?~', $req->attrs->server['DOCUMENT_URI'], $m)) {
             return $m[1];
         }

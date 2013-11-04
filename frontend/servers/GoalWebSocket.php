@@ -10,14 +10,12 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance
     {
         $appInstance = $this;
 
-        // Наше приложение будет доступно по адресу ws://site.com:8047/goals
-        \PHPDaemon\Servers\WebSocket\Pool::getInstance()->addRoute('goals', function ($client) use ($appInstance) {
+        \PHPDaemon\Servers\WebSocket\Pool::getInstance()->addRoute($this->getConfig()->path->value, function ($client) use ($appInstance) {
             $session = new GoalWebSocketRoute($client, $appInstance); // Создаем сессию
             $session->id = uniqid(); // Назначаем ей уникальный ID
             $this->sessions[$session->id] = $session; //Сохраняем в массив
             return $session;
         });
-
 
         //yii preconfiguring
         $configs = require(__DIR__ . '/../config/frontend_configs.php');
@@ -45,6 +43,8 @@ class GoalWebSocketRoute extends \PHPDaemon\WebSocket\Route
     // Этот метод срабатывает сообщении от клиента
     public function onFrame($message, $type)
     {
+        file_put_contents('php://stdout', getmypid()."\n");
+
         Yii::$app->request->setRequestMessage($message);
         Yii::$app->response->setRequestMessage($message);
         Yii::$app->response->setDaemonRoute($this);
