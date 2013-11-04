@@ -30,9 +30,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
     });
 
     function saveList() {
-        $scope.remainingCount = filterFilter($scope.goals, { completed: false }).length;
-        $scope.completedCount = $scope.goals.length - $scope.remainingCount;
-        $scope.allChecked = !$scope.remainingCount;
+
     }
 
     $scope.$watch('goals', $debounce(saveList, 1000), true);
@@ -59,5 +57,21 @@ angular.module('MainApp').directive('goalDetail', function () {
             goal: '='
         },
         templateUrl: '/js/modules/main/views/goal_detail.html'
+    };
+});
+
+angular.module('MainApp').directive('goalDetail', function (goalStorage, $debounce) {
+    return {
+        restrict: 'A',
+        scope: {
+            goal: '='
+        },
+        templateUrl: '/js/modules/main/views/goal_detail.html',
+        link: function(scope, element, attrs) {
+            var autoSave = function () {
+                goalStorage.edit(scope.goal);
+            };
+            scope.$watch('goal', $debounce(autoSave, 1000), true );
+        }
     };
 });

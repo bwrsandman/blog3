@@ -33,7 +33,6 @@ class GoalController extends Controller
 
     public function actionDetail()
     {
-
         $params = Yii::$app->request->getParams();
 
         return [
@@ -61,7 +60,7 @@ class GoalController extends Controller
         if ($model->save()) {
             return 'Edited';
         } else {
-            throw new Exception($model->getErrors());
+            throw new Exception(json_encode($model->getErrors()));
         }
     }
 

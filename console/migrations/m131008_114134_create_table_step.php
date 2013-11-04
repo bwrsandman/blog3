@@ -26,5 +26,6 @@ class m131008_114134_create_table_step extends \yii\db\Migration
     {
         $this->dropForeignKey('steps_to_goal', 'step');
         $this->dropTable('step');
+        return true;
     }
 }

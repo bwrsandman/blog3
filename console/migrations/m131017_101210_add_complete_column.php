@@ -10,5 +10,6 @@ class m131017_101210_add_complete_column extends \yii\db\Migration
 	public function down()
 	{
         $this->dropColumn('goal', 'completed');
+        return true;
 	}
 }

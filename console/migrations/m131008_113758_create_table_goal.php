@@ -21,5 +21,6 @@ class m131008_113758_create_table_goal extends \yii\db\Migration
 	public function down()
 	{
         $this->dropTable('goal');
-	}
+        return true;
+    }
 }
