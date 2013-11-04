@@ -11,6 +11,7 @@ class GoalController extends Controller
 
     public function actionAll()
     {
+        sleep(10);
         $models = Goal::find()->asArray()->all();
         foreach ($models as $k => $v) {
             $models[$k]['completed'] = (bool)$v['completed'];

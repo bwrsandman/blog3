@@ -18,9 +18,15 @@ class GoalWebSocket extends \PHPDaemon\Core\AppInstance
             return $session;
         });
 
+
         //yii preconfiguring
         $configs = require(__DIR__ . '/../config/frontend_configs.php');
         new \nizsheanez\websocket\Application($configs);
+    }
+
+    public function initYiiApplication($config, $applicationClass = '\nizsheanez\websocket\Application')
+    {
+        return new $applicationClass($config);
     }
 }
 

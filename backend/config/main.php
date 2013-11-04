@@ -12,24 +12,25 @@ return array(
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'preload' => array('log'),
+    'preload' => ['log'],
     'controllerNamespace' => 'backend\controllers',
-    'modules' => array(),
-    'components' => array(
+    'modules' => [],
+    'components' => [
         'db' => $params['components.db'],
+        'text' => $params['components.text'],
         'cache' => $params['components.cache'],
-        'user' => array(
+        'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-        ),
-        'log' => array(
-            'targets' => array(
-                array(
+        ],
+        'log' => [
+            'targets' => [
+                [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => array('error', 'warning'),
-                ),
-            ),
-        ),
-    ),
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+    ],
     'params' => $params,
 );

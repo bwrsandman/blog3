@@ -13,17 +13,18 @@ return array(
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'controllerNamespace' => 'frontend\controllers',
-    'modules' => array(),
-    'components' => array(
+    'modules' => [],
+    'components' => [
         'db' => $params['components.db'],
+        'text' => $params['components.text'],
         'sphinxDb' => $params['components.sphinxDb'],
         'cache' => $params['components.cache'],
-        'user' => array(
+        'user' => [
             'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
-        ),
-        'assetManager' => array(
-            'converter' => array(
+        ],
+        'assetManager' => [
+            'converter' => [
                 'class' => 'nizsheanez\assetConverter\Converter',
                 'parsers' => [
                     'less' => [ // file extension to parse
@@ -31,16 +32,16 @@ return array(
                     ]
                 ],
                 'force' => true
-            )
-        ),
-        'log' => array(
-            'targets' => array(
-                array(
+            ]
+        ],
+        'log' => [
+            'targets' => [
+                [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => array('error', 'warning'),
-                ),
-            ),
-        ),
-    ),
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+    ],
     'params' => $params,
 );

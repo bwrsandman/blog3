@@ -37,7 +37,7 @@ angular.module('MainApp').config(['$routeProvider', '$locationProvider', functio
         .hashPrefix('!');
 
 //    $urlRouterProvider.otherwise({
-//        redirectTo: '/list'
+//        redirectTo: '/'
 //    });
 }]);
 

@@ -13,19 +13,19 @@ return array(
 	'basePath' => dirname(__DIR__),
 	'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
 	'controllerNamespace' => 'console\controllers',
-	'modules' => array(
-	),
-	'components' => array(
+	'modules' => [],
+	'components' => [
 		'db' => $params['components.db'],
-		'cache' => $params['components.cache'],
-		'log' => array(
-			'targets' => array(
-				array(
+        'text' => $params['components.text'],
+        'cache' => $params['components.cache'],
+		'log' => [
+			'targets' => [
+				[
 					'class' => 'yii\log\FileTarget',
-					'levels' => array('error', 'warning'),
-				),
-			),
-		),
-	),
+					'levels' => ['error', 'warning'],
+				],
+			],
+		],
+	],
 	'params' => $params,
 );

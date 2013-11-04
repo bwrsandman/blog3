@@ -17,30 +17,13 @@
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "dev-master",
 		"yiisoft/yii2-composer": "dev-master",
+        "yiisoft/yii2-bootstrap": "dev-master",
         "nizsheanez/yii2-sphinx-tools": "1.*",
         "nizsheanez/yii2-asset-converter": "1.*",
-        "twbs/bootstrap": "3.*",
-        "evernote/evernote": "1.*",
         "nizsheanez/yii2-websocket-application": "dev-master",
-        "satooshi/php-coveralls": "dev-master"
+        "twbs/bootstrap": "3.*",
+        "evernote/evernote": "1.*"
     },
-	"scripts": {
-		"post-create-project-cmd": [
-			"yii\\composer\\InstallHandler::setPermissions"
-		]
-	},
     "repositories":[
-    ],
-	"extra": {
-		"yii-install-writable": [
-			"backend/runtime",
-			"backend/web/assets",
-
-			"console/runtime",
-			"console/migrations",
-
-			"frontend/runtime",
-			"frontend/web/assets"
-		]
-	}
+    ]
 }
