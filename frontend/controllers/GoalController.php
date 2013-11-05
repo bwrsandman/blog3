@@ -14,6 +14,9 @@ class GoalController extends Controller
         $models = Goal::find()->asArray()->all();
         foreach ($models as $k => $v) {
             $models[$k]['completed'] = (bool)$v['completed'];
+            if (!$models[$k]['description']) {
+                $models[$k]['description'] = strip_tags(Yii::$app->text->lipsumParagraphs(1));
+            }
         }
         return $models;
     }
