@@ -13,7 +13,6 @@ class GoalController extends Controller
     {
         $models = Goal::find()->asArray()->all();
         foreach ($models as $k => $v) {
-            $models[$k]['completed'] = (bool)$v['completed'];
             if (!$models[$k]['description']) {
                 $models[$k]['description'] = strip_tags(Yii::$app->text->lipsumParagraphs(1));
             }
@@ -63,6 +62,7 @@ class GoalController extends Controller
         if ($model->save()) {
             return 'Edited';
         } else {
+            print_r($model->getErrors());die;
             throw new Exception(json_encode($model->getErrors()));
         }
     }

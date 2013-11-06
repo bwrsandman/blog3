@@ -13,7 +13,15 @@ return array(
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'controllerNamespace' => 'frontend\controllers',
-    'modules' => [],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => [
+                '192.168.56.1'
+            ]
+        ],
+    ],
+    'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'components' => [
         'db' => $params['components.db'],
         'text' => $params['components.text'],

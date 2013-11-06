@@ -1,7 +1,7 @@
 <?php
 namespace frontend\servers;
 
-class Route extends \nizsheanez\websocket\Route
+class Route extends \nizsheanez\daemon\websocket\Route
 {
     public function onFrame($message, $type)
     {

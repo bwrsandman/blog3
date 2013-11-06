@@ -1,7 +1,7 @@
 <?php
 namespace frontend\servers;
 
-class WebSocket extends \nizsheanez\websocket\Server
+class WebSocket extends \nizsheanez\daemon\websocket\Server
 {
     public $routeClass = '\frontend\servers\Route';
 
