@@ -13,6 +13,7 @@ namespace common\models\generated;
  * @property integer $completed
  * @property string $description
  *
+ * @property Report[] $reports
  * @property Step[] $steps
  */
 class Goal extends \common\components\ActiveRecord
@@ -57,8 +58,16 @@ class Goal extends \common\components\ActiveRecord
 	/**
 	 * @return \yii\db\ActiveRelation
 	 */
+	public function getReports()
+	{
+		return $this->hasMany(Report::className(), ['fk_goal' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
 	public function getSteps()
 	{
-		return $this->hasMany(Goal::className(), ['fk_goal' => 'id']);
+		return $this->hasMany(Step::className(), ['fk_goal' => 'id']);
 	}
 }

@@ -14,12 +14,4 @@ class Report extends generated\Report
         ]);
     }
 
-    /**
-     * @return \yii\db\ActiveRelation
-     */
-    public function getSteps()
-    {
-        return $this->hasMany(Step::className(), ['fk_goal' => 'id']);
-    }
-
 }

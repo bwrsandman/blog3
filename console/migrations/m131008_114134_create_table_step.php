@@ -1,7 +1,7 @@
 <?php
 use yii\db\Schema;
 
-class m131008_114134_create_table_step extends \yii\db\Migration
+class m131008_114135_goal_to_step extends \yii\db\Migration
 {
     public function up()
     {
@@ -17,14 +17,10 @@ class m131008_114134_create_table_step extends \yii\db\Migration
             'create_time' => Schema::TYPE_INTEGER . ' NOT NULL',
             'update_time' => Schema::TYPE_INTEGER . ' NOT NULL',
         ), $tableOptions);
-
-        $this->addForeignKey('steps_to_goal', 'step', 'fk_goal', 'goal', 'id');
-
     }
 
     public function down()
     {
-        $this->dropForeignKey('steps_to_goal', 'step');
         $this->dropTable('step');
         return true;
     }

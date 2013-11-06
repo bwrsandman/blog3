@@ -2,7 +2,6 @@
 namespace common\models;
 
 use yii\data\ArrayDataProvider;
-use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 class Goal extends generated\Goal
@@ -23,11 +22,28 @@ class Goal extends generated\Goal
     }
 
     /**
-     * @return Step
+     * @return \yii\db\ActiveRelation
      */
-    public function getSteps()
+    public function getReport()
     {
-        return $this->hasMany(Step::className(), ['fk_goal' => 'id']);
+        return $this->hasOne(Report::className(), ['fk_goal' => 'id']);
     }
 
+    /**
+     * @return static
+     */
+    public function getReportToday()
+    {
+        $query = $this->getReport()
+            ->andWhere('create_time > '. strtotime('today'));
+        return $query;
+    }
+
+    public function getReportYesterday()
+    {
+        $query = $this->getReport()
+            ->andWhere('create_time > '. strtotime('yesterday'))
+            ->andWhere('create_time < '. strtotime('today'));
+        return $query;
+    }
 }

@@ -7,8 +7,6 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         filters: tplBase + 'views/filters.html'
     };
 
-    $scope.descriptionsToday = [];
-
     $scope.goals = [];
     $scope.goals.range = function (size) {
         var range = [];

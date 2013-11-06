@@ -51,6 +51,6 @@ class AppAsset extends AssetBundle
 //        'frontend\config\UiCodemirrorAsset',
         'frontend\config\UiBootstrapAsset',
         'frontend\config\AngularElasticAsset',
-        'nizsheanez\daemon\assetBundles\WebSocket',
+        'nizsheanez\websocket\assetBundles\WebSocket',
 	);
 }

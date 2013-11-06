@@ -10,6 +10,8 @@ namespace common\models\generated;
  * @property integer $fk_goal
  * @property integer $create_time
  * @property integer $update_time
+ *
+ * @property Goal $fkGoal
  */
 class Report extends \common\components\ActiveRecord
 {
@@ -45,5 +47,13 @@ class Report extends \common\components\ActiveRecord
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
 		];
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getFkGoal()
+	{
+		return $this->hasOne(Goal::className(), ['id' => 'fk_goal']);
 	}
 }

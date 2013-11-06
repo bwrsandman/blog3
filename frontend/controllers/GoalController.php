@@ -11,10 +11,10 @@ class GoalController extends Controller
 
     public function actionAll()
     {
-        $models = Goal::find()->asArray()->all();
+        $models = Goal::find()->asArray()->with('reportToday', 'reportYesterday')->all();
         foreach ($models as $k => $v) {
-            if (!$models[$k]['description']) {
-                $models[$k]['description'] = strip_tags(Yii::$app->text->lipsumParagraphs(1));
+            if (!$models[$k]['reporttoday']['description']) {
+                $models[$k]['reporttoday']['description'] = strip_tags(Yii::$app->text->lipsumParagraphs(1));
             }
         }
         return $models;
@@ -62,7 +62,6 @@ class GoalController extends Controller
         if ($model->save()) {
             return 'Edited';
         } else {
-            print_r($model->getErrors());die;
             throw new Exception(json_encode($model->getErrors()));
         }
     }

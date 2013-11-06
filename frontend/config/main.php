@@ -18,6 +18,14 @@ return array(
             'class' => 'yii\gii\Module',
             'allowedIPs' => [
                 '192.168.56.1'
+            ],
+            'generators' => [
+                'model' => [
+                    'class' => 'yii\gii\generators\model\Generator',
+                    'ns' => 'common\models\generated',
+                    'baseClass' => '\common\components\ActiveRecord',
+                    'generateLabelsFromComments' => true
+                ]
             ]
         ],
     ],

@@ -41,7 +41,6 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
                     goals.splice(goals.indexOf(goal), 1);
                     service.put(goals);
                 });
-
             });
         },
         edit: function (goal, callback) {

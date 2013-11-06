@@ -7,7 +7,7 @@ require __DIR__ . '/vendor/autoload.php';
 require(__DIR__ . '/vendor/yiisoft/yii2/yii/Yii.php');
 
 $config = require __DIR__ . '/frontend/config/frontend_configs.php';
-new \nizsheanez\daemon\websocket\Application($config);
+new \nizsheanez\websocket\Application($config);
 
 $configFile = __DIR__ . '/common/config/phpd.conf';
 require __DIR__ . '/vendor/kakserpom/phpdaemon/bin/phpd';
