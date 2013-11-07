@@ -14,8 +14,8 @@ class m131008_114135_goal_to_step extends \yii\db\Migration
             'fk_goal' => Schema::TYPE_INTEGER . ' NOT NULL',
 
             'status' => 'tinyint NOT NULL DEFAULT 0',
-            'create_time' => Schema::TYPE_INTEGER . ' NOT NULL',
-            'update_time' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'create_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT CURRENT_TIMESTAMP',
+            'update_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT 0',
         ), $tableOptions);
     }
 

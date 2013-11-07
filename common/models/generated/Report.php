@@ -29,7 +29,7 @@ class Report extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			['description, fk_goal, create_time, update_time', 'required'],
+			['fk_goal', 'required'],
 			['description', 'string'],
 			['fk_goal, create_time, update_time', 'integer']
 		];
