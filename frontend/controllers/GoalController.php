@@ -21,7 +21,6 @@ class GoalController extends Controller
                 $report = new Report();
                 $report->scenario = 'create';
                 $report->fk_goal = $model->id;
-                $model->description = '';
                 $report->save();
             }
         }
