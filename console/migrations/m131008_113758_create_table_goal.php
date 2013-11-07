@@ -12,8 +12,8 @@ class m131008_113758_create_table_goal extends \yii\db\Migration
             'id' => Schema::TYPE_PK,
             'title' => Schema::TYPE_STRING.' NOT NULL',
             'status' => 'tinyint NOT NULL DEFAULT 0',
-            'create_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT CURRENT_TIMESTAMP',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT 0',
+            'create_time' => Schema::TYPE_TIMESTAMP . '',
+            'update_time' => Schema::TYPE_TIMESTAMP . ' DEFAULT 0',
         ), $tableOptions);
 	}
 

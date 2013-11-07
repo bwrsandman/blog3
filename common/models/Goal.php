@@ -17,7 +17,6 @@ class Goal extends generated\Goal
             ['title', 'string', 'min' => 3, 'max' => 1024, 'on' => 'create'],
             ['title, completed', 'safe', 'on' => 'edit'],
             ['title', 'string', 'min' => 3, 'max' => 1024, 'on' => 'edit'],
-            ['description', 'string', 'max' => 30000, 'on' => 'edit'],
         ]);
     }
 

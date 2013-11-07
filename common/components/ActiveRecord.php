@@ -1,6 +1,8 @@
 <?php
 namespace common\components;
 
+use yii\db\Expression;
+
 class ActiveRecord extends \yii\db\ActiveRecord
 {
     public function behaviors()
@@ -12,6 +14,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => ['create_time', 'update_time'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
                 ],
+                'timestamp' => new Expression('NOW()')
             ],
         ];
     }

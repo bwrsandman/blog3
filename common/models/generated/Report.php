@@ -30,7 +30,7 @@ class Report extends \common\components\ActiveRecord
 	{
 		return [
 			['description', 'string'],
-			['fk_goal, create_time', 'required'],
+			['fk_goal', 'required'],
 			['fk_goal', 'integer'],
 			['create_time, update_time', 'safe']
 		];

@@ -7,43 +7,22 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         filters: tplBase + 'views/filters.html'
     };
 
-    $scope.goals = [];
-    $scope.goals.range = function (size) {
-        var range = [];
-        for (var i = 0; i < $scope.goals.length; i = i + size) {
-            range.push(i);
-        }
-        return range;
-    }
-    $scope.goalDetail = {};
+    $scope.goals = {};
 
-    if ($routeParams.id) {
-        goalStorage.getDetail($routeParams.id, function (data) {
-            $scope.goalDetail = data;
-        });
-    }
+    $scope.goalsCount = function() {
+        //TODO: evaluate to much times
+        return Object.keys($scope.goals).length;
+    };
 
     goalStorage.get(function (data) {
         $scope.goals = data;
     });
-
-    function saveList() {
-
-    }
-
-    $scope.$watch('goals', $debounce(saveList, 1000), true);
 
     if ($location.path() === '') {
         $location.path('/');
     }
 
     $scope.location = $location;
-
-    $scope.$watch('location.path()', function (path) {
-        $scope.statusFilter = (path === '/active') ?
-        { completed: false } : (path === '/completed') ?
-        { completed: true } : null;
-    });
 
     showScreen();
 });
@@ -67,7 +46,7 @@ angular.module('MainApp').directive('goalDetail', function (goalStorage, $deboun
         templateUrl: '/js/modules/main/views/goal_detail.html',
         link: function(scope, element, attrs) {
             var autoSave = function () {
-                goalStorage.edit(scope.goal);
+//                goalStorage.edit(scope.goal);
             };
             scope.$watch('goal', $debounce(autoSave, 1000), true );
         }

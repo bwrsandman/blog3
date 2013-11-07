@@ -20,35 +20,28 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
                 });
             }
         },
-        getDetail: function(id, callback) {
-            goalsIo.send('goal/detail', {id: id}, callback);
-        },
         put: function (todos) {
             localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
         },
         add: function (goal, callback) {
             goalsIo.send('goal/create', goal, callback).then(function (data) {
-                service.get(function(goals) {
-                    goals.push(data);
-                    service.put(goals);
-                });
-
+//                service.get(function(goals) {
+//                    goals.push(data);
+//                    service.put(goals);
+//                });
             });
         },
         delete: function (goal, callback) {
             goalsIo.send('goal/delete', goal, callback).then(function (data) {
-                service.get(function(goals) {
-                    goals.splice(goals.indexOf(goal), 1);
-                    service.put(goals);
-                });
+//                goals.splice(goals.indexOf(goal), 1);
             });
         },
         edit: function (goal, callback) {
+            if (!goal) {
+                return;
+            }
             goalsIo.send('goal/edit', goal, callback).then(function (data) {
-                service.get(function(goals) {
-                    goals[goals.indexOf(goal)] = data;
-                    service.put(goals);
-                });
+//                service.put(goals);
             });
         }
     };

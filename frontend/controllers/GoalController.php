@@ -6,6 +6,7 @@ use common\models\Report;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 class GoalController extends Controller
 {
@@ -14,13 +15,12 @@ class GoalController extends Controller
     {
         /** @var $models Goal[] */
         $models = Goal::find()->with('reportToday', 'reportYesterday')->all();
-        foreach ($models as $k => $v) {
-            /** @var $model Goal */
-            $model = $models[$k];
+        foreach ($models as $model) {
             if (!$model->reportToday) {
                 $report = new Report();
                 $report->scenario = 'create';
                 $report->fk_goal = $model->id;
+                $report->beforeSave(true);
                 $report->save();
             }
         }
@@ -28,10 +28,14 @@ class GoalController extends Controller
         //reload
         $models = Goal::find()->with('reportToday', 'reportYesterday')->all();
         $result = [];
-        foreach ($models as $k => $v) {
-            $result[] = $model->toArray();
+        foreach ($models as $model) {
+            $tmp = $model->toArray();
+            $tmp['reportToday'] = $model->reportToday->toArray();
+            if ($model->reportYesterday) {
+                $tmp['reportYesterday'] = $model->reportYesterday->toArray();
+            }
+            $result[$model->id] = $tmp;
         }
-
         return $result;
     }
 

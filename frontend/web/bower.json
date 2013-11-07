@@ -12,6 +12,7 @@
         "angular-ui-codemirror": "*",
         "angular-elastic": "*",
         "dropstore-ng": "1.*",
+        "stacktrace.js": "*",
         "lodash": "1.*"
     }
 }
