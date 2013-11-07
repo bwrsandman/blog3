@@ -8,8 +8,8 @@ namespace common\models\generated;
  * @property integer $id
  * @property string $title
  * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
+ * @property string $create_time
+ * @property string $update_time
  * @property integer $completed
  * @property string $description
  *
@@ -32,8 +32,9 @@ class Goal extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			['title, create_time, update_time, completed, description', 'required'],
-			['status, create_time, update_time, completed', 'integer'],
+			['title, create_time, completed, description', 'required'],
+			['status, completed', 'integer'],
+			['create_time, update_time', 'safe'],
 			['description', 'string'],
 			['title', 'string', 'max' => 255]
 		];

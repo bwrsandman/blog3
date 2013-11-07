@@ -8,8 +8,8 @@ namespace common\models\generated;
  * @property integer $id
  * @property string $description
  * @property integer $fk_goal
- * @property integer $create_time
- * @property integer $update_time
+ * @property string $create_time
+ * @property string $update_time
  *
  * @property Goal $fkGoal
  */
@@ -29,9 +29,10 @@ class Report extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			['fk_goal', 'required'],
 			['description', 'string'],
-			['fk_goal, create_time, update_time', 'integer']
+			['fk_goal, create_time', 'required'],
+			['fk_goal', 'integer'],
+			['create_time, update_time', 'safe']
 		];
 	}
 

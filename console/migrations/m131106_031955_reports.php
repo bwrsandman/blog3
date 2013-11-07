@@ -9,7 +9,7 @@ class m131106_031955_reports extends \yii\db\Migration
 
         $this->createTable('report', array(
             'id' => Schema::TYPE_PK,
-            'description' => Schema::TYPE_TEXT . ' NOT NULL',
+            'description' => Schema::TYPE_TEXT,
             'fk_goal' => Schema::TYPE_INTEGER.' NOT NULL',
             'create_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT CURRENT_TIMESTAMP',
             'update_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL DEFAULT 0',

@@ -21,6 +21,7 @@ class GoalController extends Controller
                 $report = new Report();
                 $report->scenario = 'create';
                 $report->fk_goal = $model->id;
+                $model->description = '';
                 $report->save();
             }
         }
@@ -29,10 +30,6 @@ class GoalController extends Controller
         $models = Goal::find()->with('reportToday', 'reportYesterday')->all();
         $result = [];
         foreach ($models as $k => $v) {
-            $model = $models[$k];
-            if (!$model->reportToday->description) {
-                $model->reportToday->description = strip_tags(Yii::$app->text->lipsumParagraphs(1));
-            }
             $result[] = $model->toArray();
         }
 
@@ -44,7 +41,8 @@ class GoalController extends Controller
         $params = Yii::$app->request->getParams();
         $model = new Goal();
         $model->scenario = 'create';
-        if ($model->load($params) && $model->save()) {
+        $model->attributes = $params;
+        if ($model->save()) {
             return Goal::find($model->id)->toArray();
         } else {
             throw new Exception($model->getErrors());
@@ -76,8 +74,8 @@ class GoalController extends Controller
         $params = Yii::$app->request->getParams();
         $model = $this->findModel($params);
         $model->scenario = 'edit';
-        var_dump($model->formName());die;
-        if ($model->load($params) && $model->save()) {
+        $model->attributes = $params;
+        if ($model->save()) {
             return 'Edited';
         } else {
             throw new Exception(json_encode($model->getErrors()));
