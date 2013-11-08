@@ -38,6 +38,7 @@ class AppAsset extends AssetBundle
 
         'js/modules/main/services/alert.js',
         'js/modules/main/controllers/root.js',
+        'js/modules/main/controllers/nav.js',
 
 //        'js/modules/map/services/places.js',
 //        'js/modules/map/controllers/list.js',

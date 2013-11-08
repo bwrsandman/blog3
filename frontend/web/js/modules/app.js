@@ -29,6 +29,7 @@ angular.module('MainApp').config(['$routeProvider', '$locationProvider', functio
 
     $routeProvider
         .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})
+        .when('/yesterday', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})
         .when('/active', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})
         .when('/goal/:id', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'});
 

@@ -25,15 +25,19 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
         },
         add: function (goal, callback) {
             goalsIo.send('goal/create', goal, callback).then(function (data) {
-//                service.get(function(goals) {
-//                    goals.push(data);
-//                    service.put(goals);
-//                });
+                service.get(function(goals) {
+                    goals.push(data);
+                    service.put(goals);
+                });
+
             });
         },
         delete: function (goal, callback) {
             goalsIo.send('goal/delete', goal, callback).then(function (data) {
-//                goals.splice(goals.indexOf(goal), 1);
+                service.get(function(goals) {
+                    goals.splice(goals.indexOf(goal), 1);
+                    service.put(goals);
+                });
             });
         },
         edit: function (goal, callback) {
@@ -41,7 +45,10 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
                 return;
             }
             goalsIo.send('goal/edit', goal, callback).then(function (data) {
-//                service.put(goals);
+//                service.get(function(goals) {
+//                    goals[goal.id] = data;
+//                    service.put(goals);
+//                });
             });
         }
     };

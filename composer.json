@@ -33,6 +33,7 @@
     "repositories":[
     ],
     "extra": {
+
         "yii-install-writable": [
             "backend/runtime",
             "backend/web/assets",

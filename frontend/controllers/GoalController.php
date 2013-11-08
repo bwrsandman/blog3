@@ -78,6 +78,8 @@ class GoalController extends Controller
         $model = $this->findModel($params);
         $model->scenario = 'edit';
         $model->attributes = $params;
+        $model->reportToday->attributes = $params['reportToday'];
+        $model->reportYesterday->attributes = $params['reportYesterday'];
         if ($model->save()) {
             return 'Edited';
         } else {
