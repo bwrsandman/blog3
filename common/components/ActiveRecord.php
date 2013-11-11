@@ -19,4 +19,9 @@ class ActiveRecord extends \yii\db\ActiveRecord
         ];
     }
 
+    public function throwValidationErrors()
+    {
+        throw new Exception(json_encode($this->getErrors()));
+    }
+
 }

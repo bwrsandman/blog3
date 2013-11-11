@@ -37,29 +37,62 @@ class Goal extends generated\Goal
         return $this->hasOne(Report::className(), ['fk_goal' => 'id']);
     }
 
+    public function today()
+    {
+        return date('Y-m-d', strtotime('today'));
+    }
+
+    public function yesterday()
+    {
+        return date('Y-m-d', strtotime('yesterday'));
+    }
+
     /**
-     * @return static
+     * @return Report
      */
     public function getReportToday()
     {
-        $query = $this->getReport()
-            ->andWhere('create_time >= :today')
+        $report = $this->getReport()
+            ->andWhere('report_date >= :today')
             ->params([
-                ':today' => date('Y-m-d', strtotime('today')),
-            ]);
-        return $query;
+                ':today' => $this->today(),
+            ])->one();
+
+        if (!$report) {
+            $report = new Report();
+            $report->scenario = 'create';
+            $report->fk_goal = $this->id;
+            $report->report_date = $this->today();
+            if ($report->save()) {
+
+            }
+        }
+        return $report;
     }
 
+    /**
+     * @return Report
+     */
     public function getReportYesterday()
     {
-        $query = $this->getReport();
-        $query->andWhere('create_time >= :yesterday')
-            ->andWhere('create_time < :today')
+        $report = $this->getReport()
+            ->andWhere('report_date >= :yesterday')
+            ->andWhere('report_date < :today')
             ->params([
-                ':today' => date('Y-m-d', strtotime('today')),
-                ':yesterday' => date('Y-m-d', strtotime('yesterday'))
-            ]);
-        return $query;
+                ':today' => $this->today(),
+                ':yesterday' => $this->yesterday()
+            ])->one();
+
+        if (!$report) {
+            $report = new Report();
+            $report->scenario = 'create';
+            $report->fk_goal = $this->id;
+            $report->report_date = $this->yesterday();
+            if (!$report->save()) {
+                $report->throwValidationErrors();
+            }
+        }
+        return $report;
     }
 
     public function beforeSave($event)

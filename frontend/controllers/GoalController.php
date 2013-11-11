@@ -14,19 +14,7 @@ class GoalController extends Controller
     public function actionAll()
     {
         /** @var $models Goal[] */
-        $models = Goal::find()->with('reportToday', 'reportYesterday')->all();
-        foreach ($models as $model) {
-            if (!$model->reportToday) {
-                $report = new Report();
-                $report->scenario = 'create';
-                $report->fk_goal = $model->id;
-                $report->beforeSave(true);
-                $report->save();
-            }
-        }
-
-        //reload
-        $models = Goal::find()->with('reportToday', 'reportYesterday')->all();
+        $models = Goal::find()->all();
         $result = [];
         foreach ($models as $model) {
             $tmp = $model->toArray();
@@ -48,7 +36,7 @@ class GoalController extends Controller
         if ($model->save()) {
             return Goal::find($model->id)->toArray();
         } else {
-            throw new Exception($model->getErrors());
+            $model->throwValidationErrors();
         }
     }
 
