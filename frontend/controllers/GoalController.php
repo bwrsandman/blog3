@@ -65,6 +65,7 @@ class GoalController extends Controller
         $params = Yii::$app->request->getParams();
         $model = $this->findModel($params);
         $model->scenario = 'edit';
+        $model->reportYesterday->scenario = $model->reportToday->scenario = 'edit';
         $model->attributes = $params;
         $model->reportToday->attributes = $params['reportToday'];
         $model->reportYesterday->attributes = $params['reportYesterday'];

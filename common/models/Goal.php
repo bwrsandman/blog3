@@ -6,6 +6,10 @@ use yii\helpers\ArrayHelper;
 
 class Goal extends generated\Goal
 {
+
+    protected $reportTodayCache;
+    protected $reportYesterdayCache;
+
     public function search()
     {
         return new ArrayDataProvider;
@@ -52,6 +56,9 @@ class Goal extends generated\Goal
      */
     public function getReportToday()
     {
+        if ($this->reportTodayCache) {
+            return $this->reportTodayCache;
+        }
         $report = $this->getReport()
             ->andWhere('report_date >= :today')
             ->params([
@@ -67,7 +74,7 @@ class Goal extends generated\Goal
 
             }
         }
-        return $report;
+        return $this->reportTodayCache = $report;
     }
 
     /**
@@ -75,6 +82,9 @@ class Goal extends generated\Goal
      */
     public function getReportYesterday()
     {
+        if ($this->reportYesterdayCache) {
+            return $this->reportYesterdayCache;
+        }
         $report = $this->getReport()
             ->andWhere('report_date >= :yesterday')
             ->andWhere('report_date < :today')
@@ -92,7 +102,7 @@ class Goal extends generated\Goal
                 $report->throwValidationErrors();
             }
         }
-        return $report;
+        return $this->reportYesterdayCache = $report;
     }
 
     public function beforeSave($event)

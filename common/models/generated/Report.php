@@ -10,6 +10,7 @@ namespace common\models\generated;
  * @property integer $fk_goal
  * @property string $create_time
  * @property string $update_time
+ * @property string $report_date
  *
  * @property Goal $fkGoal
  */
@@ -29,10 +30,9 @@ class Report extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			['description', 'string'],
-			['fk_goal', 'required'],
+			['fk_goal, report_date', 'required'],
 			['fk_goal', 'integer'],
-			['create_time, update_time', 'safe']
+			['create_time, update_time, report_date', 'safe']
 		];
 	}
 
@@ -47,6 +47,7 @@ class Report extends \common\components\ActiveRecord
 			'fk_goal' => 'Fk Goal',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
+			'report_date' => 'Report Date',
 		];
 	}
 

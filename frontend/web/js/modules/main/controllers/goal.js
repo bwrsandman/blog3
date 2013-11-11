@@ -12,16 +12,24 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
     };
 
     $scope.goals = {};
-    $scope.keys= [];
+    $scope.keys = [];
 
     $scope.goalsCount = function() {
         //TODO: evaluate to much times
-        return Object.keys($scope.goals).length;
+        return $scope.keys.length;
     };
 
     goalStorage.get(function (data) {
         $scope.goals = data;
         $scope.keys = Object.keys(data);
+
+        var autoSave = function (newModel) {
+            goalStorage.edit(newModel);
+        };
+
+        for (var i in $scope.goals) {
+            $scope.$watch('goals['+i+']', $debounce(autoSave, 1000), true);
+        }
     });
 
     if ($location.path() === '') {
@@ -33,7 +41,6 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
     }  else if ($location.path() === '/yesterday') {
         $scope.submodel = 'reportYesterday';
     }
-
 
     $scope.location = $location;
 
@@ -52,10 +59,6 @@ angular.module('MainApp').directive('goalDetail', function (goalStorage, $deboun
             if (!scope.goal) {
                 element.remove();
             }
-            var autoSave = function () {
-                goalStorage.edit(scope.goal);
-            };
-            scope.$watch('goal', $debounce(autoSave, 1000), true);
         }
     };
 });
