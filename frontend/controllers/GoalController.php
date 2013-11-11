@@ -17,12 +17,7 @@ class GoalController extends Controller
         $models = Goal::find()->all();
         $result = [];
         foreach ($models as $model) {
-            $tmp = $model->toArray();
-            $tmp['reportToday'] = $model->reportToday->toArray();
-            if ($model->reportYesterday) {
-                $tmp['reportYesterday'] = $model->reportYesterday->toArray();
-            }
-            $result[$model->id] = $tmp;
+            $result[$model->id] = $model->toArray();
         }
         return $result;
     }
@@ -67,8 +62,6 @@ class GoalController extends Controller
         $model->scenario = 'edit';
         $model->reportYesterday->scenario = $model->reportToday->scenario = 'edit';
         $model->attributes = $params;
-        $model->reportToday->attributes = $params['reportToday'];
-        $model->reportYesterday->attributes = $params['reportYesterday'];
         if ($model->save()) {
             return 'Edited';
         } else {

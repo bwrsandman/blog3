@@ -105,6 +105,27 @@ class Goal extends generated\Goal
         return $this->reportYesterdayCache = $report;
     }
 
+    public function setAttributes($values, $safeOnly = true)
+    {
+        if (isset($values['reportToday'])) {
+            $this->reportToday->attributes = $values['reportToday'];
+        }
+        if (isset($values['reportYesterday'])) {
+            $this->reportYesterday->attributes = $values['reportYesterday'];
+        }
+        return parent::setAttributes($values, $safeOnly);
+    }
+
+    public function toArray()
+    {
+        $res = parent::toArray();
+        $res['reportToday'] = $this->reportToday->toArray();
+        if ($this->reportYesterday) {
+            $res['reportYesterday'] = $this->reportYesterday->toArray();
+        }
+        return $res;
+    }
+
     public function beforeSave($event)
     {
         if (parent::beforeSave($event)) {
