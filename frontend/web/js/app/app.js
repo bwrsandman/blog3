@@ -17,7 +17,7 @@ var lang = 'ru';
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
 
-angular.module('MainApp', ['ngRoute', 'ui.router', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce']);
+angular.module('MainApp', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce']);
 
 angular.module('MainApp').config(['msdElasticConfig', function (config) {
     config.append = '\n\n';
@@ -25,7 +25,7 @@ angular.module('MainApp').config(['msdElasticConfig', function (config) {
 
 angular.module('MainApp').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-    var dir = '/js/modules/main/views';
+    var dir = '/js/app/main/views';
 
     $routeProvider
         .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})

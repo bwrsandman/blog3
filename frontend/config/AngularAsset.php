@@ -16,13 +16,13 @@ use yii\web\AssetBundle;
 class AngularAsset extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web';
+	public $baseUrl = '@web/js/components/';
 	public $js = array(
 //        '//maps.googleapis.com/maps/api/js?sensor=false',
-        'js/components/angular/angular.js',
+        'angular/angular.js',
 //        '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.4.0/ui-bootstrap-tpls.min.js',
-        'js/components/angular-route/angular-route.js',
-        'js/components/angular-ui-router/release/angular-ui-router.min.js',
-        'js/components/angular-translate/angular-translate.js',
+        'angular-route/angular-route.js',
+//        'angular-ui-router/release/angular-ui-router.min.js',
+        'angular-translate/angular-translate.js',
     );
 }

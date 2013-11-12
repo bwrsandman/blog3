@@ -16,13 +16,13 @@ use yii\web\AssetBundle;
 class UiCodemirrorAsset extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web';
+	public $baseUrl = '@web/js/components/';
     public $css = array(
-        'js/components/codemirror/lib/codemirror.css'
+        'codemirror/lib/codemirror.css'
     );
 
     public $js = array(
-        'js/components/codemirror/lib/codemirror.js',
-        'js/components/angular-ui-codemirror/ui-codemirror.js'
+        'codemirror/lib/codemirror.js',
+        'angular-ui-codemirror/ui-codemirror.js'
     );
 }

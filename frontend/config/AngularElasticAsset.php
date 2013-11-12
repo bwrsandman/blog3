@@ -12,9 +12,9 @@ use yii\web\AssetBundle;
 class AngularElasticAsset extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web';
+	public $baseUrl = '@web/js/components/angular-elastic';
 
     public $js = array(
-        'js/components/angular-elastic/elastic.js',
+        'elastic.js',
     );
 }

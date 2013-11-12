@@ -16,12 +16,12 @@ use yii\web\AssetBundle;
 class UiBootstrapAsset extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web';
+	public $baseUrl = '@web/js/components/angular-bootstrap';
     public $css = array(
     );
 
     public $js = array(
-        'js/components/angular-bootstrap/ui-bootstrap.min.js',
-        'js/components/angular-bootstrap/ui-bootstrap-tpls.min.js'
+        'ui-bootstrap.min.js',
+        'ui-bootstrap-tpls.min.js'
     );
 }

@@ -5,7 +5,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         $templateCache.removeAll();
     }
 
-    var tplBase = '/js/modules/main/';
+    var tplBase = '/js/app/main/';
     $scope.tpl = {
         filters: tplBase + 'views/filters.html',
         goals: tplBase + 'views/goals.html'
@@ -54,7 +54,7 @@ angular.module('MainApp').directive('goalDetail', function (goalStorage, $deboun
             goal: '=',
             submodel: '='
         },
-        templateUrl: '/js/modules/main/views/goal_detail.html',
+        templateUrl: '/js/app/main/views/goal_detail.html',
         link: function(scope, element, attrs) {
             if (!scope.goal) {
                 element.remove();
