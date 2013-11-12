@@ -2,7 +2,6 @@
     "name": "blog3",
     "version": "0.0.0",
     "devDependencies": {
-        "grunt": "latest",
         "grunt-css": "latest",
         "grunt-contrib-connect": "latest",
         "grunt-contrib-uglify": "latest",
@@ -11,13 +10,8 @@
         "grunt-shell": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-karma": "latest",
-        "bower": "latest",
-        "karma": "latest",
         "karma-mocha": "latest",
-        "karma-chrome-launcher": "latest",
         "karma-phantomjs-launcher": "latest",
-        "karma-safari-launcher": "latest",
-        "karma-firefox-launcher": "latest",
         "karma-ng-scenario": "latest",
         "chai": "latest"
     }

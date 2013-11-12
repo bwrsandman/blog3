@@ -24,7 +24,8 @@ before_install:
 
 install:
   - mysql -e 'CREATE DATABASE blog3;';
-  - npm install -g bower
+  - npm install bower express socket.io jayson karma grunt-cli less phantomejs -g
+  - cd frontend/web && npm install && cd ../../
   - cd frontend/web && bower install && cd ../../
 
 before_script:
