@@ -20,7 +20,13 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $a = $this->render('index');
+        echo $a;die;
+        return $a;
+    }
+
+    public function actionError() {
+        echo 4;die;
     }
 
     public function actionLogin()

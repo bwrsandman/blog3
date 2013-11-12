@@ -18,11 +18,11 @@ class UiCodemirrorAsset extends AssetBundle
 	public $basePath = '@webroot';
 	public $baseUrl = '@web';
     public $css = array(
-        'components/codemirror/lib/codemirror.css'
+        'js/components/codemirror/lib/codemirror.css'
     );
 
     public $js = array(
-        'components/codemirror/lib/codemirror.js',
-        'components/angular-ui-codemirror/ui-codemirror.js'
+        'js/components/codemirror/lib/codemirror.js',
+        'js/components/angular-ui-codemirror/ui-codemirror.js'
     );
 }

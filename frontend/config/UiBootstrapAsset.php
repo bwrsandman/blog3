@@ -21,7 +21,7 @@ class UiBootstrapAsset extends AssetBundle
     );
 
     public $js = array(
-        'components/angular-bootstrap/ui-bootstrap.min.js',
-        'components/angular-bootstrap/ui-bootstrap-tpls.min.js'
+        'js/components/angular-bootstrap/ui-bootstrap.min.js',
+        'js/components/angular-bootstrap/ui-bootstrap-tpls.min.js'
     );
 }

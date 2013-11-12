@@ -70,8 +70,8 @@ class Goal extends generated\Goal
             $report->scenario = 'create';
             $report->fk_goal = $this->id;
             $report->report_date = $this->today();
-            if ($report->save()) {
-
+            if (!$report->save()) {
+                $report->throwValidationErrors();
             }
         }
         return $this->reportTodayCache = $report;

@@ -4,12 +4,17 @@
     "directory" : "components",
     "dependencies": {
         "angular": "~1.*",
+        "angular-route": "*",
         "angular-bootstrap": "0.*",
         "angular-complete": "1.*",
         "angular-translate": "1.*",
         "angular-ui": "0.*",
         "angular-ui-router": "0.*",
         "angular-ui-codemirror": "*",
+        "angular-mocks": "*",
+        "components-font-awesome": "*",
+        "angular-route-segment": "*",
+        "ngMidwayTester": "*",
         "angular-elastic": "*",
         "dropstore-ng": "1.*",
         "lodash": "1.*"

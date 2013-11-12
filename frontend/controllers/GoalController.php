@@ -13,6 +13,7 @@ class GoalController extends Controller
 
     public function actionAll()
     {
+        die;
         /** @var $models Goal[] */
         $models = Goal::find()->all();
         $result = [];
@@ -35,15 +36,6 @@ class GoalController extends Controller
         }
     }
 
-    public function actionDetail()
-    {
-        $params = Yii::$app->request->getParams();
-
-        return [
-            'steps' => $this->findModel($params)->getSteps()->asArray()->all()
-        ];
-    }
-
     public function actionDelete()
     {
         $params = Yii::$app->request->getParams();
@@ -57,6 +49,8 @@ class GoalController extends Controller
 
     public function actionEdit()
     {
+        die;
+
         $params = Yii::$app->request->getParams();
         $model = $this->findModel($params);
         $model->scenario = 'edit';

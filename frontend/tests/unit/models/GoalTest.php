@@ -19,9 +19,9 @@ class GoalTest extends TestCase
         parent::tearUp();
     }
 
-    public function testSearch()
+    public function testGetReportToday()
     {
-        $goal = new Goal();
-        $this->assertTrue($goal->search() instanceof DataProviderInterface);
+        Goal::find()->one();
+
     }
 }

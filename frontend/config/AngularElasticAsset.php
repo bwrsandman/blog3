@@ -15,6 +15,6 @@ class AngularElasticAsset extends AssetBundle
 	public $baseUrl = '@web';
 
     public $js = array(
-        'components/angular-elastic/elastic.js',
+        'js/components/angular-elastic/elastic.js',
     );
 }

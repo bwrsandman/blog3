@@ -3,4 +3,5 @@
 .idea
 environments/dev
 environments/prod
-frontend/web/components
+frontend/web/js/components
+frontend/web/js/node_modules
