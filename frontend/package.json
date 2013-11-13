@@ -5,6 +5,7 @@
         "grunt-css": "latest",
         "grunt-contrib-connect": "latest",
         "grunt-contrib-uglify": "latest",
+        "phantomjs": "latest",
         "grunt-contrib-concat": "latest",
         "grunt-contrib-watch": "latest",
         "grunt-shell": "latest",

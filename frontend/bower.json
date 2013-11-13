@@ -1,9 +1,9 @@
 {
     "name": "myProject",
     "version": "1.0.0",
-    "directory" : "components",
+    "directory" : "frontend/web/js/components",
     "dependencies": {
-        "angular": "~1.*",
+        "angular": "1.*",
         "angular-route": "*",
         "angular-bootstrap": "0.*",
         "angular-complete": "1.*",
@@ -14,7 +14,6 @@
         "angular-mocks": "*",
         "components-font-awesome": "*",
         "angular-route-segment": "*",
-        "ng-scenario": "*",
         "ngMidwayTester": "*",
         "angular-elastic": "*",
         "dropstore-ng": "1.*",
