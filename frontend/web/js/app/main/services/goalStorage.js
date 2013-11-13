@@ -25,7 +25,7 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
         },
         add: function (goal, callback) {
             goalsIo.send('goal/create', goal, callback).then(function (data) {
-                service.get(function(goals) {
+                service.get(function (goals) {
                     goals.push(data);
                     service.put(goals);
                 });
@@ -34,7 +34,7 @@ angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo',
         },
         delete: function (goal, callback) {
             goalsIo.send('goal/delete', goal, callback).then(function (data) {
-                service.get(function(goals) {
+                service.get(function (goals) {
                     goals.splice(goals.indexOf(goal), 1);
                     service.put(goals);
                 });

@@ -14,7 +14,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
     $scope.goals = {};
     $scope.keys = [];
 
-    $scope.goalsCount = function() {
+    $scope.goalsCount = function () {
         //TODO: evaluate to much times
         return $scope.keys.length;
     };
@@ -28,7 +28,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         };
 
         for (var i in $scope.goals) {
-            $scope.$watch('goals['+i+']', $debounce(autoSave, 1000), true);
+            $scope.$watch('goals[' + i + ']', $debounce(autoSave, 1000), true);
         }
     });
 
@@ -38,7 +38,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
 
     if ($location.path() === '/') {
         $scope.submodel = 'reportToday';
-    }  else if ($location.path() === '/yesterday') {
+    } else if ($location.path() === '/yesterday') {
         $scope.submodel = 'reportYesterday';
     }
 
@@ -55,7 +55,7 @@ angular.module('MainApp').directive('goalDetail', function (goalStorage, $deboun
             submodel: '='
         },
         templateUrl: '/js/app/main/views/goal_detail.html',
-        link: function(scope, element, attrs) {
+        link: function (scope, element, attrs) {
             if (!scope.goal) {
                 element.remove();
             }
