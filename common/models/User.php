@@ -1,26 +1,10 @@
 <?php
 namespace common\models;
 
-use yii\db\ActiveRecord;
 use yii\helpers\Security;
-use yii\web\Identity;
+use yii\web\IdentityInterface;
 
-/**
- * Class User
- * @package common\models
- *
- * @property integer $id
- * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property string $auth_key
- * @property integer $role
- * @property integer $status
- * @property integer $create_time
- * @property integer $update_time
- */
-class User extends ActiveRecord implements Identity
+class User extends generated\User implements IdentityInterface
 {
     /**
      * @var string the raw password. Used to collect password input and isn't saved in database
@@ -32,24 +16,12 @@ class User extends ActiveRecord implements Identity
 
     const ROLE_USER = 10;
 
-    public function behaviors()
-    {
-        return array(
-            'timestamp' => array(
-                'class' => 'yii\behaviors\AutoTimestamp',
-                'attributes' => array(
-                    ActiveRecord::EVENT_BEFORE_INSERT => array('create_time', 'update_time'),
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
-                ),
-            ),
-        );
-    }
-
     /**
      * Finds an identity by the given ID.
      *
      * @param string|integer $id the ID to be looked for
-     * @return Identity|null the identity object that matches the given ID.
+     *
+     * @return IdentityInterface|null the identity object that matches the given ID.
      */
     public static function findIdentity($id)
     {
@@ -60,11 +32,15 @@ class User extends ActiveRecord implements Identity
      * Finds user by username
      *
      * @param string $username
+     *
      * @return null|User
      */
     public static function findByUsername($username)
     {
-        return static::find(array('username' => $username, 'status' => static::STATUS_ACTIVE));
+        return static::find([
+            'username' => $username,
+            'status'   => static::STATUS_ACTIVE
+        ]);
     }
 
     /**
@@ -85,6 +61,7 @@ class User extends ActiveRecord implements Identity
 
     /**
      * @param string $authKey
+     *
      * @return boolean if auth key is valid for current user
      */
     public function validateAuthKey($authKey)
@@ -94,6 +71,7 @@ class User extends ActiveRecord implements Identity
 
     /**
      * @param string $password password to validate
+     *
      * @return bool if password provided is valid for current user
      */
     public function validatePassword($password)
@@ -101,32 +79,17 @@ class User extends ActiveRecord implements Identity
         return Security::validatePassword($password, $this->password_hash);
     }
 
-    public function rules()
-    {
-        return array(
-            array('username', 'filter', 'filter' => 'trim'),
-            array('username', 'required'),
-            array('username', 'string', 'min' => 2, 'max' => 255),
-
-            array('email', 'filter', 'filter' => 'trim'),
-            array('email', 'required'),
-            array('email', 'email'),
-            array('email', 'unique', 'message' => 'This email address has already been taken.', 'on' => 'signup'),
-            array('email', 'exist', 'message' => 'There is no user with such email.', 'on' => 'requestPasswordResetToken'),
-
-            array('password', 'required'),
-            array('password', 'string', 'min' => 6),
-        );
-    }
-
     public function scenarios()
     {
-        return array(
-            'signup' => array('username', 'email', 'password'),
-            'login' => array('username', 'password'),
-            'resetPassword' => array('password'),
-            'requestPasswordResetToken' => array('email'),
-        );
+        return [
+            'signup'                    => [
+                'username',
+                'email',
+                'password'
+            ],
+            'resetPassword'             => ['password'],
+            'requestPasswordResetToken' => ['email'],
+        ];
     }
 
     public function beforeSave($insert)
@@ -138,8 +101,10 @@ class User extends ActiveRecord implements Identity
             if ($this->isNewRecord) {
                 $this->auth_key = Security::generateRandomKey();
             }
+
             return true;
         }
+
         return false;
     }
 }

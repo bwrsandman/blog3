@@ -7,13 +7,9 @@ module.exports = function (config) {
         frameworks: ['ng-scenario'],
         files: [
             'test/e2e/**/controllersSpec.js',
-            'components/angular-mocks/angular-mocks.js'
+            'components/angular-mocks/angular-mocks.js',
+            'components/angular-scenario/angular-scenario.js'
         ],
-        watch: {
-            javascript: {
-                files: 'app/**/*.js'
-            }
-        },
         autoWatch: true,
         urlRoot: '/_karma_/',
         proxies: {

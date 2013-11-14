@@ -11,9 +11,9 @@
         "grunt-shell": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-karma": "latest",
-        "karma-mocha": "latest",
         "karma-phantomjs-launcher": "latest",
         "karma-ng-scenario": "latest",
+        "protractor": "latest",
         "chai": "latest"
     }
 }

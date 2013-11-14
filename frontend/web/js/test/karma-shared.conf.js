@@ -30,6 +30,7 @@ shared.files = [
 
     //3rd Party Code
     'components/angular/angular.js',
+    'components/angular-mocks/angular-mocks.js',
 
     //Test-Specific Code
     'node_modules/chai/chai.js',

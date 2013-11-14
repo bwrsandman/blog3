@@ -2,10 +2,17 @@
 // test/e2e/controllers/controllersSpec.js
 //
 describe("E2E: Testing Controllers", function () {
+    var $scope, $httpBackend, $ctrl;
+
+    beforeEach(inject(function(GoalCtrl) {
+        $scope = GoalCtrl.$scope;
+        $ctrl = GoalCtrl.$scope;
+    }));
 
     beforeEach(function () {
         browser().navigateTo('/');
     });
+
     it('Home link must be empty', function () {
         browser().navigateTo('/');
         expect(browser().location().path()).toBe("/");
@@ -25,13 +32,13 @@ describe("E2E: Testing Controllers", function () {
         expect(browser().location().path()).toBe("/history");
     });
 
-    it('Must ', function () {
+    it('Must ready page', function () {
         element('.test-goals .goal-detail:first textarea').val('Hello');
         browser().navigateTo('/');
 
         waitsFor(function() {
-            return spreadsheet.calculationIsComplete();
-        }, "Spreadsheet calculation never completed", 10000);
+            return $scope.pageIsReady();
+        }, "Page never ready", 10000);
 
         angular.mock.inject(function(goalStorage) {
             goalStorage.get(function(data) {

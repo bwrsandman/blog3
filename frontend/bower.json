@@ -13,6 +13,7 @@
         "angular-ui-router": "0.*",
         "angular-ui-codemirror": "*",
         "angular-mocks": "*",
+        "angular-scenario": "*",
         "components-font-awesome": "*",
         "angular-route-segment": "*",
         "ngMidwayTester": "*",
