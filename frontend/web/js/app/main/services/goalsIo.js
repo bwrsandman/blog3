@@ -17,7 +17,6 @@
 
     angular.module('MainApp').service('goalsIo', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
         return AngularSocketDecorator(socket, $rootScope, alertService);
-    }
-    ])
+    }])
     ;
 })();

@@ -5,6 +5,7 @@
     "dependencies": {
         "angular": "1.*",
         "angular-route": "*",
+        "angular-socket-io": "*",
         "angular-bootstrap": "0.*",
         "angular-complete": "1.*",
         "angular-translate": "1.*",

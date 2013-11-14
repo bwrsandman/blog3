@@ -2,11 +2,9 @@
 namespace frontend\controllers;
 
 use common\models\Goal;
-use common\models\Report;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
-use yii\helpers\ArrayHelper;
 
 class GoalController extends Controller
 {
@@ -19,6 +17,7 @@ class GoalController extends Controller
         foreach ($models as $model) {
             $result[$model->id] = $model->toArray();
         }
+
         return $result;
     }
 

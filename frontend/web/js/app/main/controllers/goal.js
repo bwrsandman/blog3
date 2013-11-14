@@ -19,6 +19,10 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         return $scope.keys.length;
     };
 
+    $scope.ready = function() {
+
+    };
+
     goalStorage.get(function (data) {
         $scope.goals = data;
         $scope.keys = Object.keys(data);
@@ -30,6 +34,8 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         for (var i in $scope.goals) {
             $scope.$watch('goals[' + i + ']', $debounce(autoSave, 1000), true);
         }
+
+
     });
 
     if ($location.path() === '') {

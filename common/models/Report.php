@@ -7,10 +7,20 @@ use yii\helpers\ArrayHelper;
 
 class Report extends generated\Report
 {
-    public function rules() {
+    public function rules()
+    {
         return ArrayHelper::merge(parent::rules(), [
-            ['id', 'safe', 'on' => 'create'],
-            ['description', 'string', 'max' => 30000, 'on' => 'edit'],
+            [
+                ['id'],
+                'safe',
+                'on' => 'create'
+            ],
+            [
+                ['description'],
+                'string',
+                'max' => 30000,
+                'on'  => 'edit'
+            ],
         ]);
     }
 

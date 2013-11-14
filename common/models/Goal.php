@@ -18,10 +18,37 @@ class Goal extends generated\Goal
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
-            ['id, title, completed', 'safe', 'on' => 'create'],
-            ['title', 'string', 'min' => 3, 'max' => 1024, 'on' => 'create'],
-            ['title, completed', 'safe', 'on' => 'edit'],
-            ['title', 'string', 'min' => 3, 'max' => 1024, 'on' => 'edit'],
+            [
+                [
+                    'id',
+                    'completed'
+                ],
+                'safe',
+                'on' => 'create'
+            ],
+            [
+                ['title'],
+                'string',
+                'min' => 3,
+                'max' => 1024,
+                'on'  => 'create'
+            ],
+            [
+                [
+                    'id',
+                    'title',
+                    'completed'
+                ],
+                'safe',
+                'on' => 'edit'
+            ],
+            [
+                ['title'],
+                'string',
+                'min' => 3,
+                'max' => 1024,
+                'on'  => 'edit'
+            ],
         ]);
     }
 
@@ -29,7 +56,7 @@ class Goal extends generated\Goal
     {
         return [
             'create' => self::OP_INSERT,
-            'edit' => self::OP_INSERT | self::OP_UPDATE | self::OP_DELETE,
+            'edit'   => self::OP_INSERT | self::OP_UPDATE | self::OP_DELETE,
         ];
     }
 
@@ -74,6 +101,7 @@ class Goal extends generated\Goal
                 $report->throwValidationErrors();
             }
         }
+
         return $this->reportTodayCache = $report;
     }
 
@@ -89,7 +117,7 @@ class Goal extends generated\Goal
             ->andWhere('report_date >= :yesterday')
             ->andWhere('report_date < :today')
             ->params([
-                ':today' => $this->today(),
+                ':today'     => $this->today(),
                 ':yesterday' => $this->yesterday()
             ])->one();
 
@@ -102,6 +130,7 @@ class Goal extends generated\Goal
                 $report->throwValidationErrors();
             }
         }
+
         return $this->reportYesterdayCache = $report;
     }
 
@@ -113,6 +142,7 @@ class Goal extends generated\Goal
         if (isset($values['reportYesterday'])) {
             $this->reportYesterday->attributes = $values['reportYesterday'];
         }
+
         return parent::setAttributes($values, $safeOnly);
     }
 
@@ -123,6 +153,7 @@ class Goal extends generated\Goal
         if ($this->reportYesterday) {
             $res['reportYesterday'] = $this->reportYesterday->toArray();
         }
+
         return $res;
     }
 
@@ -134,6 +165,7 @@ class Goal extends generated\Goal
                 return false;
             }
         }
+
         return true;
     }
 }

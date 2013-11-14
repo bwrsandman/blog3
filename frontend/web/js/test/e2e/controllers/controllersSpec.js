@@ -6,7 +6,7 @@ describe("E2E: Testing Controllers", function () {
     beforeEach(function () {
         browser().navigateTo('/');
     });
-    it('home link must be empty', function () {
+    it('Home link must be empty', function () {
         browser().navigateTo('/');
         expect(browser().location().path()).toBe("/");
         expect(element('ng-view').html()).toContain('Сделано за сегодня');
@@ -23,6 +23,22 @@ describe("E2E: Testing Controllers", function () {
         expect(browser().location().path()).toBe("/stream");
         element('.test-navigation a:eq(5)').click();
         expect(browser().location().path()).toBe("/history");
+    });
+
+    it('Must ', function () {
+        element('.test-goals .goal-detail:first textarea').val('Hello');
+        browser().navigateTo('/');
+
+        waitsFor(function() {
+            return spreadsheet.calculationIsComplete();
+        }, "Spreadsheet calculation never completed", 10000);
+
+        angular.mock.inject(function(goalStorage) {
+            goalStorage.get(function(data) {
+                expect(element('.test-goals .goal-detail:first textarea').val()).toContain('Сделано за сегодня');
+                done();
+            });
+        });
     });
 
 });

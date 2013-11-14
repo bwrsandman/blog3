@@ -30,9 +30,9 @@ class Step extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			['title, fk_goal, create_time, update_time', 'required'],
-			['fk_goal, status, create_time, update_time', 'integer'],
-			['title', 'string', 'max' => 255]
+			[['title', 'fk_goal', 'create_time', 'update_time'], 'required'],
+			[['fk_goal', 'status', 'create_time', 'update_time'], 'integer'],
+			[['title'], 'string', 'max' => 255]
 		];
 	}
 
