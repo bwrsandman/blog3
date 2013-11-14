@@ -35,8 +35,8 @@ return array(
         'text' => $params['components.text'],
         'sphinxDb' => $params['components.sphinxDb'],
         'cache' => $params['components.cache'],
+        'mail' => $params['components.mail'],
         'user' => [
-            'class' => 'yii\web\User',
             'identityClass' => 'common\models\User',
         ],
         'assetManager' => [
@@ -51,6 +51,7 @@ return array(
             ]
         ],
         'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
