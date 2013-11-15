@@ -57,7 +57,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
 
 angular.module('MainApp').directive('goalDetail', function (goalStorage, $debounce) {
     return {
-        restrict: 'A',
+        restrict: 'E',
         scope: {
             goal: '=',
             submodel: '='

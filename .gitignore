@@ -4,4 +4,4 @@
 environments/dev
 environments/prod
 frontend/web/js/components
-frontend/web/js/node_modules
+frontend/node_modules

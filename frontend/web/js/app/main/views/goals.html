@@ -6,10 +6,14 @@
         <div id="goals-grid">
             <div ng-repeat="key in keys" ng-switch on="$index % 2">
                 <div class="row" ng-switch-when="0">
-                    <div class="col-md-6 goal-detail" goal-detail goal="goals[keys[$index+0]]"
-                         submodel="submodel"></div>
-                    <div class="col-md-6 goal-detail" goal-detail goal="goals[keys[$index+1]]"
-                         submodel="submodel"></div>
+                    <goal-detail
+                        class="col-md-6"
+                         goal="goals[keys[$index+0]]"
+                         submodel="submodel"></goal-detail>
+                    <goal-detail
+                        class="col-md-6"
+                        goal="goals[keys[$index+1]]"
+                        submodel="submodel"></goal-detail>
                 </div>
             </div>
         </div>
