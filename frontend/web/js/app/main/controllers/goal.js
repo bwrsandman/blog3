@@ -45,9 +45,9 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
     }
 
     if ($location.path() === '/') {
-        $scope.submodel = 'reportToday';
+        $scope.reportModelName = 'reportToday';
     } else if ($location.path() === '/yesterday') {
-        $scope.submodel = 'reportYesterday';
+        $scope.reportModelName = 'reportYesterday';
     }
 
     $scope.location = $location;
