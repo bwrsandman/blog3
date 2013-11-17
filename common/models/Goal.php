@@ -134,6 +134,19 @@ class Goal extends generated\Goal
         return $this->reportYesterdayCache = $report;
     }
 
+    /**
+     * @return Report
+     */
+    public static function owner($query, $id)
+    {
+        $query->andWhere('fk_user = :fk_user')
+            ->params([
+                ':fk_user'     => $id,
+            ]);
+
+        return $query;
+    }
+
     public function setAttributes($values, $safeOnly = true)
     {
         if (isset($values['reportToday'])) {

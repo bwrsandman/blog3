@@ -12,7 +12,7 @@ class GoalController extends Controller
     public function actionAll()
     {
         /** @var $models Goal[] */
-        $models = Goal::find()->all();
+        $models = Goal::find()->owner(1)->all();
         $result = [];
         foreach ($models as $model) {
             $result[$model->id] = $model->toArray();
