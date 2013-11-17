@@ -11,7 +11,10 @@ namespace common\models\generated;
  * @property string $create_time
  * @property string $update_time
  * @property integer $completed
+ * @property integer $fk_user
+ * @property string $reason
  *
+ * @property User $fkUser
  * @property Report[] $reports
  * @property Step[] $steps
  */
@@ -31,9 +34,10 @@ class Goal extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['title', 'create_time', 'completed'], 'required'],
-			[['status', 'completed'], 'integer'],
+			[['title', 'create_time', 'completed', 'fk_user'], 'required'],
+			[['status', 'completed', 'fk_user'], 'integer'],
 			[['create_time', 'update_time'], 'safe'],
+			[['reason'], 'string'],
 			[['title'], 'string', 'max' => 255]
 		];
 	}
@@ -50,7 +54,17 @@ class Goal extends \common\components\ActiveRecord
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
 			'completed' => 'Completed',
+			'fk_user' => 'Fk User',
+			'reason' => 'Reason',
 		];
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getFkUser()
+	{
+		return $this->hasOne(User::className(), ['id' => 'fk_user']);
 	}
 
 	/**

@@ -15,6 +15,8 @@ namespace common\models\generated;
  * @property integer $status
  * @property string $create_time
  * @property string $update_time
+ *
+ * @property Goal[] $goals
  */
 class User extends \common\components\ActiveRecord
 {
@@ -57,5 +59,13 @@ class User extends \common\components\ActiveRecord
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
 		];
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getGoals()
+	{
+		return $this->hasMany(Goal::className(), ['fk_user' => 'id']);
 	}
 }

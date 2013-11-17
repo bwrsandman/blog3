@@ -45,7 +45,6 @@ abstract class TestCase extends \yii\test\TestCase
             'id' => 'testapp',
             'basePath' => __DIR__,
         );
-        print_r($defaultConfig);die;
         new $appClass(array_merge($defaultConfig, $config));
     }
 

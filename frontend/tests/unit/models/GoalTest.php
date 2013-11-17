@@ -3,7 +3,6 @@ namespace frontunit\models;
 
 use common\models\Goal;
 use Yii;
-use yii\data\DataProviderInterface;
 use yiiunit\TestCase;
 
 /**
