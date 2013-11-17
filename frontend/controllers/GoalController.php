@@ -8,27 +8,27 @@ use Yii;
 
 class GoalController extends Controller
 {
-
-    public function actionAll()
+    public function actionIndex()
     {
         /** @var $models Goal[] */
         $models = Goal::find()->owner(1)->all();
         $result = [];
         foreach ($models as $model) {
-            $result[$model->id] = $model->toArray();
+            $result[] = $model->toArray();
         }
 
-        return $result;
+        echo json_encode($result);
     }
 
-    public function actionCreate()
+    public function actionSave()
     {
-        $params = Yii::$app->request->getParams();
+        $params = Yii::$app->request->getRestParams();
         $model = new Goal();
-        $model->scenario = 'create';
+        $model->isNewRecord = !isset($params['id']);
+        $model->scenario = $model->isNewRecord ? 'create' : 'update';
         $model->attributes = $params;
         if ($model->save()) {
-            return Goal::find($model->id)->toArray();
+            echo json_encode(Goal::find($model->id)->toArray());
         } else {
             $model->throwValidationErrors();
         }
@@ -45,18 +45,10 @@ class GoalController extends Controller
         }
     }
 
-    public function actionEdit()
+    public function actionView()
     {
-        $params = Yii::$app->request->getParams();
-        $model = $this->findModel($params);
-        $model->scenario = 'edit';
-        $model->reportYesterday->scenario = $model->reportToday->scenario = 'edit';
-        $model->attributes = $params;
-        if ($model->save()) {
-            return 'Edited';
-        } else {
-            throw new Exception(json_encode($model->getErrors()));
-        }
+        $params = Yii::$app->request->get();
+        echo json_encode($this->findModel($params)->toArray());
     }
 
     /**

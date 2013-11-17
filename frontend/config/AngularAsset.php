@@ -17,6 +17,7 @@ class AngularAsset extends AssetBundle
 //        '//maps.googleapis.com/maps/api/js?sensor=false',
         'angular/angular.js',
 //        '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.4.0/ui-bootstrap-tpls.min.js',
+        'angular-resource/angular-resource.js',
         'angular-route/angular-route.js',
 //        'angular-ui-router/release/angular-ui-router.min.js',
         'angular-translate/angular-translate.js',

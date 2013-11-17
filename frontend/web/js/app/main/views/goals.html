@@ -4,15 +4,15 @@
     </header>
     <section id="goals-grid-container" ng-show="goalsCount()" ng-cloak>
         <div id="goals-grid">
-            <div ng-repeat="key in keys" ng-switch on="$index % 2">
+            <div ng-repeat="goal in goals" ng-switch on="$index % 2">
                 <div class="row" ng-switch-when="0">
                     <goal-detail
                         class="col-md-6"
-                         goal="goals[keys[$index+0]]"
+                         goal="goal"
                          submodel="reportModelName"></goal-detail>
                     <goal-detail
                         class="col-md-6"
-                        goal="goals[keys[$index+1]]"
+                        goal="goals[$index+1]"
                         submodel="reportModelName"></goal-detail>
                 </div>
             </div>

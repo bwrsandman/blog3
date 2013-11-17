@@ -40,14 +40,14 @@ class Goal extends generated\Goal
                     'completed'
                 ],
                 'safe',
-                'on' => 'edit'
+                'on' => 'update'
             ],
             [
                 ['title'],
                 'string',
                 'min' => 3,
                 'max' => 1024,
-                'on'  => 'edit'
+                'on'  => 'update'
             ],
         ]);
     }
@@ -149,14 +149,13 @@ class Goal extends generated\Goal
 
     public function setAttributes($values, $safeOnly = true)
     {
+        parent::setAttributes($values, $safeOnly);
         if (isset($values['reportToday'])) {
             $this->reportToday->attributes = $values['reportToday'];
         }
         if (isset($values['reportYesterday'])) {
             $this->reportYesterday->attributes = $values['reportYesterday'];
         }
-
-        return parent::setAttributes($values, $safeOnly);
     }
 
     public function toArray()

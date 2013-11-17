@@ -1,6 +1,7 @@
 <?php
 namespace common\components;
 
+use yii\base\Exception;
 use yii\db\Expression;
 
 class ActiveRecord extends \yii\db\ActiveRecord

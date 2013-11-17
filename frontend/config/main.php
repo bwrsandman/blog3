@@ -9,56 +9,72 @@ $params = array_merge(
 );
 
 return array(
-    'id' => 'app-frontend',
-    'basePath' => dirname(__DIR__),
-    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'id'                  => 'app-frontend',
+    'basePath'            => dirname(__DIR__),
+    'vendorPath'          => dirname(dirname(__DIR__)) . '/vendor',
     'controllerNamespace' => 'frontend\controllers',
-    'modules' => [
+    'modules'             => [
         'gii' => [
-            'class' => 'yii\gii\Module',
+            'class'      => 'yii\gii\Module',
             'allowedIPs' => [
                 '192.168.56.1'
             ],
             'generators' => [
                 'model' => [
-                    'class' => 'yii\gii\generators\model\Generator',
-                    'ns' => 'common\models\generated',
-                    'baseClass' => '\common\components\ActiveRecord',
+                    'class'                      => 'yii\gii\generators\model\Generator',
+                    'ns'                         => 'common\models\generated',
+                    'baseClass'                  => '\common\components\ActiveRecord',
                     'generateLabelsFromComments' => true
                 ]
             ]
         ],
     ],
-    'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
-    'components' => [
-        'db' => $params['components.db'],
-        'text' => $params['components.text'],
-        'sphinxDb' => $params['components.sphinxDb'],
-        'cache' => $params['components.cache'],
-        'mail' => $params['components.mail'],
-        'user' => [
+    'extensions'          => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
+    'components'          => [
+        'db'           => $params['components.db'],
+        'text'         => $params['components.text'],
+        'sphinxDb'     => $params['components.sphinxDb'],
+        'cache'        => $params['components.cache'],
+        'mail'         => $params['components.mail'],
+        'user'         => [
             'identityClass' => 'common\models\User',
+        ],
+        'request' => [
+            'class' => 'common\components\Request'
+        ],
+        'urlManager'   => [
+            'enablePrettyUrl' => true,
+            'showScriptName'  => false,
+            'rules'           => [
+                '<controller:\w+>'                 => '<controller>/index',
+                'POST <controller:\w+>/<id:\d+>'   => '<controller>/save',
+                'DELETE <controller:\w+>/<id:\d+>' => '<controller>/delete',
+                '<controller:\w+>/<id:\d+>'        => '<controller>/view',
+            ]
         ],
         'assetManager' => [
             'converter' => [
-                'class' => 'nizsheanez\assetConverter\Converter',
+                'class'   => 'nizsheanez\assetConverter\Converter',
                 'parsers' => [
                     'less' => [ // file extension to parse
                         'asConsoleCommand' => true,
                     ]
                 ],
-                'force' => true
+                'force'   => true
             ]
         ],
-        'log' => [
+        'log'          => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
+            'targets'    => [
                 [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+                    'class'  => 'yii\log\FileTarget',
+                    'levels' => [
+                        'error',
+                        'warning'
+                    ],
                 ],
             ],
         ],
     ],
-    'params' => $params,
+    'params'              => $params,
 );

@@ -17,11 +17,17 @@ use Dropbox\WebAuthNoRedirect;
 
 class SiteController extends Controller
 {
+    public $clientStorage;
 
     public function actionIndex()
     {
-        $a = $this->render('index');
-        return $a;
+//        /** @var $models Goal[] */
+//        $models = Goal::find()->owner(1)->all();
+//        foreach ($models as $model) {
+//            $this->clientStorage['goals'][$model->id] = $model->toArray();
+//        }
+
+        return $this->render('index');
     }
 
     public function actionError() {

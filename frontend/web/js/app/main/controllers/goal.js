@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams, $location, goalStorage, filterFilter, alertService, $debounce, $templateCache) {
+angular.module('MainApp').controller('GoalCtrl', function ($scope, $resource, $routeParams, $location, filterFilter, alertService, $debounce, $templateCache) {
+
+    var Goal = $resource('/goal/:id', {id: '@id'});
+
     function clearCache() {
         $templateCache.removeAll();
     }
@@ -11,7 +14,6 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
         goals: tplBase + 'views/goals.html'
     };
 
-    $scope.goals = {};
     $scope.keys = [];
 
     $scope.goalsCount = function () {
@@ -21,23 +23,20 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $routeParams,
 
     $scope.isReady = false;
 
-    $scope.pageIsReady = function() {
+    $scope.pageIsReady = function () {
         return $scope.isReady;
     };
 
-    goalStorage.get(function (data) {
-        $scope.goals = data;
-        $scope.keys = Object.keys(data);
+    $scope.goals = Goal.query(function (data) {
+        angular.forEach($scope.goals, function(val, key) {
+            $scope.keys.push(key);
+        });
+    });
 
-        var autoSave = function (newModel) {
-            goalStorage.edit(newModel);
-        };
-
-        for (var i in $scope.goals) {
-            $scope.$watch('goals[' + i + ']', $debounce(autoSave, 1000), true);
+    $scope.$on('goal.change', function (e, goal) {
+        if (goal instanceof Goal) {
+            goal.$save();
         }
-
-        $scope.isReady = true;
     });
 
     if ($location.path() === '') {
@@ -63,10 +62,24 @@ angular.module('MainApp').directive('goalDetail', function (goalStorage, $deboun
             submodel: '='
         },
         templateUrl: '/js/app/main/views/goal_detail.html',
-        link: function (scope, element, attrs) {
-            if (!scope.goal) {
+        controller: function ($scope, $element) {
+            $scope.model = {
+                description: ''
+            };
+
+            var autoSave = function () {
+                $scope.goal[$scope.submodel].description = $scope.model.description;
+                $scope.$emit('goal.change', $scope.goal);
+            };
+
+            $scope.$watch("model.description", $debounce(autoSave, 1000), true);
+        },
+        link: function ($scope, element, attrs) {
+            if (!$scope.goal) {
                 element.remove();
             }
+
+            $scope.model.description = $scope.goal[$scope.submodel].description;
         }
     };
 });

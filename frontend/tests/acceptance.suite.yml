@@ -18,3 +18,5 @@ modules:
             browser: phantomjs
             capabilities:
               webStorageEnabled: true
+              javascriptEnabled: true
+              browserConnectionEnabled: true

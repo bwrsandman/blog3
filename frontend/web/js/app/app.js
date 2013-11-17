@@ -17,7 +17,7 @@ var lang = 'ru';
 var translations = [];
 //angular.bootstrap(document, ["personalmaps"]);
 
-angular.module('MainApp', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce']);
+angular.module('MainApp', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce', 'ngResource']);
 
 angular.module('MainApp').config(['msdElasticConfig', function (config) {
     config.append = '\n\n';
