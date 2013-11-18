@@ -39,17 +39,19 @@ return array(
         'user'         => [
             'identityClass' => 'common\models\User',
         ],
-        'request' => [
+        'request'      => [
             'class' => 'common\components\Request'
         ],
         'urlManager'   => [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
-                '<controller:\w+>'                 => '<controller>/index',
-                'POST <controller:\w+>/<id:\d+>'   => '<controller>/save',
-                'DELETE <controller:\w+>/<id:\d+>' => '<controller>/delete',
-                '<controller:\w+>/<id:\d+>'        => '<controller>/view',
+                'gii'                               => 'gii',
+                'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
+                '<controller:\w+>'                  => '<controller>/index',
+                'POST <controller:\w+>/<id:\d+>'    => '<controller>/save',
+                'DELETE <controller:\w+>/<id:\d+>'  => '<controller>/delete',
+                '<controller:\w+>/<id:\d+>'         => '<controller>/view',
             ]
         ],
         'assetManager' => [

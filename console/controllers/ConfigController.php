@@ -1,7 +1,7 @@
 <?php
 namespace console\controllers;
 
-use yii\web\Controller;
+use yii\console\Controller;
 use Yii;
 
 class ConfigController extends Controller {
