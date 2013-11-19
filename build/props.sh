@@ -1,6 +1,6 @@
 #!/bin/sh
 
-basedir=/var/www/blog3.ru/
+basedir=/var/www/evolve-games.com/
 build_dir=${basedir}build/
 deploy_dir=${basedir}deploy/
 env_dir=${basedir}environments/
@@ -13,7 +13,7 @@ backend_app_dir=${basedir}backend/
 backend_webroot=${backend_app_dir}web/
 backend_runtime=${backend_app_dir}runtime/
 
-overlays=/var/overlays/blog3.ru/
+overlays=/var/overlays/evolve-games.com/
 
 yii=${basedir}yii
 

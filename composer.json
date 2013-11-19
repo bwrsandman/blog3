@@ -22,7 +22,6 @@
         "yiisoft/yii2-gii": "dev-master",
         "michelf/php-markdown" : "*",
 
-        "nizsheanez/yii2-websocket-application": "dev-master",
         "nizsheanez/yii2-asset-converter": "1.*",
         "nizsheanez/yii2-sphinx-tools": "1.*",
 
