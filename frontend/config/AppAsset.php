@@ -27,8 +27,8 @@ class AppAsset extends AssetBundle
 
         'app/app.js',
 
-        'app/main/services/goalsIo.js',
-        'app/main/services/goalStorage.js',
+//        'app/main/services/goalsIo.js',
+//        'app/main/services/goalStorage.js',
 
         'app/main/controllers/goal.js',
 
