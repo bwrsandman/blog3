@@ -40,12 +40,6 @@ describe("E2E: Testing Controllers", function () {
             return $scope.pageIsReady();
         }, "Page never ready", 10000);
 
-        angular.mock.inject(function(goalStorage) {
-            goalStorage.get(function(data) {
-                expect(element('.test-goals .goal-detail:first textarea').val()).toContain('Сделано за сегодня');
-                done();
-            });
-        });
     });
 
 });

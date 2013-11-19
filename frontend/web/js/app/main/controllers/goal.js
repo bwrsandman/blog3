@@ -54,7 +54,7 @@ angular.module('MainApp').controller('GoalCtrl', function ($scope, $resource, $r
     showScreen();
 });
 
-angular.module('MainApp').directive('goalDetail', function (goalStorage, $debounce) {
+angular.module('MainApp').directive('goalDetail', function ($debounce) {
     return {
         restrict: 'E',
         scope: {
