@@ -1,7 +1,7 @@
 <?php
 use yii\db\Schema;
 
-class m131008_114135_goal_to_step extends \yii\db\Migration
+class m131008_114134_create_table_step extends \yii\db\Migration
 {
     public function up()
     {
