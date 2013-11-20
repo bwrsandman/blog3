@@ -42,6 +42,12 @@ angular.module('MainApp').config(['$routeProvider', '$locationProvider', functio
 //    });
 }]);
 
+angular.module('MainApp').run(function ($rootScope, $templateCache) {
+    $rootScope.$on('$viewContentLoaded', function () {
+        $templateCache.removeAll();
+    });
+});
+
 var showScreen = function () {
     $(document).ready(function () {
         var el = $('.first-load:first');
