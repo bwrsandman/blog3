@@ -84,7 +84,7 @@ label[for='toggle-all'] {
   margin: 0;
   padding: 0;
   list-style: none;
-  goal-detail {
+  .goal-detail {
     padding: 0 5px 10px 5px;
     position: relative;
     font-size: 18px;
@@ -132,34 +132,14 @@ label[for='toggle-all'] {
       line-height: 1.2;
       .transition(color 0.4s);
     }
-    .destroy {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 10px;
-      bottom: 0;
-      height: 30px;
-      margin: auto 0;
-      font-size: 18px;
-      color: #a88a8a;
-      .transition(all 0.2s);
+    &:nth-child(2n+1) {
+      padding-left: 20px;
     }
-    .destroy:hover {
-      text-shadow: 0 0 1px #000, 0 0 10px rgba(199, 107, 107, 0.8);
-      .scale(1.3);
-    }
-
-    .destroy:after {
-      content: '?';
+    &:nth-child(2n) {
+      padding-right: 20px;
     }
   }
 
-  goal-detail:nth-child(2n+1) {
-    padding-left: 20px;
-  }
-  goal-detail:nth-child(2n) {
-    padding-right: 20px;
-  }
 }
 
 #todo-count {

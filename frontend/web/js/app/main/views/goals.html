@@ -2,34 +2,34 @@
     <header>
         <h3>Сделано за сегодня</h3>
     </header>
-    <section id="goals-grid-container" ng-show="goalsCount()" ng-cloak>
+    <section id="goals-grid-container" ng-show="keys.length" ng-cloak>
         <div id="goals-grid">
             <div ng-repeat="goal in goals" ng-switch on="$index % 2">
                 <div class="row" ng-switch-when="0">
-                    <goal-detail
-                        class="col-md-6"
-                         goal="goal"
-                         submodel="reportModelName"></goal-detail>
-                    <goal-detail
-                        class="col-md-6"
-                        goal="goals[$index+1]"
-                        submodel="reportModelName"></goal-detail>
+                    <div class="col-md-6 goal-detail">
+                        <h5>{{goal.title}}</h5>
+                        <eg-editor
+                            placeholder="defaultPlaceholder"
+                            ng-model="goal[reportModelName].description"
+                            ng-change="save(goal)"
+                        ></eg-editor>
+                    </div>
+                    <div class="col-md-6 goal-detail">
+                        <h5>{{goals[$index+1].title}}</h5>
+                        <eg-editor
+                            ng-if="goals[$index+1]"
+                            placeholder="defaultPlaceholder"
+                            ng-model="goals[$index+1][reportModelName].description"
+                            ng-change="save(goal)"
+                                ></eg-editor>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <ng-include src="tpl.filters"/>
     <section class="goal-details">
-        <section id="steps-list-container" ng-show="goalDetail.steps.length" ng-cloak>
-            <ul id="steps-list" class="nav nav-stacked">
-                <li ng-repeat="todo in goalDetail.steps">
-                    <div class="view">
-                        <a href="/step/{{todo.id}}">{{todo.title}}</a>
-                    </div>
-                </li>
-            </ul>
-        </section>
+
     </section>
 </section>
 

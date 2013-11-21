@@ -37,7 +37,7 @@ describe("E2E: Testing Controllers", function () {
         browser().navigateTo('/');
 
         waitsFor(function() {
-            return $scope.pageIsReady();
+            return $scope.isReady;
         }, "Page never ready", 10000);
 
     });
