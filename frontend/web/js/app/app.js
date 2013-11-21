@@ -8,24 +8,19 @@ var lang = 'ru';
  // add translation table
  $translateProvider.translations(translations);
  }]);
-
- angular.module('MapApp').config(['$locationProvider', function($locationProvider) {
- $locationProvider.html5Mode(true);
- }]);
  */
 
 var translations = [];
-//angular.bootstrap(document, ["personalmaps"]);
 
-angular.module('MainApp', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce', 'ngResource']);
+angular.module('eg.goal', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce', 'ngResource']);
 
-angular.module('MainApp').config(['msdElasticConfig', function (config) {
+angular.module('eg.goal').config(['msdElasticConfig', function (config) {
     config.append = '\n\n';
 }]);
 
-angular.module('MainApp').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+angular.module('eg.goal').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-    var dir = '/js/app/main/views';
+    var dir = '/js/app/goal/views';
 
     $routeProvider
         .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})
@@ -42,7 +37,7 @@ angular.module('MainApp').config(['$routeProvider', '$locationProvider', functio
 //    });
 }]);
 
-angular.module('MainApp').run(function ($rootScope, $templateCache) {
+angular.module('eg.goal').run(function ($rootScope, $templateCache) {
     $rootScope.$on('$viewContentLoaded', function () {
         $templateCache.removeAll();
     });

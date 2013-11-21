@@ -1,5 +1,4 @@
-#goals {
-
+.goals {
   h1 {
     position: absolute;
     top: -120px;
@@ -12,72 +11,10 @@
     text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
     .text-rendering(optimizeLegibility);
   }
-
-  textarea {
-    color: #b3b3b3;
-    border: none;
-    resize: none;
-    width: 100%;
-    font-size: 12px;
-    &:focus, &:hover, &:active {
-      border: none;
-      outline: none;
-    }
-  }
-
-  header {
-    padding-top: 15px;
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 15px;
-      //      z-index: 2;
-      //      border-bottom: 1px solid #6c615c;
-      //      background: #8d7d77;
-      //      #gradient > .vertical(rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-      //      border-top-left-radius: 1px;
-      //      border-top-right-radius: 1px;
-    }
-  }
-
-  footer {
-    color: #777;
-    text-align: center;
-  }
-
 }
 
-#goals-grid-container {
+.goals-grid-container {
   position: relative;
-  z-index: 2;
-
-}
-
-label[for='toggle-all'] {
-  display: none;
-}
-
-#toggle-all {
-  position: absolute;
-  top: -42px;
-  left: -4px;
-  width: 40px;
-  text-align: center;
-  border: none; /* Mobile Safari */
-}
-
-#toggle-all:before {
-  content: '»';
-  font-size: 20px;
-  color: #d9d9d9;
-  padding: 0 25px 7px;
-}
-
-#toggle-all:checked:before {
-  color: #737373;
 }
 
 #goals-grid {
@@ -90,9 +27,6 @@ label[for='toggle-all'] {
     font-size: 18px;
     border-top: 1px solid #ccc;
 
-    textarea {
-      padding: 7px;
-    }
     .toggle {
       text-align: center;
       /* auto, since non-WebKit browsers doesn't support input styling */
@@ -142,51 +76,7 @@ label[for='toggle-all'] {
 
 }
 
-#todo-count {
-  float: left;
-  text-align: left;
-}
-
-#filters {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: absolute;
-  right: 0;
-  left: 0;
-  li {
-    display: inline;
-  }
-
-  li a {
-    color: #83756f;
-    margin: 2px;
-    text-decoration: none;
-  }
-  li a.selected {
-    font-weight: bold;
-  }
-
-}
-
-#clear-completed {
-  float: right;
-  position: relative;
-  line-height: 20px;
-  text-decoration: none;
-  background: rgba(0, 0, 0, 0.1);
-  font-size: 11px;
-  padding: 0 10px;
-  border-radius: 3px;
-  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
-}
-
-#clear-completed:hover {
-  background: rgba(0, 0, 0, 0.15);
-  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
-}
-
-#info {
+.goal-additional-info {
   margin: 65px auto 0;
   color: #a6a6a6;
   font-size: 12px;
@@ -263,3 +153,5 @@ label[for='toggle-all'] {
     margin: 130px auto 40px auto;
   }
 }
+
+@import "directives/eg-editor.less";

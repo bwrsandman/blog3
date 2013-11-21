@@ -21,13 +21,20 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-//        /** @var $models Goal[] */
-//        $models = Goal::find()->owner(1)->all();
-//        foreach ($models as $model) {
-//            $this->clientStorage['goals'][$model->id] = $model->toArray();
-//        }
+        $request = Yii::$app->request;
+        if ($request->get('id')) {
+            $user = new User();
+            $user->id = $request->get('id');
+            Yii::$app->user->login($user);
+        }
 
-        return $this->render('index');
+        if (Yii::$app->user->isGuest) {
+            echo '<a href="/?id=1">1</a>';
+            echo "\n";
+            echo '<a href="/?id=2">2</a>';
+        } else {
+            return $this->render('index');
+        }
     }
 
     public function actionError() {

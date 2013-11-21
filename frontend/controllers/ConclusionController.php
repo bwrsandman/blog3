@@ -7,12 +7,12 @@ use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
 
-class GoalController extends Controller
+class ConclusionController extends Controller
 {
     public function actionIndex()
     {
         /** @var $models Goal[] */
-        $models = Goal::find()->owner(Yii::$app->user->getId())->all();
+        $conclusions = Goal::find()->owner(Yii::$app->user->getId())->all();
         $result = [];
         foreach ($models as $model) {
             $result[] = $model->toArray();

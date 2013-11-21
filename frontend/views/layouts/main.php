@@ -14,7 +14,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
-<html lang="en" ng-app="MainApp">
+<html lang="en" ng-app="eg.goal">
 <head>
     <meta charset="<?php echo Yii::$app->charset; ?>"/>
     <title><?php echo Html::encode($this->title); ?></title>

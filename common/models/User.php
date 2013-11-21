@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use yii\db\Query;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
 
@@ -91,6 +92,33 @@ class User extends generated\User implements IdentityInterface
             'requestPasswordResetToken' => ['email'],
         ];
     }
+
+
+
+    /**
+     * @return Conclusion
+     */
+    public function getConclusion($day)
+    {
+        if (isset($this->conclusionsCache[$day])) {
+            return $this->conclusionsCache[$day];
+        }
+
+        $report = $this->hasOne(Conclusion::className(), ['fk_user' => 'id'])->day($day)->one();
+
+        if (!$report) {
+            $report = new Conclusion();
+            $report->scenario = 'create';
+            $report->fk_user = $this->id;
+            $report->report_date = $this->date($day);
+            if (!$report->save()) {
+                $report->throwValidationErrors();
+            }
+        }
+
+        return $this->conclusionsCache[$day] = $report;
+    }
+
 
     public function beforeSave($insert)
     {

@@ -1,0 +1,21 @@
+<div id="goals-grid">
+    <div class="row" ng-repeat="goal in goals" ng-if="$even">
+        <div class="col-md-6 goal-detail">
+            <h5>{{goal.title}}</h5>
+            <eg-editor
+                    placeholder="defaultPlaceholder"
+                    ng-model="goal[day].report.description"
+                    ng-change="save(goal)"
+                    ></eg-editor>
+        </div>
+        <div class="col-md-6 goal-detail">
+            <h5>{{goals[$index+1].title}}</h5>
+            <eg-editor
+                    ng-if="goals[$index+1]"
+                    placeholder="defaultPlaceholder"
+                    ng-model="goals[$index+1][day].report.description"
+                    ng-change="save(goal)"
+                    ></eg-editor>
+        </div>
+    </div>
+</div>

@@ -27,14 +27,12 @@ class AppAsset extends AssetBundle
 
         'app/app.js',
 
-//        'app/main/services/goalsIo.js',
-//        'app/main/services/goalStorage.js',
+        'app/goal/controllers/goal.js',
+        'app/goal/controllers/nav.js',
 
-        'app/main/controllers/goal.js',
+        'app/goal/directives/editor.js',
 
-        'app/main/services/alert.js',
-        'app/main/controllers/root.js',
-        'app/main/controllers/nav.js',
+        'app/goal/services/alert.js',
     );
 	public $depends = array(
 		'yii\web\YiiAsset',

@@ -2,13 +2,13 @@
 namespace common\models;
 
 use yii\data\ArrayDataProvider;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 
 class Goal extends generated\Goal
 {
 
-    protected $reportTodayCache;
-    protected $reportYesterdayCache;
+    protected $reportsCache;
 
     public function search()
     {
@@ -60,88 +60,39 @@ class Goal extends generated\Goal
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveRelation
-     */
-    public function getReport()
-    {
-        return $this->hasOne(Report::className(), ['fk_goal' => 'id']);
-    }
-
-    public function today()
-    {
-        return date('Y-m-d', strtotime('today'));
-    }
-
-    public function yesterday()
-    {
-        return date('Y-m-d', strtotime('yesterday'));
-    }
 
     /**
      * @return Report
      */
-    public function getReportToday()
+    public function getReport($day)
     {
-        if ($this->reportTodayCache) {
-            return $this->reportTodayCache;
+        if (isset($this->reportsCache[$day])) {
+            return $this->reportsCache[$day];
         }
-        $report = $this->getReport()
-            ->andWhere('report_date >= :today')
-            ->params([
-                ':today' => $this->today(),
-            ])->one();
+        $report = $this->hasOne(Report::className(), ['fk_goal' => 'id'])->day($day)->one();
 
         if (!$report) {
             $report = new Report();
             $report->scenario = 'create';
             $report->fk_goal = $this->id;
-            $report->report_date = $this->today();
+            $report->report_date = $this->date($day);
             if (!$report->save()) {
                 $report->throwValidationErrors();
             }
         }
 
-        return $this->reportTodayCache = $report;
+        return $this->reportsCache[$day] = $report;
     }
 
     /**
      * @return Report
      */
-    public function getReportYesterday()
+    public static function owner(Query $query, $id)
     {
-        if ($this->reportYesterdayCache) {
-            return $this->reportYesterdayCache;
-        }
-        $report = $this->getReport()
-            ->andWhere('report_date >= :yesterday')
-            ->andWhere('report_date < :today')
+        $query
+            ->andWhere('fk_user = :fk_user')
             ->params([
-                ':today'     => $this->today(),
-                ':yesterday' => $this->yesterday()
-            ])->one();
-
-        if (!$report) {
-            $report = new Report();
-            $report->scenario = 'create';
-            $report->fk_goal = $this->id;
-            $report->report_date = $this->yesterday();
-            if (!$report->save()) {
-                $report->throwValidationErrors();
-            }
-        }
-
-        return $this->reportYesterdayCache = $report;
-    }
-
-    /**
-     * @return Report
-     */
-    public static function owner($query, $id)
-    {
-        $query->andWhere('fk_user = :fk_user')
-            ->params([
-                ':fk_user'     => $id,
+                ':fk_user' => $id,
             ]);
 
         return $query;
@@ -150,20 +101,28 @@ class Goal extends generated\Goal
     public function setAttributes($values, $safeOnly = true)
     {
         parent::setAttributes($values, $safeOnly);
-        if (isset($values['reportToday'])) {
-            $this->reportToday->attributes = $values['reportToday'];
-        }
-        if (isset($values['reportYesterday'])) {
-            $this->reportYesterday->attributes = $values['reportYesterday'];
+        $days = [
+            'today',
+            'yesterday'
+        ];
+        foreach ($days as $day) {
+            if (isset($values[$day]['report'])) {
+                $this->getReport($day)->attributes = $values[$day]['report'];
+            }
         }
     }
 
     public function toArray()
     {
         $res = parent::toArray();
-        $res['reportToday'] = $this->reportToday->toArray();
-        if ($this->reportYesterday) {
-            $res['reportYesterday'] = $this->reportYesterday->toArray();
+        $days = [
+            'today',
+            'yesterday'
+        ];
+        foreach ($days as $day) {
+            $res[$day] = [
+                'report'     => $this->getReport($day)->toArray(),
+            ];
         }
 
         return $res;
@@ -172,7 +131,7 @@ class Goal extends generated\Goal
     public function beforeSave($event)
     {
         if (parent::beforeSave($event)) {
-            $saved = $this->reportToday->save() && $this->reportYesterday->save();
+            $saved = $this->getReport('today')->save() && $this->getReport('yesterday')->save();
             if (!$saved) {
                 return false;
             }

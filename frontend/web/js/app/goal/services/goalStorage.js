@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MainApp').factory('goalStorage', ['$q', '$rootScope', 'goalsIo', function ($q, $rootScope, goalsIo) {
+angular.module('eg.goal').factory('goalStorage', ['$q', '$rootScope', 'goalsIo', function ($q, $rootScope, goalsIo) {
     var STORAGE_ID = 'main.goals';
 
     var service = {

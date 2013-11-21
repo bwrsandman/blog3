@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MainApp', []).filter('search', function () {
+angular.module('eg.goal', []).filter('search', function () {
     return function (items, name) {
         var arrayToReturn = [];
         for (var i = 0; i < items.length; i++) {

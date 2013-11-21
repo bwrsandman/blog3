@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('MainApp').factory('alertService', function ($rootScope) {
+angular.module('eg.goal').factory('alertService', function ($rootScope) {
     var alertService = {};
 
 

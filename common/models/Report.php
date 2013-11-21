@@ -3,6 +3,7 @@ namespace common\models;
 
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveRecord;
+use yii\db\Query;
 use yii\helpers\ArrayHelper;
 
 class Report extends generated\Report
@@ -24,4 +25,22 @@ class Report extends generated\Report
         ]);
     }
 
+
+    public static function date($day)
+    {
+        return date('Y-m-d', strtotime($day));
+    }
+
+    public static function day(Query $query, $day)
+    {
+        $query
+            ->andWhere('report_date >= :day')
+            ->andWhere('report_date < :nexDay')
+            ->params([
+                ':day'    => static::date($day),
+                ':nexDay' => static::date($day . ' +1 day')
+            ]);
+
+        return $query;
+    }
 }
