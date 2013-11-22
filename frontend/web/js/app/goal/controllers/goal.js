@@ -2,7 +2,7 @@
 
 angular.module('eg.goal').controller('GoalCtrl', function ($scope, $resource, $routeParams, $location, filterFilter, alertService, $debounce, $templateCache) {
 
-    var Goal = $resource('/goal/:id', {id: '@id'});
+    var Goal = $resource('/api/goal/:id', {id: '@id'});
 
     var tplBase = '/js/app/goal/';
     $scope.tpl = {

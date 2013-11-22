@@ -26,10 +26,6 @@ class Report extends generated\Report
     }
 
 
-    public static function date($day)
-    {
-        return date('Y-m-d', strtotime($day));
-    }
 
     public static function day(Query $query, $day)
     {

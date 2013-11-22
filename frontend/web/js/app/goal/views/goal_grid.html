@@ -14,7 +14,7 @@
                     ng-if="goals[$index+1]"
                     placeholder="defaultPlaceholder"
                     ng-model="goals[$index+1][day].report.description"
-                    ng-change="save(goal)"
+                    ng-change="save(goals[$index+1])"
                     ></eg-editor>
         </div>
     </div>

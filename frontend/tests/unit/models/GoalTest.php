@@ -1,7 +1,6 @@
 <?php
 namespace frontunit\models;
 
-use common\models\Goal;
 use Yii;
 use yiiunit\TestCase;
 
@@ -18,9 +17,5 @@ class GoalTest extends TestCase
         parent::tearUp();
     }
 
-    public function testGetReportToday()
-    {
-        Goal::find()->one();
 
-    }
 }

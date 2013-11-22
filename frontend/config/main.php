@@ -48,10 +48,11 @@ return array(
             'rules'           => [
                 'gii'                               => 'gii',
                 'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
-                '<controller:\w+>'                  => '<controller>/index',
-                'POST <controller:\w+>/<id:\d+>'    => '<controller>/save',
-                'DELETE <controller:\w+>/<id:\d+>'  => '<controller>/delete',
-                '<controller:\w+>/<id:\d+>'         => '<controller>/view',
+
+                'api/<controller:\w+>'                  => '<controller>/index',
+                'POST api/<controller:\w+>/<id:\d+>'    => '<controller>/save',
+                'DELETE api/<controller:\w+>/<id:\d+>'  => '<controller>/delete',
+                'api/<controller:\w+>/<id:\d+>'         => '<controller>/view',
             ]
         ],
         'assetManager' => [
