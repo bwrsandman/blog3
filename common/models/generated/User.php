@@ -34,7 +34,7 @@ class User extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['username', 'auth_key', 'password_hash', 'email', 'role', 'status', 'create_time'], 'required'],
+			[['username', 'auth_key', 'password_hash', 'email', 'role', 'status'], 'required'],
 			[['role', 'status'], 'integer'],
 			[['create_time', 'update_time'], 'safe'],
 			[['username', 'password_hash', 'email'], 'string', 'max' => 255],
