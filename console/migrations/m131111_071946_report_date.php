@@ -11,6 +11,7 @@ class m131111_071946_report_date extends \yii\db\Migration
     public function down()
     {
         $this->dropColumn('report', 'report_date');
+
         return true;
     }
 }

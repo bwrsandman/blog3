@@ -17,10 +17,10 @@ class m131114_075839_user extends \yii\db\Migration
             'email'                => 'varchar(255) NOT NULL',
             'role'                 => 'tinyint(4) NOT NULL',
             'status'               => 'tinyint(4) NOT NULL',
-            'create_time'          => Schema::TYPE_TIMESTAMP . '',
-            'update_time'          => Schema::TYPE_TIMESTAMP . ' DEFAULT 0'
+            'create_time'          => Schema::TYPE_TIMESTAMP . ' NULL DEFAULT CURRENT_TIMESTAMP',
+            'update_time'          => Schema::TYPE_TIMESTAMP . ' NULL DEFAULT 0',
         ], $tableOptions);
-	}
+    }
 
     public function down()
     {

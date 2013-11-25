@@ -10,10 +10,10 @@ class m131118_045335_conclusion extends \yii\db\Migration
 
         $this->createTable('conclusion', array(
             'id'          => Schema::TYPE_PK,
-            'create_time' => Schema::TYPE_TIMESTAMP . '',
             'description' => Schema::TYPE_TEXT,
             'fk_user'     => Schema::TYPE_INTEGER . ' NOT NULL',
-            'update_time' => Schema::TYPE_TIMESTAMP . ' DEFAULT 0',
+            'create_time' => Schema::TYPE_TIMESTAMP . ' NULL DEFAULT CURRENT_TIMESTAMP',
+            'update_time' => Schema::TYPE_TIMESTAMP . ' NULL DEFAULT 0',
             'report_date' => Schema::TYPE_DATE . ' NOT NULL'
         ), $tableOptions);
     }

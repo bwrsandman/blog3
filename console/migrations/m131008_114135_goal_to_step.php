@@ -12,6 +12,7 @@ class m131008_114135_goal_to_step extends \yii\db\Migration
     public function down()
     {
         $this->dropForeignKey('steps_to_goal', 'step');
+
         return true;
     }
 }
