@@ -11,7 +11,26 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             if (attrs.placeholder) {
                 element.find('textarea').attr('placeholder', $scope.$parent.$eval(attrs.placeholder));
             }
-            $scope.$watch("model", $debounce($scope.ngChange, 1000), true);
+            var onChange = function (newVal, oldVal) {
+                if (newVal != oldVal) {
+                    $scope.ngChange();
+                }
+            };
+            $scope.$watch("model", $debounce(onChange, 1000), true);
+        }
+    };
+});
+
+angular.module('eg.goal').directive('egGoalPane', function ($debounce) {
+    return {
+        restrict: 'E',
+        replace: false,
+        transclude: true,
+        scope: {
+        },
+        link: function ($scope, element, attrs) {
+            element.addClass('');
+
         }
     };
 });

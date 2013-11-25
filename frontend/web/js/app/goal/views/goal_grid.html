@@ -1,21 +1,29 @@
 <div id="goals-grid">
     <div class="row" ng-repeat="goal in goals" ng-if="$even">
-        <div class="col-md-6 goal-detail">
+        <eg-goal-pane class="col-md-6 goal-detail" ng-transclude>
             <h5>{{goal.title}}</h5>
             <eg-editor
-                    placeholder="defaultPlaceholder"
-                    ng-model="goal[day].report.description"
-                    ng-change="save(goal)"
-                    ></eg-editor>
-        </div>
-        <div class="col-md-6 goal-detail">
+                placeholder="defaultPlaceholder"
+                ng-model="goal[day].report.description"
+                ng-change="save(goal)"
+                ></eg-editor>
+        </eg-goal-pane>
+        <eg-goal-pane class="col-md-6 goal-detail" ng-transclude>
             <h5>{{goals[$index+1].title}}</h5>
             <eg-editor
-                    ng-if="goals[$index+1]"
-                    placeholder="defaultPlaceholder"
-                    ng-model="goals[$index+1][day].report.description"
-                    ng-change="save(goals[$index+1])"
-                    ></eg-editor>
-        </div>
+                ng-if="goals[$index+1]"
+                placeholder="defaultPlaceholder"
+                ng-model="goals[$index+1][day].report.description"
+                ng-change="save(goals[$index+1])"
+                ></eg-editor>
+        </eg-goal-pane>
     </div>
+</div>
+<div class="conclusion">
+    <h4>Инсайты за день:</h4>
+    <eg-editor
+        placeholder="defaultPlaceholder"
+        ng-model="conclusions[day].description"
+        ng-change="save(conclusions[day])"
+        ></eg-editor>
 </div>

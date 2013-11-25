@@ -24,9 +24,13 @@ class GoalController extends Controller
     public function actionSave()
     {
         $params = Yii::$app->request->getRestParams();
-        $model = new Goal();
-        $model->isNewRecord = !isset($params['id']);
-        $model->scenario = $model->isNewRecord ? 'create' : 'update';
+        if (isset($params['id'])) {
+            $model = Goal::find($params['id']);
+            $model->scenario = 'update';
+        } else {
+            $model = new Conclusion();
+            $model->scenario = 'create';
+        }
         $model->attributes = $params;
         if ($model->save()) {
             echo json_encode(Goal::find($model->id)->toArray());

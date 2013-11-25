@@ -1,8 +1,17 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($scope, $resource, $routeParams, $location, filterFilter, alertService, $debounce, $templateCache) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, filterFilter, alertService, $debounce, $templateCache) {
 
+    var User = $resource('/api/user/', {}, {
+        getData: {
+            method: 'GET',
+            params: {
+                fullData: true
+            }
+        }
+    });
     var Goal = $resource('/api/goal/:id', {id: '@id'});
+    var Conclusion = $resource('/api/conclusion/:id', {id: '@id'});
 
     var tplBase = '/js/app/goal/';
     $scope.tpl = {
@@ -11,18 +20,27 @@ angular.module('eg.goal').controller('GoalCtrl', function ($scope, $resource, $r
     };
 
     $scope.keys = [];
+    $scope.goals = [];
+    $scope.conclusions = [];
     $scope.isReady = false;
     $scope.defaultPlaceholder = 'Сделано';
 
-    $scope.goals = Goal.query(function (data) {
-        angular.forEach($scope.goals, function(val, key) {
+    User.getData(function (response) {
+        angular.forEach(response.goals, function (val, key) {
+            $scope.goals[key] = new Goal(val);
             $scope.keys.push(key);
+        });
+
+        angular.forEach(response.conclusions, function (val, key) {
+            $scope.conclusions[key] = new Conclusion(val);
         });
     });
 
-    $scope.save = function(goal) {
-        if (goal instanceof Goal) {
-            goal.$save();
+    $scope.save = function (model) {
+        if (model instanceof Goal) {
+            model.$save();
+        } else if (model instanceof Conclusion) {
+            model.$save();
         }
     };
 

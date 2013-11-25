@@ -16,10 +16,15 @@ class Conclusion extends generated\Conclusion
                 'on' => 'create'
             ],
             [
+                ['id'],
+                'safe',
+                'on' => 'update'
+            ],
+            [
                 ['description'],
                 'string',
                 'max' => 30000,
-                'on'  => 'edit'
+                'on'  => 'update'
             ],
         ]);
     }
@@ -35,7 +40,7 @@ class Conclusion extends generated\Conclusion
         $query
             ->andWhere('report_date >= :day')
             ->andWhere('report_date < :nexDay')
-            ->params([
+            ->addParams([
                 ':day'    => static::date($day),
                 ':nexDay' => static::date($day . ' +1 day')
             ]);

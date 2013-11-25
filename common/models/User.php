@@ -11,6 +11,7 @@ class User extends generated\User implements IdentityInterface
      * @var string the raw password. Used to collect password input and isn't saved in database
      */
     public $password;
+    protected $conclusionsCache;
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -104,19 +105,19 @@ class User extends generated\User implements IdentityInterface
             return $this->conclusionsCache[$day];
         }
 
-        $report = $this->hasOne(Conclusion::className(), ['fk_user' => 'id'])->day($day)->one();
+        $conclusion = $this->hasOne(Conclusion::className(), ['fk_user' => 'id'])->day($day)->one();
 
-        if (!$report) {
-            $report = new Conclusion();
-            $report->scenario = 'create';
-            $report->fk_user = $this->id;
-            $report->report_date = $this->date($day);
-            if (!$report->save()) {
-                $report->throwValidationErrors();
+        if (!$conclusion) {
+            $conclusion = new Conclusion();
+            $conclusion->scenario = 'create';
+            $conclusion->fk_user = $this->id;
+            $conclusion->report_date = $this->date($day);
+            if (!$conclusion->save()) {
+                $conclusion->throwValidationErrors();
             }
         }
 
-        return $this->conclusionsCache[$day] = $report;
+        return $this->conclusionsCache[$day] = $conclusion;
     }
 
 
@@ -135,4 +136,7 @@ class User extends generated\User implements IdentityInterface
 
         return false;
     }
+
+
+
 }

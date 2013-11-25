@@ -84,19 +84,6 @@ class Goal extends generated\Goal
         return $this->reportsCache[$day] = $report;
     }
 
-    /**
-     * @return Report
-     */
-    public static function owner(Query $query, $id)
-    {
-        $query
-            ->andWhere('fk_user = :fk_user')
-            ->params([
-                ':fk_user' => $id,
-            ]);
-
-        return $query;
-    }
 
     public function setAttributes($values, $safeOnly = true)
     {

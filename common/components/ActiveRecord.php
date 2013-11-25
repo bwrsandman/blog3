@@ -3,6 +3,7 @@ namespace common\components;
 
 use yii\base\Exception;
 use yii\db\Expression;
+use yii\db\Query;
 
 class ActiveRecord extends \yii\db\ActiveRecord
 {
@@ -23,6 +24,23 @@ class ActiveRecord extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @param Query $query
+     * @param $id
+     *
+     * @return Query
+     * @return Query
+     */
+    public static function owner(Query $query, $id)
+    {
+        $query
+            ->andWhere('fk_user = :fk_user')
+            ->addParams([
+                ':fk_user' => $id,
+            ]);
+
+        return $query;
+    }
 
     public static function date($day)
     {
