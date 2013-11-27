@@ -1,7 +1,7 @@
 {
     "name": "myProject",
     "version": "1.0.0",
-    "directory": "frontend/web/js/components",
+    "directory": "components",
     "dependencies": {
         "angular": "1.*",
         "angular-route": "*",

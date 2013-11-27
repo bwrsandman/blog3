@@ -1,7 +1,5 @@
 /yii
 /composer.lock
 .idea
-environments/dev
-environments/prod
+environments
 frontend/web/js/components
-frontend/web/js/components/*

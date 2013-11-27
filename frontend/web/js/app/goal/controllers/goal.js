@@ -16,11 +16,16 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     var tplBase = '/js/app/goal/';
     $scope.tpl = {
         grid: tplBase + 'views/goal_grid.html',
-        goals: tplBase + 'views/goals.html'
+        goals: tplBase + 'views/goals.html',
+        sidebar: tplBase + 'views/sidebar.html'
     };
 
     $scope.keys = [];
     $scope.goals = [];
+    $scope.focusGoal = false;
+    $scope.setFocus = function(goal) {
+        $scope.focusGoal = $scope.goals.indexOf(goal);
+    };
     $scope.conclusions = [];
     $scope.isReady = false;
     $scope.defaultPlaceholder = 'Сделано';

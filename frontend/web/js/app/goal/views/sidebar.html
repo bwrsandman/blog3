@@ -1,0 +1,11 @@
+<div class="goal_reason_panel">
+    <div>Зачем</div>
+    {{goals[focusGoal].id}}
+    {{goals[focusGoal].reason}}
+
+    <eg-editor
+            placeholder="defaultPlaceholder"
+            ng-model="goals[focusGoal].reason"
+            on-change="save(goals[focusGoal])"
+            ></eg-editor>
+</div>

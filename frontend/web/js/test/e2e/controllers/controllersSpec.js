@@ -32,13 +32,7 @@ describe("E2E: Testing Controllers", function () {
         expect(browser().location().path()).toBe("/history");
     });
 
-    it('Must ready page', function () {
-        element('.test-goals .goal-detail:first textarea').val('Hello');
-        browser().navigateTo('/');
-
-        waitsFor(function() {
-            return $scope.isReady;
-        }, "Page never ready", 10000);
+    it('Must save everything', function () {
 
     });
 

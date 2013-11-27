@@ -34,6 +34,12 @@ class Goal extends generated\Goal
                 'on'  => 'create'
             ],
             [
+                ['reason'],
+                'string',
+                'max' => 9000,
+                'on'  => 'create'
+            ],
+            [
                 [
                     'id',
                     'title',
@@ -47,6 +53,12 @@ class Goal extends generated\Goal
                 'string',
                 'min' => 3,
                 'max' => 1024,
+                'on'  => 'update'
+            ],
+            [
+                ['reason'],
+                'string',
+                'max' => 9000,
                 'on'  => 'update'
             ],
         ]);
@@ -108,7 +120,7 @@ class Goal extends generated\Goal
         ];
         foreach ($days as $day) {
             $res[$day] = [
-                'report'     => $this->getReport($day)->toArray(),
+                'report' => $this->getReport($day)->toArray(),
             ];
         }
 
