@@ -6,7 +6,7 @@ $I->seeLink('Brand');
 
 $messages = [];
 for ($i = 0; $i < 10; $i++) {
-    $messages[$i] = $i . ' Hello ' . date('Y-m-d') . ' ' . rand(0, 99999999);
+    $messages[$i] = $i . ' Hello ' . rand(0, 99999999);
     $field = TodayPage::reportDescription($i);
     $I->fillField($field, $messages[$i]);
 }
@@ -20,6 +20,10 @@ $I->execute(function () use ($I, $messages) {
         \Codeception\TestCase::assertEquals($realValue, $messages[$i], 'Editor ' . $i . ' is not saved');
     }
 });
+
+$messages[$i] = $i . ' Hello ' . rand(0, 99999999);
+$I->fillField(TodayPage::$conclusionEditor, $messages[$i]);
+
 
 
 

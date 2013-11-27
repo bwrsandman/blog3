@@ -20,6 +20,8 @@
         "yiisoft/yii2-bootstrap": "dev-master",
         "yiisoft/yii2-debug": "dev-master",
         "yiisoft/yii2-gii": "dev-master",
+        "yiisoft/yii2-redis": "*",
+        "yiisoft/yii2-sphinx": "*",
         "michelf/php-markdown" : "*",
 
         "nizsheanez/yii2-asset-converter": "1.*",

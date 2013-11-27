@@ -30,7 +30,6 @@ angular.module('eg.goal').directive('egGoalPane', function ($debounce) {
         },
         link: function ($scope, element, attrs) {
             element.addClass('');
-
         }
     };
 });
