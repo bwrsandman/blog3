@@ -11,7 +11,6 @@
         "angular-translate": "1.*",
         "angular-ui": "*",
         "angular-ui-router": "*",
-        "angular-ui-codemirror": "*",
         "angular-mocks": "*",
         "angular-scenario": "*",
         "components-font-awesome": "*",

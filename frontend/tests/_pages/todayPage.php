@@ -5,6 +5,8 @@ class TodayPage
     // include url of current page
     static $URL = '/';
 
+
+    public static $conclusionEditor = ".conclusion textarea";
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
      * public static $usernameField = '#username';
