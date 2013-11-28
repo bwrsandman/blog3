@@ -20,5 +20,3 @@ modules:
               webStorageEnabled: true
               javascriptEnabled: true
               browserConnectionEnabled: true
-        PhpBrowser:
-            url: 'http://blog3.ru/'
