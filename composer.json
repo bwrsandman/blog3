@@ -25,7 +25,6 @@
         "michelf/php-markdown" : "*",
 
         "nizsheanez/yii2-asset-converter": "1.*",
-        "nizsheanez/yii2-sphinx-tools": "1.*",
 
         "fabpot/goutte" : "*",
         "codeception/phpbuiltinserver" : "*",
