@@ -3,3 +3,5 @@ phantomjs --webdriver=4444
 sudo npm update --save-dev
 
 php ../vendor/codeception/codeception/codecept run acceptance -d
+
+ php ../vendor/codeception/codeception/codecept run tests/acceptance/ReasonCept.php -d
