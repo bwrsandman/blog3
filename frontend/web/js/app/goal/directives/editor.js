@@ -3,11 +3,11 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
         restrict: 'E',
         scope: {
             model: '=ngModel',
-            onChange: '&',
+            ngChange: '&',
             ngFocus: '&',
             submodel: '='
         },
-        template: '<textarea msd-elastic="\n\n" ng-model="model" ng-keyup="keyup($event)"></textarea>',
+        template: '<textarea msd-elastic="\n\n" ng-model="model" ng-keyup="keyup($event)" ng-focus="ngFocus()"></textarea>',
         link: function ($scope, element, attrs) {
             var textarea = element.find('textarea');
             if (attrs.placeholder) {
@@ -19,8 +19,8 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             });
 
             function a() {
-                $scope.model = textarea.val()
-                $scope.onChange();
+                $scope.model = textarea.val();
+                $scope.ngChange();
             }
 
             $scope.keyup = $debounce(a, 1000);

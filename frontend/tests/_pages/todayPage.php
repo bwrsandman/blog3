@@ -22,6 +22,7 @@ class TodayPage
         return "#goals-grid .row:nth-child($row) .goal-detail:nth-child($col) textarea";
     }
 
+
     /**
      * Basic route example for your current URL
      * You can append any additional parameter to URL

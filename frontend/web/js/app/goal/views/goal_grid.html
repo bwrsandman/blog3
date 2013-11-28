@@ -5,7 +5,7 @@
             <eg-editor
                 placeholder="defaultPlaceholder"
                 ng-model="goal[day].report.description"
-                on-change="save(goal)"
+                ng-change="save(goal)"
                 ng-focus="setFocus(goal)"
                     ></eg-editor>
         </eg-goal-pane>
@@ -15,7 +15,7 @@
                 ng-if="goals[$index+1]"
                 placeholder="defaultPlaceholder"
                 ng-model="goals[$index+1][day].report.description"
-                on-change="save(goals[$index+1])"
+                ng-change="save(goals[$index+1])"
                 ng-focus="setFocus(goals[$index+1])"
                     ></eg-editor>
         </eg-goal-pane>
