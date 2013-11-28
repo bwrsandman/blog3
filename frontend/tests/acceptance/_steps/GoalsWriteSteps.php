@@ -8,6 +8,12 @@ class GoalsWriteSteps extends \WebGuy
     protected $messages = [];
     public $conclusionMsg;
 
+    public function flushMessages()
+    {
+        $this->messages = [];
+        $this->conclusionMsg = null;
+    }
+
     public function getMessage($i)
     {
         if (!isset($this->messages[$i])) {
@@ -35,14 +41,11 @@ class GoalsWriteSteps extends \WebGuy
         return $I->grabValueFrom($field);
     }
 
-    function writeReason($i)
+    public function focusReport($i)
     {
         $I = $this;
 
-        $field = TodayPage::reportDescription($i);
-        $I->focus($field);
-        $I->fillField(TodayPage::$reasonEditor, $this->messages[$i]);
-        $I->executeJs('$("' . TodayPage::$reasonEditor . '").keyup()');
+        $I->executeJs('$("' . TodayPage::reportDescription($i) . '").focus()');
     }
 
     public function clickReport($i)
@@ -52,18 +55,19 @@ class GoalsWriteSteps extends \WebGuy
         $I->click(TodayPage::reportDescription($i));
     }
 
+    function writeReason($i)
+    {
+        $I = $this;
+
+        $I->fillField(TodayPage::$reasonEditor, $this->getMessage($i));
+    }
+
+
     public function readReason()
     {
         $I = $this;
 
-        return $I->grabValueFrom(TodayPage::$reasonEditor);
-    }
-
-    public function focusReport($i)
-    {
-        $I = $this;
-
-        $I->focus(TodayPage::reportDescription($i));
+        return $I->grabTextFrom(TodayPage::$reasonEditor);
     }
 
 

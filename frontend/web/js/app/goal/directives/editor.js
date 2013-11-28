@@ -7,28 +7,14 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             ngFocus: '&',
             submodel: '='
         },
-        template: '<textarea msd-elastic="\n\n" ng-model="model" ng-keyup="keyup($event)" ng-focus="ngFocus()"></textarea>',
+        template: '<textarea msd-elastic="\n\n" ng-model="model" ng-change="onChange()" ng-focus="ngFocus()"></textarea>',
         link: function ($scope, element, attrs) {
             var textarea = element.find('textarea');
             if (attrs.placeholder) {
                 textarea.attr('placeholder', $scope.$parent.$eval(attrs.placeholder));
             }
 
-            textarea.focus(function() {
-                $scope.ngFocus();
-            });
-
-            function a() {
-                $scope.model = textarea.val();
-                $scope.ngChange();
-            }
-
-            $scope.keyup = $debounce(a, 1000);
-            textarea.keyup(function () {
-                $scope.$apply(function() {
-                    $scope.keyup()
-                });
-            });
+            $scope.onChange = $debounce(function() {$scope.ngChange()}, 1000);
         }
     };
 });
