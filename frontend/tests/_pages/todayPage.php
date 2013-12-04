@@ -7,7 +7,7 @@ class TodayPage
 
 
     public static $conclusionEditor = ".conclusion textarea";
-    public static $reasonEditor = ".goal_reason_panel textarea";
+    public static $reasonEditor = ".goal_reason_panel .visible textarea";
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
