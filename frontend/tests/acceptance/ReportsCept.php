@@ -18,3 +18,4 @@ for ($i = 0; $i < 10; $i++) {
         TestCase::assertEquals($I->readReport($i), $I->getMessage($i));
     });
 }
+

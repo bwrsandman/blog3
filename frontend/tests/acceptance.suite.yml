@@ -20,3 +20,4 @@ modules:
               webStorageEnabled: true
               javascriptEnabled: true
               browserConnectionEnabled: true
+            url: 'http://blog3.ru/'
