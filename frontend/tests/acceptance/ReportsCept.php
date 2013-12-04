@@ -9,7 +9,7 @@ for ($i = 0; $i < 10; $i++) {
     $I->writeReport($i);
 }
 
-$I->wait('2200');
+$I->wait('1000');
 $I->amOnPage('/');
 
 $I->expect("reports will save after reload page");

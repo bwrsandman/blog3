@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, filterFilter, alertService, $debounce, $templateCache) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $debounce) {
 
     var User = $resource('/api/user/', {}, {
         getData: {

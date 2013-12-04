@@ -53,6 +53,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $I->click(TodayPage::reportDescription($i));
+//        $I->executeJs('$("'.TodayPage::reportDescription($i).'").click()');
     }
 
     function writeReason($i)
@@ -60,6 +61,8 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $I->fillField(TodayPage::$reasonEditor, $this->getMessage($i));
+//        $I->executeJs('$("'.TodayPage::$reasonEditor.'").val("'.$this->getMessage($i).'")');
+//        $I->executeJs('$("'.TodayPage::$reasonEditor.'").change()');
     }
 
 
@@ -67,7 +70,7 @@ class GoalsWriteSteps extends \WebGuy
     {
         $I = $this;
 
-        return $I->grabTextFrom(TodayPage::$reasonEditor);
+        return $I->grabValueFrom(TodayPage::$reasonEditor);
     }
 
 

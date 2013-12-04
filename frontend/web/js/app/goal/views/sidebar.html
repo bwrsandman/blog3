@@ -1,11 +1,12 @@
 <div class="goal_reason_panel">
     <div>Зачем</div>
-    {{goals[focusGoal].id}}
-    {{goals[focusGoal].reason}}
-
-    <eg-editor
+        <eg-editor
+            ng-repeat="(key, goal) in goals"
+            ng-show="key === focusGoal"
             placeholder="defaultPlaceholder"
-            ng-model="goals[focusGoal].reason"
-            ng-change="save(goals[focusGoal])"
+            ng-model="goal.reason"
+            ng-change="save(goal)"
+            ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
             ></eg-editor>
+    </div>
 </div>
