@@ -24,7 +24,7 @@ AppAsset::register($this);
 
 <?php $this->beginBody(); ?>
 
-<nav class="navbar navbar-default navbar-fixed-top test-navigation" role="navigation" ng-controller="NavigationCtrl">
+<nav class="navbar navbar-default test-navigation" role="navigation" ng-controller="NavigationCtrl">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <a class="navbar-brand" href="#">Brand</a>
