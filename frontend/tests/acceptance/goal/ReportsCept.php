@@ -1,5 +1,4 @@
 <?php
-use \Codeception\TestCase;
 
 $I = new \WebGuy\GoalsWriteSteps($scenario);
 
@@ -9,13 +8,11 @@ for ($i = 0; $i < 10; $i++) {
     $I->writeReport($i);
 }
 
-$I->wait('1000');
+$I->wait('1200');
 $I->amOnPage('/');
 
 $I->expect("reports will save after reload page");
 for ($i = 0; $i < 10; $i++) {
-    $I->execute(function () use ($i, $I) {
-        TestCase::assertEquals($I->readReport($i), $I->getMessage($i));
-    });
+    $I->seeInField(TodayPage::reportDescription($i), $I->getMessage('report', $i));
 }
 

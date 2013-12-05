@@ -35,6 +35,8 @@
         "behat/mink-zombie-driver" : "*",
         "phpunit/php-invoker" : "*",
 
+        "fzaninotto/faker" : "*",
+
         "evernote/evernote": "1.*"
     },
     "scripts": {

@@ -12,6 +12,7 @@
         "grunt-contrib-copy": "latest",
         "grunt-karma": "latest",
         "karma-phantomjs-launcher": "latest",
+        "zombie": "latest",
         "karma-ng-scenario": "latest",
         "karma-junit-reporter": "latest",
         "protractor": "latest"

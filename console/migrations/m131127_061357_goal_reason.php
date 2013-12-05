@@ -12,6 +12,6 @@ class m131127_061357_goal_reason extends \yii\db\Migration
 	public function down()
 	{
         $this->dropColumn('goal', 'reason');
-		return true;
+        return true;
 	}
 }

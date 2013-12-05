@@ -1,27 +1,187 @@
 {
-  "name": "myProject",
-  "version": "1.0.0",
-  "directory": "components",
-  "dependencies": {
-    "angular": "1.*",
-    "angular-route": "*",
-    "angular-resource": "*",
-    "angular-bootstrap": "0.*",
-    "angular-complete": "1.*",
-    "angular-translate": "1.*",
-    "angular-ui": "*",
-    "angular-ui-router": "*",
-    "angular-ui-codemirror": "*",
-    "angular-mocks": "*",
-    "angular-scenario": "*",
-    "components-font-awesome": "*",
-    "angular-route-segment": "*",
-    "ngMidwayTester": "*",
-    "angular-elastic": "*",
-    "dropstore-ng": "1.*",
-    "lodash": "1.*"
-  },
-  "resolutions": {
-    "angular": "1.2.3"
-  }
+    "name": "myProject",
+    "version": "1.0.0",
+    "directory": "components",
+    "dependencies": {
+        "angular": "1.*",
+        "angular-route": "*",
+        "angular-resource": "*",
+        "angular-bootstrap": "0.*",
+        "angular-complete": "1.*",
+        "angular-translate": "1.*",
+        "angular-ui": "*",
+        "angular-ui-router": "*",
+        "angular-ui-utils": "latest",
+        "angular-xeditable ": "*",
+        "angular-mocks": "*",
+        "angular-scenario": "*",
+        "components-font-awesome": "*",
+        "angular-route-segment": "*",
+        "ngMidwayTester": "*",
+        "angular-elastic": "*",
+        "dropstore-ng": "1.*",
+        "lodash": "1.*"
+    },
+    "resolutions": {
+        "angular": "1.2.3"
+    }
 }
+
+select fk_cms_folder, cms_folder.key from cms_item left join cms_folder ON id_cms_folder = fk_cms_folder where content like '%<script%catalog.%script>%' and is_active=1 group by id_cms_folder;
+PH
++---------------+-----------------------------------------+
+| id_cms_folder | key                                     |
++---------------+-----------------------------------------+
+|         23665 | shortdaysale-promo_en                   |
+|         24560 | lazada-weekends_en                      |
+|         24667 | unbeatable-deals_en                     |
+|         25751 | ultimate-january-sale_en                |
+|         26882 | my-sexy-valentine_en                    |
+|         26894 | shareyourlove_en                        |
+|         27028 | fantastic-deals_en                      |
+|         27181 | hourlydeals2_en                         |
+|         27313 | sweet-valentine-gifts-for-anyone_en     |
+|         27316 | sweet-valentine-gifts-for-her_en        |
+|         27317 | sweet-valentine-gifts-for-him_en        |
+|         27850 | new-home_en                             |
+|         27867 | mastercard-monday_en                    |
+|         28067 | people-power-sale_en                    |
+|         28208 | old-school_en                           |
+|         28213 | geek-boutique_en                        |
+|         28354 | ultimate-february-sale_en               |
+|         28569 | small-tv_en                             |
+|         28611 | point-and-shoot_en                      |
+|         29308 | checked-baggage_en                      |
+|         29309 | packing-organizers_en                   |
+|         29310 | travel-accessories_en                   |
+|         29314 | cabin-baggage_en                        |
+|         29644 | payday-sale-promo_en                    |
+|         31110 | home-office-essentials_en               |
+|         31111 | jelly-bean-machines_en                  |
+|         31834 | lazada-hourly-deals-monday_en           |
+|         32582 | lazada-hourly-deals-tuesday_en          |
+|         33846 | big-bang-hourly-promo_en                |
+|         34818 | beat-the-heat_en                        |
+|         34819 | college-essential_en                    |
+|         34824 | graduation-special-college_en           |
+|         34825 | graduation-special-elementary_en        |
+|         34826 | graduation-special-highschool_en        |
+|         34829 | jewel-tones_en                          |
+|         34832 | let-the-games-begin_en                  |
+|         34845 | like-a-boss_en                          |
+|         34848 | phablet-craze_en                        |
+|         34849 | phablet-fever_en                        |
+|         34850 | quick-fix_en                            |
+|         34851 | rough-and-ready_en                      |
+|         34857 | summer-beachwear_en                     |
+|         34858 | summer-brights_en                       |
+|         34859 | summer-bring-it_en                      |
+|         34860 | summer-outdoor-activities_en            |
+|         34861 | summer-skin-and-hair-care_en            |
+|         34862 | summer-travel-essentials_en             |
+|         34864 | toque-of-the-town_en                    |
+|         34865 | touch-me_en                             |
+|         34867 | white-here-white-now_en                 |
+|         35515 | lazada-hourly-deals_en                  |
+|         37711 | karbonn-exclusive-sale_en               |
+|         37782 | hourly-deals-payday-specials_en         |
+|         38651 | scraping_en                             |
+|         38699 | sound-advice_en                         |
+|         38700 | shoot-like-a-pro_en                     |
+|         38701 | nautical-fashion_en                     |
+|         38702 | its-all-in-your-head_en                 |
+|         38703 | pretty-pastels_en                       |
+|         38704 | just-in-case_en                         |
+|         38705 | back-it-up_en                           |
+|         38706 | game-on_en                              |
+|         38707 | double-advantage_en                     |
+|         38708 | music-on-the-go_en                      |
+|         38709 | spa-at-home_en                          |
+|         38710 | sing-it-loud_en                         |
+|         38714 | gradeschool-essential_en                |
+|         38715 | highschool-essential_en                 |
+|         38718 | spy-cameras_en                          |
+|         45019 | 25-under-25_en                          |
+|         45022 | acer-microsoft_en                       |
+|         45024 | all-in-one-printers_en                  |
+|         45026 | astrology-gadget-guide_en               |
+|         45031 | bags-and-luggage-under-1000_en          |
+|         45034 | best-budget-laptops_en                  |
+|         45060 | end-of-summer-clearance-sale_en         |
+|         45061 | everything-at-php-3999_en               |
+|         45071 | fathers-day_en                          |
+|         45260 | wireless-music-streaming_en             |
+|         45264 | flash-sale_en                           |
+|         45271 | grayscale-different-shades-of-gray-2_en |
+|         45273 | hai-life_en                             |
+|         45276 | hair-styling-tools-sale_en              |
+|         45278 | hometown-heroes_en                      |
+|         45280 | hourly-deals-special_en                 |
+|         45285 | labor-day-hourly-deals_en               |
+|         45287 | laptops-under-30k_en                    |
+|         45289 | lucky-charms-2_en                       |
+|         45293 | mega-sale_en                            |
+|         45301 | nike-shoes-and-apparel_en               |
+|         45304 | payday-flash-sale_en                    |
+|         45307 | pc-speakers_en                          |
+|         45312 | phablet-frenzy_en                       |
+|         45320 | silver-lining_en                        |
+|         45321 | sit-back-and-relax_en                   |
+|         45323 | slim-is-in_en                           |
+|         45331 | sports-watches_en                       |
+|         45332 | star-sports_en                          |
+|         45335 | stylish-bath_en                         |
+|         45337 | think-pink_en                           |
+|         45339 | timeless-tips-2_en                      |
+|         45340 | top-rated-tablets_en                    |
+|         45341 | top-tablet-picks_en                     |
+|         45342 | top-tv-deals_en                         |
+|         45343 | touch-screen-laptops_en                 |
+|         45344 | tv-sale_en                              |
+|         45348 | watch-sale_en                           |
+|         46058 | homepage_en                             |
+|         46062 | mastercard_en                           |
+|         46063 | daily-christmas-deal_en                 |
+|         46065 | hourlydeals3214_en                      |
++---------------+-----------------------------------------+
+
+
+MY
++---------------+-------------+
+| fk_cms_folder | key         |
++---------------+-------------+
+|         20953 | homepage_ms |
+|         21206 | homepage_en |
++---------------+-------------+
+2 rows in set (0.20 sec)
+
+
+ID
++---------------+--------------------------+
+| fk_cms_folder | key                      |
++---------------+--------------------------+
+|         12999 | travelwithstyle_id       |
+|         16787 | siapa-nekat-dia-dapat_id |
+|         19417 | homepage_id              |
++---------------+--------------------------+
+
+TH
++---------------+-------------+
+| fk_cms_folder | key         |
++---------------+-------------+
+|         26272 | homepage_th |
++---------------+-------------+
+
+VN
+
++---------------+-----------------+
+| fk_cms_folder | key             |
++---------------+-----------------+
+|         29271 | daily-deal_vi   |
+|        114009 | homepage_vi     |
+|        114279 | test-qua-hot_vi |
++---------------+-----------------+
+
+
+
+Rocket.helper.firePlugin({el:'.productImage', pluginName: 'RocketLoadProductImage'}, Rocket.controller.Index);

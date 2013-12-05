@@ -19,7 +19,6 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
 
             $scope.onChange = $debounce($scope.ngChange, 1000);
         }
-
     };
 });
 

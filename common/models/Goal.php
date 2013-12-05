@@ -34,7 +34,7 @@ class Goal extends generated\Goal
                 'on'  => 'create'
             ],
             [
-                ['reason'],
+                ['reason', 'decomposition', 'comments'],
                 'string',
                 'max' => 9000,
                 'on'  => 'create'
@@ -56,7 +56,7 @@ class Goal extends generated\Goal
                 'on'  => 'update'
             ],
             [
-                ['reason'],
+                ['reason', 'decomposition', 'comments'],
                 'string',
                 'max' => 9000,
                 'on'  => 'update'

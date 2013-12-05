@@ -1,12 +1,35 @@
-<div class="goal_reason_panel">
-    <div>Зачем</div>
+<div ng-if="focusGoal !== false" class="sidebar">
+    <div class="goal_reason sidebar_panel">
+        <div>Зачем</div>
         <eg-editor
-            ng-repeat="(key, goal) in goals"
-            ng-show="key === focusGoal"
-            placeholder="defaultPlaceholder"
-            ng-model="goal.reason"
-            ng-change="save(goal)"
-            ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
-            ></eg-editor>
+                ng-repeat="(key, goal) in goals"
+                ng-show="key === focusGoal"
+                placeholder="defaultPlaceholder"
+                ng-model="goal.reason"
+                ng-change="save(goal)"
+                ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
+                ></eg-editor>
+    </div>
+    <div class="goal_decomposition sidebar_panel">
+        <div>Decomposition</div>
+        <eg-editor
+                ng-repeat="(key, goal) in goals"
+                ng-show="key === focusGoal"
+                placeholder="defaultPlaceholder"
+                ng-model="goal.decomposition"
+                ng-change="save(goal)"
+                ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
+                ></eg-editor>
+    </div>
+    <div class="goal_comments sidebar_panel">
+        <div>Comments</div>
+        <eg-editor
+                ng-repeat="(key, goal) in goals"
+                ng-show="key === focusGoal"
+                placeholder="defaultPlaceholder"
+                ng-model="goal.comments"
+                ng-change="save(goal)"
+                ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
+                ></eg-editor>
     </div>
 </div>

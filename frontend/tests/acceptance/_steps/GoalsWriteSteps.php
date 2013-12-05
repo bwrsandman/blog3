@@ -2,11 +2,49 @@
 namespace WebGuy;
 
 use TodayPage;
+use \Codeception\TestCase;
 
 class GoalsWriteSteps extends \WebGuy
 {
     protected $messages = [];
     public $conclusionMsg;
+
+    public function focus($el)
+    {
+        $I = $this;
+
+        $I->executeJs('$("' . $el . '").focus()');
+
+//        parent::focus($el);
+    }
+
+    public function fillField($field, $value)
+    {
+        $I = $this;
+
+        $I->executeJs('$("' . $field . '").val("' . $value . '").change()');
+
+//        parent::fillField($field, $value);
+    }
+
+    public function click($link, $context = null)
+    {
+        $I = $this;
+
+        $I->executeJs('$("' . $link . '").click()');
+//        parent::click($link, $context);
+    }
+
+    public function seeInField($field, $value)
+    {
+        $I = $this;
+
+        $realValue = $I->grabValueFrom($field);
+        $I->execute(function () use ($realValue, $value) {
+            TestCase::assertEquals($realValue, $value);
+        });
+//        parent::seeInField($field, $value);
+    }
 
     public function flushMessages()
     {
@@ -14,13 +52,13 @@ class GoalsWriteSteps extends \WebGuy
         $this->conclusionMsg = null;
     }
 
-    public function getMessage($i)
+    public function getMessage($namespace , $i)
     {
-        if (!isset($this->messages[$i])) {
-            $this->messages[$i] = $i . ' Hello ' . rand(0, 99999999);
+        if (!isset($this->messages[$namespace][$i])) {
+            $this->messages[$namespace][$i] = $i . ' Hello ' . rand(0, 99999999);
         }
 
-        return $this->messages[$i];
+        return $this->messages[$namespace][$i];
     }
 
 
@@ -29,7 +67,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $field = TodayPage::reportDescription($i);
-        $I->fillField($field, $this->getMessage($i));
+        $I->fillField($field, $this->getMessage('report', $i));
     }
 
     public function readReport($i)
@@ -38,31 +76,31 @@ class GoalsWriteSteps extends \WebGuy
 
         $field = TodayPage::reportDescription($i);
 
-        return $I->grabValueFrom($field);
+//        $I->executeJs('return $("' . $field . '").val()');
+
+//        return $I->grabValueFrom($field);
     }
 
     public function focusReport($i)
     {
         $I = $this;
 
-        $I->executeJs('$("' . TodayPage::reportDescription($i) . '").focus()');
+        $I->focus(TodayPage::reportDescription($i));
     }
+
 
     public function clickReport($i)
     {
         $I = $this;
 
         $I->click(TodayPage::reportDescription($i));
-//        $I->executeJs('$("'.TodayPage::reportDescription($i).'").click()');
     }
 
     function writeReason($i)
     {
         $I = $this;
 
-        $I->fillField(TodayPage::$reasonEditor, $this->getMessage($i));
-//        $I->executeJs('$("'.TodayPage::$reasonEditor.'").val("'.$this->getMessage($i).'")');
-//        $I->executeJs('$("'.TodayPage::$reasonEditor.'").change()');
+        $I->fillField(TodayPage::$reasonEditor, $this->getMessage('reason', $i));
     }
 
 
@@ -73,6 +111,33 @@ class GoalsWriteSteps extends \WebGuy
         return $I->grabValueFrom(TodayPage::$reasonEditor);
     }
 
+    function writeDecomposition($i)
+    {
+        $I = $this;
+
+        $I->fillField(TodayPage::$decompositionEditor, $this->getMessage('decomposition', $i));
+    }
+
+    public function readDecomposition()
+    {
+        $I = $this;
+
+        return $I->grabValueFrom(TodayPage::$decompositionEditor);
+    }
+
+    function writeComments($i)
+    {
+        $I = $this;
+
+        $I->fillField(TodayPage::$commentsEditor, $this->getMessage('comments', $i));
+    }
+
+    public function readComments()
+    {
+        $I = $this;
+
+        return $I->grabValueFrom(TodayPage::$commentsEditor);
+    }
 
     function writeConclusion()
     {
