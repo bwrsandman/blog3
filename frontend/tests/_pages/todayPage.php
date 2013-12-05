@@ -7,7 +7,9 @@ class TodayPage
 
 
     public static $conclusionEditor = ".conclusion textarea";
-    public static $reasonEditor = ".goal_reason_panel .visible textarea";
+    public static $reasonEditor = ".goal_reason.sidebar_panel .visible textarea";
+    public static $decompositionEditor = ".goal_decomposition.sidebar_panel .visible textarea";
+    public static $commentsEditor = ".goal_comments.sidebar_panel .visible textarea";
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
