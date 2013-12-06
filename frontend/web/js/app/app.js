@@ -12,7 +12,7 @@ var lang = 'ru';
 
 var translations = [];
 
-angular.module('eg.goal', ['ngRoute', 'ui.bootstrap',  'monospaced.elastic', 'ngDebounce', 'ngResource', 'xeditable']);
+angular.module('eg.goal', ['ngRoute', 'ui.bootstrap',  'monospaced.elastic', 'ngDebounce', 'ngResource']);
 
 angular.module('eg.goal').config(['msdElasticConfig', function (config) {
     config.append = '\n\n';
