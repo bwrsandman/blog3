@@ -37,12 +37,6 @@ angular.module('eg.goal').config(['$routeProvider', '$locationProvider', functio
 //    });
 }]);
 
-angular.module('eg.goal').run(function(editableOptions, editableThemes) {
-    editableThemes.bs3.formTpl = '<form class="form-inline input-group" role="form"></form>';
-    editableThemes.bs3.buttonsTpl = '<span class="editable-buttons input-group-btn"></span>',
-    editableThemes.bs3.cancelTpl = '';
-    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-});
 
 angular.module('eg.goal').run(function ($rootScope, $templateCache) {
 });
