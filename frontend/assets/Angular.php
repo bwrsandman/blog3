@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace frontend\config;
+namespace frontend\assets;
 
 use yii\web\AssetBundle;
 
-class AngularAsset extends AssetBundle
+class Angular extends AssetBundle
 {
 	public $basePath = '@webroot';
 	public $baseUrl = '@web/js/components/';

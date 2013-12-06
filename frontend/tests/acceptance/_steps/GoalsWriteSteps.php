@@ -35,6 +35,14 @@ class GoalsWriteSteps extends \WebGuy
 //        parent::click($link, $context);
     }
 
+    public function waitForAutoSave()
+    {
+        $I = $this;
+
+        //selenium2 - 1000
+        $I->wait(3);
+    }
+
     public function seeInField($field, $value)
     {
         $I = $this;
@@ -52,7 +60,7 @@ class GoalsWriteSteps extends \WebGuy
         $this->conclusionMsg = null;
     }
 
-    public function getMessage($namespace , $i)
+    public function getMessage($namespace, $i)
     {
         if (!isset($this->messages[$namespace][$i])) {
             $this->messages[$namespace][$i] = $i . ' Hello ' . rand(0, 99999999);

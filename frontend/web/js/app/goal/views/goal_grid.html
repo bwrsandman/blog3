@@ -1,22 +1,32 @@
 <div id="goals-grid">
-    <div class="row" ng-repeat="goal in goals" ng-if="$even">
+    <div class="row" ng-repeat="(key, goal) in goals" ng-if="$even">
         <eg-goal-pane class="col-md-6 goal-detail" ng-click="setFocus(goal)" ng-transclude>
-            <h5>{{goal.title}}</h5>
+            <div class="goal_title">{{goal.title}}</div>
+            <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
+                <a title="Отредоктировать цель" ng-click="open(goal)">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </div>
             <eg-editor
-                placeholder="defaultPlaceholder"
-                ng-model="goal[day].report.description"
-                ng-change="save(goal)"
-                ng-focus="setFocus(goal)"
+                    placeholder="defaultPlaceholder"
+                    ng-model="goal[day].report.description"
+                    ng-change="save(goal)"
+                    ng-focus="setFocus(goal)"
                     ></eg-editor>
         </eg-goal-pane>
-        <eg-goal-pane class="col-md-6 goal-detail" ng-click="setFocus(goals[$index+1])"  ng-transclude>
-            <h5>{{goals[$index+1].title}}</h5>
+        <eg-goal-pane class="col-md-6 goal-detail" ng-click="setFocus(goals[$index+1])" ng-transclude>
+            <div class="goal_title">{{goals[$index+1].title}}</div>
+            <div class="goal-control-panel" ng-class="{active: focusGoal === $index+1}">
+                <a title="Отредоктировать цель" ng-click="open(goals[$index+1])">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </div>
             <eg-editor
-                ng-if="goals[$index+1]"
-                placeholder="defaultPlaceholder"
-                ng-model="goals[$index+1][day].report.description"
-                ng-change="save(goals[$index+1])"
-                ng-focus="setFocus(goals[$index+1])"
+                    ng-if="goals[$index+1]"
+                    placeholder="defaultPlaceholder"
+                    ng-model="goals[$index+1][day].report.description"
+                    ng-change="save(goals[$index+1])"
+                    ng-focus="setFocus(goals[$index+1])"
                     ></eg-editor>
         </eg-goal-pane>
     </div>
@@ -24,8 +34,8 @@
 <div class="conclusion">
     <h4>Инсайты за день:</h4>
     <eg-editor
-        placeholder="defaultPlaceholder"
-        ng-model="conclusions[day].description"
-        ng-change="save(conclusions[day])"
-        ></eg-editor>
+            placeholder="defaultPlaceholder"
+            ng-model="conclusions[day].description"
+            ng-change="save(conclusions[day])"
+            ></eg-editor>
 </div>

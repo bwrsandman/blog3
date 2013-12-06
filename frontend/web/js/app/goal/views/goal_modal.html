@@ -1,0 +1,22 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Goal Editing</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="modalGoalTitle">Title</label>
+                    <textarea msd-elastic="\n\n"
+                              type="text" ng-model="goal.title" class="form-control"
+                              id="modalGoalTitle"
+                              placeholder="Enter email"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

@@ -11,8 +11,12 @@
 class_name: WebGuy
 modules:
     enabled:
-        - Selenium2
+        - WebDriver
+        - WebHelper
     config:
+        WebDriver:
+            url: 'http://blog3.ru/'
+            browser: phantomjs
         Selenium2:
             url: 'http://blog3.ru/'
             browser: phantomjs
@@ -20,4 +24,3 @@ modules:
               webStorageEnabled: true
               javascriptEnabled: true
               browserConnectionEnabled: true
-            url: 'http://blog3.ru/'

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $debounce) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal) {
 
     var User = $resource('/api/user/', {}, {
         getData: {
@@ -15,6 +15,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     var tplBase = '/js/app/goal/';
     $scope.tpl = {
+        modal: tplBase + 'views/goal_modal.html',
         grid: tplBase + 'views/goal_grid.html',
         goals: tplBase + 'views/goals.html',
         sidebar: tplBase + 'views/sidebar.html'
@@ -48,7 +49,6 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
             model.$save();
         }
     };
-
     if ($location.path() === '/') {
         $scope.day = 'today';
     } else if ($location.path() === '/yesterday') {
@@ -56,7 +56,38 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     }
 
     $scope.location = $location;
+    $scope.open = function(goal) {
+        $modal.open({
+            templateUrl: $scope.tpl.modal,
+            controller: 'GoalEditModalCtrl',
+            resolve: {
+                'goal': function() {
+                    return {
+                        title: goal.title
+                    }
+                }
+            }
+        }).result.then(function(newGoal) {
+            goal.title = newGoal.title;
+            goal.$save();
+        }, function() {
+           //just dismiss
+        });
+    };
 
     showScreen();
+});
+
+angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $modalInstance, goal) {
+
+    $scope.goal = goal;
+
+    $scope.ok = function () {
+        $modalInstance.close(goal);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });
 

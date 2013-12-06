@@ -12,7 +12,7 @@ for ($i = 0; $i < 10; $i++) {
     $I->writeDecomposition($i);
 }
 
-$I->wait('1200');
+$I->waitForAutoSave();
 $I->amOnPage('/?id=1');
 
 
@@ -31,7 +31,7 @@ for ($i = 0; $i < 10; $i++) {
     $I->writeDecomposition($i);
 }
 
-$I->wait('1200');
+$I->waitForAutoSave();
 $I->amOnPage('/');
 
 $I->expect("Decompositions will visible after focus on report");

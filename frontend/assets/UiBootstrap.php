@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace frontend\config;
+namespace frontend\assets;
 
 use yii\web\AssetBundle;
 
-class UiBootstrapAsset extends AssetBundle
+class UiBootstrap extends AssetBundle
 {
 	public $basePath = '@webroot';
 	public $baseUrl = '@web/js/components/angular-bootstrap';
@@ -18,6 +18,6 @@ class UiBootstrapAsset extends AssetBundle
 
     public $js = array(
         'ui-bootstrap.min.js',
-        'ui-bootstrap-tpls.min.js'
+        'ui-bootstrap-tpls.min.js',
     );
 }

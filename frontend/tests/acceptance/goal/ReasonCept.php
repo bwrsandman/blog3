@@ -10,7 +10,7 @@ for ($i = 0; $i < 10; $i++) {
     $I->writeReason($i);
 }
 
-$I->wait('1200');
+$I->waitForAutoSave();
 $I->amOnPage('/?id=1');
 
 $I->expect("reasons will visible after click on report");
@@ -27,7 +27,7 @@ for ($i = 0; $i < 10; $i++) {
     $I->writeReason($i);
 }
 
-$I->wait('1200');
+$I->waitForAutoSave();
 $I->amOnPage('/');
 
 $I->expect("reasons will visible after focus on report");

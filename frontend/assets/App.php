@@ -5,11 +5,11 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace frontend\config;
+namespace frontend\assets;
 
 use yii\web\AssetBundle;
 
-class AppAsset extends AssetBundle
+class App extends AssetBundle
 {
 	public $basePath = '@webroot';
 	public $baseUrl = '@web/js';
@@ -33,13 +33,15 @@ class AppAsset extends AssetBundle
         'app/goal/directives/editor.js',
 
         'app/goal/services/alert.js',
+
     );
 	public $depends = array(
 		'yii\web\YiiAsset',
 		'yii\bootstrap\BootstrapAsset',
-        'frontend\config\AngularAsset',
-//        'frontend\config\UiCodemirrorAsset',
-        'frontend\config\UiBootstrapAsset',
-        'frontend\config\AngularElasticAsset',
+        'frontend\assets\Angular',
+//        'frontend\assets\UiCodemirror',
+        'frontend\assets\UiBootstrap',
+        'frontend\assets\AngularElastic',
+        'frontend\assets\AngularXeditable',
 	);
 }

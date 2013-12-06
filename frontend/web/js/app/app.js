@@ -12,7 +12,7 @@ var lang = 'ru';
 
 var translations = [];
 
-angular.module('eg.goal', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce', 'ngResource']);
+angular.module('eg.goal', ['ngRoute', 'ui.bootstrap',  'monospaced.elastic', 'ngDebounce', 'ngResource', 'xeditable']);
 
 angular.module('eg.goal').config(['msdElasticConfig', function (config) {
     config.append = '\n\n';
@@ -37,10 +37,14 @@ angular.module('eg.goal').config(['$routeProvider', '$locationProvider', functio
 //    });
 }]);
 
+angular.module('eg.goal').run(function(editableOptions, editableThemes) {
+    editableThemes.bs3.formTpl = '<form class="form-inline input-group" role="form"></form>';
+    editableThemes.bs3.buttonsTpl = '<span class="editable-buttons input-group-btn"></span>',
+    editableThemes.bs3.cancelTpl = '';
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+
 angular.module('eg.goal').run(function ($rootScope, $templateCache) {
-    $rootScope.$on('$viewContentLoaded', function () {
-        $templateCache.removeAll();
-    });
 });
 
 var showScreen = function () {

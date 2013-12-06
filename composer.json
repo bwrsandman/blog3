@@ -28,7 +28,7 @@
 
         "fabpot/goutte" : "*",
         "codeception/phpbuiltinserver" : "*",
-        "codeception/codeception" : "*",
+        "codeception/codeception" : "1.8.1",
         "codeception/specify" : "*",
         "codeception/verify" : "*",
         "behat/mink" : "*",

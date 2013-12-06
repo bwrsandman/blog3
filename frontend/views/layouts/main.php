@@ -1,16 +1,11 @@
 <?php
-use frontend\config\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use frontend\widgets\Alert;
 
 /**
  * @var $this \yii\base\View
  * @var $content string
  */
-AppAsset::register($this);
+frontend\assets\App::register($this);
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
