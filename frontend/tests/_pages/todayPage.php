@@ -24,6 +24,13 @@ class TodayPage
         return "#goals-grid .row:nth-child($row) .goal-detail:nth-child($col) textarea";
     }
 
+    public static function goalEditingPanel($n = 1)
+    {
+        $row = (int)(($n + 2) / 2);
+        $col = $n % 2 + 1;
+        return "#goals-grid .row:nth-child($row) .goal-detail:nth-child($col) .goal-control-panel";
+    }
+
 
     /**
      * Basic route example for your current URL
