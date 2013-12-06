@@ -14,12 +14,10 @@ class Angular extends AssetBundle
 	public $basePath = '@webroot';
 	public $baseUrl = '@web/js/components/';
 	public $js = array(
-//        '//maps.googleapis.com/maps/api/js?sensor=false',
-        'angular/angular.js',
-//        '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.4.0/ui-bootstrap-tpls.min.js',
-        'angular-resource/angular-resource.js',
-        'angular-route/angular-route.js',
+        'angular/angular.min.js',
+        'angular-resource/angular-resource.min.js',
+        'angular-route/angular-route.min.js',
 //        'angular-ui-router/release/angular-ui-router.min.js',
-        'angular-translate/angular-translate.js',
+        'angular-translate/angular-translate.min.js',
     );
 }
