@@ -1,27 +1,25 @@
 <div id="goals-grid">
-    <div ng-repeat="(key, goal) in goals">
-        <eg-goal-pane class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
-            <div class="panel panel-default">
-                <div class="goal_title panel-heading">
-                    <p class="panel-title">{{goal.title}}</p>
+    <eg-goal-pane ng-repeat="(key, goal) in goals" class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
+        <div class="panel panel-default">
+            <div class="goal_title panel-heading">
+                <p class="panel-title">{{goal.title}}</p>
 
-                    <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
-                        <a title="Отредоктировать цель" ng-click="open(goal)" href="#">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <eg-editor
-                            placeholder="defaultPlaceholder"
-                            ng-model="goal[day].report.description"
-                            ng-change="save(goal)"
-                            ng-focus="setFocus(goal)"
-                            ></eg-editor>
+                <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
+                    <a title="Отредоктировать цель" ng-click="open(goal)" href="#">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
                 </div>
             </div>
-        </eg-goal-pane>
-    </div>
+            <div class="panel-body">
+                <eg-editor
+                        placeholder="defaultPlaceholder"
+                        ng-model="goal[day].report.description"
+                        ng-change="save(goal)"
+                        ng-focus="setFocus(goal)"
+                        ></eg-editor>
+            </div>
+        </div>
+    </eg-goal-pane>
 </div>
 <div class="conclusion">
     <h4>Инсайты за день:</h4>

@@ -8,7 +8,7 @@ $I->amOnPage('/?id=1');
 
 $I->writeConclusion();
 
-$I->wait('1000');
+$I->waitForAutoSave();
 $I->amOnPage('/');
 
 $I->expect("conclusion will save after reload page");

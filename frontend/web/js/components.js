@@ -28,6 +28,8 @@ angular.module('ngDebounce', []).factory('$debounce', function($timeout, $q) {
         };
     };
 });
+
+
 /*
 var alohaModul = angular.module('aloha', []);
 

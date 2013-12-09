@@ -14,7 +14,6 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $I->executeJs('$("' . $el . '").focus()');
-
 //        parent::focus($el);
     }
 
@@ -23,7 +22,6 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $I->executeJs('$("' . $field . '").val("' . $value . '").change()');
-
 //        parent::fillField($field, $value);
     }
 
@@ -40,7 +38,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         //selenium2 - 1000
-        $I->wait(3);
+        $I->wait(2);
     }
 
     public function seeInField($field, $value)
@@ -51,7 +49,7 @@ class GoalsWriteSteps extends \WebGuy
         $I->execute(function () use ($realValue, $value) {
             TestCase::assertEquals($realValue, $value);
         });
-//        parent::seeInField($field, $value);
+//        parent::canSeeInField($field, $value);
     }
 
     public function flushMessages()

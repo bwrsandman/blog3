@@ -1,15 +1,12 @@
-eg-editor {
+[contenteditable] {
+  border: none;
+  resize: none;
+  width: 100%;
+  font-size: 12px;
+  color: #535353;
 
-  textarea {
-    color: #535353;
+  &:focus, &:hover, &:active {
     border: none;
-    resize: none;
-    width: 100%;
-    font-size: 12px;
-    &:focus, &:hover, &:active {
-      border: none;
-      outline: none;
-    }
+    outline: none;
   }
-
 }
