@@ -1,7 +1,7 @@
 <div id="goals-grid">
     <eg-goal-pane ng-repeat="(key, goal) in goals" class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
         <div class="panel panel-default">
-            <div class="goal_title panel-heading">
+            <header class="goal_title panel-heading">
                 <p class="panel-title">{{goal.title}}</p>
 
                 <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
@@ -9,14 +9,16 @@
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
                 </div>
-            </div>
+            </header>
             <div class="panel-body">
                 <eg-editor
                         placeholder="defaultPlaceholder"
+                        model="goal"
                         ng-model="goal[day].report.description"
                         ng-change="save(goal)"
                         ng-focus="setFocus(goal)"
-                        ></eg-editor>
+                        >
+                </eg-editor>
             </div>
         </div>
     </eg-goal-pane>

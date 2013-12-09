@@ -12,6 +12,4 @@ $I->waitForAutoSave();
 $I->amOnPage('/');
 
 $I->expect("conclusion will save after reload page");
-$I->execute(function () use ($I) {
-    TestCase::assertEquals($I->readConclusion(), $I->conclusionMsg);
-});
+$I->see($I->conclusionMsg, TodayPage::$conclusionEditor);

@@ -17,12 +17,11 @@ class GoalsWriteSteps extends \WebGuy
 //        parent::focus($el);
     }
 
-    public function fillField($field, $value)
+    public function write($selector, $value)
     {
         $I = $this;
 
-        $I->executeJs('$("' . $field . '").val("' . $value . '").change()');
-//        parent::fillField($field, $value);
+        $I->executeJs('$("' . $selector . '").html("' . $value . '").change()');
     }
 
     public function click($link, $context = null)
@@ -73,18 +72,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $field = TodayPage::reportDescription($i);
-        $I->fillField($field, $this->getMessage('report', $i));
-    }
-
-    public function readReport($i)
-    {
-        $I = $this;
-
-        $field = TodayPage::reportDescription($i);
-
-//        $I->executeJs('return $("' . $field . '").val()');
-
-//        return $I->grabValueFrom($field);
+        $I->write($field, $this->getMessage('report', $i));
     }
 
     public function focusReport($i)
@@ -106,43 +94,21 @@ class GoalsWriteSteps extends \WebGuy
     {
         $I = $this;
 
-        $I->fillField(TodayPage::$reasonEditor, $this->getMessage('reason', $i));
-    }
-
-
-    public function readReason()
-    {
-        $I = $this;
-
-        return $I->grabValueFrom(TodayPage::$reasonEditor);
+        $I->write(TodayPage::$reasonEditor, $this->getMessage('reason', $i));
     }
 
     function writeDecomposition($i)
     {
         $I = $this;
 
-        $I->fillField(TodayPage::$decompositionEditor, $this->getMessage('decomposition', $i));
-    }
-
-    public function readDecomposition()
-    {
-        $I = $this;
-
-        return $I->grabValueFrom(TodayPage::$decompositionEditor);
+        $I->write(TodayPage::$decompositionEditor, $this->getMessage('decomposition', $i));
     }
 
     function writeComments($i)
     {
         $I = $this;
 
-        $I->fillField(TodayPage::$commentsEditor, $this->getMessage('comments', $i));
-    }
-
-    public function readComments()
-    {
-        $I = $this;
-
-        return $I->grabValueFrom(TodayPage::$commentsEditor);
+        $I->write(TodayPage::$commentsEditor, $this->getMessage('comments', $i));
     }
 
     function writeConclusion()
@@ -150,15 +116,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $this->conclusionMsg = 'Hello ' . rand(0, 99999999);
-        $I->fillField(TodayPage::$conclusionEditor, $this->conclusionMsg);
-    }
-
-
-    function readConclusion()
-    {
-        $I = $this;
-
-        return $I->grabValueFrom(TodayPage::$conclusionEditor);
+        $I->write(TodayPage::$conclusionEditor, $this->conclusionMsg);
     }
 
 }

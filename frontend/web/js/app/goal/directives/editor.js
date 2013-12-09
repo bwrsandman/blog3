@@ -1,10 +1,9 @@
-'use strict';
-
-angular.module('eg.goal').directive('egEditor', function ($debounce) {
+angular.module('eg.goal').directive('egEditor', function ($debounce, $compile) {
     var some = {};
 
     return {
         restrict: 'E',
+        require: '^ngModel',
         scope: {
             ngModel: '=',
             ngChange: '&',
@@ -13,14 +12,21 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             placeholder: '&',
             fg: '&'
         },
-        template: '<div contenteditable="true" class="eg-editor" strip-br="true" ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()"></div>',
+        template: '<div contenteditable="true" strip-br="true" ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()">{{ngModel}}</div>',
         link: function ($scope, element, attrs) {
+            var editor = element.children('div');
+
+            //css
+            editor
+                .addClass('eg-editor');
+
             $scope.onChange = $debounce($scope.ngChange, 1000);
         }
     };
-});
+})
+;
 
-angular.module('eg.goal').directive('egGoalPane', function () {
+angular.module('eg.goal').directive('egGoalPane', function ($debounce) {
     return {
         restrict: 'E',
         replace: false,
@@ -28,12 +34,11 @@ angular.module('eg.goal').directive('egGoalPane', function () {
         scope: {
         },
         link: function ($scope, element, attrs) {
-            element.addClass('');
         }
     };
 });
 
-angular.module('eg.goal', []).directive('contenteditable', ['$timeout', function ($timeout) {
+angular.module('eg.goal').directive('contenteditable', ['$timeout', function ($timeout) {
     return {
         restrict: 'A',
         require: '?ngModel',
@@ -43,8 +48,12 @@ angular.module('eg.goal', []).directive('contenteditable', ['$timeout', function
                 return
             }
 
+            ngModel.$render = function () {
+                $element.html(ngModel.$modelValue || '');
+            };
+
             // view -> model
-            $element.on('input', function (e) {
+            var read = function (e) {
                 var html, html2, rerender
                 html = $element.html()
                 rerender = false
@@ -62,25 +71,13 @@ angular.module('eg.goal', []).directive('contenteditable', ['$timeout', function
                 if (rerender) {
                     ngModel.$render()
                 }
-                if (html === '') {
-                    // the cursor disappears if the contents is empty
-                    // so we need to refocus
-                    $timeout(function () {
-                        $element[0].blur()
-                        $element[0].focus()
-                    })
-                }
-            })
-
-            // model -> view
-            var oldRender = ngModel.$render
-            ngModel.$render = function () {
-                var el, el2, range, sel
-                if (!!oldRender) {
-                    oldRender()
-                }
-                $element.html(ngModel.$viewValue || '')
             }
+
+
+            // Listen for change events to enable binding
+            $element.on('blur keyup change paste', function () {
+                $scope.$apply(read);
+            });
         }
     }
 }]);
