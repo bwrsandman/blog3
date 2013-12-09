@@ -12,7 +12,6 @@
         "angular-ui": "*",
         "angular-ui-router": "*",
         "angular-ui-utils": "latest",
-        "angular-jqlite": "latest",
         "angular-bootstrap-affix": "latest",
         "angular-xeditable ": "*",
         "angular-mocks": "*",
