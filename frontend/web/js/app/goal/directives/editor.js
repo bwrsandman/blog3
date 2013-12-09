@@ -10,7 +10,7 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             submodel: '=',
             fg: '&'
         },
-        template: '<textarea msd-elastic="\n\n" ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()"></textarea>',
+        template: '<textarea msd-elastic="" ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()"></textarea>',
         link: function ($scope, element, attrs) {
             var textarea = element.find('textarea');
             if (attrs.placeholder) {

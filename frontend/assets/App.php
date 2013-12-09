@@ -42,5 +42,6 @@ class App extends AssetBundle
 //        'frontend\assets\UiCodemirror',
         'frontend\assets\UiBootstrap',
         'frontend\assets\AngularElastic',
+        'frontend\assets\AngularUiUtils',
 	);
 }

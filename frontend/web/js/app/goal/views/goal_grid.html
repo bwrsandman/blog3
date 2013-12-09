@@ -1,33 +1,25 @@
 <div id="goals-grid">
-    <div class="row" ng-repeat="(key, goal) in goals" ng-if="$even">
-        <eg-goal-pane class="col-md-6 goal-detail" ng-click="setFocus(goal)" ng-transclude>
-            <div class="goal_title">{{goal.title}}</div>
-            <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
-                <a title="Отредоктировать цель" ng-click="open(goal)">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
+    <div ng-repeat="(key, goal) in goals">
+        <eg-goal-pane class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
+            <div class="panel panel-default">
+                <div class="goal_title panel-heading">
+                    <p class="panel-title">{{goal.title}}</p>
+
+                    <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
+                        <a title="Отредоктировать цель" ng-click="open(goal)" href="#">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <eg-editor
+                            placeholder="defaultPlaceholder"
+                            ng-model="goal[day].report.description"
+                            ng-change="save(goal)"
+                            ng-focus="setFocus(goal)"
+                            ></eg-editor>
+                </div>
             </div>
-            <eg-editor
-                    placeholder="defaultPlaceholder"
-                    ng-model="goal[day].report.description"
-                    ng-change="save(goal)"
-                    ng-focus="setFocus(goal)"
-                    ></eg-editor>
-        </eg-goal-pane>
-        <eg-goal-pane class="col-md-6 goal-detail" ng-click="setFocus(goals[$index+1])" ng-transclude>
-            <div class="goal_title">{{goals[$index+1].title}}</div>
-            <div class="goal-control-panel" ng-class="{active: focusGoal === $index+1}">
-                <a title="Отредоктировать цель" ng-click="open(goals[$index+1])">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
-            </div>
-            <eg-editor
-                    ng-if="goals[$index+1]"
-                    placeholder="defaultPlaceholder"
-                    ng-model="goals[$index+1][day].report.description"
-                    ng-change="save(goals[$index+1])"
-                    ng-focus="setFocus(goals[$index+1])"
-                    ></eg-editor>
         </eg-goal-pane>
     </div>
 </div>

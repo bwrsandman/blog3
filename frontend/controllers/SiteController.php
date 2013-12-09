@@ -29,9 +29,9 @@ class SiteController extends Controller
         }
 
         if (Yii::$app->user->isGuest) {
-            echo '<a href="/?id=1">1</a>';
-            echo "\n";
-            echo '<a href="/?id=2">2</a>';
+            echo '<a href="/?id=1">dev</a>';
+            echo "\n\n\n\n";
+            echo '<a href="/?id=2">prod</a>';
         } else {
             return $this->render('index');
         }

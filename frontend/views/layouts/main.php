@@ -20,49 +20,52 @@ frontend\assets\App::register($this);
 <?php $this->beginBody(); ?>
 
 <nav class="navbar navbar-default test-navigation" role="navigation" ng-controller="NavigationCtrl">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Brand</a>
-    </div>
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            <li ng-class="{active: activeTab('') }">
-                <a href="/">Today (22%)</a>
-            </li>
-            <li ng-class="{active: activeTab('yesterday') }">
-                <a href="/yesterday">Yesterday (22%)</a>
-            </li>
-            <li ng-class="{active: activeTab('wall') }">
-                <a href="/wall">Wall(social)</a>
-            </li>
-            <li class="divider"></li>
-            <li ng-class="{active: activeTab('stream') }">
-                <a href="/stream">All(social)</a>
-            </li>
-            <li class="divider"></li>
-            <li ng-class="{active: activeTab('history') }">
-                <a href="/history">History</a>
-            </li>
-        </ul>
-        <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-class="{active: activeTab('') }">
+                    <a href="/">Today (22%)</a>
+                </li>
+                <li ng-class="{active: activeTab('yesterday') }">
+                    <a href="/yesterday">Yesterday (22%)</a>
+                </li>
+                <li ng-class="{active: activeTab('wall') }">
+                    <a href="/wall">Wall(social)</a>
+                </li>
+                <li class="divider"></li>
+                <li ng-class="{active: activeTab('stream') }">
+                    <a href="/stream">All(social)</a>
+                </li>
+                <li class="divider"></li>
+                <li ng-class="{active: activeTab('history') }">
+                    <a href="/history">History</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
     </div>
 </nav>
-<div class="main-container">
-    <div>
-        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
-    </div>
-    <div class="row">
-        <ng-view/>
+<div class="main-container ">
+    <div class="container">
+        <div>
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+        <div class="row">
+            <ng-view/>
+        </div>
     </div>
 </div>
-
 <footer class="footer">
     <div class="">
         <p class="pull-left">&copy; My Company <?php echo date('Y'); ?></p>
@@ -73,7 +76,8 @@ frontend\assets\App::register($this);
 
 <div class="first-load"></div>
 <script>
-    storage = <?=json_encode($this->context->clientStorage) ?>
+    storage =
+    <?=json_encode($this->context->clientStorage) ?>
 </script>
 <?php $this->endBody(); ?>
 </body>

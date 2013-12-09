@@ -46,13 +46,13 @@ return array(
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
-                'gii'                               => 'gii',
-                'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
+                'gii'                                  => 'gii',
+                'gii/<controller:\w+>/<action:\w+>'    => 'gii/<controller>/<action>',
 
-                'api/<controller:\w+>'                  => '<controller>/index',
-                'POST api/<controller:\w+>/<id:\d+>'    => '<controller>/save',
-                'DELETE api/<controller:\w+>/<id:\d+>'  => '<controller>/delete',
-                'api/<controller:\w+>/<id:\d+>'         => '<controller>/view',
+                'api/<controller:\w+>'                 => '<controller>/index',
+                'POST api/<controller:\w+>/<id:\d+>'   => '<controller>/save',
+                'DELETE api/<controller:\w+>/<id:\d+>' => '<controller>/delete',
+                'api/<controller:\w+>/<id:\d+>'        => '<controller>/view',
             ]
         ],
         'assetManager' => [

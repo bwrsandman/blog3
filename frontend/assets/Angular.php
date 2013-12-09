@@ -14,7 +14,7 @@ class Angular extends AssetBundle
 	public $basePath = '@webroot';
 	public $baseUrl = '@web/js/components/';
 	public $js = array(
-        'angular/angular.min.js',
+        'angular/angular.js',
         'angular-resource/angular-resource.min.js',
         'angular-route/angular-route.min.js',
 //        'angular-ui-router/release/angular-ui-router.min.js',
