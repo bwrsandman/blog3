@@ -6,12 +6,13 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
         scope: {
             ngModel: '=',
             ngChange: '&',
+            ngClass: '@',
             ngFocus: '&',
             submodel: '=',
             placeholder: '&',
             fg: '&'
         },
-        template: '<div text-angular ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()">{{ngModel}}</div>',
+        template: '<div text-angular ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()"></div>',
         link: function ($scope, element, attrs) {
             var editor = element.children('div');
 
@@ -19,13 +20,19 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             editor
                 .addClass('eg-editor');
 
+            //fix contenteditable focus defect
+            element.find('[contenteditable]').focus(function() {
+                $(this).click();
+            });
+
+            element.closest('eg-panel').find('header .editor-controls').append(element.find('.btn-toolbar'));
+
             $scope.onChange = $debounce($scope.ngChange, 1000);
         }
     };
-})
-;
+});
 
-angular.module('eg.goal').directive('egGoalPane', function ($debounce) {
+angular.module('eg.goal').directive('egPanel', function ($debounce) {
     return {
         restrict: 'E',
         replace: false,
@@ -33,12 +40,16 @@ angular.module('eg.goal').directive('egGoalPane', function ($debounce) {
         scope: {
         },
         link: function ($scope, element, attrs) {
+            var div = $('<div>').append(element.children());
+            element.append(div);
+            element.addClass('eg-panel');
+            div.addClass('panel panel-default');
+            div.find('header').addClass('panel-heading');
         }
     };
 });
 
 angular.module('eg.goal').directive('contenteditable', ['$timeout', '$compile', function ($timeout, $compile) {
-
 
     return {
         restrict: 'A',
@@ -52,7 +63,6 @@ angular.module('eg.goal').directive('contenteditable', ['$timeout', '$compile', 
             ngModel.$render = function () {
                 $element.html(ngModel.$modelValue || '');
             };
-
 
             // view -> model
             var read = function (e) {

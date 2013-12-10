@@ -11,6 +11,11 @@
     text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
     .text-rendering(optimizeLegibility);
   }
+
+}
+
+.panel-body {
+  padding: 0;
 }
 
 .goals-grid-container {
@@ -21,60 +26,78 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  .goal-detail {
-    position: relative;
-//    border-top: 1px solid #ccc;
 
-    .goal-control-panel {
-      visibility: hidden;
-      &.active{
-        visibility: visible;
-      }
-    }
-    .toggle {
-      text-align: center;
-      /* auto, since non-WebKit browsers doesn't support input styling */
-      height: auto;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: auto 0;
-      border: none; /* Mobile Safari */
-      -webkit-appearance: none;
-      /*-moz-appearance: none;*/
-      -ms-appearance: none;
-      -o-appearance: none;
-      appearance: none;
-    }
-
-    .toggle:after {
-      content: '?';
-      line-height: 43px; /* 40 + a couple of pixels visual adjustment */
-      color: #d9d9d9;
-      text-shadow: 0 -1px 0 #bfbfbf;
-    }
-
-    .toggle:checked:after {
-      color: #85ada7;
-      text-shadow: 0 1px 0 #669991;
-      bottom: 1px;
-      position: relative;
-    }
-
-    label {
-      word-break: break-word;
-      padding: 15px;
-      margin-left: 45px;
-      display: block;
-      line-height: 1.2;
-      .transition(color 0.4s);
-    }
-    &:nth-child(2n+1) {
-    }
-    &:nth-child(2n) {
+  .eg-control-panel {
+    visibility: hidden;
+    &.active {
+      visibility: visible;
     }
   }
+  .toggle {
+    text-align: center;
+    /* auto, since non-WebKit browsers doesn't support input styling */
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    border: none; /* Mobile Safari */
+    -webkit-appearance: none;
+    /*-moz-appearance: none;*/
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+  }
 
+  .toggle:after {
+    content: '?';
+    line-height: 43px; /* 40 + a couple of pixels visual adjustment */
+    color: #d9d9d9;
+    text-shadow: 0 -1px 0 #bfbfbf;
+  }
+
+  .toggle:checked:after {
+    color: #85ada7;
+    text-shadow: 0 1px 0 #669991;
+    bottom: 1px;
+    position: relative;
+  }
+
+  label {
+    word-break: break-word;
+    padding: 15px;
+    margin-left: 45px;
+    display: block;
+    line-height: 1.2;
+    .transition(color 0.4s);
+  }
+  &:nth-child(2n+1) {
+  }
+  &:nth-child(2n) {
+  }
+}
+
+.eg-panel {
+  .panel-heading {
+    padding-bottom: 3px;
+  }
+}
+
+.eg-control-panel {
+  .btn {
+    color: #666;
+    padding: 3px 6px;
+
+    background: none;
+    outline: none;
+    box-shadow: none;
+    &:hover, &:active {
+      background: none;
+      outline: none;
+      .box-shadow(none);
+      color: #333;
+    }
+  }
 }
 
 .goal-additional-info {

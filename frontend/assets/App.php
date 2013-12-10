@@ -44,5 +44,6 @@ class App extends AssetBundle
         'frontend\assets\AngularElastic',
         'frontend\assets\AngularUiUtils',
         'frontend\assets\TextAngular',
-	);
+        'frontend\assets\FontAwesome',
+    );
 }

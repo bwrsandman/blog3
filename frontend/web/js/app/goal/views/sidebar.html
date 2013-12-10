@@ -1,41 +1,42 @@
 <div ng-if="focusGoal !== false" class="sidebar">
-    <div class="goal_reason panel panel-default sidebar_panel">
-        <div class="panel-heading">Зачем</div>
-        <div class="panel-body">
-            <eg-editor
-                    ng-repeat="(key, goal) in goals"
-                    ng-show="key === focusGoal"
-                    placeholder="defaultPlaceholder"
-                    ng-model="goal.reason"
-                    ng-change="save(goal)"
-                    ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
-                    ></eg-editor>
-        </div>
-    </div>
-    <div class="goal_decomposition panel panel-default sidebar_panel">
-        <div class="panel-heading">Decomposition</div>
-        <div class="panel-body">
-            <eg-editor
-                    ng-repeat="(key, goal) in goals"
-                    ng-show="key === focusGoal"
-                    placeholder="defaultPlaceholder"
-                    ng-model="goal.decomposition"
-                    ng-change="save(goal)"
-                    ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
-                    ></eg-editor>
-        </div>
-    </div>
-    <div class="goal_comments panel panel-default sidebar_panel">
-        <div class="panel-heading">Comments</div>
-        <div class="panel-body">
-            <eg-editor
-                    ng-repeat="(key, goal) in goals"
-                    ng-show="key === focusGoal"
-                    placeholder="defaultPlaceholder"
-                    ng-model="goal.comments"
-                    ng-change="save(goal)"
-                    ng-class="{visible: key === focusGoal, invisible: key !== focusGoal}"
-                    ></eg-editor>
-        </div>
-    </div>
+    <eg-panel class="goal_reason sidebar_panel" ng-repeat="(key, goal) in goals" ng-if="key === focusGoal"
+              ng-transclude>
+        <header>
+            <div class="panel-title">Why</div>
+            <div class="editor-controls eg-control-panel"></div>
+        </header>
+        <eg-editor
+                class="panel-body"
+                placeholder="defaultPlaceholder"
+                ng-model="goal.reason"
+                ng-change="save(goal)"
+                ></eg-editor>
+    </eg-panel>
+    <eg-panel class="goal_decomposition sidebar_panel" ng-repeat="(key, goal) in goals" ng-if="key === focusGoal"
+              ng-transclude>
+        <header>
+            <div class="panel-title">Decomposition</div>
+            <div class="editor-controls eg-control-panel"></div>
+        </header>
+        <eg-editor
+                class="panel-body"
+                placeholder="defaultPlaceholder"
+                ng-model="goal.decomposition"
+                ng-change="save(goal)"
+                ></eg-editor>
+
+    </eg-panel>
+    <eg-panel class="goal_comments sidebar_panel" ng-repeat="(key, goal) in goals" ng-if="key === focusGoal"
+              ng-transclude>
+        <header>
+            <div class="panel-title">Comments</div>
+            <div class="editor-controls eg-control-panel"></div>
+        </header>
+        <eg-editor
+                class="panel-body"
+                placeholder="defaultPlaceholder"
+                ng-model="goal.comments"
+                ng-change="save(goal)"
+                ></eg-editor>
+    </eg-panel>
 </div>

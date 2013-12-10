@@ -21,7 +21,7 @@ class GoalsWriteSteps extends \WebGuy
     {
         $I = $this;
 
-        $I->executeJs('$("' . $selector . '").html("' . $value . '").change()');
+        $I->executeJs('$("' . $selector . '").html("' . $value . '").keyup()');
     }
 
     public function click($link, $context = null)
@@ -37,7 +37,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         //selenium2 - 1000
-        $I->wait(2);
+        $I->wait(3);
     }
 
     public function seeInField($field, $value)
