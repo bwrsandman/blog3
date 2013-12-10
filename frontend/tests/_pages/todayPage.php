@@ -6,10 +6,10 @@ class TodayPage
     static $URL = '/';
 
 
-    public static $conclusionEditor = ".conclusion .eg-editor";
-    public static $reasonEditor = ".sidebar .goal_reason .visible .eg-editor";
-    public static $decompositionEditor = ".sidebar .goal_decomposition .visible .eg-editor";
-    public static $commentsEditor = ".sidebar .goal_comments .visible .eg-editor";
+    public static $conclusionEditor = ".conclusion .eg-editor .ta-html";
+    public static $reasonEditor = ".sidebar .goal_reason .eg-editor .ta-html";
+    public static $decompositionEditor = ".sidebar .goal_decomposition .eg-editor .ta-html";
+    public static $commentsEditor = ".sidebar .goal_comments .eg-editor .ta-html";
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
@@ -25,7 +25,7 @@ class TodayPage
 //      return "#goals-grid .row:nth-child($row) .goal-detail:nth-child($col) textarea";
 
         $n++;
-        return "#goals-grid .goal-detail:nth-child($n) .eg-editor";
+        return "#goals-grid .goal-detail:nth-child($n) .eg-editor .ta-html";
     }
 
     public static function goalEditingPanel($n = 1)
@@ -35,7 +35,7 @@ class TodayPage
 //        return "#goals-grid .row:nth-child($row) .goal-detail:nth-child($col) .goal-control-panel";
 
         $n++;
-        return "#goals-grid .goal-detail:nth-child($n) .goal-control-panel";
+        return "#goals-grid .goal-detail:nth-child($n) .editor-controls";
     }
 
 

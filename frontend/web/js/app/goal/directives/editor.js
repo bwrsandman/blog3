@@ -20,11 +20,6 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             editor
                 .addClass('eg-editor');
 
-            //fix contenteditable focus defect
-            element.find('[contenteditable]').focus(function() {
-                $(this).click();
-            });
-
             element.closest('eg-panel').find('header .editor-controls').append(element.find('.btn-toolbar'));
 
             $scope.onChange = $debounce($scope.ngChange, 1000);
