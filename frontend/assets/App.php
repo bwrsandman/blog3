@@ -43,5 +43,6 @@ class App extends AssetBundle
         'frontend\assets\UiBootstrap',
         'frontend\assets\AngularElastic',
         'frontend\assets\AngularUiUtils',
+        'frontend\assets\TextAngular',
 	);
 }

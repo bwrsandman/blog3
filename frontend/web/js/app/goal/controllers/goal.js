@@ -56,7 +56,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     }
 
     $scope.location = $location;
-    $scope.open = function(goal) {
+    $scope.openModal = function(goal) {
         $modal.open({
             templateUrl: $scope.tpl.modal,
             controller: 'GoalEditModalCtrl',

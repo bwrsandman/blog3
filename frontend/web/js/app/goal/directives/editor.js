@@ -1,5 +1,4 @@
-angular.module('eg.goal').directive('egEditor', function ($debounce, $compile) {
-    var some = {};
+angular.module('eg.goal').directive('egEditor', function ($debounce) {
 
     return {
         restrict: 'E',
@@ -12,7 +11,7 @@ angular.module('eg.goal').directive('egEditor', function ($debounce, $compile) {
             placeholder: '&',
             fg: '&'
         },
-        template: '<div contenteditable="true" strip-br="true" ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()">{{ngModel}}</div>',
+        template: '<div text-angular ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()">{{ngModel}}</div>',
         link: function ($scope, element, attrs) {
             var editor = element.children('div');
 
@@ -38,7 +37,9 @@ angular.module('eg.goal').directive('egGoalPane', function ($debounce) {
     };
 });
 
-angular.module('eg.goal').directive('contenteditable', ['$timeout', function ($timeout) {
+angular.module('eg.goal').directive('contenteditable', ['$timeout', '$compile', function ($timeout, $compile) {
+
+
     return {
         restrict: 'A',
         require: '?ngModel',
@@ -51,6 +52,7 @@ angular.module('eg.goal').directive('contenteditable', ['$timeout', function ($t
             ngModel.$render = function () {
                 $element.html(ngModel.$modelValue || '');
             };
+
 
             // view -> model
             var read = function (e) {

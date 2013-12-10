@@ -23,6 +23,7 @@
         "yiisoft/yii2-redis": "*",
         "yiisoft/yii2-sphinx": "*",
         "michelf/php-markdown" : "*",
+        "robloach/component-installer": "*",
 
         "nizsheanez/yii2-asset-converter": "1.*",
 

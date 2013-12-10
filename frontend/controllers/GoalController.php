@@ -6,6 +6,7 @@ use common\models\User;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
+use yii\helpers\Html;
 
 class GoalController extends Controller
 {

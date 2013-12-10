@@ -5,9 +5,10 @@
                 <p class="panel-title">{{goal.title}}</p>
 
                 <div class="goal-control-panel" ng-class="{active: focusGoal === key}">
-                    <a title="Отредоктировать цель" ng-click="open(goal)" href="#">
+                    <a title="Отредоктировать цель" ng-click="openModal(goal)" href="#">
                         <span class="glyphicon glyphicon-edit"></span>
                     </a>
+
                 </div>
             </header>
             <div class="panel-body">

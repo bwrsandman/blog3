@@ -21,6 +21,7 @@
         "ngMidwayTester": "*",
         "angular-elastic": "*",
         "dropstore-ng": "1.*",
+        "textAngular": "*",
         "lodash": "1.*"
     },
     "resolutions": {
