@@ -38,13 +38,50 @@ angular.module('eg.goal').config(['$routeProvider', '$locationProvider', functio
 }]);
 
 
-angular.module('eg.goal').run(function ($rootScope, $templateCache) {
+angular.module('eg.goal').run(function ($rootScope, $templateCache, $compile) {
 
     $rootScope.textAngularTools = {
         checkbox: {
-            display: "<button type='button' ng-click='action()' ng-class='displayActiveToolClass(active)'><i class='fa fa-check-square-o'></i></button>",
-            action: function() {
-                return this.$parent.wrapSelection("insertHTML", "<input type='checkbox'>&nbsp;");
+            display: "<button type='button' ng-click='action()' ><i class='fa fa-check-square-o'></i></button>",
+            action: function () {
+
+                function insertNodeAtCursor(node) {
+                    var sel, range, html;
+                    if (window.getSelection) {
+                        sel = window.getSelection();
+                        if (sel.getRangeAt && sel.rangeCount) {
+                            sel.getRangeAt(0).insertNode(node);
+                        }
+                    } else if (document.selection && document.selection.createRange) {
+                        range = document.selection.createRange();
+                        html = (node.nodeType == 3) ? node.data : node.outerHTML;
+                        range.pasteHTML(html);
+                    }
+                }
+                function placeCaretAtEnd(el) {
+                    el.focus();
+                    if (typeof window.getSelection != "undefined"
+                        && typeof document.createRange != "undefined") {
+                        var range = document.createRange();
+                        range.setStartAfter( el );
+                        range.setEndAfter( el );
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    } else if (typeof document.body.createTextRange != "undefined") {
+                        var textRange = document.body.createTextRange();
+                        textRange.moveToElementText(el);
+                        textRange.collapse(false);
+                        textRange.select();
+                    }
+                }
+
+                var element = $compile('<input type="checkbox" eg-todo />')(this.$parent);
+
+                this.$parent.displayElements.text[0].focus();
+                insertNodeAtCursor(element[0]);
+                placeCaretAtEnd(element[0])
+                return this.$parent.wrapSelection("insertHTML", "&nbsp;");
             }
         },
         html: {

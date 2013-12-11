@@ -36,7 +36,7 @@ class Goal extends generated\Goal
             [
                 ['reason', 'decomposition', 'comments'],
                 'string',
-                'max' => 9000,
+                'max' => 30000,
                 'on'  => 'create'
             ],
             [
@@ -58,7 +58,7 @@ class Goal extends generated\Goal
             [
                 ['reason', 'decomposition', 'comments'],
                 'string',
-                'max' => 9000,
+                'max' => 30000,
                 'on'  => 'update'
             ],
         ]);
