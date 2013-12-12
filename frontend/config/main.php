@@ -41,11 +41,12 @@ return array(
         'cache'        => $params['components.cache'],
         'mail'         => $params['components.mail'],
         'user'         => [
+            'class'         => 'yii\web\User',
             'identityClass' => 'common\models\User',
         ],
-        'request'      => [
-            'class' => 'common\components\Request'
-        ],
+//        'request'      => [
+//            'class' => 'common\components\Request'
+//        ],
         'urlManager'   => [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,

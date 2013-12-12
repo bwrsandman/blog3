@@ -1,8 +1,25 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal, $rootScope) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal, $rootScope, $socketResource) {
 
+    var UserSocket = $socketResource('user', {}, {
+        getData: {
+            url: 'api/v1/user',
+            isArray: true,
+            params: {
+                fullData: true
+            }
+        }
+    });
 
+    var User = $resource('/api/v1/user/', {}, {
+        getData: {
+            method: 'GET',
+            params: {
+                fullData: true
+            }
+        }
+    });
     var User = $resource('/api/v1/user/', {}, {
         getData: {
             method: 'GET',
@@ -32,7 +49,18 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     $scope.isReady = false;
     $scope.defaultPlaceholder = 'Сделано';
 
-    User.getData(function (response) {
+//    User.getData(function (response) {
+//        angular.forEach(response.goals, function (val, key) {
+//            $scope.goals[key] = new Goal(val);
+//            $scope.keys.push(key);
+//        });
+//
+//        angular.forEach(response.conclusions, function (val, key) {
+//            $scope.conclusions[key] = new Conclusion(val);
+//        });
+//    });
+
+    UserSocket.$getData(function (response) {
         angular.forEach(response.goals, function (val, key) {
             $scope.goals[key] = new Goal(val);
             $scope.keys.push(key);

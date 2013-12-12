@@ -25,6 +25,7 @@
         "michelf/php-markdown": "*",
 
         "nizsheanez/yii2-asset-converter": "1.*",
+        "nizsheanez/yii2-websocket-application": "dev-master",
         "danielstjules/stringy": "*",
         "fzaninotto/faker": "*",
 

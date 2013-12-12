@@ -30,6 +30,8 @@ class App extends AssetBundle
         'app/goal/controllers/goal.js',
         'app/goal/controllers/nav.js',
 
+        'app/goal/services/goalsIo.js',
+
         'app/goal/directives/editor.js',
 
         'app/goal/services/alert.js',
@@ -45,5 +47,6 @@ class App extends AssetBundle
         'frontend\assets\AngularUiUtils',
         'frontend\assets\TextAngular',
         'frontend\assets\FontAwesome',
+        'nizsheanez\websocket\assetBundles\WebSocket',
     );
 }

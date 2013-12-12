@@ -38,7 +38,6 @@ class SiteController extends Controller
     }
 
     public function actionError() {
-        echo 4;die;
     }
 
     public function actionLogin()
