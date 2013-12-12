@@ -26,8 +26,12 @@ return array(
                     'baseClass'                  => '\common\components\ActiveRecord',
                     'generateLabelsFromComments' => true
                 ]
-            ]
+            ],
         ],
+        'v1'  => [
+            'class' => 'frontend\modules\v1\V1',
+        ]
+
     ],
     'extensions'          => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'components'          => [
@@ -46,13 +50,13 @@ return array(
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
-                'gii'                                  => 'gii',
-                'gii/<controller:\w+>/<action:\w+>'    => 'gii/<controller>/<action>',
+                'gii'                                     => 'gii',
+                'gii/<controller:\w+>/<action:\w+>'       => 'gii/<controller>/<action>',
 
-                'api/<controller:\w+>'                 => '<controller>/index',
-                'POST api/<controller:\w+>/<id:\d+>'   => '<controller>/save',
-                'DELETE api/<controller:\w+>/<id:\d+>' => '<controller>/delete',
-                'api/<controller:\w+>/<id:\d+>'        => '<controller>/view',
+                'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
+                'POST api/v1/<controller:\w+>/<id:\d+>'   => 'v1/<controller>/save',
+                'DELETE api/v1/<controller:\w+>/<id:\d+>' => 'v1/<controller>/delete',
+                'api/v1/<controller:\w+>/<id:\d+>'        => 'v1/<controller>/view',
             ]
         ],
         'assetManager' => [

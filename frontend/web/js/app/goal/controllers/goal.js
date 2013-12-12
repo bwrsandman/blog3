@@ -3,7 +3,7 @@
 angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal, $rootScope) {
 
 
-    var User = $resource('/api/user/', {}, {
+    var User = $resource('/api/v1/user/', {}, {
         getData: {
             method: 'GET',
             params: {
@@ -11,8 +11,8 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
             }
         }
     });
-    var Goal = $resource('/api/goal/:id', {id: '@id'});
-    var Conclusion = $resource('/api/conclusion/:id', {id: '@id'});
+    var Goal = $resource('/api/v1/goal/:id', {id: '@id'});
+    var Conclusion = $resource('/api/v1/conclusion/:id', {id: '@id'});
 
     var tplBase = '/js/app/goal/';
     $scope.tpl = {

@@ -1,14 +1,22 @@
 <?php
-namespace frontend\controllers;
+namespace frontend\modules\v1\controllers;
 
 use common\models\Conclusion;
 use common\models\Goal;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
+use yii\web\Response;
 
 class UserController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return parent::beforeAction($action);
+    }
+
     public function actionIndex()
     {
         /** @var $models Goal[] */
@@ -34,7 +42,7 @@ class UserController extends Controller
             'conclusions' => $conclusions,
         ];
 
-        echo json_encode($response);
+        return $response;
     }
 
     /**

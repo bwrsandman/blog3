@@ -1,41 +1,40 @@
 <?php
-namespace frontend\controllers;
+namespace frontend\modules\v1\controllers;
 
-use common\models\Conclusion;
+use common\models\Goal;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
+use yii\web\Response;
 
-class ConclusionController extends Controller
+class GoalController extends Controller
 {
+
     public function actionIndex()
     {
-        $days = [
-            'today',
-            'yesterday'
-        ];
-        foreach ($days as $day) {
-            $result[$day] = [
-                'conclusion' => Conclusion::find()->owner(Yii::$app->user->getId())->day($day)->one()->toArray(),
-            ];
+        /** @var $models Goal[] */
+        $models = Goal::find()->owner(Yii::$app->user->getId())->all();
+        $result = [];
+        foreach ($models as $model) {
+            $result[] = $model->toArray();
         }
 
-        echo json_encode($result);
+        return $result;
     }
 
     public function actionSave()
     {
         $params = Yii::$app->request->getRestParams();
         if (isset($params['id'])) {
-            $model = Conclusion::find($params['id']);
+            $model = Goal::find($params['id']);
             $model->scenario = 'update';
         } else {
             $model = new Conclusion();
             $model->scenario = 'create';
         }
         $model->attributes = $params;
-        if ($model->update(false)) {
-            echo json_encode(Conclusion::find($model->id)->toArray());
+        if ($model->save()) {
+            return Goal::find($model->id)->toArray();
         } else {
             $model->throwValidationErrors();
         }
@@ -55,17 +54,17 @@ class ConclusionController extends Controller
     public function actionView()
     {
         $params = Yii::$app->request->get();
-        echo json_encode($this->findModel($params)->toArray());
+        return $this->findModel($params)->toArray();
     }
 
     /**
      * @param $params
-     * @return Conclusion
+     * @return Goal
      * @throws \yii\base\Exception
      */
     protected function findModel($params)
     {
-        if (($model = Conclusion::find($params['id'])) !== null) {
+        if (($model = Goal::find($params['id'])) !== null) {
             return $model;
         } else {
             throw new Exception('The requested goal does not exist.');

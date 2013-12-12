@@ -1,40 +1,49 @@
 <?php
-namespace frontend\controllers;
+namespace frontend\modules\v1\controllers;
 
-use common\models\Goal;
-use common\models\User;
+use common\models\Conclusion;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
-use yii\helpers\Html;
+use yii\web\Response;
 
-class GoalController extends Controller
+class ConclusionController extends Controller
 {
+    public function beforeAction($action)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSONP;
+        return parent::beforeAction($action);
+    }
+
     public function actionIndex()
     {
-        /** @var $models Goal[] */
-        $models = Goal::find()->owner(Yii::$app->user->getId())->all();
+        $days = [
+            'today',
+            'yesterday'
+        ];
         $result = [];
-        foreach ($models as $model) {
-            $result[] = $model->toArray();
+        foreach ($days as $day) {
+            $result[$day] = [
+                'conclusion' => Conclusion::find()->owner(Yii::$app->user->getId())->day($day)->one()->toArray(),
+            ];
         }
 
-        echo json_encode($result);
+        return $result;
     }
 
     public function actionSave()
     {
         $params = Yii::$app->request->getRestParams();
         if (isset($params['id'])) {
-            $model = Goal::find($params['id']);
+            $model = Conclusion::find($params['id']);
             $model->scenario = 'update';
         } else {
             $model = new Conclusion();
             $model->scenario = 'create';
         }
         $model->attributes = $params;
-        if ($model->save()) {
-            echo json_encode(Goal::find($model->id)->toArray());
+        if ($model->update(false)) {
+            return Conclusion::find($model->id)->toArray();
         } else {
             $model->throwValidationErrors();
         }
@@ -54,17 +63,17 @@ class GoalController extends Controller
     public function actionView()
     {
         $params = Yii::$app->request->get();
-        echo json_encode($this->findModel($params)->toArray());
+        return $this->findModel($params)->toArray();
     }
 
     /**
      * @param $params
-     * @return Goal
+     * @return Conclusion
      * @throws \yii\base\Exception
      */
     protected function findModel($params)
     {
-        if (($model = Goal::find($params['id'])) !== null) {
+        if (($model = Conclusion::find($params['id'])) !== null) {
             return $model;
         } else {
             throw new Exception('The requested goal does not exist.');
