@@ -1,6 +1,7 @@
 <?php
 namespace frontend\modules\v1\controllers;
 
+use common\models\Conclusion;
 use common\models\Goal;
 use yii\base\Controller;
 use yii\base\Exception;
@@ -25,11 +26,12 @@ class GoalController extends Controller
     public function actionSave()
     {
         $params = Yii::$app->request->getRestParams();
+
         if (isset($params['id'])) {
             $model = Goal::find($params['id']);
             $model->scenario = 'update';
         } else {
-            $model = new Conclusion();
+            $model = new Goal();
             $model->scenario = 'create';
         }
         $model->attributes = $params;

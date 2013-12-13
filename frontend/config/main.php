@@ -44,9 +44,6 @@ return array(
             'class'         => 'yii\web\User',
             'identityClass' => 'common\models\User',
         ],
-//        'request'      => [
-//            'class' => 'common\components\Request'
-//        ],
         'urlManager'   => [
             'enablePrettyUrl' => true,
             'showScriptName'  => false,

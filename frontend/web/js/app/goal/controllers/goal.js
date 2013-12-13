@@ -49,18 +49,8 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     $scope.isReady = false;
     $scope.defaultPlaceholder = 'Сделано';
 
-//    User.getData(function (response) {
-//        angular.forEach(response.goals, function (val, key) {
-//            $scope.goals[key] = new Goal(val);
-//            $scope.keys.push(key);
-//        });
-//
-//        angular.forEach(response.conclusions, function (val, key) {
-//            $scope.conclusions[key] = new Conclusion(val);
-//        });
-//    });
 
-    UserSocket.$getData(function (response) {
+    User.getData(function (response) {
         angular.forEach(response.goals, function (val, key) {
             $scope.goals[key] = new Goal(val);
             $scope.keys.push(key);
@@ -70,6 +60,19 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
             $scope.conclusions[key] = new Conclusion(val);
         });
     });
+//
+//    UserSocket.$getData(function (response) {
+//
+//
+//        angular.forEach(response.goals, function (val, key) {
+//            $scope.goals[key] = new Goal(val);
+//            $scope.keys.push(key);
+//        });
+//
+//        angular.forEach(response.conclusions, function (val, key) {
+//            $scope.conclusions[key] = new Conclusion(val);
+//        });
+//    });
 
     $scope.save = function (model) {
         if (model instanceof Goal) {

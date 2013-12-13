@@ -3,6 +3,7 @@ namespace frontend\modules\v1\controllers;
 
 use common\models\Conclusion;
 use common\models\Goal;
+use common\models\User;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
@@ -31,7 +32,8 @@ class UserController extends Controller
             'yesterday'
         ];
         /** @var $models Goal[] */
-        $user = Yii::$app->user->getIdentity();
+//        echo Yii::$app->user->getId();die;
+        $user = User::find(1);
         $conclusions = [];
         foreach ($days as $day) {
             $conclusions[$day] = $user->getConclusion($day)->toArray();

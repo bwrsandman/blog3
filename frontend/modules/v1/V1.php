@@ -9,7 +9,7 @@ class V1 extends Module
 {
     public function beforeAction($action)
     {
-        Yii::$app->response->format = Response::FORMAT_JSONP;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         return parent::beforeAction($action);
     }
 
