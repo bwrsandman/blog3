@@ -16,7 +16,7 @@ $I->amOnPage('/?id=1');
 $I->expect("reasons will visible after click on report");
 for ($i = 0; $i < 10; $i++) {
     $I->clickReport($i);
-    $I->see($I->getMessage('reason', $i), TodayPage::$reasonEditor);
+    $I->see($I->message('reason', $i), TodayPage::$reasonEditor);
 }
 
 $I->flushMessages();
@@ -33,6 +33,6 @@ $I->amOnPage('/');
 $I->expect("reasons will visible after focus on report");
 for ($i = 0; $i < 10; $i++) {
     $I->focusReport($i);
-    $I->see($I->getMessage('reason', $i), TodayPage::$reasonEditor);
+    $I->see($I->message('reason', $i), TodayPage::$reasonEditor);
 }
 

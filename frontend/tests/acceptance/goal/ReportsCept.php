@@ -15,7 +15,7 @@ $I->amOnPage('/');
 
 $I->expect("reports will save after reload page");
 for ($i = 0; $i < 10; $i++) {
-    $I->see($I->getMessage('report', $i), TodayPage::reportDescription($i));
+    $I->see($I->message('report', $i), TodayPage::reportDescription($i));
 }
 
 $I->expect("on focus will see editing panel for this reason and don't see for another");
@@ -28,3 +28,4 @@ for ($i = 0; $i < 10; $i++) {
         }
     }
 }
+

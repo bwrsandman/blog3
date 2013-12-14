@@ -21,14 +21,24 @@ class GoalsWriteSteps extends \WebGuy
     {
         $I = $this;
 
-        $I->executeJs('$("' . $selector . '").html("' . $value . '").keyup()');
+        $I->executeJs('
+        var editor = $("' . $selector . '");
+        if (editor.is("textarea")) {
+            editor.val("' . $value . '").change()
+        } else {
+            editor.html("' . $value . '").keyup()
+        }');
     }
 
     public function click($link, $context = null)
     {
         $I = $this;
 
-        $I->executeJs('$("' . $link . '").click()');
+        if ($context) {
+            $I->executeJs('$("' . $context . '").find(":contains(\'' . $link . '\')").click()');
+        } else {
+            $I->executeJs('$("' . $link . '").click()');
+        }
 //        parent::click($link, $context);
     }
 
@@ -57,7 +67,7 @@ class GoalsWriteSteps extends \WebGuy
         $this->conclusionMsg = null;
     }
 
-    public function getMessage($namespace, $i)
+    public function message($namespace, $i)
     {
         if (!isset($this->messages[$namespace][$i])) {
             $this->messages[$namespace][$i] = $i . ' Hello ' . rand(0, 99999999);
@@ -72,7 +82,7 @@ class GoalsWriteSteps extends \WebGuy
         $I = $this;
 
         $field = TodayPage::reportDescription($i);
-        $I->write($field, $this->getMessage('report', $i));
+        $I->write($field, $this->message('report', $i));
     }
 
     public function focusReport($i)
@@ -94,21 +104,21 @@ class GoalsWriteSteps extends \WebGuy
     {
         $I = $this;
 
-        $I->write(TodayPage::$reasonEditor, $this->getMessage('reason', $i));
+        $I->write(TodayPage::$reasonEditor, $this->message('reason', $i));
     }
 
     function writeDecomposition($i)
     {
         $I = $this;
 
-        $I->write(TodayPage::$decompositionEditor, $this->getMessage('decomposition', $i));
+        $I->write(TodayPage::$decompositionEditor, $this->message('decomposition', $i));
     }
 
     function writeComments($i)
     {
         $I = $this;
 
-        $I->write(TodayPage::$commentsEditor, $this->getMessage('comments', $i));
+        $I->write(TodayPage::$commentsEditor, $this->message('comments', $i));
     }
 
     function writeConclusion()

@@ -33,7 +33,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     var tplBase = '/js/app/goal/';
     $scope.tpl = {
-        modal: tplBase + 'views/goal_modal.html',
+        modal: tplBase + 'views/modal/edit.html',
         grid: tplBase + 'views/goal_grid.html',
         goals: tplBase + 'views/goals.html',
         sidebar: tplBase + 'views/sidebar.html'
@@ -51,6 +51,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
 
     User.getData(function (response) {
+
         angular.forEach(response.goals, function (val, key) {
             $scope.goals[key] = new Goal(val);
             $scope.keys.push(key);
@@ -60,7 +61,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
             $scope.conclusions[key] = new Conclusion(val);
         });
     });
-//
+
 //    UserSocket.$getData(function (response) {
 //
 //
