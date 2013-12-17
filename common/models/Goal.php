@@ -87,6 +87,7 @@ class Goal extends generated\Goal
             $report = new Report();
             $report->scenario = 'create';
             $report->fk_goal = $this->id;
+            $report->description = '<div>&nbsp;</div>';
             $report->report_date = $this->date($day);
             if (!$report->save()) {
                 $report->throwValidationErrors();

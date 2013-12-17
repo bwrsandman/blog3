@@ -32,7 +32,7 @@ class Report extends generated\Report
 
     public function strip($attr)
     {
-        $this->$attr = strip_tags($this->$attr, '<input><ul><ol><li><a><img><b><em><br>');
+        $this->$attr = strip_tags($this->$attr, '<input><div><ul><ol><li><a><img><b><em><br>');
         return true;
     }
 

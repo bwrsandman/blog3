@@ -31,7 +31,7 @@ class TodayPage
 
     public static function goalTitle($n = 1)
     {
-        return static::goal($n) . " .goal_title";
+        return static::goal($n) . " .goal_title .panel-title";
     }
 
     public static function reportDescription($n = 1)

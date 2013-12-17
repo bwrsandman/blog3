@@ -42,7 +42,7 @@ class ConclusionController extends Controller
             $model->scenario = 'create';
         }
         $model->attributes = $params;
-        if ($model->update(false)) {
+        if ($model->save()) {
             return Conclusion::find($model->id)->toArray();
         } else {
             $model->throwValidationErrors();

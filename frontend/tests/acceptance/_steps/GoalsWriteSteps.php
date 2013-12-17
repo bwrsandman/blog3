@@ -24,9 +24,9 @@ class GoalsWriteSteps extends \WebGuy
         $I->executeJs('
         var editor = $("' . $selector . '");
         if (editor.is("textarea")) {
-            editor.val("' . $value . '").change()
+            editor.focus().val("' . $value . '").change()
         } else {
-            editor.html("' . $value . '").keyup()
+            editor.focus().html("' . ('<div>' . $value . '</div>') . '").keyup()
         }');
     }
 

@@ -16,6 +16,10 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
         link: function ($scope, element, attrs) {
             var editor = element.children('div');
 
+            if (!$scope.ngModel) {
+                $scope.ngModel = '<div>&nbsp;</div>';
+            }
+
             //css
             editor
                 .addClass('eg-editor');

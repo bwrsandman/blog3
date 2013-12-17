@@ -16,7 +16,6 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "dev-master",
-        "yiisoft/yii2-swiftmailer": "dev-master",
         "yiisoft/yii2-bootstrap": "dev-master",
         "yiisoft/yii2-debug": "dev-master",
         "yiisoft/yii2-gii": "dev-master",
@@ -25,7 +24,7 @@
         "michelf/php-markdown": "*",
 
         "nizsheanez/yii2-asset-converter": "1.*",
-        "nizsheanez/yii2-websocket-application": "dev-master",
+
         "danielstjules/stringy": "*",
         "fzaninotto/faker": "*",
 
