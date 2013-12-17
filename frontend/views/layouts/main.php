@@ -74,7 +74,7 @@ frontend\assets\App::register($this);
     </div>
 </footer>
 
-<div class="first-load"></div>
+<!--<div class="first-load"></div>-->
 <script>
     storage =
     <?=json_encode($this->context->clientStorage) ?>

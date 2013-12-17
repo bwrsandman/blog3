@@ -20,7 +20,7 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             editor
                 .addClass('eg-editor');
 
-            element.closest('eg-panel').find('header .editor-controls').append(element.find('.btn-toolbar'));
+            element.closest('eg-panel').find('header .editor-controls').append(element.find('.btn-toolbar').addClass('eg-editor-toolbar'));
 
             $scope.onChange = $debounce($scope.ngChange, 1000);
         }

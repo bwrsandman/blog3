@@ -150,3 +150,4 @@ var showScreen = function () {
     });
 };
 setTimeout(showScreen, 500);
+

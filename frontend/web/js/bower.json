@@ -12,16 +12,13 @@
         "angular-ui": "*",
         "angular-ui-router": "*",
         "angular-ui-utils": "latest",
-        "angular-bootstrap-affix": "latest",
-        "angular-xeditable ": "*",
         "angular-mocks": "*",
         "angular-scenario": "*",
         "components-font-awesome": "*",
         "angular-route-segment": "*",
         "ngMidwayTester": "*",
         "angular-elastic": "*",
-        "dropstore-ng": "1.*",
-        "textAngular": "master",
+        "textAngular": "https://github.com/nizsheanez/textAngular.git#directives_support",
         "lodash": "1.*"
     },
     "resolutions": {

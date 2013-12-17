@@ -19,18 +19,15 @@ class App extends AssetBundle
 
 	public $js = array(
         'debug.js',
+//        'lib/autobahn.js',
         'components.js',
-
-//        'components/angular-bootstrap/ui-bootstrap.js',
-//        'components/angular-bootstrap/ui-bootstrap-tpls.js',
-//        'js/modules/angular-translate.min.js',
 
         'app/app.js',
 
         'app/goal/controllers/goal.js',
         'app/goal/controllers/nav.js',
 
-        'app/goal/services/goalsIo.js',
+//        'app/goal/services/goalsIo.js',
 
         'app/goal/directives/editor.js',
 

@@ -1,25 +1,17 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal, $rootScope, $socketResource) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal, $rootScope) {
 
-    var UserSocket = $socketResource('user', {}, {
-        getData: {
-            url: 'api/v1/user',
-            isArray: true,
-            params: {
-                fullData: true
-            }
-        }
-    });
+//    var UserSocket = $socketResource('user', {}, {
+//        getData: {
+//            url: 'api/v1/user',
+//            isArray: true,
+//            params: {
+//                fullData: true
+//            }
+//        }
+//    });
 
-    var User = $resource('/api/v1/user/', {}, {
-        getData: {
-            method: 'GET',
-            params: {
-                fullData: true
-            }
-        }
-    });
     var User = $resource('/api/v1/user/', {}, {
         getData: {
             method: 'GET',
@@ -42,13 +34,11 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     $scope.keys = [];
     $scope.goals = [];
     $scope.focusGoal = false;
-    $scope.setFocus = function(goal) {
+    $scope.setFocus = function (goal) {
         $scope.focusGoal = $scope.goals.indexOf(goal);
     };
     $scope.conclusions = [];
-    $scope.isReady = false;
     $scope.defaultPlaceholder = 'Сделано';
-
 
     User.getData(function (response) {
 
@@ -63,7 +53,6 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     });
 
 //    UserSocket.$getData(function (response) {
-//
 //
 //        angular.forEach(response.goals, function (val, key) {
 //            $scope.goals[key] = new Goal(val);
@@ -89,23 +78,23 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     }
 
     $scope.location = $location;
-    $scope.openModal = function(goal) {
+    $scope.openModal = function (goal) {
         $modal.open({
             templateUrl: $scope.tpl.modal,
             controller: 'GoalEditModalCtrl',
             resolve: {
-                'goal': function() {
+                'goal': function () {
                     return {
                         title: goal.title
                     }
                 }
             }
-        }).result.then(function(newGoal) {
-            goal.title = newGoal.title;
-            goal.$save();
-        }, function() {
-           //just dismiss
-        });
+        }).result.then(function (newGoal) {
+                goal.title = newGoal.title;
+                goal.$save();
+            }, function () {
+                //just dismiss
+            });
     };
 
     showScreen();

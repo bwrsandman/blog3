@@ -39,6 +39,7 @@ class GoalController extends Controller
             return Goal::find($model->id)->toArray();
         } else {
             $model->throwValidationErrors();
+//            return $model->getErrors();
         }
     }
 

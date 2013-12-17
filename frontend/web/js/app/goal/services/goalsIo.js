@@ -1,5 +1,4 @@
 'use strict';
-
 // services in angular.js is lazy, but socket must be opened ASAP
 // i know about .run() on service, but it's critical time
 (function () {
@@ -14,29 +13,14 @@
         errorHandler: function (status, error) {
         }
     });
-
-    angular.module('eg.goal').service('goalsIo', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
-        return AngularSocketDecorator(socket, $rootScope, alertService);
-    }])
-    ;
-})();
-
-
-// services in angular.js is lazy, but socket must be opened ASAP
-// i know about .run() on service, but it's critical time
-(function () {
-
-    var socket = new JsonWebSocket({
+/*
+    var socket = new WebSocketConnection2({
         url: {
             ws: 'ws://' + document.domain + ':8047/'
         },
-        root: 'js/websocket/',
-        pushHandler: function () {
-        },
-        errorHandler: function (status, error) {
-        }
+        root: 'js/websocket/'
     });
-
+*/
     angular.module('eg.goal').service('egSocket', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
         return AngularSocketDecorator(socket, $rootScope, alertService);
     }]);
