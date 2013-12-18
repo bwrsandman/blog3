@@ -70,7 +70,19 @@ class GoalsWriteSteps extends \WebGuy
     public function message($namespace, $i)
     {
         if (!isset($this->messages[$namespace][$i])) {
-            $this->messages[$namespace][$i] = $i . ' Hello ' . rand(0, 99999999);
+            $faker = \Faker\Factory::create('ru_RU');
+            switch($namespace) {
+                case 'goal_title':
+                    $msg = $faker->sentence(rand(6,30));
+                    break;
+                case 'report':
+                    $msg = $faker->sentence(rand(1,90));
+                    break;
+                default:
+                    $msg = $i . ' Hello ' . rand(0, 99999999);
+                    break;
+            }
+            $this->messages[$namespace][$i] = $msg;
         }
 
         return $this->messages[$namespace][$i];

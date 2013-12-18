@@ -44,6 +44,6 @@ class App extends AssetBundle
         'frontend\assets\AngularUiUtils',
         'frontend\assets\TextAngular',
         'frontend\assets\FontAwesome',
-        'nizsheanez\websocket\assetBundles\WebSocket',
+//        'nizsheanez\websocket\assetBundles\WebSocket',
     );
 }
