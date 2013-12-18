@@ -17,7 +17,6 @@ before_install:
  - pear channel-discover pear.phpunit.de
  - pear channel-discover components.ez.no
  - pear channel-discover pear.symfony.com
-# - pear install --alldeps phpunit/PHPUnit
  - printf "\n" | pecl install event eio
  - printf "\n" | pecl install channel://pecl.php.net/proctitle-0.1.2
  - composer self-update && composer --version && composer install
@@ -25,8 +24,9 @@ before_install:
 install:
   - mysql -e 'CREATE DATABASE blog3;';
   - npm install bower express socket.io jayson karma grunt-cli less phantomejs -g
-  - cd frontend/web && npm install && cd ../../
-  - cd frontend/web && bower install && cd ../../
+  - cd frontend/web/js && npm install && cd ../../
+  - cd frontend/web/js && bower install && cd ../../
+  -  phantomjs --webdriver=4444
 
 before_script:
 # - sudo apt-get update -y && sudo apt-get upgrade -y
@@ -34,8 +34,7 @@ before_script:
   - php init travis
 
 script:
-  - phpunit --verbose
-  - phpunit --coverage-clover frontend/tests/unit/runtime/coveralls/clover.xml --verbose
+  - php vendor/codeception/codeception/codecept run acceptance -d
 
 after_script:
   - php vendor/satooshi/php-coveralls/composer/bin/coveralls -v
