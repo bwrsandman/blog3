@@ -34,7 +34,7 @@ before_script:
   - php init travis
 
 script:
-  - php vendor/codeception/codeception/codecept run acceptance -d
+  - php vendor/codeception/codeception/codecept run acceptance
 
 after_script:
   - php vendor/satooshi/php-coveralls/composer/bin/coveralls -v

@@ -18,7 +18,7 @@ class TodayPage
      * public static $usernameField = '#username';
      * public static $formSubmitButton = "#mainForm input[type=submit]";
      */
-    public static function goal($n = 1)
+    public static function goal($n)
     {
 //        $n++;
 //        $row = (int)(($n + 2) / 2);
@@ -29,22 +29,22 @@ class TodayPage
         return "#goals-grid .goal-detail:nth-child($n)";
     }
 
-    public static function goalTitle($n = 1)
+    public static function goalTitle($n)
     {
         return static::goal($n) . " .goal_title .panel-title";
     }
 
-    public static function reportDescription($n = 1)
+    public static function reportDescription($n)
     {
         return static::goal($n) . " .eg-editor .ta-text";
     }
 
-    public static function goalEditingPanel($n = 1)
+    public static function goalEditingPanel($n)
     {
         return static::goal($n) . " .editor-controls";
     }
 
-    public static function goalEditButton($n = 1)
+    public static function goalEditButton($n)
     {
         return static::goal($n) . " .goal-edit-button";
     }
