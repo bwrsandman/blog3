@@ -48,8 +48,8 @@ return array(
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
-                'gii'                                     => 'gii',
-                'gii/<controller:\w+>/<action:\w+>'       => 'gii/<controller>/<action>',
+                'gii'                                               => 'gii',
+                'gii/<controller:\w+>/<action:\w+>'                 => 'gii/<controller>/<action>',
 
                 'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
                 'POST api/v1/<controller:\w+>/<id:\d+>'   => 'v1/<controller>/save',
