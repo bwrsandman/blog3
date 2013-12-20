@@ -1,26 +1,29 @@
 <div id="goals-grid">
-    <eg-panel ng-repeat="(key, goal) in goals" class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
-        <header class="goal_title">
-            <p class="panel-title">{{goal.title}}</p>
+    <div ng-repeat="category in categories">
+        <p>{{category.name}}</p>
+        <eg-panel ng-repeat="goal in goals" ng-if="goal.fk_goal_category == category.id" class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
+            <header class="goal_title">
+                <p class="panel-title">{{goal.title}}</p>
 
-            <div class="eg-control-panel pull-right" ng-class="{active: focusGoal === key}">
-                <a class="btn goal-edit-button" title="Отредоктировать цель" ng-click="openModal(goal)" href="#">
-                    <i class="fa fa-pencil-square-o"></i>
-                </a>
-            </div>
-            <div class="eg-control-panel editor-controls pull-left" ng-class="{active: focusGoal === key}"></div>
-            <div class="clearfix"></div>
-        </header>
-        <eg-editor
-                class="panel-body"
-                placeholder="defaultPlaceholder"
-                model="goal"
-                ng-model="goal[day].report.description"
-                ng-change="save(goal)"
-                ng-focus="setFocus(goal)"
-                >
-        </eg-editor>
-    </eg-panel>
+                <div class="eg-control-panel pull-right" ng-class="{active: focusGoal === goal}">
+                    <a class="btn goal-edit-button" title="Отредоктировать цель" ng-click="openModal(goal)" href="#">
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                </div>
+                <div class="eg-control-panel editor-controls pull-left" ng-class="{active: focusGoal === goal}"></div>
+                <div class="clearfix"></div>
+            </header>
+            <eg-editor
+                    class="panel-body"
+                    placeholder="defaultPlaceholder"
+                    model="goal"
+                    ng-model="goal[day].report.description"
+                    ng-change="save(goal)"
+                    ng-focus="setFocus(goal)"
+                    >
+            </eg-editor>
+        </eg-panel>
+   </div>
 </div>
 <div class="conclusion">
     <eg-panel ng-transclude>

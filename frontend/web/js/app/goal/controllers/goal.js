@@ -21,6 +21,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
         }
     });
     var Goal = $resource('/api/v1/goal/:id', {id: '@id'});
+    var Category = $resource('/api/v1/goalCategory/:id', {id: '@id'});
     var Conclusion = $resource('/api/v1/conclusion/:id', {id: '@id'});
 
     var tplBase = '/js/app/goal/';
@@ -33,24 +34,42 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     $scope.keys = [];
     $scope.goals = [];
+    $scope.categories = [];
+    $scope.goalToCategory = [];
     $scope.focusGoal = false;
     $scope.setFocus = function (goal) {
-        $scope.focusGoal = $scope.goals.indexOf(goal);
+        $scope.focusGoal = goal;
     };
     $scope.conclusions = [];
     $scope.defaultPlaceholder = 'Сделано';
 
     User.getData(function (response) {
 
-        angular.forEach(response.goals, function (val, key) {
-            $scope.goals[key] = new Goal(val);
-            $scope.keys.push(key);
+        angular.forEach(response.categories, function (val) {
+            var category = new Category(val);
+            category.goals = [];
+            $scope.categories.push(category);
+        });
+
+        angular.forEach(response.goals, function (val) {
+            var goal = new Goal(val);
+            $scope.goals.push(goal);
+            $scope.keys.push(goal.id);
         });
 
         angular.forEach(response.conclusions, function (val, key) {
             $scope.conclusions[key] = new Conclusion(val);
         });
+
     });
+
+    $scope.goalsByIds = function (ids) {
+        var result = [];
+        angular.forEach(ids, function (id) {
+            result.push($scope.goals[id]);
+        });
+        return result;
+    }
 
 //    UserSocket.$getData(function (response) {
 //
@@ -85,12 +104,17 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
             resolve: {
                 'goal': function () {
                     return {
-                        title: goal.title
+                        title: goal.title,
+                        fk_goal_category: goal.fk_goal_category
                     }
+                },
+                'categories': function () {
+                    return $scope.categories;
                 }
             }
         }).result.then(function (newGoal) {
                 goal.title = newGoal.title;
+                goal.fk_goal_category = newGoal.fk_goal_category;
                 goal.$save();
             }, function () {
                 //just dismiss
@@ -100,9 +124,13 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     showScreen();
 });
 
-angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $modalInstance, goal) {
+angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $modalInstance, goal, categories) {
 
     $scope.goal = goal;
+    $scope.categories = categories;
+    $scope.select2Options = {
+//        allowClear:true
+    };
 
     $scope.ok = function () {
         $modalInstance.close(goal);

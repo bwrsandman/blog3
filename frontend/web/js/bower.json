@@ -17,6 +17,7 @@
         "components-font-awesome": "*",
         "angular-route-segment": "*",
         "ngMidwayTester": "*",
+        "angular-ui-select2": "*",
         "angular-elastic": "*",
         "textAngular": "https://github.com/nizsheanez/textAngular.git#directives_support",
         "lodash": "1.*"

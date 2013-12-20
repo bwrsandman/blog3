@@ -3,21 +3,16 @@ namespace frontend\modules\v1\controllers;
 
 use common\models\Conclusion;
 use common\models\Goal;
+use common\models\GoalCategory;
 use common\models\User;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Response;
 
 class UserController extends Controller
 {
-
-    public function beforeAction($action)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return parent::beforeAction($action);
-    }
-
     public function actionIndex()
     {
         /** @var $models Goal[] */
@@ -25,12 +20,14 @@ class UserController extends Controller
         $goals = [];
         foreach ($models as $model) {
             $goals[] = $model->toArray();
+            $goalToCategory[$model->fk_goal_category][] = $model->id;
         }
 
         $days = [
             'today',
             'yesterday'
         ];
+
         /** @var $models Goal[] */
 //        echo Yii::$app->user->getId();die;
         $user = User::find(1);
@@ -40,7 +37,9 @@ class UserController extends Controller
         }
 
         $response = [
+            'categories' => GoalCategory::find()->asArray()->all(),
             'goals' => $goals,
+            'goalToCategory' => $goalToCategory,
             'conclusions' => $conclusions,
         ];
 

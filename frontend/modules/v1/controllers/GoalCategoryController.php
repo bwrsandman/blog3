@@ -1,25 +1,20 @@
 <?php
 namespace frontend\modules\v1\controllers;
 
-use common\models\Conclusion;
+use common\models\GoalCategory;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
-use yii\web\Response;
 
-class ConclusionController extends Controller
+class GoalCategoryController extends Controller
 {
     public function actionIndex()
     {
-        $days = [
-            'today',
-            'yesterday'
-        ];
+        /** @var $models GoalCategory[] */
+        $models = GoalCategory::find()->owner(Yii::$app->user->getId())->all();
         $result = [];
-        foreach ($days as $day) {
-            $result[$day] = [
-                'conclusion' => Conclusion::find()->owner(Yii::$app->user->getId())->day($day)->one()->toArray(),
-            ];
+        foreach ($models as $model) {
+            $result[] = $model->toArray();
         }
 
         return $result;
@@ -28,18 +23,21 @@ class ConclusionController extends Controller
     public function actionSave()
     {
         $params = Yii::$app->request->getRestParams();
+
         if (isset($params['id'])) {
-            $model = Conclusion::find($params['id']);
+            $model = GoalCategory::find($params['id']);
             $model->scenario = 'update';
         } else {
-            $model = new Conclusion();
+            $model = new GoalCategory();
             $model->scenario = 'create';
         }
+
         $model->attributes = $params;
         if ($model->save()) {
-            return Conclusion::find($model->id)->toArray();
+            return GoalCategory::find($model->id)->toArray();
         } else {
             $model->throwValidationErrors();
+//            return $model->getErrors();
         }
     }
 
@@ -62,15 +60,15 @@ class ConclusionController extends Controller
 
     /**
      * @param $params
-     * @return Conclusion
+     * @return GoalCategory
      * @throws \yii\base\Exception
      */
     protected function findModel($params)
     {
-        if (($model = Conclusion::find($params['id'])) !== null) {
+        if (($model = GoalCategory::find($params['id'])) !== null) {
             return $model;
         } else {
-            throw new Exception('The requested goal does not exist.');
+            throw new Exception('The requested GoalCategory does not exist.');
         }
     }
 }

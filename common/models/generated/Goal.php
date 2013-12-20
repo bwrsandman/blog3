@@ -13,7 +13,11 @@ namespace common\models\generated;
  * @property string $reason
  * @property string $create_time
  * @property string $update_time
+ * @property string $decomposition
+ * @property string $comments
+ * @property integer $fk_goal_category
  *
+ * @property GoalCategory $fkGoalCategory
  * @property User $fkUser
  * @property Report[] $reports
  * @property Step[] $steps
@@ -34,9 +38,9 @@ class Goal extends \common\components\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['title', 'completed', 'fk_user'], 'required'],
-			[['status', 'completed', 'fk_user'], 'integer'],
-			[['reason'], 'string'],
+			[['title', 'completed', 'fk_user', 'fk_goal_category'], 'required'],
+			[['status', 'completed', 'fk_user', 'fk_goal_category'], 'integer'],
+			[['reason', 'decomposition', 'comments'], 'string'],
 			[['create_time', 'update_time'], 'safe'],
 			[['title'], 'string', 'max' => 255]
 		];
@@ -56,7 +60,18 @@ class Goal extends \common\components\ActiveRecord
 			'reason' => 'Reason',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
+			'decomposition' => 'Decomposition',
+			'comments' => 'Comments',
+			'fk_goal_category' => 'Fk Goal Category',
 		];
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getFkGoalCategory()
+	{
+		return $this->hasOne(GoalCategory::className(), ['id' => 'fk_goal_category']);
 	}
 
 	/**
