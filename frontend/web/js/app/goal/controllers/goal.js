@@ -46,9 +46,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     User.getData(function (response) {
 
         angular.forEach(response.categories, function (val) {
-            var category = new Category(val);
-            category.goals = [];
-            $scope.categories.push(category);
+            $scope.categories.push(new Category(val));
         });
 
         angular.forEach(response.goals, function (val) {
@@ -62,14 +60,6 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
         });
 
     });
-
-    $scope.goalsByIds = function (ids) {
-        var result = [];
-        angular.forEach(ids, function (id) {
-            result.push($scope.goals[id]);
-        });
-        return result;
-    }
 
 //    UserSocket.$getData(function (response) {
 //

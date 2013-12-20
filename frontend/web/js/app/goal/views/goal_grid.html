@@ -1,7 +1,12 @@
 <div id="goals-grid">
     <div ng-repeat="category in categories">
         <p>{{category.name}}</p>
-        <eg-panel ng-repeat="goal in goals" ng-if="goal.fk_goal_category == category.id" class="goal-detail" ng-click="setFocus(goal)" ng-transclude>
+        <eg-panel
+                ng-repeat="goal in goals | filter:{ fk_goal_category: category.id }"
+                class="goal-detail"
+                ng-click="setFocus(goal)"
+                ng-transclude
+                >
             <header class="goal_title">
                 <p class="panel-title">{{goal.title}}</p>
 
