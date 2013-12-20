@@ -5,34 +5,34 @@ $I = new \WebGuy\GoalsWriteSteps($scenario);
 
 $I->wantTo('ensure that frontpage works');
 $I->amOnPage('/?id=1');
-for ($i = 0; $i < 10; $i++) {
-    $I->clickReport($i);
-    $I->writeReason($i);
+foreach($I->getGoals() as $id) {
+    $I->clickReport($id);
+    $I->writeReason($id);
 }
 
 $I->waitForAutoSave();
 $I->amOnPage('/?id=1');
 
 $I->expect("reasons will visible after click on report");
-for ($i = 0; $i < 10; $i++) {
-    $I->clickReport($i);
-    $I->see($I->message('reason', $i), TodayPage::$reasonEditor);
+foreach($I->getGoals() as $id) {
+    $I->clickReport($id);
+    $I->see($I->message('reason', $id), TodayPage::$reasonEditor);
 }
 
 $I->flushMessages();
 $I->amOnPage('/?id=1');
 
-for ($i = 0; $i < 10; $i++) {
-    $I->focusReport($i);
-    $I->writeReason($i);
+foreach($I->getGoals() as $id) {
+    $I->focusReport($id);
+    $I->writeReason($id);
 }
 
 $I->waitForAutoSave();
 $I->amOnPage('/');
 
 $I->expect("reasons will visible after focus on report");
-for ($i = 0; $i < 10; $i++) {
-    $I->focusReport($i);
-    $I->see($I->message('reason', $i), TodayPage::$reasonEditor);
+foreach($I->getGoals() as $id) {
+    $I->focusReport($id);
+    $I->see($I->message('reason', $id), TodayPage::$reasonEditor);
 }
 
