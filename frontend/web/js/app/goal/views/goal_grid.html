@@ -1,8 +1,12 @@
 <div id="goals-grid">
     <div ng-repeat="category in categories" class="category-panel sel-cat-{{category.id}}">
-        <p>{{category.name}}</p>
+        <p>
+            {{category.name}}
+            <a href="#" ng-click="addGoal(category)" class="goal-add-button"><i class="fa fa-plus-square-o"></i></a>
+            <a href="#" ng-click="showBackLog(category)" class="category-show-backlog"><i class="fa fa-tasks"></i></a>
+        </p>
         <eg-panel
-                ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id }"
+                ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id }" ng-if="key < 3"
                 class="goal-detail sel-goal-{{goal.id}}"
                 ng-click="setFocus(goal)"
                 ng-transclude

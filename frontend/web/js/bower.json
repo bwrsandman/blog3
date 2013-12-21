@@ -4,6 +4,7 @@
     "directory": "components",
     "dependencies": {
         "angular": "1.*",
+        "jquery-ui": "*",
         "angular-route": "*",
         "angular-resource": "*",
         "angular-bootstrap": "*",

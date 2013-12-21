@@ -26,7 +26,10 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     var tplBase = '/js/app/goal/';
     $scope.tpl = {
-        modal: tplBase + 'views/modal/edit.html',
+        modal: {
+            edit: tplBase + 'views/modal/edit.html',
+            backLog: tplBase + 'views/modal/back_log.html'
+        },
         grid: tplBase + 'views/goal_grid.html',
         goals: tplBase + 'views/goals.html',
         sidebar: tplBase + 'views/sidebar.html'
@@ -89,17 +92,21 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     $scope.location = $location;
     $scope.openModal = function (goal) {
         $modal.open({
-            templateUrl: $scope.tpl.modal,
+            templateUrl: $scope.tpl.modal.edit,
             controller: 'GoalEditModalCtrl',
             resolve: {
-                'goal': function () {
+                params: function () {
                     return {
-                        title: goal.title,
-                        fk_goal_category: goal.fk_goal_category
+                        goal: {
+                            id: goal.id,
+                            title: goal.title,
+                            fk_goal_category: goal.fk_goal_category
+                        },
+                        categories: $scope.categories,
+                        html: {
+                            modalClass: 'goal-edit-modal'
+                        }
                     }
-                },
-                'categories': function () {
-                    return $scope.categories;
                 }
             }
         }).result.then(function (newGoal) {
@@ -111,19 +118,64 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
             });
     };
 
+    $scope.addGoal = function (category) {
+        $modal.open({
+                templateUrl: $scope.tpl.modal.edit,
+                controller: 'GoalEditModalCtrl',
+                resolve: {
+                    'params': function () {
+                        return {
+                            goal: {
+                                fk_goal_category: category.id
+                            },
+                            categories: $scope.categories,
+                            html: {
+                                modalClass: 'goal-add-modal'
+                            }
+                        }
+                    }
+                }
+            }
+        ).
+            result.then(function (newGoal) {
+//                console.log(newGoal)
+                var goal = new Goal(newGoal);
+                goal.$save();
+                $scope.goals.push(goal);
+                $scope.keys.push(goal.id);
+            }, function () {
+                //just dismiss
+            });
+    };
+
+    $scope.showBackLog = function (category) {
+        $modal.open({
+                templateUrl: $scope.tpl.modal.backLog,
+                controller: 'BacklogModalCtrl',
+                resolve: {
+                    'params': function () {
+                        return {
+                            category: category,
+                            goals: $scope.goals,
+                            html: {}
+                        }
+                    }
+                }
+            }
+        );
+    };
+
     showScreen();
 });
 
-angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $modalInstance, goal, categories) {
+angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $modalInstance, params) {
 
-    $scope.goal = goal;
-    $scope.categories = categories;
-    $scope.select2Options = {
-//        allowClear:true
-    };
+    $scope.goal = params.goal;
+    $scope.categories = params.categories;
+    $scope.html = params.html;
 
     $scope.ok = function () {
-        $modalInstance.close(goal);
+        $modalInstance.close(params.goal);
     };
 
     $scope.cancel = function () {
@@ -131,3 +183,18 @@ angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $mod
     };
 });
 
+
+angular.module('eg.goal').controller('BacklogModalCtrl', function ($scope, $modalInstance, params) {
+
+    $scope.goals = params.goals;
+    $scope.category = params.category;
+    $scope.html = params.html;
+
+    $scope.ok = function () {
+        $modalInstance.close(params.goal);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});

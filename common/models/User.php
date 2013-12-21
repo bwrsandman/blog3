@@ -95,7 +95,6 @@ class User extends generated\User implements IdentityInterface
     }
 
 
-
     /**
      * @return Conclusion
      */
@@ -127,7 +126,7 @@ class User extends generated\User implements IdentityInterface
             if (($this->isNewRecord || $this->getScenario() === 'resetPassword') && !empty($this->password)) {
                 $this->password_hash = Security::generatePasswordHash($this->password);
             }
-            if ($this->isNewRecord) {
+            if ($insert) {
                 $this->auth_key = Security::generateRandomKey();
             }
 
@@ -136,7 +135,6 @@ class User extends generated\User implements IdentityInterface
 
         return false;
     }
-
 
 
 }

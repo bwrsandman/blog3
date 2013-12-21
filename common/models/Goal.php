@@ -7,8 +7,10 @@ use yii\helpers\ArrayHelper;
 
 class Goal extends generated\Goal
 {
-
     protected $reportsCache;
+
+    const COMPLETED_YES = 1;
+    const COMPLETED_NO = 0;
 
     public function search()
     {
@@ -128,15 +130,9 @@ class Goal extends generated\Goal
         return $res;
     }
 
-    public function beforeSave($event)
+    public function afterSave($insert)
     {
-        if (parent::beforeSave($event)) {
-            $saved = $this->getReport('today')->save() && $this->getReport('yesterday')->save();
-            if (!$saved) {
-                return false;
-            }
-        }
-
-        return true;
+        $this->getReport('today')->save() && $this->getReport('yesterday')->save();
+        parent::afterSave($insert);
     }
 }

@@ -33,6 +33,8 @@ class GoalController extends Controller
         } else {
             $model = new Goal();
             $model->scenario = 'create';
+            $model->completed = Goal::COMPLETED_NO;
+            $model->fk_user = Yii::$app->user->getId();
         }
         $model->attributes = $params;
         if ($model->save()) {

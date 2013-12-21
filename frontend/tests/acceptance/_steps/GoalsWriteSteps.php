@@ -13,6 +13,17 @@ class GoalsWriteSteps extends BaseSteps
         return range(1, 10);
     }
 
+    public function getCategories()
+    {
+        return [
+            TodayPage::PROFESSIONAL_ID => TodayPage::PROFESSIONAL_CAT,
+            TodayPage::HEALTH_ID       => TodayPage::HEALTH_CAT,
+            TodayPage::OWN_ID          => TodayPage::OWN_CAT,
+            TodayPage::GLOBAL_ID       => TodayPage::GLOBAL_CAT,
+        ];
+    }
+
+
     public function seeGoalInCategory($goal, $category)
     {
         $I = $this;
@@ -73,12 +84,20 @@ class GoalsWriteSteps extends BaseSteps
         $I->write(TodayPage::$conclusionEditor, $this->conclusionMsg);
     }
 
-    public function clickEditButton($goal)
+    public function clickEditGoalButton($goal)
     {
         $I = $this;
 
         $I->click(TodayPage::goalEditButton($goal));
         $I->seeElement(TodayPage::$goalEditModal);
+    }
+
+    public function clickAddGoalButton($category)
+    {
+        $I = $this;
+
+        $I->click(TodayPage::goalAddButton($category));
+        $I->seeElement(TodayPage::$goalAddModal);
     }
 
 }

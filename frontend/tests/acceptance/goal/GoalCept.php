@@ -4,6 +4,24 @@ $I->wantTo('ensure that goal working correct');
 
 $I->amOnPage('/?id=1');
 
+$I->expect("that i can to add goals in category");
+
+foreach ($I->getCategories() as $id => $name) {
+    $I->clickAddGoalButton($id);
+    $msg = $I->message('goal_title', $id . '_new');
+    $I->see($msg, TodayPage::goal($id));
+    $I->write(TodayPage::$goalTitleEditor, $msg);
+    $I->clickOk(TodayPage::$goalEditModal);
+
+    $I->seeGoalInCategory(1, $id);
+
+    $I->click(TodayPage::goalEditButton(1));
+    $I->clickOk(TodayPage::$goalEditModal);
+
+    $I->seeGoalInCategory(1, $id);
+}
+
+/*
 $I->expect("that i can to edit goal");
 
 foreach($I->getGoals() as $id) {
@@ -27,14 +45,15 @@ $I->expect("that i can to change goals category");
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
 
-$I->clickEditButton(1);
-$I->selectOption(TodayPage::$goalTitleCategorySeletc, TodayPage::HEALTH_CAT);
+$I->clickEditGoalButton(1);
+$I->selectOption(TodayPage::$goalTitleCategorySelect, TodayPage::HEALTH_CAT);
 $I->clickOk(TodayPage::$goalEditModal);
 
 $I->seeGoalInCategory(1, TodayPage::HEALTH_ID);
 
-$I->click(TodayPage::goalEditButton(1));
-$I->selectOption(TodayPage::$goalTitleCategorySeletc, TodayPage::PROFESSIONAL_CAT);
+$I->clickEditGoal(1);
+$I->selectOption(TodayPage::$goalTitleCategorySelect, TodayPage::PROFESSIONAL_CAT);
 $I->clickOk(TodayPage::$goalEditModal);
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
+*/

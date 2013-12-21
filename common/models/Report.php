@@ -49,9 +49,9 @@ class Report extends generated\Report
         return $query;
     }
 
-    public function beforeSave($event)
+    public function beforeSave($insert)
     {
-        if (parent::beforeSave($event)) {
+        if (parent::beforeSave($insert)) {
             $this->description = str_replace("\n", "<br/>", $this->description);
             $this->description = Html::encode($this->description);
             return true;
