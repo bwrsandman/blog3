@@ -25,10 +25,14 @@ class App extends AssetBundle
 
         'src/app/app.js',
 
+//        'src/app/goal/services/goalsIo.js',
+        'src/app/goal/services/user.js',
+        'src/app/goal/services/category.js',
+        'src/app/goal/services/goal.js',
+
         'src/app/goal/controllers/goal.js',
         'src/app/goal/controllers/nav.js',
 
-//        'src/app/goal/services/goalsIo.js',
 
         'src/app/goal/directives/editor.js',
 

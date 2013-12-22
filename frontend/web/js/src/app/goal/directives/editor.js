@@ -53,7 +53,7 @@ angular.module('eg.goal').directive('egTodo', function () {
         restrict: 'A',
         scope: false,
         link: function ($scope, element, attrs) {
-            element.change(function() {
+            element.change(function () {
                 element.attr('checked', element.is(':checked') ? 'checked' : false);
             });
         }
