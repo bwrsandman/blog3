@@ -20,7 +20,7 @@ angular.module('eg.goal').config(['msdElasticConfig', function (config) {
 
 angular.module('eg.goal').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-    var dir = '/js/app/goal/views';
+    var dir = '/js/src/app/goal/views';
 
     $routeProvider
         .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})

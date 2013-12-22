@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class Angular extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js/components/';
+	public $baseUrl = '@web/js/vendor/';
 	public $js = array(
         'angular/angular.js',
         'angular-resource/angular-resource.min.js',

@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 class AngularElastic extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js/components/angular-elastic';
+	public $baseUrl = '@web/js/vendor/angular-elastic';
 
     public $js = array(
         'elastic.js',

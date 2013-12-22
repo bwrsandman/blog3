@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 class AngularChosen extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js/components';
+	public $baseUrl = '@web/js/vendor';
 
     public $js = array(
         'chosen/chosen.jquery.js',

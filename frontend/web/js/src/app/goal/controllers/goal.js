@@ -24,7 +24,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     var Category = $resource('/api/v1/goalCategory/:id', {id: '@id'});
     var Conclusion = $resource('/api/v1/conclusion/:id', {id: '@id'});
 
-    var tplBase = '/js/app/goal/';
+    var tplBase = '/js/src/app/goal/';
     $scope.tpl = {
         modal: {
             edit: tplBase + 'views/modal/edit.html',

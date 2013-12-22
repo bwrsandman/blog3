@@ -2,6 +2,4 @@
 /composer.lock
 .idea
 /environments
-/frontend/web/js/components
-/frontend/web/js/npm_modules
 /vendor

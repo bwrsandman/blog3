@@ -18,21 +18,21 @@ class App extends AssetBundle
     );
 
 	public $js = array(
-        'debug.js',
-//        'lib/autobahn.js',
-        'components.js',
+        'src/common/fixes.js',
+        'src/common/debug.js',
+//        'src/common/autobahn.js',
+        'src/common/components.js',
 
-        'app/app.js',
+        'src/app/app.js',
 
-        'app/goal/controllers/goal.js',
-        'app/goal/controllers/nav.js',
+        'src/app/goal/controllers/goal.js',
+        'src/app/goal/controllers/nav.js',
 
-//        'app/goal/services/goalsIo.js',
+//        'src/app/goal/services/goalsIo.js',
 
-        'app/goal/directives/editor.js',
+        'src/app/goal/directives/editor.js',
 
-        'app/goal/services/alert.js',
-
+        'src/app/goal/services/alert.js',
     );
 	public $depends = array(
 		'yii\web\YiiAsset',
