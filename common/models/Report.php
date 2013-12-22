@@ -9,6 +9,19 @@ use yii\helpers\Html;
 
 class Report extends generated\Report
 {
+
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'htmlEncode' => [
+                'class'      => 'common\components\behaviors\HtmlEncode',
+                'attributes' => [
+                    'description',
+                ],
+            ],
+        ]);
+    }
+
     public function rules()
     {
         return ArrayHelper::merge(parent::rules(), [
@@ -33,6 +46,7 @@ class Report extends generated\Report
     public function strip($attr)
     {
         $this->$attr = strip_tags($this->$attr, '<input><div><ul><ol><li><a><img><b><em><br>');
+
         return true;
     }
 
@@ -47,26 +61,5 @@ class Report extends generated\Report
             ]);
 
         return $query;
-    }
-
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            $this->description = Html::encode($this->description);
-            return true;
-        }
-        return false;
-    }
-
-    public function afterSave($insert)
-    {
-        $this->description = Html::decode($this->description);
-        parent::afterSave($insert);
-    }
-
-    public function afterFind()
-    {
-        $this->description = Html::decode($this->description);
-        parent::afterFind();
     }
 }
