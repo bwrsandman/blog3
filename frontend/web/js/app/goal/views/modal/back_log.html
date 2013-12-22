@@ -6,27 +6,35 @@
         <div class="modal-body">
             <div class="goals-planing">
                 <h3>Planing</h3>
-                <ul class="list-group">
-                    <li
-                            ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
-                            class="list-group-item"
+                <table class="table">
+                    <tbody>
+                    <tr
+                        ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
                             >
-                        {{goal.title}}
-                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
-                    </li>
-                </ul>
+                        <td>{{goal.id}}</td>
+                        <td>{{goal.title}}</td>
+                        <td>
+                            <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="goals-done">
                 <h3>Done</h3>
-                <ul class="list-group">
-                    <li
-                            ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 1 }"
-                            class="list-group-item"
+                <table class="table">
+                    <tbody>
+                    <tr class="success"
+                        ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 1 }"
                             >
-                        {{goal.title}}
-                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
-                    </li>
-                </ul>
+                        <td>{{goal.id}}</td>
+                        <td>{{goal.title}}</td>
+                        <td>
+                            <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="modal-footer">
