@@ -3,10 +3,10 @@
         <p>
             {{category.name}}
             <a href="#" ng-click="addGoal(category)" class="goal-add-button"><i class="fa fa-plus-square-o"></i></a>
-            <a href="#" ng-click="showBackLog(category)" class="category-show-backlog"><i class="fa fa-tasks"></i></a>
+            <a href="#" ng-click="showBackLog(category)" class="category-backlog-button"><i class="fa fa-tasks"></i></a>
         </p>
         <eg-panel
-                ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id }" ng-if="key < 3"
+                ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }" ng-if="key < 3"
                 class="goal-detail sel-goal-{{goal.id}}"
                 ng-click="setFocus(goal)"
                 ng-transclude
@@ -17,6 +17,9 @@
                 <div class="eg-control-panel pull-right" ng-class="{active: focusGoal === goal}">
                     <a class="btn goal-edit-button" ng-click="openModal(goal)" href="#">
                         <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <a class="btn goal-complete-button" ng-click="complete(goal)" href="#">
+                        <i class="fa fa-smile-o"></i>
                     </a>
                 </div>
                 <div class="eg-control-panel editor-controls pull-left" ng-class="{active: focusGoal === goal}"></div>

@@ -157,7 +157,9 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
                         return {
                             category: category,
                             goals: $scope.goals,
-                            html: {}
+                            html: {
+                                modalClass: 'goal-back-log-modal'
+                            }
                         }
                     }
                 }
@@ -165,6 +167,10 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
         );
     };
 
+    $scope.complete = function(goal) {
+        goal.completed = 1;
+        goal.$save();
+    };
     showScreen();
 });
 

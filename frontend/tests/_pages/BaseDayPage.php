@@ -19,10 +19,18 @@ class BaseDayPage
     public static $reasonEditor = ".sidebar .goal_reason .eg-editor .ta-text";
     public static $decompositionEditor = ".sidebar .goal_decomposition .eg-editor .ta-text";
     public static $commentsEditor = ".sidebar .goal_comments .eg-editor .ta-text";
+
+    //modal add/edit
     public static $goalEditModal = ".goal-edit-modal";
     public static $goalAddModal = ".goal-add-modal";
     public static $goalTitleEditor = "#modalGoalTitle";
     public static $goalTitleCategorySelect = "#modalGoalCategory";
+
+    //modal backlog
+    public static $goalBackLogModal = ".goal-back-log-modal";
+    public static $goalBackLogPlanning = ".goal-back-log-modal .goals-planing";
+    public static $goalBackLogDone = ".goal-back-log-modal .goals-done";
+
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
@@ -41,7 +49,7 @@ class BaseDayPage
 
     public static function category($n)
     {
-        return "#goals-grid .sel-cat--$n";
+        return "#goals-grid .sel-cat-$n";
     }
 
     public static function goalInCategory($goal, $category)
@@ -72,6 +80,16 @@ class BaseDayPage
     public static function goalAddButton($n)
     {
         return static::category($n) . " .goal-add-button";
+    }
+
+    public static function goalBackLogButton($n)
+    {
+        return static::category($n) . " .category-backlog-button";
+    }
+
+    public static function goalCompleteButton($n)
+    {
+        return static::goal($n) . " .goal-complete-button";
     }
 
     /**

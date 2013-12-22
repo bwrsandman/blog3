@@ -3,9 +3,12 @@ namespace WebGuy;
 
 use TodayPage;
 use \Codeception\TestCase;
+use yii\test\DbTestTrait;
 
 class GoalsWriteSteps extends BaseSteps
 {
+    use DbTestTrait;
+
     public $conclusionMsg;
 
     public function getGoals()
@@ -100,4 +103,42 @@ class GoalsWriteSteps extends BaseSteps
         $I->seeElement(TodayPage::$goalAddModal);
     }
 
+
+    public function clickBackLogButton($category)
+    {
+        $I = $this;
+
+        $I->click(TodayPage::goalBackLogButton($category));
+        $I->seeElement(TodayPage::$goalBackLogModal);
+    }
+
+    public function clickCompleteGoalButton($goal)
+    {
+        $I = $this;
+
+        $I->click(TodayPage::goalCompleteButton($goal));
+    }
+
+    public function checkGoalIsDone($title, $categoryId)
+    {
+        $I = $this;
+
+        $I->dontSee($title, '#goal_grid');
+
+        $I->clickBackLogButton($categoryId);
+        $I->see($title, TodayPage::$goalBackLogDone);
+        $I->dontSee($title, TodayPage::$goalBackLogPlanning);
+        $I->clickOk(TodayPage::$goalBackLogModal);
+    }
+
+
+    public function checkGoalIsInPlans($title, $categoryId)
+    {
+        $I = $this;
+
+        $I->clickBackLogButton($categoryId);
+        $I->see($title, TodayPage::$goalBackLogPlanning);
+        $I->dontSee($title, TodayPage::$goalBackLogDone);
+        $I->clickOk(TodayPage::$goalBackLogModal);
+    }
 }

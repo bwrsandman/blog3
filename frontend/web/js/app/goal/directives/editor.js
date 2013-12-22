@@ -59,3 +59,4 @@ angular.module('eg.goal').directive('egTodo', function () {
         }
     };
 });
+
