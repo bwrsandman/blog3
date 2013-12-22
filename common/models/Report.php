@@ -52,16 +52,21 @@ class Report extends generated\Report
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->description = str_replace("\n", "<br/>", $this->description);
             $this->description = Html::encode($this->description);
             return true;
         }
         return false;
     }
 
+    public function afterSave($insert)
+    {
+        $this->description = Html::decode($this->description);
+        parent::afterSave($insert);
+    }
+
     public function afterFind()
     {
-        parent::afterFind();
         $this->description = Html::decode($this->description);
+        parent::afterFind();
     }
 }
