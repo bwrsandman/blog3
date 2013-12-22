@@ -26,6 +26,8 @@ class App extends AssetBundle
         'src/app/app.js',
 
 //        'src/app/goal/services/goalsIo.js',
+        'src/app/goal/services/tpl.js',
+        'src/app/goal/services/modal.js',
         'src/app/goal/services/user.js',
         'src/app/goal/services/category.js',
         'src/app/goal/services/goal.js',
