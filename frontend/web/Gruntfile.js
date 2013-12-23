@@ -282,7 +282,7 @@ module.exports = function (grunt) {
                     cleancss: true
                 },
                 files: {
-                    "<%= conf.dist %>/css/site.css": ["<%= conf.app %>/less/site.less"]
+                    "<%= conf.dist %>/css/site.css": ["<%= conf.app %>less/site.less"]
                 }
             },
             production: {
@@ -290,7 +290,7 @@ module.exports = function (grunt) {
                     cleancss: true
                 },
                 files: {
-                    "<%= conf.dist %>/css/site.css": ["<%= conf.app %>/less/site.less"]
+                    "<%= conf.dist %>/css/site.css": ["<%= conf.app %>less/site.less"]
                 }
             }
         },
