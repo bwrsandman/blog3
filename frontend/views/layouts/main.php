@@ -11,9 +11,10 @@ frontend\assets\App::register($this);
 <!DOCTYPE html>
 <html lang="en" ng-app="eg.goal">
 <head>
-    <meta charset="<?php echo Yii::$app->charset; ?>"/>
+    <meta charset="utf-8"/>
     <title><?php echo Html::encode($this->title); ?></title>
     <?php $this->head(); ?>
+    <link href="/assets/build/css/site.css" rel="stylesheet">
 </head>
 <body>
 
@@ -80,6 +81,11 @@ frontend\assets\App::register($this);
     <?=json_encode($this->context->clientStorage) ?>
 </script>
 <?php $this->endBody(); ?>
+
+<?php if (YII_DEBUG) { ?>
+    <script src="//<?=$_SERVER['HTTP_HOST'] ?>:35729/livereload.js"></script>
+<?php } ?>
+
 </body>
 </html>
 <?php $this->endPage(); ?>

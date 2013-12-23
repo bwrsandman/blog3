@@ -16,10 +16,8 @@
     "angular-scenario": "*",
     "components-font-awesome": "*",
     "angular-route-segment": "*",
-    "ngMidwayTester": "*",
     "angular-elastic": "*",
-    "textAngular": "https://github.com/nizsheanez/textAngular.git#directives_support",
-    "lodash": "1.*"
+    "textAngular": "https://github.com/nizsheanez/textAngular.git#directives_support"
   },
   "resolutions": {
     "angular": "1.2.6"

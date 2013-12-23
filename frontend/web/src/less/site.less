@@ -1,7 +1,11 @@
-//@import "../../../vendor/twitter/bootstrap/less/bootstrap.less";
-@import "../../../vendor/twbs/bootstrap/less/variables.less";
-@import "../../../vendor/twbs/bootstrap/less/mixins.less";
+@import "../../../../vendor/twbs/bootstrap/less/bootstrap.less";
+@import "../vendor/components-font-awesome/less/font-awesome.less";
+//@import "../../../../vendor/twbs/bootstrap/less/variables.less";
+//@import "../../../../vendor/twbs/bootstrap/less/mixins.less";
 
+/*!
+ *  evolve-games
+ */
 
 .text-rendering(@model) {
   -webkit-text-rendering: @model;
@@ -31,7 +35,6 @@
 }
 
 body {
-
   -webkit-font-smoothing: antialiased;
 
   .footer {
@@ -64,5 +67,5 @@ body {
 }
 
 
-@import "navigation.less";
-@import "goals-app.less";
+@import "navigation";
+@import "goals-app";

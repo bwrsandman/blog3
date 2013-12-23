@@ -21,7 +21,6 @@
         "grunt-contrib-jshint": "latest",
         "grunt-contrib-uglify": "latest",
         "grunt-contrib-watch": "latest",
-        "grunt-google-cdn": "latest",
         "grunt-newer": "latest",
         "grunt-ngmin": "latest",
         "grunt-rev": "latest",

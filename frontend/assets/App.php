@@ -12,44 +12,42 @@ use yii\web\AssetBundle;
 class App extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web';
-	public $css = array(
-		'less/site.less',
-    );
+	public $baseUrl = '@web/src/';
+	public $css = array();
 
 	public $js = array(
-        'src/common/fixes.js',
-        'src/common/debug.js',
-//        'src/common/autobahn.js',
-        'src/common/components.js',
+        'common/fixes.js',
+        'common/debug.js',
+//        'common/autobahn.js',
+        'common/components.js',
 
-        'src/app/app.js',
+        'app/app.js',
 
-//        'src/app/goal/services/goalsIo.js',
-        'src/app/goal/services/tpl.js',
-        'src/app/goal/services/modal.js',
-        'src/app/goal/services/user.js',
-        'src/app/goal/services/category.js',
-        'src/app/goal/services/goal.js',
+//        'app/goal/services/goalsIo.js',
+        'app/goal/services/tpl.js',
+        'app/goal/services/modal.js',
+        'app/goal/services/user.js',
+        'app/goal/services/category.js',
+        'app/goal/services/goal.js',
 
-        'src/app/goal/controllers/goal.js',
-        'src/app/goal/controllers/nav.js',
+        'app/goal/controllers/goal.js',
+        'app/goal/controllers/nav.js',
 
 
-        'src/app/goal/directives/editor.js',
+        'app/goal/directives/editor.js',
 
-        'src/app/goal/services/alert.js',
+        'app/goal/services/alert.js',
     );
 	public $depends = array(
 		'yii\web\YiiAsset',
-		'yii\bootstrap\BootstrapAsset',
+//		'yii\bootstrap\BootstrapAsset',
         'frontend\assets\Angular',
 //        'frontend\assets\UiCodemirror',
         'frontend\assets\UiBootstrap',
         'frontend\assets\AngularElastic',
         'frontend\assets\AngularUiUtils',
         'frontend\assets\TextAngular',
-        'frontend\assets\FontAwesome',
+//        'frontend\assets\FontAwesome',
 //        'nizsheanez\websocket\assetBundles\WebSocket',
     );
 }
