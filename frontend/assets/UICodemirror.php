@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class UiCodemirror extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js/vendor/';
+	public $baseUrl = '@web/src/vendor/';
     public $css = array(
         'codemirror/lib/codemirror.css'
     );

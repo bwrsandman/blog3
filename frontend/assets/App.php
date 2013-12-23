@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class App extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js';
+	public $baseUrl = '@web';
 	public $css = array(
 		'less/site.less',
     );

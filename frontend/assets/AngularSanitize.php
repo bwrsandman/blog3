@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class AngularSanitize extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/js/vendor/angular-sanitize';
+    public $baseUrl = '@web/src/vendor/angular-sanitize';
 
     public $js = array(
         'angular-sanitize.js',

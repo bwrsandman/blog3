@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class UiBootstrap extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js/vendor/angular-bootstrap';
+	public $baseUrl = '@web/src/vendor/angular-bootstrap';
     public $css = array(
     );
 

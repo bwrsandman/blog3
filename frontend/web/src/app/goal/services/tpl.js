@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eg.goal').factory('Tpl', function () {
-    var tplBase = '/js/src/app/goal/';
+    var tplBase = '/src/app/goal/';
 
     var service = {
         modal: {

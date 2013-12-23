@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 class AngularXeditable extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/js/vendor/angular-xeditable/dist';
+    public $baseUrl = '@web/src/vendor/angular-xeditable/dist';
 
     public $css = array(
         'css/xeditable.css',

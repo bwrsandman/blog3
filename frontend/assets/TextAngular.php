@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class TextAngular extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/js/vendor/textAngular';
+    public $baseUrl = '@web/src/vendor/textAngular';
 
     public $js = array(
         'textAngular.js',

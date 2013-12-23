@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class JqueryUi extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/js/vendor/jquery-ui';
+    public $baseUrl = '@web/src/vendor/jquery-ui';
 
     public $js = array(
         'ui/minified/jquery-ui.min.js',

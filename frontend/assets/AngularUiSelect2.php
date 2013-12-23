@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 class AngularUiSelect2 extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/js/vendor';
+	public $baseUrl = '@web/src/vendor';
 
     public $css = array(
         'select2/select2.css',

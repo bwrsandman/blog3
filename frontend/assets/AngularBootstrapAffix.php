@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class AngularBootstrapAffix extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/js/vendor/angular-bootstrap-affix';
+    public $baseUrl = '@web/src/vendor/angular-bootstrap-affix';
 
     public $js = array(
         'src/affix.js',
