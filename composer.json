@@ -2,16 +2,8 @@
     "name": "yiisoft/yii2-app-advanced",
     "description": "Yii 2 Advanced Application Template",
     "keywords": ["yii", "framework", "advanced", "application template"],
-    "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
-    "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
-    },
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.0",
@@ -21,9 +13,13 @@
         "yiisoft/yii2-gii": "dev-master",
         "yiisoft/yii2-redis": "*",
         "yiisoft/yii2-sphinx": "*",
+        "cboden/Ratchet": "*",
         "michelf/php-markdown": "*",
 
+        "kakserpom/phpdaemon": "*",
+
         "nizsheanez/yii2-asset-converter": "1.*",
+        "nizsheanez/yii2-websocket-application": "*",
 
         "danielstjules/stringy": "*",
         "fzaninotto/faker": "*",

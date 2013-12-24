@@ -10,10 +10,8 @@ class AppResolver extends \PHPDaemon\Core\AppResolver {
      */
     public function getRequestRoute($req, $upstream) {
         $req->attrs->server['DOCUMENT_URI'];
-        return '\frontend\servers\FastCGI';
         return '\frontend\servers\WebSocket';
     }
 
 }
-
 return new AppResolver;

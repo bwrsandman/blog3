@@ -34,8 +34,11 @@ module.exports = function (grunt) {
 //                tasks: ['newer:jshint:test', 'karma']
 //            },
             css: {
-                files: ['<%= conf.app %>/less/**/*.less'],
-                tasks: ['less']
+                files: ['<%= conf.app %>/less/**/*'],
+                tasks: ['less'],
+                options: {
+                    livereload: true
+                }
             },
             html: {
                 files: ['<%= conf.app %>/**/*.html'],
