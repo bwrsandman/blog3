@@ -35,6 +35,26 @@
     }]);
 
     angular.module('eg.goal').factory('$socketResource', ['$q', '$rootScope', 'egWampSession', 'alertService', function ($q, $rootScope, egWampSession, alertService) {
+        /**
+         * Create a shallow copy of an object and clear other fields from the destination
+         */
+        function shallowClearAndCopy(src, dst) {
+            dst = dst || {};
+
+            angular.forEach(dst, function (value, key) {
+                delete dst[key];
+            });
+
+            for (var key in src) {
+                if (src.hasOwnProperty(key) && key.charAt(0) !== '$' && key.charAt(1) !== '$') {
+                    dst[key] = src[key];
+                }
+            }
+
+            return dst;
+        }
+
+
         //egWampSession.subscribe(prefix + "user", onEvent);
 
         function publishEvent() {
@@ -64,22 +84,41 @@
             isFunction = angular.isFunction;
 
 
-        var Resource = function (data) {
-            copy(data || {}, this);
+        function Route(controller) {
+            this.controller = controller;
         }
 
-        function resourceFactory(url, paramDefaults, actions) {
-            actions = extend({}, DEFAULT_ACTIONS, actions);
+        Route.prototype = {
+            url: function (action) {
+                return prefix + this.controller + '/' + action;
+            }
+        };
 
-            var baseUrl = prefix + url + '/';
+        function resourceFactory(url, paramDefaults, actions) {
+            var route = new Route(url);
+
+            function Resource(value) {
+                shallowClearAndCopy(value || {}, this);
+            }
+
+            actions = extend({}, DEFAULT_ACTIONS, actions);
 
             forEach(actions, function (action, name) {
 
                 var value = action.isArray ? [] : new Resource();
-
                 Resource[name] = function (url, params, callback) {
-                    url = baseUrl + url;
-                    var promise = egWampSession.call(url, params).then(function (response) {
+                    console.log(1, route);
+                    if (!action.isArray) {
+                        params = params ? params : {};
+                        if (typeof params !== 'object') {
+                            alert('params Must be object!');
+                        }
+                        angular.forEach(this, function (value, key) {
+                            params[key] = angular.copy(value);
+                        });
+                    }
+
+                    var promise = egWampSession.call(route.url(url), params).then(function (response) {
                         var data = response.data,
                             promise = value.$promise;
 
@@ -108,7 +147,7 @@
                         response.resource = value;
 
 //                        $rootScope.$apply(function() {
-                            callback(response)
+                        callback(response)
 //                        });
 
                         return response;
@@ -122,14 +161,13 @@
                 };
 
                 Resource.prototype['$' + name] = function (params, success, error) {
-//                Resource['$' + name] = function (params, success, error) {
                     if (isFunction(params)) {
                         error = success;
                         success = params;
                         params = {};
                     }
 
-                    var result = Resource[name](action.url, params, success);
+                    var result = Resource[name].call(this, action.url, params, success);
                     return result.$promise || result;
                 };
             });

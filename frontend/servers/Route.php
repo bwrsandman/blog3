@@ -51,13 +51,15 @@ class Route extends \nizsheanez\websocket\Route
     public function onCall($id, $topic, array $params)
     {
         Yii::$app->request->uri = str_replace($this->client->server['HTTP_ORIGIN'], '', $topic);
+        Daemon::log(Yii::$app->request->uri);
         $_GET = $params;
         try {
             /** @var $response \nizsheanez\ws\Response */
             $response = Yii::$app->run();
+            $this->client->sessionCommit();
             Yii::$app->session->close();
         } catch (\Exception $e) {
-            print_r($e);die;
+            Daemon::log($e);
         }
         $this->wamp->result($id, $response->data);
     }

@@ -2617,7 +2617,7 @@ var AUTOBAHNJS_VERSION = '?.?.?';
 
     ab._debugrpc = false;
     ab._debugpubsub = false;
-    ab._debugws = true;
+    ab._debugws = false;
     ab._debugconnect = false;
 
     ab.debug = function (debugWamp, debugWs, debugConnect) {
@@ -3043,7 +3043,6 @@ var AUTOBAHNJS_VERSION = '?.?.?';
             default:
                 rmsg = JSON.stringify(msg);
         }
-
         self._websocket.send(rmsg);
         self._txcnt += 1;
 

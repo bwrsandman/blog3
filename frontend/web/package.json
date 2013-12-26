@@ -2,8 +2,6 @@
     "name": "blog3",
     "version": "0.0.0",
     "devDependencies": {
-        "phantomjs": "latest",
-        "zombie": "latest",
         "karma-junit-reporter": "latest",
         "protractor": "latest",
 
@@ -41,5 +39,8 @@
         "karma-phantomjs-launcher": "latest",
         "karma": "latest",
         "karma-ng-html2js-preprocessor": "latest"
+    },
+    "scripts": {
+        "preinstall": "npm i -g yo express socket.io karma less phantomjs grunt grunt-cli"
     }
 }

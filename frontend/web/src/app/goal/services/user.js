@@ -2,13 +2,12 @@
 
 angular.module('eg.goal').factory('User', ['$rootScope', '$socketResource', 'Category', 'Goal', 'Conclusion', function ($rootScope, $resource, Category, Goal, Conclusion) {
 
-//    var UserSocket = $socketResource('user');
-
     var User = $resource('user');
 
     var service = {
         get: function (callback) {
-            User.get('view', {}, function (response) {
+            var user = new User;
+            user.$get(function (response) {
                 Category.set(response.categories);
                 Goal.set(response.goals);
                 Conclusion.set(response.conclusions);
