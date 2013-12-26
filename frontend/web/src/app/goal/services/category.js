@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('eg.goal').factory('Category', ['$resource', function ($resource) {
+angular.module('eg.goal').factory('Category', ['$socketResource', function ($resource) {
 
-    var Category = $resource('/api/v1/goalCategory/:id', {id: '@id'});
+    var Category = $resource('goalCategory');
 
     var categories = [];
     var service = {
         set: function(categoriesArray) {
             angular.forEach(categoriesArray, function (val) {
-                categories.push(new Category(val));
+                var cat = new Category(val);
+                categories.push(cat);
             });
         },
         getAll: function () {

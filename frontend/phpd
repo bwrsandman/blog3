@@ -8,8 +8,10 @@ defined('DAEMON') or define('DAEMON', true);
 require __DIR__ . '/../vendor/autoload.php';
 require(__DIR__ . '/../vendor/yiisoft/yii2/yii/Yii.php');
 
+Yii::setAlias('@nizsheanez/ws', __DIR__ . '/servers/nizsheanez/ws');
+
 $config = require __DIR__ . '/../frontend/config/frontend_configs.php';
-new \nizsheanez\websocket\Application($config);
+new \nizsheanez\ws\Application($config);
 
 $configFile = __DIR__ . '/../common/config/phpd.conf';
 require __DIR__ . '/../vendor/kakserpom/phpdaemon/bin/phpd';

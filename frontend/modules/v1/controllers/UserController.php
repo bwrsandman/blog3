@@ -13,16 +13,14 @@ use yii\web\Response;
 
 class UserController extends Controller
 {
-    public function actionIndex()
+    public function actionView()
     {
         /** @var $models Goal[] */
         $models = Goal::find()->owner(Yii::$app->user->getId())->all();
         $goals = [];
         foreach ($models as $model) {
             $goals[] = $model->toArray();
-            $goalToCategory[$model->fk_goal_category][] = $model->id;
         }
-
         $days = [
             'today',
             'yesterday'
@@ -39,7 +37,6 @@ class UserController extends Controller
         $response = [
             'categories' => GoalCategory::find()->asArray()->all(),
             'goals' => $goals,
-            'goalToCategory' => $goalToCategory,
             'conclusions' => $conclusions,
         ];
 

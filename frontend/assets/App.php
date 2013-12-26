@@ -26,6 +26,7 @@ class App extends AssetBundle
 //        'app/goal/services/goalsIo.js',
         'app/goal/services/tpl.js',
         'app/goal/services/autobahn.js',
+        'app/goal/services/server.js',
         'app/goal/services/modal.js',
         'app/goal/services/user.js',
         'app/goal/services/category.js',

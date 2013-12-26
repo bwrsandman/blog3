@@ -48,14 +48,16 @@ return array(
             'enablePrettyUrl' => true,
             'showScriptName'  => false,
             'rules'           => [
-                'gii'                                     => 'gii',
-                'gii/<controller:\w+>/<action:\w+>'       => 'gii/<controller>/<action>',
-
-                'POST api/v1/<controller:\w+>/<id:\d+>'   => 'v1/<controller>/save',
-                'POST api/v1/<controller:\w+>'            => 'v1/<controller>/save',
-                'DELETE api/v1/<controller:\w+>/<id:\d+>' => 'v1/<controller>/delete',
-                'api/v1/<controller:\w+>/<id:\d+>'        => 'v1/<controller>/view',
-                'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
+                'gii'                                      => 'gii',
+                'gii/<controller:\w+>/<action:\w+>'        => 'gii/<controller>/<action>',
+                /*
+                                'POST api/v1/<controller:\w+>/<id:\d+>'   => 'v1/<controller>/save',
+                                'POST api/v1/<controller:\w+>'            => 'v1/<controller>/save',
+                                'DELETE api/v1/<controller:\w+>/<id:\d+>' => 'v1/<controller>/delete',
+                                'api/v1/<controller:\w+>/<id:\d+>'        => 'v1/<controller>/view',
+                                'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
+                */
+                'api/v1/<controller:\w+>/<action:\w+>' => 'v1/<controller>/<action>',
             ]
         ],
         'assetManager' => [

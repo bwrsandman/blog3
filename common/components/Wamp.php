@@ -169,4 +169,14 @@ class Wamp
         }
     }
 
+    public function result($callId, $data)
+    {
+        return $this->route->send(json_encode([static::MSG_CALL_RESULT, $callId, $data]));
+    }
+
+    public function error($callId, $data)
+    {
+        return $this->route->send(json_encode([static::MSG_CALL_ERROR, $callId, $data]));
+    }
+
 }

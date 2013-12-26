@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $routeParams, $location, $modal, Tpl, User, Category, Goal, Conclusion, Modal) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $socketResource, $routeParams, $location, $modal, Tpl, User, Category, Goal, Conclusion, Modal) {
 
     $scope.tpl = Tpl;
     $scope.keys = [];
@@ -9,9 +9,11 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     $scope.conclusions = [];
 
     User.get(function () {
-        $scope.categories = shuffle(Category.getAll());
-        $scope.conclusions = Conclusion.getAll();
-        $scope.goals = Goal.getAll();
+        $scope.$apply(function() {
+            $scope.categories = shuffle(Category.getAll());
+            $scope.conclusions = Conclusion.getAll();
+            $scope.goals = Goal.getAll();
+        });
     });
 
     $scope.focusGoal = false;

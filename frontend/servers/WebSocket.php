@@ -13,5 +13,6 @@ class WebSocket extends \nizsheanez\websocket\Server
         parent::__construct($name = '');
     }
 
+
 }
 
