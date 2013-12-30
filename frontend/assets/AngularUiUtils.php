@@ -12,9 +12,9 @@ use yii\web\AssetBundle;
 class AngularUiUtils extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/src/vendor/angular-ui-utils/modules';
+    public $baseUrl = '@web/src/vendor/angular-ui-utils/';
 
     public $js = array(
-        'scrollfix/scrollfix.js',
+        'ui-utils.min.js',
     );
 }

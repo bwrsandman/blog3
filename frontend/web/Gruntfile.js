@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         // Project settings
         conf: {
             // configurable paths
-            app: require('./bower.json').appPath || 'app',
+            app: 'src/',
             dist: 'assets/build/'
         },
 
@@ -148,14 +148,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // Automatically inject Bower components into the app
-        'bower-install': {
-            app: {
-                html: '<%= conf.app %>/index.html',
-                ignorePath: '<%= conf.app %>/'
-            }
-        },
-
 
         // Renames files for browser caching purposes
         rev: {
@@ -285,7 +277,7 @@ module.exports = function (grunt) {
                     cleancss: true
                 },
                 files: {
-                    "<%= conf.dist %>/css/site.css": ["<%= conf.app %>less/site.less"]
+                    "<%= conf.dist %>/css/site.css": "<%= conf.app %>/less/site.less"
                 }
             },
             production: {
@@ -293,7 +285,7 @@ module.exports = function (grunt) {
                     cleancss: true
                 },
                 files: {
-                    "<%= conf.dist %>/css/site.css": ["<%= conf.app %>less/site.less"]
+                    "<%= conf.dist %>/css/site.css": "<%= conf.app %>less/site.less"
                 }
             }
         },
@@ -327,7 +319,6 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'bower-install',
             'concurrent:server',
             'less',
 //            'autoprefixer',
@@ -351,7 +342,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'bower-install',
         'useminPrepare',
 //        'concurrent:dist',
 //        'autoprefixer',

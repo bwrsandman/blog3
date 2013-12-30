@@ -17,7 +17,7 @@
  * ```
  */
 return array(
-	'development' => array(
+	'dev' => array(
 		'path' => 'dev',
 		'writable' => array(
 			// handled by composer.json already
