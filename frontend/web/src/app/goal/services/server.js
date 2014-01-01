@@ -107,7 +107,6 @@
 
                 var value = action.isArray ? [] : new Resource();
                 Resource[name] = function (url, params, callback) {
-                    console.log(1, route);
                     if (!action.isArray) {
                         params = params ? params : {};
                         if (typeof params !== 'object') {

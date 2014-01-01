@@ -10,7 +10,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     User.get(function () {
         $scope.$apply(function() {
-            $scope.categories = shuffle(Category.getAll());
+            $scope.categories = Category.getAll();
             $scope.conclusions = Conclusion.getAll();
             $scope.goals = Goal.getAll();
         });
@@ -18,6 +18,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     $scope.focusGoal = false;
     $scope.setFocus = function (goal) {
+        console.log($scope.goals)
         $scope.focusGoal = goal;
     };
     $scope.defaultPlaceholder = 'Сделано';

@@ -61,7 +61,7 @@ class Route extends \nizsheanez\websocket\Route
         } catch (\Exception $e) {
             Daemon::log($e);
         }
-        $this->wamp->result($id, $response->data);
+        $this->wamp->result($id, Yii::$app->response->data);
     }
 
 

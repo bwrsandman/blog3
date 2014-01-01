@@ -1,45 +1,44 @@
 <div ng-if="focusGoal !== false" class="sidebar">
-    <eg-panel class="goal_reason sidebar_panel"
-              ng-repeat="(key, goal) in goals | filter:{id:focusGoal.id}"
-              ng-transclude>
-        <header>
-            <div class="panel-title">Why</div>
-            <div class="editor-controls eg-control-panel"></div>
-        </header>
-        <eg-editor
-                class="panel-body"
-                placeholder="defaultPlaceholder"
-                ng-model="goal.reason"
-                ng-change="save(goal)"
-                ></eg-editor>
-    </eg-panel>
-    <eg-panel class="goal_decomposition sidebar_panel"
-              ng-repeat="(key, goal) in goals | filter:{id:focusGoal.id}"
-              ng-transclude>
-        <header>
-            <div class="panel-title">Decomposition</div>
-            <div class="editor-controls eg-control-panel"></div>
-        </header>
-        <eg-editor
-                class="panel-body"
-                placeholder="defaultPlaceholder"
-                ng-model="goal.decomposition"
-                ng-change="save(goal)"
-                ></eg-editor>
+    <div ng-repeat="(key, goal) in goals | filter:{id:focusGoal.id}">
+        <eg-panel class="goal_reason sidebar_panel"
+                  ng-transclude>
+            <header>
+                <div class="panel-title">Why</div>
+                <div class="editor-controls eg-control-panel"></div>
+            </header>
+            <eg-editor
+                    class="panel-body"
+                    placeholder="defaultPlaceholder"
+                    ng-model="goal.reason"
+                    ng-change="save(goal)"
+                    ></eg-editor>
+        </eg-panel>
+        <eg-panel class="goal_decomposition sidebar_panel"
+                  ng-transclude>
+            <header>
+                <div class="panel-title">Decomposition</div>
+                <div class="editor-controls eg-control-panel"></div>
+            </header>
+            <eg-editor
+                    class="panel-body"
+                    placeholder="defaultPlaceholder"
+                    ng-model="goal.decomposition"
+                    ng-change="save(goal)"
+                    ></eg-editor>
 
-    </eg-panel>
-    <eg-panel class="goal_comments sidebar_panel"
-              ng-repeat="(key, goal) in goals | filter:{id:focusGoal.id}"
-              ng-transclude>
-        <header>
-            <div class="panel-title">Comments</div>
-            <div class="editor-controls eg-control-panel"></div>
-        </header>
-        <eg-editor
-                class="panel-body"
-                placeholder="defaultPlaceholder"
-                ng-model="goal.comments"
-                ng-change="save(goal)"
-                ></eg-editor>
-    </eg-panel>
+        </eg-panel>
+        <eg-panel class="goal_comments sidebar_panel"
+                  ng-transclude>
+            <header>
+                <div class="panel-title">Comments</div>
+                <div class="editor-controls eg-control-panel"></div>
+            </header>
+            <eg-editor
+                    class="panel-body"
+                    placeholder="defaultPlaceholder"
+                    ng-model="goal.comments"
+                    ng-change="save(goal)"
+                    ></eg-editor>
+        </eg-panel>
+    </div>
 </div>

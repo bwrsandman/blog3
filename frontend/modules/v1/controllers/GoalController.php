@@ -3,6 +3,7 @@ namespace frontend\modules\v1\controllers;
 
 use common\models\Conclusion;
 use common\models\Goal;
+use PHPDaemon\Core\Daemon;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
@@ -25,8 +26,7 @@ class GoalController extends Controller
 
     public function actionSave()
     {
-        $params = Yii::$app->request->getRestParams();
-
+        $params = Yii::$app->request->getParams();
         if (isset($params['id'])) {
             $model = Goal::find($params['id']);
             $model->scenario = 'update';
@@ -37,6 +37,7 @@ class GoalController extends Controller
             $model->fk_user = Yii::$app->user->getId();
         }
         $model->attributes = $params;
+        Daemon::log(print_r($params, true));
         if ($model->save()) {
             return Goal::find($model->id)->toArray();
         } else {

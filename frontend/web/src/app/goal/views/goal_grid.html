@@ -8,7 +8,7 @@
         <eg-panel
                 ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }" ng-if="key < 3"
                 class="goal-detail sel-goal-{{goal.id}}"
-                ng-click="setFocus(goal)"
+                ng-click="setFocus(goal);"
                 ng-transclude
                 >
             <header class="goal_title">
