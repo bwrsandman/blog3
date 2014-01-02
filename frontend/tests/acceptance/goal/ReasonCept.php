@@ -3,8 +3,6 @@ use \Codeception\TestCase;
 
 $I = new \WebGuy\GoalsWriteSteps($scenario);
 
-/**/
-
 $I->wantTo('ensure that frontpage works');
 $I->amOnPage('/?id=1');
 foreach($I->getGoals() as $id) {

@@ -48,7 +48,6 @@ foreach ($I->getCategories() as $id => $name) {
     $I->clickAddGoalButton($id);
     $I->write(TodayPage::$goalTitleEditor, $msg);
     $I->clickOk(TodayPage::$goalAddModal);
-
     $I->wait(1);
     $I->checkGoalIsInPlans($msg, $id);
 }
@@ -56,5 +55,6 @@ $I->expect("that i can to complete goal");
 
 $msg = $I->grabTextFrom(TodayPage::goalTitle(1));
 $I->clickCompleteGoalButton(1);
-$I->wait(2);
+$I->wait(1);
+
 $I->checkGoalIsDone($msg, 1);
