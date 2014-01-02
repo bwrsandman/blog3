@@ -72,7 +72,7 @@ class BaseSteps extends \WebGuy
             $faker = \Faker\Factory::create('ru_RU');
             switch ($namespace) {
                 case 'goal_title':
-                    $msg = $faker->sentence(rand(6, 30));
+                    $msg = $faker->sentence(rand(6, 25));
                     break;
                 case 'report':
                     $msg = $faker->sentence(rand(1, 90));

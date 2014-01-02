@@ -37,7 +37,6 @@ class GoalController extends Controller
             $model->fk_user = Yii::$app->user->getId();
         }
         $model->attributes = $params;
-        Daemon::log(print_r($params, true));
         if ($model->save()) {
             return Goal::find($model->id)->toArray();
         } else {

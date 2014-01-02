@@ -14,6 +14,9 @@ class Route extends \nizsheanez\websocket\Route
      */
     public $appInstance;
 
+    /**
+     * @var Wamp
+     */
     public $wamp;
 
     public function onHandshake()
@@ -42,6 +45,8 @@ class Route extends \nizsheanez\websocket\Route
     // Этот метод срабатывает сообщении от клиента
     public function onFrame($message, $type)
     {
+        $message = substr($message, strpos($message, '['), strrpos($message, ']') + 1);
+
         $this->wamp->onMessage($message);
     }
 

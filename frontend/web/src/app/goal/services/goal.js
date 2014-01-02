@@ -16,8 +16,9 @@ angular.module('eg.goal').factory('Goal', ['$socketResource', function ($resourc
         },
         add: function(newGoalData) {
             var goal = new Goal(newGoalData);
-            goal.$save();
-            goals.push(goal);
+            goal.$save(function(response) {
+                goals.push(new Goal(response));
+            });
         }
     };
     return service;

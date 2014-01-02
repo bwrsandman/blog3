@@ -18,7 +18,6 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
 
     $scope.focusGoal = false;
     $scope.setFocus = function (goal) {
-        console.log($scope.goals)
         $scope.focusGoal = goal;
     };
     $scope.defaultPlaceholder = 'Сделано';

@@ -1,5 +1,7 @@
 <?php
 namespace common\components;
+use Exception;
+use PHPDaemon\Core\Daemon;
 
 class Wamp
 {
@@ -117,7 +119,7 @@ class Wamp
     public function onMessage($msg)
     {
         if (null === ($json = @json_decode($msg, true))) {
-            throw new Exception('some bla-bla');
+            throw new \Exception("Can't to json_decode message: " . $msg);
         }
 
         if (!is_array($json) || $json !== array_values($json)) {

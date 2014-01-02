@@ -3,8 +3,10 @@ $I = new \WebGuy\GoalsWriteSteps($scenario);
 $I->wantTo('ensure that goal working correct');
 
 $I->amOnPage('/?id=1');
-
 $I->expect("that i can to edit goal");
+$I->wait(1);
+
+$I->seeElement('#goals-grid');
 
 foreach ($I->getGoals() as $id) {
     $msg = $I->message('goal_title', $id);
@@ -40,7 +42,6 @@ $I->clickOk(TodayPage::$goalEditModal);
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
 
 $I->expect("that i can to add goals in category");
-
 foreach ($I->getCategories() as $id => $name) {
     $msg = $I->message('goal_title', $id . '_new');
 
@@ -48,11 +49,12 @@ foreach ($I->getCategories() as $id => $name) {
     $I->write(TodayPage::$goalTitleEditor, $msg);
     $I->clickOk(TodayPage::$goalAddModal);
 
+    $I->wait(1);
     $I->checkGoalIsInPlans($msg, $id);
 }
-
 $I->expect("that i can to complete goal");
 
 $msg = $I->grabTextFrom(TodayPage::goalTitle(1));
 $I->clickCompleteGoalButton(1);
+$I->wait(2);
 $I->checkGoalIsDone($msg, 1);
