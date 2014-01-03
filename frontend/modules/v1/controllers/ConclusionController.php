@@ -2,6 +2,7 @@
 namespace frontend\modules\v1\controllers;
 
 use common\models\Conclusion;
+use PHPDaemon\Core\Daemon;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
@@ -27,7 +28,7 @@ class ConclusionController extends Controller
 
     public function actionSave()
     {
-        $params = Yii::$app->request->getRestParams();
+        $params = Yii::$app->request->getParams();
         if (isset($params['id'])) {
             $model = Conclusion::find($params['id']);
             $model->scenario = 'update';

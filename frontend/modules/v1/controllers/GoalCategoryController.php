@@ -22,7 +22,7 @@ class GoalCategoryController extends Controller
 
     public function actionSave()
     {
-        $params = Yii::$app->request->getRestParams();
+        $params = Yii::$app->request->getParams();
 
         if (isset($params['id'])) {
             $model = GoalCategory::find($params['id']);

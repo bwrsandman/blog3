@@ -45,7 +45,7 @@ class Route extends \nizsheanez\websocket\Route
     // Этот метод срабатывает сообщении от клиента
     public function onFrame($message, $type)
     {
-        $message = substr($message, strpos($message, '['), strrpos($message, ']') + 1);
+        $message = substr($message, 0, strrpos($message, ']') + 1);
 
         $this->wamp->onMessage($message);
     }

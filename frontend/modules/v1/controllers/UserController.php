@@ -5,6 +5,7 @@ use common\models\Conclusion;
 use common\models\Goal;
 use common\models\GoalCategory;
 use common\models\User;
+use PHPDaemon\Core\Daemon;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
