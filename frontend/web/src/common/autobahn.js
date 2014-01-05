@@ -2732,8 +2732,8 @@ var AUTOBAHNJS_VERSION = '?.?.?';
     ab.CONNECTION_UNREACHABLE_SCHEDULED_RECONNECT = 5;
     ab.CONNECTION_LOST_SCHEDULED_RECONNECT = 6;
 
-    ab.Deferred = when.defer;
-    //ab.Deferred = jQuery.Deferred;
+//    ab.Deferred = when.defer;
+    ab.Deferred = jQuery.Deferred;
 
     ab._construct = function (url, protocols) {
         if ("WebSocket" in window) {

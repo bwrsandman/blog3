@@ -1,50 +1,48 @@
-<div class="modal-dialog {{html.modalClass}}">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Goal Editing</h4>
-        </div>
-        <div class="modal-body">
-            <div class="goals-planing">
-                <h3>Planing</h3>
-                <table class="table">
-                    <tbody>
-                    <tr
+<div class="{{html.modalClass}}">
+    <div class="modal-header">
+        <h4 class="modal-title">Goal Editing</h4>
+    </div>
+    <div class="modal-body">
+        <div class="goals-planing">
+            <h3>Planing</h3>
+            <table class="table">
+                <tbody>
+                <tr
                         ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
-                            >
-                        <td>{{goal.id}}</td>
-                        <td>{{goal.title}}</td>
-                        <td>
-                            <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
-                                <i class="fa fa-pencil-square-o"></i>
-                            </a>
-                        </td>
-                     <td>
-                            <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="goals-done">
-                <h3>Done</h3>
-                <table class="table">
-                    <tbody>
-                    <tr class="success"
-                        ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 1 }"
-                            >
-                        <td>{{goal.id}}</td>
-                        <td>{{goal.title}}</td>
-                        <td>
-                            <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                        >
+                    <td>{{goal.id}}</td>
+                    <td>{{goal.title}}</td>
+                    <td>
+                        <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        <div class="goals-done">
+            <h3>Done</h3>
+            <table class="table">
+                <tbody>
+                <tr class="success"
+                    ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 1 }"
+                        >
+                    <td>{{goal.id}}</td>
+                    <td>{{goal.title}}</td>
+                    <td>
+                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </div>

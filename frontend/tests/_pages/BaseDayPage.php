@@ -28,8 +28,8 @@ class BaseDayPage
 
     //modal backlog
     public static $goalBackLogModal = ".goal-back-log-modal";
-    public static $goalBackLogPlanning = ".goal-back-log-modal .goals-planing";
-    public static $goalBackLogDone = ".goal-back-log-modal .goals-done";
+    public static $goalBackLogPlanning = ".goal-back-log-modal .goals-planing tbody";
+    public static $goalBackLogDone = ".goal-back-log-modal .goals-done tbody";
 
 
     /**

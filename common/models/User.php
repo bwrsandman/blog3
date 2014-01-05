@@ -137,4 +137,34 @@ class User extends generated\User implements IdentityInterface
     }
 
 
+    public function getInitPageData()
+    {
+        /** @var $models Goal[] */
+        $models = Goal::find()->owner($this->id)->all();
+        $goals = [];
+        foreach ($models as $model) {
+            $goals[] = $model->toArray();
+        }
+        $days = [
+            'today',
+            'yesterday'
+        ];
+
+        /** @var $models Goal[] */
+//        echo Yii::$app->user->getId();die;
+        $user = User::find(1);
+        $conclusions = [];
+        foreach ($days as $day) {
+            $conclusions[$day] = $user->getConclusion($day)->toArray();
+        }
+
+        $response = [
+            'categories' => GoalCategory::find()->asArray()->all(),
+            'goals' => $goals,
+            'conclusions' => $conclusions,
+        ];
+
+        return $response;
+    }
+
 }

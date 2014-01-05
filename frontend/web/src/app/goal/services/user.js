@@ -7,12 +7,14 @@ angular.module('eg.goal').factory('User', ['$rootScope', '$socketResource', 'Cat
     var service = {
         get: function (callback) {
             var user = new User;
-            user.$get(function (response) {
+            var response = storage.init;
+//            user.$get(function (response) {
                 Category.set(response.categories);
                 Goal.set(response.goals);
                 Conclusion.set(response.conclusions);
                 callback();
-            });
+            //$rootScope.$apply(callback);
+//            });
         },
         getAll: function () {
             return User;

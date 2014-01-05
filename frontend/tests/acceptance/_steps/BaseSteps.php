@@ -15,6 +15,12 @@ class BaseSteps extends \WebGuy
 //        parent::focus($el);
     }
 
+    public function amOnPage($page)
+    {
+        parent::amOnPage($page);
+        $this->waitForElement('#goals-grid', 3);
+    }
+
     public function write($selector, $value)
     {
         $I = $this;
@@ -38,6 +44,8 @@ class BaseSteps extends \WebGuy
         } else {
             $I->executeJs('$("' . $link . '").click()');
         }
+        $I->waitForJs("return $.active === 0", 5);
+
 //        parent::click($link, $context);
     }
 
@@ -45,8 +53,8 @@ class BaseSteps extends \WebGuy
     {
         $I = $this;
 
-        //selenium2 - 1000
-        $I->wait(3);
+        $I->wait(1);
+        $this->waitForJs('return $.active == 0', 5);
     }
 
     public function seeInField($field, $value)

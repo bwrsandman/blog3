@@ -21,7 +21,7 @@ foreach($I->getGoals() as $id) {
     $I->clickReport($id);
     $I->see($I->message('decomposition', $id), TodayPage::$decompositionEditor);
 }
-
+/*
 //focus
 $I->flushMessages();
 $I->amOnPage('/?id=1');
@@ -40,3 +40,4 @@ foreach($I->getGoals() as $id) {
     $I->see($I->message('decomposition', $id), TodayPage::$decompositionEditor);
 }
 
+*/

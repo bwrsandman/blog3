@@ -3,6 +3,8 @@
 angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($modal, Tpl, Goal) {
     var service = {
         editGoalModal: function (goal) {
+            console.log($('body').is(':animated'))
+            $.animationCount++;
             var promise = $modal.open({
                 templateUrl: Tpl.modal.edit,
                 controller: 'GoalEditModalCtrl',
@@ -21,6 +23,13 @@ angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($
                     }
                 }
             });
+            console.log($('body').is(':animated'))
+
+            promise.opened.then(function() {
+                console.log($('body').is(':animated'))
+
+                $.animationCount--;
+            });
             promise.result.then(function (newGoal) {
                 goal.title = newGoal.title;
                 goal.fk_goal_category = newGoal.fk_goal_category;
@@ -31,7 +40,8 @@ angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($
             return promise;
         },
         addGoalModal: function (category) {
-            $modal.open({
+            $.animationCount++;
+            var promise = $modal.open({
                     templateUrl: Tpl.modal.edit,
                     controller: 'GoalEditModalCtrl',
                     resolve: {
@@ -47,14 +57,21 @@ angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($
                         }
                     }
                 }
-            ).result.then(function (newGoal) {
+            );
+            promise.opened.then(function() {
+                $.animationCount--;
+                console.log($.active === 0 && $.animationCount === 0 && $.socketCallCount === 0);
+            });
+            promise.result.then(function (newGoal) {
                     Goal.add(newGoal);
                 }, function () {
                     //just dismiss
                 });
         },
         backLogModal: function (category) {
-            $modal.open({
+            $.animationCount++;
+
+            var promise = $modal.open({
                     templateUrl: Tpl.modal.backLog,
                     controller: 'BacklogModalCtrl',
                     resolve: {
@@ -69,6 +86,9 @@ angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($
                     }
                 }
             );
+            promise.opened.then(function() {
+                $.animationCount--;
+            });
         }
     };
     return service;

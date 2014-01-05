@@ -16,32 +16,7 @@ class UserController extends Controller
 {
     public function actionView()
     {
-        /** @var $models Goal[] */
-        $models = Goal::find()->owner(Yii::$app->user->getId())->all();
-        $goals = [];
-        foreach ($models as $model) {
-            $goals[] = $model->toArray();
-        }
-        $days = [
-            'today',
-            'yesterday'
-        ];
-
-        /** @var $models Goal[] */
-//        echo Yii::$app->user->getId();die;
-        $user = User::find(1);
-        $conclusions = [];
-        foreach ($days as $day) {
-            $conclusions[$day] = $user->getConclusion($day)->toArray();
-        }
-
-        $response = [
-            'categories' => GoalCategory::find()->asArray()->all(),
-            'goals' => $goals,
-            'conclusions' => $conclusions,
-        ];
-
-        return $response;
+        return Yii::$app->user->identity->getInitPageData();
     }
 
     /**

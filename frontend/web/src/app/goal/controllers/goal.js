@@ -9,11 +9,9 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
     $scope.conclusions = [];
 
     User.get(function () {
-        $scope.$apply(function() {
-            $scope.categories = Category.getAll();
-            $scope.conclusions = Conclusion.getAll();
-            $scope.goals = Goal.getAll();
-        });
+        $scope.categories = Category.getAll();
+        $scope.conclusions = Conclusion.getAll();
+        $scope.goals = Goal.getAll();
     });
 
     $scope.focusGoal = false;

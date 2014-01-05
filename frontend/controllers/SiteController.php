@@ -28,6 +28,8 @@ class SiteController extends Controller
             Yii::$app->user->login($user);
         }
 
+        $this->clientStorage['init'] = Yii::$app->user->identity->getInitPageData();
+
         if (Yii::$app->user->isGuest) {
             echo '<a href="/?id=1">dev</a>';
             echo "\n\n\n\n";

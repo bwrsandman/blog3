@@ -31,7 +31,7 @@ class GoalsWriteSteps extends BaseSteps
     {
         $I = $this;
 
-        $I->seeElement(TodayPage::goalInCategory($goal, $category));
+        $I->waitForElement(TodayPage::goalInCategory($goal, $category), 1);
     }
 
 
@@ -92,7 +92,7 @@ class GoalsWriteSteps extends BaseSteps
         $I = $this;
 
         $I->click(TodayPage::goalEditButton($goal));
-        $I->seeElement(TodayPage::$goalEditModal);
+        $I->waitForElement(TodayPage::$goalEditModal, 1);
     }
 
     public function clickAddGoalButton($category)
@@ -100,7 +100,7 @@ class GoalsWriteSteps extends BaseSteps
         $I = $this;
 
         $I->click(TodayPage::goalAddButton($category));
-        $I->seeElement(TodayPage::$goalAddModal);
+        $I->waitForElement(TodayPage::$goalAddModal, 1);
     }
 
 
@@ -109,7 +109,7 @@ class GoalsWriteSteps extends BaseSteps
         $I = $this;
 
         $I->click(TodayPage::goalBackLogButton($category));
-        $I->seeElement(TodayPage::$goalBackLogModal);
+        $I->waitForElement(TodayPage::$goalBackLogModal, 1);
     }
 
     public function clickCompleteGoalButton($goal)
@@ -126,6 +126,8 @@ class GoalsWriteSteps extends BaseSteps
         $I->dontSee($title, '#goal_grid');
 
         $I->clickBackLogButton($categoryId);
+
+        $I->waitForElement("body .modal", 2);
         $I->see($title, TodayPage::$goalBackLogDone);
         $I->dontSee($title, TodayPage::$goalBackLogPlanning);
         $I->clickOk(TodayPage::$goalBackLogModal);
@@ -137,6 +139,9 @@ class GoalsWriteSteps extends BaseSteps
         $I = $this;
 
         $I->clickBackLogButton($categoryId);
+        $I->waitForElement('body .modal', 2);
+
+        $I->wait(1);
         $I->see($title, TodayPage::$goalBackLogPlanning);
         $I->dontSee($title, TodayPage::$goalBackLogDone);
         $I->clickOk(TodayPage::$goalBackLogModal);

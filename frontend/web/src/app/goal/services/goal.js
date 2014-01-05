@@ -6,6 +6,7 @@ angular.module('eg.goal').factory('Goal', ['$socketResource', function ($resourc
     var goals = [];
     var service = {
         set: function(goalsArray) {
+
             angular.forEach(goalsArray, function (val) {
                 var goal = new Goal(val);
                 goals.push(goal);

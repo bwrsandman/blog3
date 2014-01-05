@@ -4,9 +4,6 @@ $I->wantTo('ensure that goal working correct');
 
 $I->amOnPage('/?id=1');
 $I->expect("that i can to edit goal");
-$I->wait(1);
-
-$I->seeElement('#goals-grid');
 
 foreach ($I->getGoals() as $id) {
     $msg = $I->message('goal_title', $id);
@@ -25,6 +22,7 @@ foreach ($I->getGoals() as $id) {
     $I->see($msg, $editField);
 }
 
+
 $I->expect("that i can to change goals category");
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
@@ -40,6 +38,7 @@ $I->selectOption(TodayPage::$goalTitleCategorySelect, TodayPage::PROFESSIONAL_CA
 $I->clickOk(TodayPage::$goalEditModal);
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
+/*
 
 $I->expect("that i can to add goals in category");
 foreach ($I->getCategories() as $id => $name) {
@@ -48,13 +47,9 @@ foreach ($I->getCategories() as $id => $name) {
     $I->clickAddGoalButton($id);
     $I->write(TodayPage::$goalTitleEditor, $msg);
     $I->clickOk(TodayPage::$goalAddModal);
-    $I->wait(1);
     $I->checkGoalIsInPlans($msg, $id);
 }
 $I->expect("that i can to complete goal");
-
-$msg = $I->grabTextFrom(TodayPage::goalTitle(1));
 $I->clickCompleteGoalButton(1);
-$I->wait(1);
-
-$I->checkGoalIsDone($msg, 1);
+$I->checkGoalIsDone($I->grabTextFrom(TodayPage::goalTitle(1)), 1);
+*/

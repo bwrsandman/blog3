@@ -135,8 +135,10 @@
                             });
                         }
 
-                        console.log(route.url(url));
+                        $.active++;
                         var promise = server.call(route.url(url), params).then(function (response) {
+                            $.active--;
+
                             var data = response.data,
                                 promise = value.$promise;
 
@@ -165,7 +167,7 @@
                             response.resource = value;
 
 //                        $rootScope.$apply(function() {
-                            callback(response)
+                            callback && callback(response)
 //                        });
 
                             return response;
