@@ -40,6 +40,12 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $r
         goal.$save();
     };
 
+    $scope.fail = function (goal) {
+        goal.completed = 2;
+        goal.$save();
+    };
+
+
     showScreen();
 });
 

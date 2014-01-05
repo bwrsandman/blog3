@@ -7,9 +7,7 @@
             <h3>Planing</h3>
             <table class="table">
                 <tbody>
-                <tr
-                        ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
-                        >
+                <tr ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }" >
                     <td>{{goal.id}}</td>
                     <td>{{goal.title}}</td>
                     <td>
@@ -30,6 +28,22 @@
                 <tbody>
                 <tr class="success"
                     ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 1 }"
+                        >
+                    <td>{{goal.id}}</td>
+                    <td>{{goal.title}}</td>
+                    <td>
+                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="goals-fail">
+            <h3>Failed</h3>
+            <table class="table">
+                <tbody>
+                <tr class="warning"
+                    ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 2   }"
                         >
                     <td>{{goal.id}}</td>
                     <td>{{goal.title}}</td>
