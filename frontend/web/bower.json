@@ -4,6 +4,7 @@
   "appPath": "src",
   "dependencies": {
     "angular": "1.*",
+    "bootstrap": "*",
     "angular-route": "*",
     "angular-resource": "*",
     "angular-bootstrap": "*",
