@@ -5,7 +5,11 @@ use yii\helpers\Html;
  * @var $this \yii\base\View
  * @var $content string
  */
-frontend\assets\App::register($this);
+if (YII_DEBUG) {
+    frontend\assets\App::register($this);
+} else {
+    frontend\assets\ProductionApp::register($this);
+}
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>

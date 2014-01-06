@@ -8,7 +8,7 @@ ini_set('xdebug.max_nesting_level', 1000);
 ini_set('session.cookie_lifetime', 60 * 60 * 24 * 30);
 
 // comment out the following line to disable debug mode
-defined('YII_DEBUG') or define('YII_DEBUG', true);
+defined('YII_DEBUG') or define('YII_DEBUG', false);
 
 require(__DIR__ . '/../../vendor/autoload.php');
 require(__DIR__ . '/../../vendor/yiisoft/yii2/yii/Yii.php');

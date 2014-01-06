@@ -23,7 +23,6 @@ module.exports = function (grunt) {
             js: {
                 files: ['<%= conf.app %>/**/*.js'],
                 tasks: [
-//            'newer:jshint:all'
                 ],
                 options: {
                     livereload: true
@@ -95,24 +94,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-
-        // Make sure code styles are up to par and there are no obvious mistakes
-//        jshint: {
-//            options: {
-//                jshintrc: '.jshintrc',
-//                reporter: require('jshint-stylish')
-//            },
-//            all: [
-//                'Gruntfile.js',
-//                '<%= conf.app %>/scripts/**/*.js'
-//            ],
-//            test: {
-//                options: {
-//                    jshintrc: 'test/.jshintrc'
-//                },
-//                src: ['test/spec/**/*.js']
-//            }
-//        },
 
         // Empties folders to start fresh
         clean: {
@@ -233,11 +214,66 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '.tmp/concat/scripts',
-                        src: '*.js',
-                        dest: '.tmp/concat/scripts'
+                        cwd: '<%= conf.app %>/app',
+                        src: '**/*.js',
+                        dest: '<%= conf.dist %>/concat/scripts/app'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= conf.app %>/vendor',
+                        src: ['angular-elastic/elastic.js', 'angular/angular.min.js'],
+                        dest: '<%= conf.dist %>/concat/scripts/vendor'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= conf.app %>/common/',
+                        src: '**/*.js',
+                        dest: '<%= conf.dist %>/concat/scripts/common'
                     }
                 ]
+            }
+        },
+
+        concat: {
+            options: {
+                mangle: {
+                    separator: ';'
+                }
+            },
+            dist: {
+                files: {
+                    '<%= conf.dist %>/all.js': [
+                        '<%= conf.app %>/vendor/jquery/jquery.min.js',
+                        '<%= conf.dist %>concat/scripts/vendor/angular/angular.min.js',
+                        '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap.tpls.min.js',
+                        '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap.min.js',
+                        '<%= conf.app %>/vendor/angular-resource/*.min.js',
+                        '<%= conf.app %>/vendor/angular-route/*.min.js',
+                        '<%= conf.app %>/vendor/angular-translate/*.min.js',
+                        '<%= conf.app %>/vendor/angular-ui/*.min.js',
+                        '<%= conf.app %>/vendor/angular-ui-utils/*.min.js',
+                        '<%= conf.app %>/vendor/angular-sanitize/*.min.js',
+                        '<%= conf.app %>/vendor/textAngular/*.min.js',
+                        '<%= conf.dist %>/concat/scripts/vendor/angular-elastic/elastic.js',
+                        '<%= conf.dist %>/concat/scripts/common/**/*.js',
+                        '<%= conf.dist %>/concat/scripts/app/app.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/*.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/controllers/*.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/directives/*.js'
+                    ]
+                }
+            }
+        },
+        uglify: {
+            options: {
+                mangle: {
+                    except: ['jQuery', 'Angular']
+                }
+            },
+            dist: {
+                files: {
+                    '<%= conf.dist %>/all.min.js': ['<%= conf.dist %>/all.js']
+                }
             }
         },
 
@@ -289,18 +325,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        //uglify: {
-        //   dist: {
-        //     files: {
-        //       '<%= conf.dist %>/scripts/scripts.js': [
-        //         '<%= conf.dist %>/scripts/scripts.js'
-        //       ]
-        //     }
-        //   }
-        // },
-        concat: {
-            dist: {}
-        },
 
         // Test settings
         karma: {
@@ -345,11 +369,12 @@ module.exports = function (grunt) {
         'useminPrepare',
 //        'concurrent:dist',
 //        'autoprefixer',
-//        'concat',
         'ngmin',
-        'copy:dist',
+        'concat',
+//        'copy:dist',
+//        'copy:dist',
         'less',
-//        'uglify',
+        'uglify',
         'rev',
         'usemin',
         'htmlmin'

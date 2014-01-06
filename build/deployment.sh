@@ -4,12 +4,34 @@
 
 cd ${basedir}
 
-sudo rm -rf ${env_dir}
-rm -rf ${basedir}vendor/**/.git
+rm -rf vendor/*
+rm -rf frontend/web/src/vendor/*
+rm -rf frontend/web/assets/*
 
-sudo mkdir ${env_dir}
+git fetch --all && git reset --hard origin/master
 
-sudo chown -R www-data:www-data ${basedir}
+composer install
+cd frontend/web
+bower install --allow-root
+npm update -g && npm update
+
+cd ${basedir}/frontend
+grunt
+
+cd ${basedir}
+
+rm -rf ${env_dir}/*
+
+chown -R www-data:www-data ${basedir}
+
+#configuring
+echo '-----------configuring-----------'
+cp -R ${overlays}* ${env_dir}
+sudo -u www-data php ${basedir}init 0
+
+cd frontend
+php phpd restart --verbose-tty=1
+
 
 #git pull
 #echo '-----------git pull-----------'
@@ -24,15 +46,9 @@ sudo chown -R www-data:www-data ${basedir}
 #rsync -ax --delete $deploy_dir $webroot
 
 
-#configuring
-echo '-----------configuring-----------'
-sudo cp -R ${overlays}* ${env_dir}
-sudo -u www-data php ${basedir}init 0
-
 #sed -f ${overlays}production.sed ${app_dir}config/constants.php.tpl > ${app_dir}config/constants.php
 #sed -f ${overlays}production.sed ${app_dir}config/production.php.tpl > ${app_dir}config/production.php
 
-sudo chown -R www-data:www-data ${basedir}
 
 #sudo -u www-data php composer.phar --prefer-source -o
 

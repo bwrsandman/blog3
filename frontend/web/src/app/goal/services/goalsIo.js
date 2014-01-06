@@ -3,6 +3,7 @@
 // i know about .run() on service, but it's critical time
 (function () {
 
+    return;
     var socket = new JsonWebSocket({
         url: {
             ws: 'ws://' + document.domain + ':8047/'
