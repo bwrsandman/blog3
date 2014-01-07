@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $resource, $socketResource, $routeParams, $location, $modal, Tpl, User, Category, Goal, Conclusion, Modal) {
+angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $socketResource, $routeParams, $location, $modal, Tpl, User, Category, Goal, Conclusion, Modal) {
 
     $scope.tpl = Tpl;
     $scope.keys = [];

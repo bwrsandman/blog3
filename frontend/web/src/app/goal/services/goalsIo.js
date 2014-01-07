@@ -2,7 +2,6 @@
 // services in angular.js is lazy, but socket must be opened ASAP
 // i know about .run() on service, but it's critical time
 (function () {
-
     return;
     var socket = new JsonWebSocket({
         url: {

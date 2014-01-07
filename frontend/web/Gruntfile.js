@@ -23,6 +23,7 @@ module.exports = function (grunt) {
             js: {
                 files: ['<%= conf.app %>/**/*.js'],
                 tasks: [
+                    'ngmin', 'concat'
                 ],
                 options: {
                     livereload: true
@@ -237,7 +238,7 @@ module.exports = function (grunt) {
         concat: {
             options: {
                 mangle: {
-                    separator: ';'
+                    separator: ";\n/*+++++++++++++++++++++++++++++++*/\n"
                 }
             },
             dist: {
@@ -245,9 +246,8 @@ module.exports = function (grunt) {
                     '<%= conf.dist %>/all.js': [
                         '<%= conf.app %>/vendor/jquery/jquery.min.js',
                         '<%= conf.dist %>concat/scripts/vendor/angular/angular.min.js',
-                        '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap.tpls.min.js',
                         '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap.min.js',
-                        '<%= conf.app %>/vendor/angular-resource/*.min.js',
+                        '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
                         '<%= conf.app %>/vendor/angular-route/*.min.js',
                         '<%= conf.app %>/vendor/angular-translate/*.min.js',
                         '<%= conf.app %>/vendor/angular-ui/*.min.js',
@@ -255,9 +255,21 @@ module.exports = function (grunt) {
                         '<%= conf.app %>/vendor/angular-sanitize/*.min.js',
                         '<%= conf.app %>/vendor/textAngular/*.min.js',
                         '<%= conf.dist %>/concat/scripts/vendor/angular-elastic/elastic.js',
+
+
                         '<%= conf.dist %>/concat/scripts/common/**/*.js',
                         '<%= conf.dist %>/concat/scripts/app/app.js',
-                        '<%= conf.dist %>/concat/scripts/app/goal/services/*.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/goal.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/modal.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/category.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/tpl.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/user.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/server.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/alert.js',
+
+
+
+//                        '<%= conf.dist %>/concat/scripts/app/goal/services/*.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/controllers/*.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/directives/*.js'
                     ]
@@ -286,6 +298,27 @@ module.exports = function (grunt) {
                         cwd: '<%= conf.app %>/vendor/components-font-awesome/fonts/',
                         src: '*',
                         dest: '<%= conf.dist %>/fonts/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= conf.app %>/vendor/angular-route',
+                        src: 'angular-route.min.js.map',
+                        dest: '<%= conf.dist %>/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= conf.app %>/vendor/jquery',
+                        src: 'jquery.min.map',
+                        dest: '<%= conf.dist %>/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= conf.app %>/vendor/angular',
+                        src: '*.map',
+                        dest: '<%= conf.dist %>/',
                         filter: 'isFile'
                     }
                 ]
@@ -345,6 +378,9 @@ module.exports = function (grunt) {
             'clean:server',
             'concurrent:server',
             'less',
+            'copy',
+            'ngmin',
+            'concat',
 //            'autoprefixer',
             'connect:livereload',
             'watch'
@@ -371,6 +407,7 @@ module.exports = function (grunt) {
 //        'autoprefixer',
         'ngmin',
         'concat',
+        'copy',
 //        'copy:dist',
 //        'copy:dist',
         'less',

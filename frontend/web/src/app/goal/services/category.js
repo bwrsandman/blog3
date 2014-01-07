@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('eg.goal').factory('Category', ['$socketResource', function ($resource) {
+angular.module('eg.goal').factory('Category', ['$socketResource', function ($socketResource) {
 
-    var Category = $resource('goalCategory');
+    var Category = $socketResource('goalCategory');
 
     var categories = [];
     var service = {

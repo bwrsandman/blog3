@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('eg.goal').factory('User', ['$rootScope', '$socketResource', 'Category', 'Goal', 'Conclusion', function ($rootScope, $resource, Category, Goal, Conclusion) {
+angular.module('eg.goal').factory('User', ['$rootScope', '$socketResource', 'Category', 'Goal', 'Conclusion', function ($rootScope, $socketResource, Category, Goal, Conclusion) {
 
-    var User = $resource('user');
+    var User = $socketResource('user');
 
     var service = {
         get: function (callback) {

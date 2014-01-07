@@ -12,7 +12,7 @@ var lang = 'ru';
 
 var translations = [];
 
-angular.module('eg.goal', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce', 'ngResource', 'textAngular']);
+angular.module('eg.goal', ['ngRoute', 'ui.bootstrap', 'monospaced.elastic', 'ngDebounce', 'textAngular']);
 
 angular.module('eg.goal').config(['msdElasticConfig', function (config) {
     config.append = '\n\n';
@@ -21,6 +21,7 @@ angular.module('eg.goal').config(['msdElasticConfig', function (config) {
 angular.module('eg.goal').config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
     var dir = '/src/app/goal/views';
+
 
     $routeProvider
         .when('/', {templateUrl: dir + '/goals.html', controller: 'GoalCtrl'})

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('eg.goal').factory('Goal', ['$socketResource', function ($resource) {
-    var Goal = $resource('goal');
+angular.module('eg.goal').factory('Goal', ['$socketResource', function ($socketResource) {
+    var Goal = $socketResource('goal');
 
     var goals = [];
     var service = {
@@ -27,8 +27,8 @@ angular.module('eg.goal').factory('Goal', ['$socketResource', function ($resourc
 
 'use strict';
 
-angular.module('eg.goal').factory('Conclusion', ['$socketResource', function ($resource) {
-    var Conclusion = $resource('conclusion');
+angular.module('eg.goal').factory('Conclusion', ['$socketResource', function ($socketResource) {
+    var Conclusion = $socketResource('conclusion');
 
     var conclusions = [];
     var service = {

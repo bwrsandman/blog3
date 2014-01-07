@@ -12,11 +12,13 @@ use yii\web\AssetBundle;
 class ProductionApp extends AssetBundle
 {
 	public $basePath = '@webroot';
-	public $baseUrl = '@web/assets/build';
+	public $baseUrl = '@web';
 	public $css = array();
 
 	public $js = array(
-        'all.js',
+//        'src/vendor/jquery/jquery.min.js',
+//        'src/vendor/angular/angular.min.js',
+        'assets/build/all.min.js',
     );
 
 	public $depends = array(
