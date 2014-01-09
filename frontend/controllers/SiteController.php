@@ -2,17 +2,11 @@
 
 namespace frontend\controllers;
 
-use common\components\ClientApi;
-use common\models\Goal;
 use Yii;
 use yii\web\Controller;
 use common\models\LoginForm;
-use frontend\models\ContactForm;
 use common\models\User;
 use yii\web\HttpException;
-use yii\helpers\Security;
-use Dropbox\AppInfo;
-use Dropbox\WebAuthNoRedirect;
 
 
 class SiteController extends Controller
