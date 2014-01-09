@@ -238,7 +238,7 @@ module.exports = function (grunt) {
         concat: {
             options: {
                 mangle: {
-                    separator: ";\n/*+++++++++++++++++++++++++++++++*/\n"
+                    separator: ';'
                 }
             },
             dist: {
