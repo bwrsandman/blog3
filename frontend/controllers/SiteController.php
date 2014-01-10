@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
-use common\models\LoginForm;
 use common\models\User;
 use yii\web\HttpException;
 

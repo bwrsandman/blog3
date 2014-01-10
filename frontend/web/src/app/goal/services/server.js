@@ -3,28 +3,29 @@
 // i know about .run() on service, but it's critical time
 (function () {
 
-    var prefix = 'http://' + document.domain + '/api/v1/';
-    var socketDefer = $.Deferred();
-    // WAMP session object
+    angular.module('eg.goal').service('server', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
+        var prefix = 'http://' + document.domain + '/api/v1/';
+        var socketDefer = $.Deferred();
+        // WAMP session object
 
-    var sess = $.extend(socketDefer.promise(), {
+        var sess = $.extend(socketDefer.promise(), {
 //        pushHandler: params.pushHandler,
 //        errorHandler: params.errorHandler
-        call: function () {
-            var args = arguments;
-            var beforeOnOpenDefer = $.Deferred();
-            socketDefer.then(function () {
-                sess.call.apply(sess, args).then(function (data) {
-                    beforeOnOpenDefer.resolve(data)
+            call: function () {
+                var args = arguments;
+                var beforeOnOpenDefer = $.Deferred();
+                socketDefer.then(function () {
+                    sess.call.apply(sess, args).then(function (data) {
+                        beforeOnOpenDefer.resolve(data)
+                    });
                 });
-            });
-            return beforeOnOpenDefer;
-        }
-    });
+                return beforeOnOpenDefer;
+            }
+        });
 
-    function onConnect(session) {
-        sess = session;
-        socketDefer.resolve();
+        function onConnect(session) {
+            sess = session;
+            socketDefer.resolve();
 
 //        sess._subscribe = sess.subscribe;
 //        sess.subscribe = function (id, callback) {
@@ -34,20 +35,19 @@
 //                });
 //            })
 //        };
-    }
+        }
 
-    function onDisconnect(code, reason) {
-        sess = null;
-        console.log("Connection lost (" + code + " " + reason + ")");
-    }
+        function onDisconnect(code, reason) {
+            sess = null;
+            console.log("Connection lost (" + code + " " + reason + ")");
+        }
 
-    // connect to WAMP server
-    ab.connect('ws://' + document.domain + ':8047/', onConnect, onDisconnect, {
-        'maxRetries': 60000,
-        'retryDelay': 1000
-    });
+        // connect to WAMP server
+        ab.connect('ws://' + document.domain + ':8047/', onConnect, onDisconnect, {
+            'maxRetries': 60000,
+            'retryDelay': 1000
+        });
 
-    angular.module('eg.goal').service('server', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
         return sess;
     }]);
 
