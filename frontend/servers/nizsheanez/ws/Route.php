@@ -1,16 +1,21 @@
 <?php
-namespace frontend\servers;
+namespace nizsheanez\ws;
 
 use common\components\Wamp;
 use PHPDaemon\Core\Daemon;
 use Yii;
 
-class Route extends \nizsheanez\websocket\Route
+class Route extends \PHPDaemon\WebSocket\Route
 {
+    public $id; // id of connection session
+
     public $prefixes = array();
 
+    public $yiiAppConfig;
+    public $yiiAppClass;
+
     /**
-     * @var \frontend\servers\WebSocket
+     * @var \nizsheanez\ws\Server
      */
     public $appInstance;
 
@@ -40,8 +45,9 @@ class Route extends \nizsheanez\websocket\Route
      */
     public function beforeOnMessage()
     {
-        $config = require __DIR__ . '/../../frontend/config/main.php';
-        new \nizsheanez\ws\Application($config);
+        $config = require Yii::getAlias($this->yiiAppConfig);
+        $class = $this->yiiAppClass;
+        new $class($config);
     }
 
     /**
@@ -64,13 +70,16 @@ class Route extends \nizsheanez\websocket\Route
      */
     public function onCall($id, $topic, array $params)
     {
-        $this->client->server['REQUEST_URI'] = str_replace($this->client->server['HTTP_ORIGIN'], '', $topic);
-        Daemon::log($this->client->server['REQUEST_URI']);
+        Yii::$app->request->setUrl(str_replace($this->client->server['HTTP_ORIGIN'], '', $topic));
+        Daemon::log(Yii::$app->request->getUrl());
+
         $_GET = $params;
         try {
             Yii::$app->run();
         } catch (\Exception $e) {
+            $this->wamp->error($id, Yii::$app->response->data);
             Daemon::log($e);
+            return true;
         }
         $this->wamp->result($id, Yii::$app->response->data);
     }
@@ -92,25 +101,16 @@ class Route extends \nizsheanez\websocket\Route
         $this->appInstance->pubsub->unsub($id, $this);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function onPublish($id, $event, array $exclude, array $eligible)
     {
         $this->appInstance->pubsub->pub($id, $event);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function onClose()
     {
         $this->appInstance->pubsub->unsubFromAll($this);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function onError(\Exception $e)
     {
         return $this->_decorating->onError($this->client, $e);
