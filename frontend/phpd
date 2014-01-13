@@ -4,14 +4,12 @@
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('DAEMON') or define('DAEMON', true);
 
-
 require __DIR__ . '/../vendor/autoload.php';
-require(__DIR__ . '/../vendor/yiisoft/yii2/yii/Yii.php');
+require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
 Yii::setAlias('@nizsheanez/ws', __DIR__ . '/servers/nizsheanez/ws');
-
-$config = require __DIR__ . '/../frontend/config/frontend_configs.php';
-new \nizsheanez\ws\Application($config);
+$configFile = realpath(__DIR__ . '/../frontend/config/main.php');
+$config = require $configFile; //set aliaces, app will create when it will need
 
 $configFile = __DIR__ . '/../common/config/phpd.conf';
 require __DIR__ . '/../vendor/kakserpom/phpdaemon/bin/phpd';

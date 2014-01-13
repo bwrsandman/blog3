@@ -1,11 +1,19 @@
 <?php
 namespace frontend\servers;
 
-class WebSocket extends \nizsheanez\websocket\Server
-{
-    public $routeClass = '\frontend\servers\Route';
+use PHPDaemon\Core\Daemon;
 
+class WebSocket extends \PHPDaemon\Core\AppInstance
+{
+
+    public $enableRPC = true; // Без этой строчки не будут работать широковещательные вызовы
+    public $sessions = []; // Здесь будем хранить указатели на сессии подключившихся клиентов
+
+    public $yiiDebug = false;
+
+    public $routeClass = '\frontend\servers\Route';
     public $pubsub;
+
 
     public function __construct($name = '')
     {
@@ -13,6 +21,31 @@ class WebSocket extends \nizsheanez\websocket\Server
         parent::__construct($name = '');
     }
 
+    public function onReady()
+    {
+        $this->initRoutes();
+    }
+
+    public function initRoutes()
+    {
+        $appInstance = $this;
+        $path        = '';
+        \PHPDaemon\Servers\WebSocket\Pool::getInstance()->addRoute($path, function ($client) use ($path, $appInstance) {
+            return $appInstance->getRoute($path, $client);
+        });
+    }
+
+    public function getRoute($path, $client)
+    {
+        switch ($path) {
+            case '':
+                $route                      = new $this->routeClass($client, $this); // Создаем сессию
+                $route->id                  = uniqid(); // Назначаем ей уникальный ID
+                $this->sessions[$route->id] = $route; //Сохраняем в массив
+                return $route;
+        }
+
+    }
 
 }
 

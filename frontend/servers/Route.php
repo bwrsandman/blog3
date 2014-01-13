@@ -21,33 +21,42 @@ class Route extends \nizsheanez\websocket\Route
 
     public function onHandshake()
     {
-        $this->client->onSessionStart(function ($event) {
-//            Yii::$app->session->open();
-//            Daemon::log(print_r($_SESSION, true) . "\n");
-//            Daemon::log(print_r($this->client->session, true). "\n");
-//            Daemon::log(session_id() . "\n");
-//            Daemon::log($this->client->session. "\n");
-//            Daemon::log($this->client->session->sessionId . "\n");
-//            $_SESSION = &$this->client->session;
-//
-//            if (!isset($this->client->session['counter'])) {
-//                $this->client->session['counter'] = 0;
-//            }
-//            ++$this->client->session['counter'];
-//            file_put_contents('php://stdout', print_r($_SESSION, true) . "\n");
-//            $this->client->sessionCommit();
-        });
         $wamp = $this->wamp = new Wamp($this);
         $wamp->onOpen();
     }
 
 
-    // Этот метод срабатывает сообщении от клиента
     public function onFrame($message, $type)
     {
+        $this->beforeOnMessage();
         $message = substr($message, 0, strrpos($message, ']') + 1);
 
         $this->wamp->onMessage($message);
+        $this->afterOnMessage();
+    }
+
+    /**
+     * Create Yii application
+     */
+    public function beforeOnMessage()
+    {
+        $config = require __DIR__ . '/../../frontend/config/main.php';
+        new \nizsheanez\ws\Application($config);
+    }
+
+    /**
+     * Garbage Collection
+     *
+     * close sessions, destroy application, etc.
+     */
+    public function afterOnMessage()
+    {
+        $this->client->sessionCommit();
+        Yii::$app->session->close();
+        foreach (Yii::$app->getComponents() as $component) {
+            unset($component);
+        }
+        Yii::$app = null;
     }
 
     /**
@@ -55,14 +64,11 @@ class Route extends \nizsheanez\websocket\Route
      */
     public function onCall($id, $topic, array $params)
     {
-        Yii::$app->request->uri = str_replace($this->client->server['HTTP_ORIGIN'], '', $topic);
-        Daemon::log(Yii::$app->request->uri);
+        $this->client->server['REQUEST_URI'] = str_replace($this->client->server['HTTP_ORIGIN'], '', $topic);
+        Daemon::log($this->client->server['REQUEST_URI']);
         $_GET = $params;
         try {
-            /** @var $response \nizsheanez\ws\Response */
-            $response = Yii::$app->run();
-            $this->client->sessionCommit();
-            Yii::$app->session->close();
+            Yii::$app->run();
         } catch (\Exception $e) {
             Daemon::log($e);
         }
@@ -110,9 +116,9 @@ class Route extends \nizsheanez\websocket\Route
         return $this->_decorating->onError($this->client, $e);
     }
 
-    public function send($obj)
+    public function send($message)
     {
-        $this->client->sendFrame($obj, 'STRING');
+        $this->client->sendFrame($message, 'STRING');
 
         return $this;
     }
