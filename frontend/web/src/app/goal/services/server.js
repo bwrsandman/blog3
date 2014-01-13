@@ -3,14 +3,12 @@
 // i know about .run() on service, but it's critical time
 (function () {
 
-    angular.module('eg.goal').service('server', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
+    angular.module('eg.components').service('server', ['$q', '$rootScope', 'alertService', function ($q, $rootScope, alertService) {
         var prefix = 'http://' + document.domain + '/api/v1/';
         var socketDefer = $.Deferred();
         // WAMP session object
 
         var sess = $.extend(socketDefer.promise(), {
-//        pushHandler: params.pushHandler,
-//        errorHandler: params.errorHandler
             call: function () {
                 var args = arguments;
                 var beforeOnOpenDefer = $.Deferred();
@@ -51,7 +49,7 @@
         return sess;
     }]);
 
-    angular.module('eg.goal').factory('$socketResource', ['$q', '$rootScope', 'server', 'alertService',
+    angular.module('eg.components').factory('$socketResource', ['$q', '$rootScope', 'server', 'alertService',
         function ($q, $rootScope, server, alertService) {
             /**
              * Create a shallow copy of an object and clear other fields from the destination

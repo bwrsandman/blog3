@@ -7,8 +7,7 @@ defined('DAEMON') or define('DAEMON', true);
 require __DIR__ . '/../vendor/autoload.php';
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
-Yii::setAlias('@nizsheanez/ws', __DIR__ . '/servers/nizsheanez/ws');
-$configFile = realpath(__DIR__ . '/../frontend/config/main.php');
+$configFile = realpath(__DIR__ . '/../frontend/config/websocket.php');
 $config = require $configFile; //set aliaces, app will create when it will need
 
 $configFile = __DIR__ . '/../common/config/phpd.conf';

@@ -18,13 +18,11 @@ class App extends AssetBundle
 	public $js = array(
         'common/fixes.js',
         'common/debug.js',
-        'common/autobahn.js',
         'common/components.js',
 
         'app/app.js',
 
 //        'app/goal/services/goalsIo.js',
-        'app/goal/services/server.js',
         'app/goal/services/tpl.js',
         'app/goal/services/autobahn.js',
         'app/goal/services/modal.js',
@@ -50,6 +48,6 @@ class App extends AssetBundle
         'frontend\assets\AngularUiUtils',
         'frontend\assets\TextAngular',
 //        'frontend\assets\FontAwesome',
-//        'nizsheanez\websocket\assetBundles\WebSocket',
+        'nizsheanez\wap\assets\Bundle',
     );
 }

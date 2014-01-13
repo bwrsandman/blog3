@@ -1,14 +1,15 @@
 <?php
 $main = require 'main.php';
 
+
 $websocket = array(
     'id'                  => 'app-frontend-websocket',
     'components'          => [
         'request' => array(
-            'class' => 'nizsheanez\ws\Request',
+            'class' => 'nizsheanez\wamp\Request',
         ),
         'response' => array(
-            'class' => 'nizsheanez\ws\Response',
+            'class' => 'nizsheanez\wamp\Response',
         ),
     ],
 );
