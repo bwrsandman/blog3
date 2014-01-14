@@ -24,7 +24,6 @@ class App extends AssetBundle
 
 //        'app/goal/services/goalsIo.js',
         'app/goal/services/tpl.js',
-        'app/goal/services/autobahn.js',
         'app/goal/services/modal.js',
         'app/goal/services/user.js',
         'app/goal/services/category.js',
@@ -39,15 +38,16 @@ class App extends AssetBundle
         'app/goal/services/alert.js',
     );
 	public $depends = array(
-		'yii\web\YiiAsset',
+		'frontend\assets\JqueryUi',
 //		'yii\bootstrap\BootstrapAsset',
         'frontend\assets\Angular',
+        'frontend\assets\AngularUi',
 //        'frontend\assets\UiCodemirror',
         'frontend\assets\UiBootstrap',
         'frontend\assets\AngularElastic',
         'frontend\assets\AngularUiUtils',
         'frontend\assets\TextAngular',
 //        'frontend\assets\FontAwesome',
-        'nizsheanez\wap\assets\Bundle',
+        'nizsheanez\wamp\assets\Bundle',
     );
 }

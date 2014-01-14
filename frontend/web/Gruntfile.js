@@ -245,12 +245,14 @@ module.exports = function (grunt) {
                 files: {
                     '<%= conf.dist %>/all.js': [
                         '<%= conf.app %>/vendor/jquery/jquery.min.js',
+                        '<%= conf.app %>/vendor/jquery-ui/minified/jquery-ui.min.js',
                         '<%= conf.dist %>concat/scripts/vendor/angular/angular.min.js',
                         '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap.min.js',
                         '<%= conf.app %>/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
                         '<%= conf.app %>/vendor/angular-route/*.min.js',
                         '<%= conf.app %>/vendor/angular-translate/*.min.js',
                         '<%= conf.app %>/vendor/angular-ui/*.min.js',
+                        '<%= conf.app %>/vendor/angular-sortable/src/sortable.js',
                         '<%= conf.app %>/vendor/angular-ui-utils/*.min.js',
                         '<%= conf.app %>/vendor/angular-sanitize/*.min.js',
                         '<%= conf.app %>/vendor/textAngular/*.min.js',
@@ -303,7 +305,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= conf.app %>/vendor/angular-route',
-                        src: 'angular-route.min.js.map',
+                        src: 'angular-route.*',
                         dest: '<%= conf.dist %>/',
                         filter: 'isFile'
                     },

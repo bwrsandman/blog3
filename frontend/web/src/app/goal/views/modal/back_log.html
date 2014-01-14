@@ -5,22 +5,16 @@
     <div class="modal-body">
         <div class="goals-planing">
             <h3>Planing</h3>
-            <table class="table">
-                <tbody>
-                <tr ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }" >
-                    <td>{{goal.id}}</td>
-                    <td>{{goal.title}}</td>
-                    <td>
+            <ul ui-sortable="sortableOptions" ng-model="goals">
+                <li ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }">
+                    <div>{{goal.title}}</div>
+                    <div>
                         <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
                             <i class="fa fa-pencil-square-o"></i>
                         </a>
-                    </td>
-                    <td>
-                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="goals-done">
             <h3>Done</h3>
@@ -32,7 +26,9 @@
                     <td>{{goal.id}}</td>
                     <td>{{goal.title}}</td>
                     <td>
-                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                        <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
@@ -48,7 +44,9 @@
                     <td>{{goal.id}}</td>
                     <td>{{goal.title}}</td>
                     <td>
-                        <a href="#" class="pull-right"><i class="fa fa-sort"></i></a>
+                        <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
