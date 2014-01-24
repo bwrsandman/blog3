@@ -151,8 +151,8 @@ class Goal extends generated\Goal
 
 trait GoalScopes
 {
-    use \common\components\traits\UserRelatedScopes;
-    use \common\components\traits\DateScopes;
+    use \common\traits\scopes\UserRelated;
+    use \common\traits\scopes\Date;
 }
 
 class GoalQuery extends ActiveQuery

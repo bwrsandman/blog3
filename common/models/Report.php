@@ -62,7 +62,7 @@ class Report extends generated\Report
 
 trait ReportScopes
 {
-    use \common\components\traits\DateScopes;
+    use \common\traits\scopes\Date;
 }
 
 class ReportQuery extends ActiveQuery

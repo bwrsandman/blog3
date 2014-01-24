@@ -1,9 +1,9 @@
 <?php
-namespace common\components\traits;
+namespace common\traits\scopes;
 
 use yii\db\ActiveQuery;
 
-trait UserRelatedScopes {
+trait UserRelated {
 
     /**
      * @param $id

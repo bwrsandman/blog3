@@ -41,15 +41,18 @@ class Conclusion extends generated\Conclusion
     }
 }
 
+trait ConclusionScopes {
+    use \common\traits\scopes\UserRelated;
+    use \common\traits\scopes\Date;
+}
+
 class ConclusionQuery extends ActiveQuery
 {
-    use \common\components\traits\UserRelatedScopes;
-    use \common\components\traits\DateScopes;
+    use ConclusionScopes;
 }
 
 
 class ConclusionRelation extends ActiveRelation
 {
-    use \common\components\traits\UserRelatedScopes;
-    use \common\components\traits\DateScopes;
+    use ConclusionScopes;
 }

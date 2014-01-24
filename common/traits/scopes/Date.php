@@ -1,7 +1,7 @@
 <?php
-namespace common\components\traits;
+namespace common\traits\scopes;
 
-trait DateScopes {
+trait Date {
 
     public static function date($day)
     {
