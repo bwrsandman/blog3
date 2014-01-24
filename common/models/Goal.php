@@ -2,15 +2,27 @@
 namespace common\models;
 
 use yii\data\ArrayDataProvider;
-use yii\db\Query;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
 
 class Goal extends generated\Goal
 {
+
     protected $reportsCache;
 
     const COMPLETED_YES = 1;
-    const COMPLETED_NO = 0;
+    const COMPLETED_NO  = 0;
+
+    public static function createQuery()
+    {
+        return new GoalQuery(['modelClass' => get_called_class()]);
+    }
+
+    public static function createActiveRelation($config = [])
+    {
+        return new GoalRelation($config);
+    }
 
     public function search()
     {
@@ -86,9 +98,9 @@ class Goal extends generated\Goal
         $report = $this->hasOne(Report::className(), ['fk_goal' => 'id'])->day($day)->one();
 
         if (!$report) {
-            $report = new Report();
-            $report->scenario = 'create';
-            $report->fk_goal = $this->id;
+            $report              = new Report();
+            $report->scenario    = 'create';
+            $report->fk_goal     = $this->id;
             $report->description = '<div>&nbsp;</div>';
             $report->report_date = $this->date($day);
             if (!$report->save()) {
@@ -116,7 +128,7 @@ class Goal extends generated\Goal
 
     public function toArray()
     {
-        $res = parent::toArray();
+        $res  = parent::toArray();
         $days = [
             'today',
             'yesterday'
@@ -136,3 +148,20 @@ class Goal extends generated\Goal
         parent::afterSave($insert);
     }
 }
+
+trait GoalScopes
+{
+    use \common\components\traits\UserRelatedScopes;
+    use \common\components\traits\DateScopes;
+}
+
+class GoalQuery extends ActiveQuery
+{
+    use GoalScopes;
+}
+
+class GoalRelation extends ActiveRelation
+{
+    use GoalScopes;
+}
+

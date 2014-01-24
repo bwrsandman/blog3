@@ -7,6 +7,7 @@ use yii\web\IdentityInterface;
 
 class User extends generated\User implements IdentityInterface
 {
+
     /**
      * @var string the raw password. Used to collect password input and isn't saved in database
      */

@@ -1,14 +1,22 @@
 <?php
 namespace common\models;
 
-use yii\data\ArrayDataProvider;
-use yii\db\ActiveRecord;
-use yii\db\Query;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 
 class Report extends generated\Report
 {
+    public static function createQuery()
+    {
+        return new ReportQuery(['modelClass' => get_called_class()]);
+    }
+
+    public static function createActiveRelation($config = [])
+    {
+        return new ReportRelation($config);
+    }
+
 
     public function behaviors()
     {
@@ -50,16 +58,19 @@ class Report extends generated\Report
         return true;
     }
 
-    public static function day(Query $query, $day)
-    {
-        $query
-            ->andWhere('report_date >= :day')
-            ->andWhere('report_date < :nexDay')
-            ->addParams([
-                ':day'    => static::date($day),
-                ':nexDay' => static::date($day . ' +1 day')
-            ]);
+}
 
-        return $query;
-    }
+trait ReportScopes
+{
+    use \common\components\traits\DateScopes;
+}
+
+class ReportQuery extends ActiveQuery
+{
+    use ReportScopes;
+}
+
+class ReportRelation extends ActiveRelation
+{
+    use ReportScopes;
 }

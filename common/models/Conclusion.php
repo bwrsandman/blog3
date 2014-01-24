@@ -1,11 +1,22 @@
 <?php
 namespace common\models;
 
-use yii\db\Query;
+use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
+use yii\db\ActiveQuery;
 
 class Conclusion extends generated\Conclusion
 {
+
+    public static function createQuery()
+    {
+        return new ConclusionQuery(['modelClass' => get_called_class()]);
+    }
+
+    public static function createActiveRelation($config = [])
+    {
+        return new ConclusionRelation($config);
+    }
 
     public function rules()
     {
@@ -28,24 +39,17 @@ class Conclusion extends generated\Conclusion
             ],
         ]);
     }
+}
+
+class ConclusionQuery extends ActiveQuery
+{
+    use \common\components\traits\UserRelatedScopes;
+    use \common\components\traits\DateScopes;
+}
 
 
-    public static function date($day)
-    {
-        return date('Y-m-d', strtotime($day));
-    }
-
-    public static function day(Query $query, $day)
-    {
-        $query
-            ->andWhere('report_date >= :day')
-            ->andWhere('report_date < :nexDay')
-            ->addParams([
-                ':day'    => static::date($day),
-                ':nexDay' => static::date($day . ' +1 day')
-            ]);
-
-        return $query;
-    }
-
+class ConclusionRelation extends ActiveRelation
+{
+    use \common\components\traits\UserRelatedScopes;
+    use \common\components\traits\DateScopes;
 }

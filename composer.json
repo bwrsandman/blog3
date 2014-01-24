@@ -8,12 +8,12 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "dev-master",
-        "yiisoft/yii2-bootstrap": "dev-master",
-        "yiisoft/yii2-debug": "dev-master",
-        "yiisoft/yii2-gii": "dev-master",
         "yiisoft/yii2-redis": "*",
         "yiisoft/yii2-sphinx": "*",
         "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-faker": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-debug": "*",
 
         "cboden/Ratchet": "*",
         "michelf/php-markdown": "*",
@@ -24,8 +24,8 @@
         "nizsheanez/yii2-websocket-application": "*",
 
         "danielstjules/stringy": "*",
-        "fzaninotto/faker": "*",
 
+        "twbs/bootstrap": "3.0.3",
         "fabpot/goutte": "*",
         "codeception/codeception": "*",
         "codeception/specify": "*",
