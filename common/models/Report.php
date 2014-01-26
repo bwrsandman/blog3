@@ -12,7 +12,7 @@ class Report extends generated\Report
         return new ReportQuery(['modelClass' => get_called_class()]);
     }
 
-    public static function createActiveRelation($config = [])
+    public static function createRelation($config = [])
     {
         return new ReportRelation($config);
     }

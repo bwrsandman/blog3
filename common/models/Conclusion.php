@@ -13,7 +13,7 @@ class Conclusion extends generated\Conclusion
         return new ConclusionQuery(['modelClass' => get_called_class()]);
     }
 
-    public static function createActiveRelation($config = [])
+    public static function createRelation($config = [])
     {
         return new ConclusionRelation($config);
     }

@@ -19,7 +19,7 @@ class Goal extends generated\Goal
         return new GoalQuery(['modelClass' => get_called_class()]);
     }
 
-    public static function createActiveRelation($config = [])
+    public static function createRelation($config = [])
     {
         return new GoalRelation($config);
     }
