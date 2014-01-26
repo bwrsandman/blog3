@@ -144,7 +144,7 @@ class Goal extends generated\Goal
 
     public function afterSave($insert)
     {
-        $this->getReport('today')->save() && $this->getReport('yesterday')->save();
+        $r = $this->getReport('today')->save() && $this->getReport('yesterday')->save();
         parent::afterSave($insert);
     }
 }
