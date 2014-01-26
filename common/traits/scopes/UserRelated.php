@@ -3,6 +3,10 @@ namespace common\traits\scopes;
 
 use yii\db\ActiveQuery;
 
+
+/**
+ * Class $this ActiveQuery
+ */
 trait UserRelated {
 
     /**
