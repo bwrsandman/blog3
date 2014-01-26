@@ -5,12 +5,15 @@ $main = require 'main.php';
 $websocket = array(
     'id'                  => 'app-frontend-websocket',
     'components'          => [
-        'request' => array(
-            'class' => 'nizsheanez\wamp\Request',
-        ),
-        'response' => array(
-            'class' => 'nizsheanez\wamp\Response',
-        ),
+        'request' => [
+            'class' => 'nizsheanez\websocket\Request',
+        ],
+        'response' => [
+            'class' => 'nizsheanez\websocket\Response',
+        ],
+        'session' => [
+            'class' => 'common\components\Session'
+        ]
     ],
 );
 

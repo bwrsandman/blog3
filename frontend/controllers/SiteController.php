@@ -15,23 +15,27 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $request = Yii::$app->request;
-        if ($request->get('id')) {
-            $user = new User();
-            $user->id = $request->get('id');
-            Yii::$app->user->login($user);
+        $user    = Yii::$app->user;
+
+        if ($user->isGuest) {
+            if ($request->get('id')) {
+                $identity     = new User();
+                $identity->id = $request->get('id');
+                $user->login($identity);
+            } else {
+                echo '<a href="/?id=1">dev</a>';
+                echo "\n\n\n\n";
+                echo '<a href="/?id=2">prod</a>';
+                return true;
+            }
         }
 
-        if (Yii::$app->user->isGuest) {
-            echo '<a href="/?id=1">dev</a>';
-            echo "\n\n\n\n";
-            echo '<a href="/?id=2">prod</a>';
-        } else {
-            $this->clientStorage['init'] = Yii::$app->user->identity->getInitPageData();
-            return $this->render('index');
-        }
+        $this->clientStorage['init'] = $user->identity->getInitPageData();
+        return $this->render('index');
     }
 
-    public function actionError() {
+    public function actionError()
+    {
     }
 
     public function actionLogin()
@@ -69,7 +73,7 @@ class SiteController extends Controller
 
     public function actionRequestPasswordReset()
     {
-        $model = new User();
+        $model           = new User();
         $model->scenario = 'requestPasswordResetToken';
         if ($model->load($_POST) && $model->validate()) {
             if ($this->sendPasswordResetEmail($model->email)) {
@@ -88,7 +92,7 @@ class SiteController extends Controller
     {
         $model = User::find(array(
             'password_reset_token' => $token,
-            'status' => User::STATUS_ACTIVE,
+            'status'               => User::STATUS_ACTIVE,
         ));
 
         if (!$model) {

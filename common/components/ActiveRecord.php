@@ -24,15 +24,15 @@ class ActiveRecord extends \yii\db\ActiveRecord
         ];
     }
 
-
-    public static function date($day)
-    {
-        return date('Y-m-d', strtotime($day));
-    }
-
     public function throwValidationErrors()
     {
-        throw new Exception(json_encode($this->getErrors()));
+        $data = [
+            'model' => $this->className(),
+            'errors' => $this->getErrors(),
+            'attributes' => $this->attributes,
+            'session' => $_SESSION
+        ];
+        throw new Exception(json_encode($data));
     }
 
 }
