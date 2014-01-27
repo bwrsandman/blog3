@@ -1,12 +1,8 @@
 <?php
 namespace common\traits\scopes;
-
 trait Date {
 
-    public static function date($day)
-    {
-        return date('Y-m-d', strtotime($day));
-    }
+    use \common\traits\Date;
 
     public function day($day)
     {

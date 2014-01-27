@@ -3,18 +3,8 @@ namespace common\components;
 
 class Request extends \yii\web\Request
 {
-    protected $restParams;
-
-    public function getRestParams()
+    public function get($name, $defaultValue = null)
     {
-        if ($this->restParams === null) {
-            if (isset($_POST[$this->restVar])) {
-                $this->restParams = $_POST;
-            } else {
-                $this->restParams = json_decode($this->getRawBody(), true);
-            }
-        }
-        return $this->restParams;
+        return isset($_GET[$name]) ? $_GET[$name] : $defaultValue;
     }
-
 }

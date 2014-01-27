@@ -38,39 +38,6 @@ class SiteController extends Controller
     {
     }
 
-    public function actionLogin()
-    {
-        $model = new LoginForm();
-        if ($model->load($_POST) && $model->login()) {
-            return $this->goHome();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-        return $this->goHome();
-    }
-
-    public function actionSignup()
-    {
-        $model = new User();
-        $model->setScenario('signup');
-        if ($model->load($_POST) && $model->save()) {
-            if (Yii::$app->getUser()->login($model)) {
-                return $this->goHome();
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
-
     public function actionRequestPasswordReset()
     {
         $model           = new User();

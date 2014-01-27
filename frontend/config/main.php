@@ -40,6 +40,9 @@ return array(
         'sphinxDb'     => $params['components.sphinxDb'],
         'cache'        => $params['components.cache'],
         'mail'         => $params['components.mail'],
+        'request'      => [
+            'class' => 'common\components\Request'
+        ],
         'user'         => [
             'class'         => 'yii\web\User',
             'identityClass' => 'common\models\User',

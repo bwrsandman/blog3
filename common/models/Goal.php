@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 
 class Goal extends generated\Goal
 {
+    use \common\traits\Date;
 
     protected $reportsCache;
 
