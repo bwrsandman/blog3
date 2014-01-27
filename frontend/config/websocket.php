@@ -12,7 +12,7 @@ $websocket = array(
             'class' => 'nizsheanez\websocket\Response',
         ],
         'session' => [
-            'class' => 'common\components\Session'
+            'class' => 'nizsheanez\websocket\Session'
         ]
     ],
 );
