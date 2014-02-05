@@ -25,7 +25,7 @@
 
         "danielstjules/stringy": "*",
 
-        "twbs/bootstrap": "3.0.3",
+        "twbs/bootstrap": "3.1.*",
         "fabpot/goutte": "*",
         "codeception/codeception": "*",
         "codeception/specify": "*",

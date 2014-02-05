@@ -5,4 +5,5 @@ use PHPDaemon\Core\Daemon;
 
 class WebSocket extends \nizsheanez\wamp\Server {
 
+
 }

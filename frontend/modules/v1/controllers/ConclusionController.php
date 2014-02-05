@@ -28,7 +28,7 @@ class ConclusionController extends Controller
 
     public function actionSave()
     {
-        $params = Yii::$app->request->getParams();
+        $params = Yii::$app->request->get();
         if (isset($params['id'])) {
             $model = Conclusion::find($params['id']);
             $model->scenario = 'update';
@@ -46,7 +46,7 @@ class ConclusionController extends Controller
 
     public function actionDelete()
     {
-        $params = Yii::$app->request->getParams();
+        $params = Yii::$app->request->get();
         $model = $this->findModel($params);
         if ($model->delete()) {
             return 'Deleted';

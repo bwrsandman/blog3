@@ -26,7 +26,7 @@ class GoalController extends Controller
 
     public function actionSave()
     {
-        $params = Yii::$app->request->getParams();
+        $params = Yii::$app->request->get();
         if (isset($params['id'])) {
             $model = Goal::find($params['id']);
             $model->scenario = 'update';
@@ -48,7 +48,7 @@ class GoalController extends Controller
 
     public function actionDelete()
     {
-        $params = Yii::$app->request->getParams();
+        $params = Yii::$app->request->get();
         $model = $this->findModel($params);
         if ($model->delete()) {
             return 'Deleted';
