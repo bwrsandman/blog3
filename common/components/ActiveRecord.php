@@ -7,6 +7,8 @@ use yii\db\Query;
 
 class ActiveRecord extends \yii\db\ActiveRecord
 {
+	public $__mocked;
+	
     public function behaviors()
     {
         return [

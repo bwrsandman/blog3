@@ -35,6 +35,9 @@ return array(
     ],
     'extensions'          => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'components'          => [
+	    'models' => [
+		    'class' => '\common\components\ModelFactory'
+	    ],
         'db'           => $params['components.db'],
         'text'         => $params['components.text'],
         'sphinxDb'     => $params['components.sphinxDb'],

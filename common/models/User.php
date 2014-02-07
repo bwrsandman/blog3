@@ -14,7 +14,6 @@ class User extends generated\User implements IdentityInterface
      * @var string the raw password. Used to collect password input and isn't saved in database
      */
     public $password;
-    protected $conclusionsCache;
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
@@ -103,24 +102,25 @@ class User extends generated\User implements IdentityInterface
      */
     public function getConclusion($day)
     {
-        if (isset($this->conclusionsCache[$day])) {
-            return $this->conclusionsCache[$day];
-        }
-
         $conclusion = $this->hasOne(Conclusion::className(), ['fk_user' => 'id'])->day($day)->one();
 
         if (!$conclusion) {
-            $conclusion = new Conclusion();
-            $conclusion->scenario = 'create';
-            $conclusion->fk_user = $this->id;
-            $conclusion->report_date = $this->date($day);
-            if (!$conclusion->save()) {
-                $conclusion->throwValidationErrors();
-            }
+            $conclusion = $this->createConclusionByDay($day);
         }
 
-        return $this->conclusionsCache[$day] = $conclusion;
+        return $conclusion;
     }
+
+	public function createConclusionByDay($day) {
+		$conclusion = new Conclusion();
+		$conclusion->scenario = 'create';
+		$conclusion->fk_user = $this->id;
+		$conclusion->report_date = $this->date($day);
+		if (!$conclusion->save()) {
+			$conclusion->throwValidationErrors();
+		}
+		return $conclusion;
+	}
 
 
     public function beforeSave($insert)

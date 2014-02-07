@@ -1,16 +1,16 @@
 <?php
 namespace common\models;
 
+use common\models\generated\Report;
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
+use \Yii;
 
 class Goal extends generated\Goal
 {
     use \common\traits\Date;
-
-    protected $reportsCache;
 
     const COMPLETED_YES = 1;
     const COMPLETED_NO  = 0;
@@ -93,25 +93,36 @@ class Goal extends generated\Goal
      */
     public function getReport($day)
     {
-        if (isset($this->reportsCache[$day])) {
-            return $this->reportsCache[$day];
-        }
         $report = $this->hasOne(Report::className(), ['fk_goal' => 'id'])->day($day)->one();
 
         if (!$report) {
-            $report              = new Report();
-            $report->scenario    = 'create';
-            $report->fk_goal     = $this->id;
-            $report->description = '<div>&nbsp;</div>';
-            $report->report_date = $this->date($day);
-            if (!$report->save()) {
-                $report->throwValidationErrors();
-            }
+	        $report = $this->createReportByDay($day);
         }
 
-        return $this->reportsCache[$day] = $report;
+        return $report;
     }
 
+	public function createReportByDay($day)
+	{
+		$report              = $this->reportInstance();
+		$report->scenario    = 'create';
+		$report->fk_goal     = $this->id;
+		$report->description = '<div>&nbsp;</div>';
+		$report->report_date = $this->date($day);
+		if (!$report->save()) {
+			$report->throwValidationErrors();
+		}
+
+		return $report;
+	}
+
+	/**
+	 * @return Report
+	 */
+	public function reportInstance()
+	{
+		return new Report();
+	}
 
     public function setAttributes($values, $safeOnly = true)
     {
