@@ -12,11 +12,11 @@ class Report extends generated\Report
         return new ReportQuery(['modelClass' => get_called_class()]);
     }
 
+
     public static function createRelation($config = [])
     {
         return new ReportRelation($config);
     }
-
 
     public function behaviors()
     {
@@ -44,16 +44,22 @@ class Report extends generated\Report
                 'max' => 30000,
                 'on'  => 'update'
             ],
-            [
-                ['description'],
-                'strip'
-            ]
         ]);
     }
 
-    public function strip($attr)
+	public function beforeValidate()
+	{
+		$this->stripTags('description');
+
+		return parent::beforeValidate();
+	}
+
+    public function stripTags($attr, $allowableTags = null)
     {
-        $this->$attr = strip_tags($this->$attr, '<input><div><ul><ol><li><a><img><b><em><br>');
+	    if ($allowableTags === null) {
+		    $allowableTags = '<input><div><ul><ol><li><a><img><b><em><br>';
+	    }
+        $this->$attr = strip_tags($this->$attr, $allowableTags);
 
         return true;
     }

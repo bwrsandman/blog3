@@ -85,8 +85,8 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * ```
      *
-     * @param int    $width
-     * @param int    $height
+     * @param int $width
+     * @param int $height
      * @see Codeception\Module\WebDriver::resizeWindow()
      */
     public function resizeWindow($width, $height) {
