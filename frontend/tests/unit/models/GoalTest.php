@@ -2,12 +2,15 @@
 namespace frontend\tests\unit\models;
 
 use Codeception\Module\CodeHelper;
+use common\models\Report;
 use Yii;
 use yii\codeception\TestCase;
 use \Codeception\Util\Stub;
+use AspectMock\Test as Aspect;
+use yii\web\User;
 
 
-class GoalTeest extends TestCase
+class GoalTest extends TestCase
 {
 //	use \Codeception\Specify;
 
@@ -124,6 +127,7 @@ class GoalTeest extends TestCase
 	 * @dataProvider providerDays
 	 * @expectedException \Exception
 	 */
+
 	public function testCreateReportByDayWithFailedSave($day)
 	{
 		$report = $this->getMockBuilder($this->reportClass)
@@ -146,5 +150,24 @@ class GoalTeest extends TestCase
 		Yii::$app->models->report = get_class($report);
 
 		$model->createReportByDay($day);
+	}
+
+	/**
+	 * @dataProvider providerDays
+	 */
+	public function testToArray($day)
+	{
+		$model = $this->getMockBuilder($this->class)
+			->setMethods(['getReport'])
+			->getMock();
+
+
+		$model->expects($this->any())
+			->method('getReport')
+			->will($this->returnValue(new $this->reportClass));
+
+		$result = $model->toArray();
+		$this->assertArrayHasKey($day, $result);
+		$this->assertArrayHasKey('report', $result[$day]);
 	}
 }

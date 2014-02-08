@@ -5,4 +5,8 @@ namespace Codeception\Module;
 
 class CodeHelper extends \Codeception\Module
 {
+	function _after(\Codeception\TestCase $test)
+	{
+//		\AspectMock\Test::clean();
+	}
 }

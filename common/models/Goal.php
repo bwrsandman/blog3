@@ -1,7 +1,7 @@
 <?php
 namespace common\models;
 
-use common\models\generated\Report;
+use common\models\Report;
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRelation;
