@@ -35,7 +35,7 @@ class Goal extends generated\Goal
         return ArrayHelper::merge(parent::rules(), [
             [
                 [
-                    'id',
+//                    'id',
                     'completed'
                 ],
                 'safe',
@@ -131,16 +131,20 @@ class Goal extends generated\Goal
             'today',
             'yesterday'
         ];
-        foreach ($days as $day) {
+
+	    foreach ($days as $day) {
             if (isset($values[$day]['report'])) {
                 $this->getReport($day)->attributes = $values[$day]['report'];
             }
-        }
+
+	    }
+
     }
 
     public function toArray()
     {
         $res  = parent::toArray();
+
         $days = [
             'today',
             'yesterday'

@@ -2,15 +2,12 @@
 namespace frontend\tests\unit\models;
 
 use Codeception\Module\CodeHelper;
-use common\models\Report;
 use Yii;
 use yii\codeception\TestCase;
 use \Codeception\Util\Stub;
-use AspectMock\Test as Aspect;
-use yii\web\User;
 
 
-class GoalTest extends TestCase
+class GoalTest extends \tests\unit\Test
 {
 //	use \Codeception\Specify;
 
@@ -169,5 +166,104 @@ class GoalTest extends TestCase
 		$result = $model->toArray();
 		$this->assertArrayHasKey($day, $result);
 		$this->assertArrayHasKey('report', $result[$day]);
+	}
+
+	public function testCreateQuery()
+	{
+		$model = $this->getMockBuilder($this->class)
+			->setMethods(null)
+			->getMock();
+
+		$this->assertInstanceOf('common\models\GoalQuery', $model->createQuery());
+	}
+
+	public function testCreateRelation()
+	{
+		$model = $this->getMockBuilder($this->class)
+			->setMethods(null)
+			->getMock();
+
+		$this->assertInstanceOf('common\models\GoalRelation', $model->createRelation());
+	}
+
+	public function testSearch()
+	{
+		$model = $this->getMockBuilder($this->class)
+			->setMethods(null)
+			->getMock();
+
+		$this->assertInstanceOf('yii\data\ArrayDataProvider', $model->search());
+	}
+
+	public function testSetAttributes()
+	{
+		$values = [
+			'today' => [
+				'report' => [
+					'id' => 1
+				]
+			],
+			'yesterday' => [
+				'report' => [
+					'id' => 2
+				]
+			]
+		];
+
+		$model = $this->getMockBuilder($this->class)
+			->setMethods(['getReport'])
+			->getMock();
+
+		$report1 = $this->getMockBuilder($this->reportClass)
+			->setMethods(['setAttributes'])
+			->getMock();
+
+		$report1->expects($this->any())
+			->method('setAttributes')
+			->will($this->returnCallback(function($attributes) use ($report1) {
+				foreach($attributes as $k => $v) {
+					$report1->$k = $v;
+				}
+			}));
+
+		$report2 = $this->getMockBuilder($this->reportClass)
+			->setMethods(['setAttributes'])
+			->getMock();
+
+		$report2->expects($this->any())
+			->method('setAttributes')
+			->will($this->returnCallback(function($attributes) use ($report2) {
+				foreach($attributes as $k => $v) {
+					$report2->$k = $v;
+				}
+			}));
+
+		//set attributes
+		$model->expects($this->at(0))
+			->method('getReport')
+			->will($this->returnValue($report1));
+
+		$model->expects($this->at(1))
+			->method('getReport')
+			->will($this->returnValue($report2));
+
+		//to array
+		$model->expects($this->at(2))
+			->method('getReport')
+			->will($this->returnValue($report1));
+
+		$model->expects($this->at(3))
+			->method('getReport')
+			->will($this->returnValue($report2));
+
+		$model->attributes = $values;
+
+		$result = $model->toArray();
+		$this->assertArrayHasKey('today', $result);
+		$this->assertArrayHasKey('yesterday', $result);
+		$this->assertArrayHasKey('report', $result['today']);
+		$this->assertArrayHasKey('report', $result['yesterday']);
+		$this->assertEquals(1, $result['today']['report']['id']);
+		$this->assertEquals(2, $result['yesterday']['report']['id']);
 	}
 }
