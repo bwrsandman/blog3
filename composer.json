@@ -28,10 +28,6 @@
         "twbs/bootstrap": "3.1.*",
         "fabpot/goutte": "*",
         "codeception/codeception": "*",
-        "codeception/specify": "*",
-        "codeception/verify": "*",
-        "mockery/mockery": "0.9.*",
-        "codeception/mockery-module": "*",
 
         "evernote/evernote": "1.*"
     },

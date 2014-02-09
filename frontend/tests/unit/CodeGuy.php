@@ -6,6 +6,7 @@
 
 use \Codeception\Maybe;
 use Codeception\Module\CodeHelper;
+use Codeception\Module\Mockery;
 
 /**
  * Inherited methods

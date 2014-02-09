@@ -15,7 +15,8 @@ module.exports = function (grunt) {
         conf: {
             // configurable paths
             app: 'src/',
-            dist: 'assets/build/'
+            dist: 'assets/build/',
+            root: '../../'
         },
 
         // Watches files for changes and runs tasks based on the changed files
@@ -33,6 +34,12 @@ module.exports = function (grunt) {
 //                files: ['test/spec/{,*/}*.js'],
 //                tasks: ['newer:jshint:test', 'karma']
 //            },
+            phpTests: {
+                files: ['<%= conf.root %>frontend/**/*.php', '<%= conf.root %>common/**/*.php'],
+                tasks: [
+                    'shell:phpUnitTests'
+                ]
+            },
             css: {
                 files: ['<%= conf.app %>/less/**/*'],
                 tasks: ['less'],
@@ -59,6 +66,19 @@ module.exports = function (grunt) {
                     '<%= conf.app %>/../../views/layouts/main.php',
                     '<%= conf.app %>/../less/**/*'
                 ]
+            }
+        },
+
+        shell: {                                // Task
+            phpUnitTests: {                      // Target
+                options: {                      // Options
+                    stdout: true,
+                    stderr: true,
+                    execOptions: {
+                        cwd: '<%= conf.root %>frontend',
+                    }
+                },
+                command: 'php ../vendor/codeception/codeception/package/codecept.phar run unit | grep -v " Ok"'
             }
         },
 

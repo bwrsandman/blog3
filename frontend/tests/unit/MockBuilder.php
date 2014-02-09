@@ -16,4 +16,10 @@ class MockBuilder extends PHPUnit_Framework_MockObject_MockBuilder
 		return parent::setMethods($methods);
 	}
 
+	public function getMock()
+	{
+		$a = parent::getMock();
+		return $a;
+	}
+
 }

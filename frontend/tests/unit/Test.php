@@ -4,6 +4,7 @@ namespace tests\unit;
 
 use yii\codeception\TestCase;
 
+
 class Test extends TestCase
 {
 	public $guyClass = '\CodeGuy';
@@ -12,4 +13,5 @@ class Test extends TestCase
 	{
 		return new MockBuilder($this, $className);
 	}
+
 }

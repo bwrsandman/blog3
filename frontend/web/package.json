@@ -24,6 +24,7 @@
         "grunt-rev": "latest",
         "grunt-svgmin": "latest",
         "grunt-usemin": "latest",
+        "grunt-shell": "latest",
         "jshint-stylish": "latest",
         "load-grunt-tasks": "latest",
         "time-grunt": "latest",

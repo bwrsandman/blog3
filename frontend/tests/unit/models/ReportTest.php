@@ -3,7 +3,6 @@ namespace frontend\tests\unit\models;
 
 use Codeception\Module\CodeHelper;
 use Yii;
-use yii\codeception\TestCase;
 use \Codeception\Util\Stub;
 use \tests\unit\Test;
 

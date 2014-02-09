@@ -1,20 +1,17 @@
 <?php
 namespace frontend\modules\v1\controllers;
 
-use common\models\Conclusion;
 use common\models\Goal;
-use PHPDaemon\Core\Daemon;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
-use yii\web\Response;
 
 class GoalController extends Controller
 {
 
     public function actionIndex()
     {
-        $result = [];
+	    $result = [];
         foreach ($this->findModelsByOwner(Yii::$app->user->id) as $model) {
             $result[] = $model->toArray();
         }
@@ -29,6 +26,7 @@ class GoalController extends Controller
 	 */
 	public function findModelsByOwner($ownerId)
 	{
+echo 4;die;
 		/** @var $models Goal[] */
 		$models = Goal::find()->owner($ownerId)->all();
 		return $models;
