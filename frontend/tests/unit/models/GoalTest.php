@@ -5,16 +5,12 @@ use Codeception\Module\CodeHelper;
 use Yii;
 use yii\codeception\TestCase;
 use \Codeception\Util\Stub;
+use \tests\unit\Test;
 
-
-class GoalTest extends \tests\unit\Test
+class GoalTest extends Test
 {
-//	use \Codeception\Specify;
-
 	public $class = '\common\models\Goal';
 	public $reportClass = '\common\models\Report';
-
-	public $guyClass = '\CodeGuy';
 
 	public function providerDays()
 	{

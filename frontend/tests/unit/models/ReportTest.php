@@ -5,14 +5,11 @@ use Codeception\Module\CodeHelper;
 use Yii;
 use yii\codeception\TestCase;
 use \Codeception\Util\Stub;
+use \tests\unit\Test;
 
-
-class ReportTest extends \tests\unit\Test
+class ReportTest extends Test
 {
 	public $class = '\common\models\Report';
-
-	public $guyClass = '\CodeGuy';
-
 
 	public function testStripTagsBeforeValidate()
 	{

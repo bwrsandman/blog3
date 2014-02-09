@@ -14,15 +14,25 @@ class GoalController extends Controller
 
     public function actionIndex()
     {
-        /** @var $models Goal[] */
-        $models = Goal::find()->owner(Yii::$app->user->getId())->all();
         $result = [];
-        foreach ($models as $model) {
+        foreach ($this->findModelsByOwner(Yii::$app->user->id) as $model) {
             $result[] = $model->toArray();
         }
 
         return $result;
     }
+
+	/**
+	 * @param $ownerId
+	 *
+	 * @return \common\models\Goal[]
+	 */
+	public function findModelsByOwner($ownerId)
+	{
+		/** @var $models Goal[] */
+		$models = Goal::find()->owner($ownerId)->all();
+		return $models;
+	}
 
     public function actionSave()
     {

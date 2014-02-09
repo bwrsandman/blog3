@@ -6,6 +6,7 @@ use yii\codeception\TestCase;
 
 class Test extends TestCase
 {
+	public $guyClass = '\CodeGuy';
 
 	public function getMockBuilder($className)
 	{
