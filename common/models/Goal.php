@@ -141,22 +141,23 @@ class Goal extends generated\Goal
 
     }
 
-    public function toArray()
-    {
-        $res  = parent::toArray();
+	public function getFullData()
+	{
+		$res  = $this->toArray();
 
-        $days = [
-            'today',
-            'yesterday'
-        ];
-        foreach ($days as $day) {
-            $res[$day] = [
-                'report' => $this->getReport($day)->toArray(),
-            ];
-        }
+		$days = [
+			'today',
+			'yesterday'
+		];
+		foreach ($days as $day) {
+			$res[$day] = [
+				'report' => $this->getReport($day)->toArray(),
+			];
+		}
 
-        return $res;
-    }
+		return $res;
+	}
+
 
     public function afterSave($insert)
     {

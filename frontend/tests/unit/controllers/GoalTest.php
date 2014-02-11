@@ -1,38 +1,111 @@
 <?php
 use \Codeception\Util\Stub;
 use \tests\unit\Test;
+use \common\models\Goal;
 
 class GoalTest extends Test
 {
 	public $class = '\frontend\modules\v1\controllers\GoalController';
 	public $goalClass = '\common\models\Goal';
 
-    public function testActionIndex() {
-	    $goal = Mockery::mock($this->goalClass);
-		$goal->shouldReceive('toArray')->andReturn(['id' => 1], ['id' => 2], ['id' => 3]);
+	public function testActionIndex()
+	{
+		$goal = $this->getMock($this->goalClass, ['getFullData']);
 
-	    $goals = [
-		    $goal,
-		    $goal,
-		    $goal,
-	    ];
+		$goal->expects($this->at(0))->method('getFullData')->will($this->returnValue(['id' => 1]));
+		$goal->expects($this->at(1))->method('getFullData')->will($this->returnValue(['id' => 2]));
+		$goal->expects($this->at(2))->method('getFullData')->will($this->returnValue(['id' => 3]));
 
-	    $c = $this->getMockBuilder($this->class)
-	        ->disableOriginalConstructor()
-		    ->setMethods(['findModelsByOwner'])
-		    ->getMock();
+		$goals = [
+			$goal,
+			$goal,
+			$goal,
+		];
 
-		$c->expects($this->once())->method('findModelsByOwner')->will($this->returnValue($goals));
+		$controller = $this->getMockBuilder($this->class)
+			->disableOriginalConstructor()
+			->setMethods(['findModelsByOwner'])
+			->getMock();
 
-	    $result = $c->actionIndex();
+		$controller->expects($this->once())->method('findModelsByOwner')->will($this->returnValue($goals));
 
-	    $this->assertArrayHasKey('id', $result[0]);
-	    $this->assertArrayHasKey('id', $result[1]);
-	    $this->assertArrayHasKey('id', $result[2]);
+		$result = $controller->actionIndex();
 
-	    $this->assertEquals(1, $result[0]['id']);
-	    $this->assertEquals(2, $result[1]['id']);
-	    $this->assertEquals(3, $result[2]['id']);
-    }
+		$this->assertArrayHasKey('id', $result[0]);
+		$this->assertArrayHasKey('id', $result[1]);
+		$this->assertArrayHasKey('id', $result[2]);
+
+		$this->assertEquals(1, $result[0]['id']);
+		$this->assertEquals(2, $result[1]['id']);
+		$this->assertEquals(3, $result[2]['id']);
+	}
+
+	public function testActionSaveNewGoal()
+	{
+		$controller = $this->getMock($this->class, ['newModel', 'findModel'], [1, $this]);
+		$model      = $this->getMock($this->goalClass, ['save', 'getFullData']);
+
+		$controller->expects($this->any())->method('newModel')->will($this->returnValue($model));
+		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('save')->will($this->returnCallback(function () use ($model) {
+			$model->id = 1;
+			return true;
+		}));
+		$model->expects($this->once())->method('getFullData')->will($this->returnCallback(function () use ($model) {
+			return $model->toArray();
+		}));
+
+		$result = $controller->actionSave();
+
+		$this->assertEquals(1, $result['id']);
+		$this->assertEquals(Goal::COMPLETED_NO, $result['completed']);
+		$this->assertEquals('create', $model->scenario);
+	}
+
+	public function testActionSaveExistsGoal()
+	{
+		$controller = $this->getMock($this->class, ['newModel', 'findModel'], [1, $this]);
+		$model      = $this->getMock($this->goalClass, ['save']);
+
+		Yii::$app->request->setQueryParams(['id' => 1]);
+		$controller->expects($this->never())->method('newModel')->will($this->returnValue($model));
+		$controller->expects($this->exactly(2))->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('save')->will($this->returnValue(true));
+
+		$controller->actionSave();
+
+		$this->assertEquals('update', $model->scenario);
+	}
+
+	/**
+	 * @expectedException \Exception
+	 */
+	public function testActionSaveWithFailedModelSave()
+	{
+		$controller = $this->getMock($this->class, ['newModel', 'findModel'], [1, $this]);
+		$model      = $this->getMock($this->goalClass, ['save']);
+
+		Yii::$app->request->setQueryParams(['id' => 1]);
+		$controller->expects($this->never())->method('newModel')->will($this->returnValue($model));
+		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('save')->will($this->returnValue(false));
+
+		$controller->actionSave();
+
+		$this->assertEquals('update', $model->scenario);
+	}
+
+	public function testActionDelete()
+	{
+		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
+		$model = $this->getMock($this->goalClass, ['delete']);
+
+		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('delete')->will($this->returnValue(true));
+
+		$controller->actionDelete();
+
+		//TODO: what to check???
+	}
 
 }

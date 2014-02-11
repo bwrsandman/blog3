@@ -14,4 +14,10 @@ class Test extends TestCase
 		return new MockBuilder($this, $className);
 	}
 
+	public function setRequestParameters($params)
+	{
+		$params = Yii::$app->request->get();
+
+	}
+
 }

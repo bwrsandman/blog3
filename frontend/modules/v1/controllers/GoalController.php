@@ -13,33 +13,21 @@ class GoalController extends Controller
     {
 	    $result = [];
         foreach ($this->findModelsByOwner(Yii::$app->user->id) as $model) {
-            $result[] = $model->toArray();
+            $result[] = $model->getFullData();
         }
 
         return $result;
     }
 
-	/**
-	 * @param $ownerId
-	 *
-	 * @return \common\models\Goal[]
-	 */
-	public function findModelsByOwner($ownerId)
-	{
-echo 4;die;
-		/** @var $models Goal[] */
-		$models = Goal::find()->owner($ownerId)->all();
-		return $models;
-	}
 
     public function actionSave()
     {
         $params = Yii::$app->request->get();
         if (isset($params['id'])) {
-            $model = Goal::find($params['id']);
+            $model = $this->findModel($params);
             $model->scenario = 'update';
         } else {
-            $model = new Goal();
+            $model = $this->newModel();
             $model->scenario = 'create';
             $model->completed = Goal::COMPLETED_NO;
         }
@@ -47,7 +35,7 @@ echo 4;die;
         $model->fk_user = Yii::$app->user->getId();
 
         if ($model->save()) {
-            return Goal::find($model->id)->toArray();
+            return $this->findModel(['id' => $model->id])->getFullData();
         } else {
             $model->throwValidationErrors();
 //            return $model->getErrors();
@@ -68,7 +56,7 @@ echo 4;die;
     public function actionView()
     {
         $params = Yii::$app->request->get();
-        return $this->findModel($params)->toArray();
+        return $this->findModel($params)->getFullData();
     }
 
     /**
@@ -84,4 +72,22 @@ echo 4;die;
             throw new Exception('The requested goal does not exist.');
         }
     }
+
+	/**
+	 * @param $ownerId
+	 *
+	 * @return \common\models\Goal[]
+	 */
+	public function findModelsByOwner($ownerId)
+	{
+		/** @var $models Goal[] */
+		$models = Goal::find()->owner($ownerId)->all();
+		return $models;
+	}
+
+
+	public function newModel()
+	{
+		return new Goal;
+	}
 }
