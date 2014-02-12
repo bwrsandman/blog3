@@ -3,7 +3,7 @@
 namespace tests\unit;
 
 use yii\codeception\TestCase;
-
+use Yii;
 
 class Test extends TestCase
 {
@@ -16,8 +16,7 @@ class Test extends TestCase
 
 	public function setRequestParameters($params)
 	{
-		$params = Yii::$app->request->get();
-
+		Yii::$app->request->setQueryParams($params);
 	}
 
 }

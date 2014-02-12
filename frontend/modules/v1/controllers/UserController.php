@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function actionView()
     {
-        return Yii::$app->user->identity->getInitPageData();
+	    return Yii::$app->user->identity->getInitPageData();
     }
 
     /**

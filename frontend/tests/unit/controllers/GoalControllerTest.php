@@ -3,7 +3,7 @@ use \Codeception\Util\Stub;
 use \tests\unit\Test;
 use \common\models\Goal;
 
-class GoalTest extends Test
+class GoalControllerTest extends Test
 {
 	public $class = '\frontend\modules\v1\controllers\GoalController';
 	public $goalClass = '\common\models\Goal';
@@ -67,7 +67,8 @@ class GoalTest extends Test
 		$controller = $this->getMock($this->class, ['newModel', 'findModel'], [1, $this]);
 		$model      = $this->getMock($this->goalClass, ['save']);
 
-		Yii::$app->request->setQueryParams(['id' => 1]);
+		$this->setRequestParameters(['id' => 1]);
+
 		$controller->expects($this->never())->method('newModel')->will($this->returnValue($model));
 		$controller->expects($this->exactly(2))->method('findModel')->will($this->returnValue($model));
 		$model->expects($this->once())->method('save')->will($this->returnValue(true));
@@ -85,7 +86,7 @@ class GoalTest extends Test
 		$controller = $this->getMock($this->class, ['newModel', 'findModel'], [1, $this]);
 		$model      = $this->getMock($this->goalClass, ['save']);
 
-		Yii::$app->request->setQueryParams(['id' => 1]);
+		$this->setRequestParameters(['id' => 1]);
 		$controller->expects($this->never())->method('newModel')->will($this->returnValue($model));
 		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
 		$model->expects($this->once())->method('save')->will($this->returnValue(false));
@@ -98,14 +99,49 @@ class GoalTest extends Test
 	public function testActionDelete()
 	{
 		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
-		$model = $this->getMock($this->goalClass, ['delete']);
+		$model      = $this->getMock($this->goalClass, ['delete']);
 
 		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
 		$model->expects($this->once())->method('delete')->will($this->returnValue(true));
 
-		$controller->actionDelete();
+		$result = $controller->actionDelete();
 
-		//TODO: what to check???
+		$this->assertArrayHasKey('message', $result);
+		$this->assertContains('Deleted', $result['message']);
 	}
 
+	/**
+	 * @expectedException \Exception
+	 */
+	public function testActionDeleteWithFailResult()
+	{
+		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
+		$model      = $this->getMock($this->goalClass, ['delete']);
+
+		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('delete')->will($this->returnValue(false));
+
+		$controller->actionDelete();
+	}
+
+	public function testActionView()
+	{
+		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
+		$model      = $this->getMock($this->goalClass, ['delete']);
+
+		//twice because for different id
+		$controller->expects($this->exactly(2))->method('findModel')->will($this->returnCallback(function ($params) use ($model) {
+			$model->id = $params['id'];
+			return $model;
+		}));
+
+		$this->setRequestParameters(['id' => 1]);
+		$result1 = $controller->actionView();
+
+		$this->setRequestParameters(['id' => 2]);
+		$result2 = $controller->actionView();
+
+		$this->assertEquals(1, $result1['id']);
+		$this->assertEquals(2, $result2['id']);
+	}
 }

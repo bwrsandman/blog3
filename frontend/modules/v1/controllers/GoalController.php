@@ -47,7 +47,9 @@ class GoalController extends Controller
         $params = Yii::$app->request->get();
         $model = $this->findModel($params);
         if ($model->delete()) {
-            return 'Deleted';
+            return [
+	            'message' => 'Deleted'
+            ];
         } else {
             throw new Exception('Some internal error');
         }
