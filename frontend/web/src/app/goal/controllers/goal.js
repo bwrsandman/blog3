@@ -30,6 +30,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $s
     $scope.save = function (model) {
         model.$save();
     };
+
     if ($location.path() === '/') {
         $scope.day = 'today';
     } else if ($location.path() === '/yesterday') {
@@ -51,7 +52,6 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $s
         goal.completed = 2;
         goal.$save();
     };
-
 
     showScreen();
 });

@@ -210,7 +210,7 @@ class User extends generated\User implements IdentityInterface
 		$models = Goal::find()->owner($this->id)->all();
 		$goals  = [];
 		foreach ($models as $model) {
-			$goals[] = $model->toArray();
+			$goals[] = $model->getFullData();
 		}
 		$days = [
 			'today',

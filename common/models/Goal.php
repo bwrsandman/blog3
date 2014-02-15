@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\models\Report;
+use PHPDaemon\Core\Daemon;
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRelation;
@@ -136,9 +137,7 @@ class Goal extends generated\Goal
             if (isset($values[$day]['report'])) {
                 $this->getReport($day)->attributes = $values[$day]['report'];
             }
-
 	    }
-
     }
 
 	public function getFullData()
@@ -158,11 +157,14 @@ class Goal extends generated\Goal
 		return $res;
 	}
 
-
-    public function afterSave($insert)
+    public function beforeSave($insert)
     {
-        $r = $this->getReport('today')->save() && $this->getReport('yesterday')->save();
-        parent::afterSave($insert);
+	    if (parent::beforeSave($insert)) {
+		    $result = $this->getReport('today')->save() && $this->getReport('yesterday')->save();
+
+		    return $result;
+	    }
+	    return false;
     }
 }
 

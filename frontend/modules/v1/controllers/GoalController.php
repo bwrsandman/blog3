@@ -2,9 +2,11 @@
 namespace frontend\modules\v1\controllers;
 
 use common\models\Goal;
+use PHPDaemon\Core\Daemon;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
+use yii\base\InvalidParamException;
 
 class GoalController extends Controller
 {
@@ -35,9 +37,9 @@ class GoalController extends Controller
         $model->fk_user = Yii::$app->user->getId();
 
         if ($model->save()) {
-            return $this->findModel(['id' => $model->id])->getFullData();
+	        return $this->findModel($model->id)->getFullData();
         } else {
-            $model->throwValidationErrors();
+	        $model->throwValidationErrors();
 //            return $model->getErrors();
         }
     }
@@ -68,12 +70,24 @@ class GoalController extends Controller
      */
     protected function findModel($params)
     {
-        if (($model = Goal::find($params['id'])) !== null) {
-            return $model;
-        } else {
-            throw new Exception('The requested goal does not exist.');
-        }
-    }
+	    switch (true) {
+		    case is_numeric($params):
+			    $id = is_numeric($params);
+			    break;
+		    case isset($params['id']):
+			    $id = $params['id'];
+			    break;
+		    default:
+			    throw new InvalidParamException('Id of Goal must be specify');
+	    }
+
+	    $model = Goal::find($id);
+
+	    if ($model === null) {
+		    throw new Exception('The requested goal does not exist.');
+	    }
+
+	    return $model;    }
 
 	/**
 	 * @param $ownerId

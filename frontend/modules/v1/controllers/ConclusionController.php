@@ -30,7 +30,7 @@ class ConclusionController extends Controller
     {
         $params = Yii::$app->request->get();
         if (isset($params['id'])) {
-            $model = Conclusion::find($params['id']);
+            $model = $this->findModel($params);
             $model->scenario = 'update';
         } else {
             $model = new Conclusion();
@@ -38,7 +38,7 @@ class ConclusionController extends Controller
         }
         $model->attributes = $params;
         if ($model->save()) {
-            return Conclusion::find($model->id)->toArray();
+            return $this->findModel(['id' => $model->id])->toArray();
         } else {
             $model->throwValidationErrors();
         }

@@ -79,7 +79,7 @@ class GoalControllerTest extends Test
 	}
 
 	/**
-	 * @expectedException \Exception
+	 * @expectedException \yii\base\Exception
 	 */
 	public function testActionSaveWithFailedModelSave()
 	{
@@ -111,7 +111,7 @@ class GoalControllerTest extends Test
 	}
 
 	/**
-	 * @expectedException \Exception
+	 * @expectedException \yii\base\Exception
 	 */
 	public function testActionDeleteWithFailResult()
 	{

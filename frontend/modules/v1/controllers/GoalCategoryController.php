@@ -2,6 +2,7 @@
 namespace frontend\modules\v1\controllers;
 
 use common\models\GoalCategory;
+use PHPDaemon\Core\Daemon;
 use yii\base\Controller;
 use yii\base\Exception;
 use Yii;
@@ -10,10 +11,8 @@ class GoalCategoryController extends Controller
 {
     public function actionIndex()
     {
-        /** @var $models GoalCategory[] */
-        $models = GoalCategory::find()->owner(Yii::$app->user->getId())->all();
         $result = [];
-        foreach ($models as $model) {
+        foreach ($this->findModelsByOwner(Yii::$app->user->getId()) as $model) {
             $result[] = $model->toArray();
         }
 
@@ -25,7 +24,7 @@ class GoalCategoryController extends Controller
         $params = Yii::$app->request->get();
 
         if (isset($params['id'])) {
-            $model = GoalCategory::find($params['id']);
+            $model = $this->findModel($params);
             $model->scenario = 'update';
         } else {
             $model = new GoalCategory();
@@ -33,8 +32,9 @@ class GoalCategoryController extends Controller
         }
 
         $model->attributes = $params;
-        if ($model->save()) {
-            return GoalCategory::find($model->id)->toArray();
+
+	    if ($model->save()) {
+            return $this->findModel(['id' => $model->id])->toArray();
         } else {
             $model->throwValidationErrors();
 //            return $model->getErrors();
@@ -71,4 +71,17 @@ class GoalCategoryController extends Controller
             throw new Exception('The requested GoalCategory does not exist.');
         }
     }
+
+	/**
+	 * @param $ownerId
+	 *
+	 * @return \common\models\Goal[]
+	 */
+	public function findModelsByOwner($ownerId)
+	{
+		/** @var $models Goal[] */
+		$models = GoalCategory::find()->owner($ownerId)->all();
+		return $models;
+	}
+
 }
