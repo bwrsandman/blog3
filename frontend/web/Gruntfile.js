@@ -425,7 +425,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'useminPrepare',
+//        'useminPrepare',
 //        'concurrent:dist',
 //        'autoprefixer',
         'ngmin',
@@ -434,10 +434,10 @@ module.exports = function (grunt) {
 //        'copy:dist',
 //        'copy:dist',
         'less',
-        'uglify',
-        'rev',
-        'usemin',
-        'htmlmin'
+        'uglify'
+//        'rev',
+//        'usemin',
+//        'htmlmin'
     ]);
 
     grunt.registerTask('default', [
