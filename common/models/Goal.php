@@ -1,7 +1,6 @@
 <?php
 namespace common\models;
 
-use common\models\Report;
 use PHPDaemon\Core\Daemon;
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveQuery;
@@ -9,6 +8,11 @@ use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
 use \Yii;
 
+/**
+ * Class Goal
+ * @package common\models
+ * @property $user
+ */
 class Goal extends generated\Goal
 {
     use \common\traits\Date;
@@ -156,6 +160,49 @@ class Goal extends generated\Goal
 
 		return $res;
 	}
+
+	/**
+	 * Relation
+	 *
+	 * @return array|null|\yii\db\ActiveRecord
+	 */
+	public function getUser()
+	{
+		return $this->getFkUser()->one();
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getFkGoalCategory()
+	{
+		return $this->hasOne(GoalCategory::className(), ['id' => 'fk_goal_category']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getFkUser()
+	{
+		return $this->hasOne(User::className(), ['id' => 'fk_user']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getReports()
+	{
+		return $this->hasMany(Report::className(), ['fk_goal' => 'id']);
+	}
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getSteps()
+	{
+		return $this->hasMany(Step::className(), ['fk_goal' => 'id']);
+	}
+
 }
 
 trait GoalScopes

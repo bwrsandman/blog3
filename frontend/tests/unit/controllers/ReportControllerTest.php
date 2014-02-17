@@ -7,6 +7,7 @@ class ReportControllerTest extends Test
 {
 	public $class = '\frontend\modules\v1\controllers\ReportController';
 	public $reportClass = '\common\models\Report';
+	public $goalClass = '\common\models\Goal';
 
 	/**
 	 * @expectedException \yii\base\Exception
@@ -19,13 +20,14 @@ class ReportControllerTest extends Test
 		$controller->actionSave();
 	}
 
-	public function _testActionSaveExistsReport()
+	public function testActionSaveExistsReport()
 	{
 		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
-		$model      = $this->getMock($this->reportClass, ['save']);
+		$model      = $this->getMock($this->reportClass, ['save', 'checkUserPermissions']);
 
 		$controller->expects($this->exactly(2))->method('findModel')->will($this->returnValue($model));
 		$model->expects($this->once())->method('save')->will($this->returnValue(true));
+		$model->expects($this->once())->method('checkUserPermissions')->will($this->returnValue(true));
 
 		$this->setRequestParameters(['id' => 1]);
 		$controller->actionSave();
@@ -36,18 +38,34 @@ class ReportControllerTest extends Test
 	/**
 	 * @expectedException \yii\base\Exception
 	 */
-	public function _testActionSaveWithFailedModelSave()
+	public function testActionSaveWithFailedModelSave()
 	{
 		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
-		$model      = $this->getMock($this->reportClass, ['save']);
+		$model      = $this->getMock($this->reportClass, ['save', 'checkUserPermissions']);
 
-		$controller->expects($this->once())->method('findModel')->will($this->returnValue($model));
+		$controller->expects($this->any())->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('checkUserPermissions')->will($this->returnValue(true));
 		$model->expects($this->once())->method('save')->will($this->returnValue(false));
 
 		$this->setRequestParameters(['id' => 1]);
 		$controller->actionSave();
 
 		$this->assertEquals('update', $model->scenario);
+	}
+
+	/**
+	 * @expectedException \yii\base\Exception
+	 */
+	public function testActionSaveMustAccessDeniedIfWrongUser()
+	{
+		$controller = $this->getMock($this->class, ['findModel'], [1, $this]);
+		$model      = $this->getMock($this->reportClass, ['save', 'checkUserPermissions']);
+
+		$controller->expects($this->any())->method('findModel')->will($this->returnValue($model));
+		$model->expects($this->once())->method('checkUserPermissions')->will($this->returnValue(false));
+		$this->setRequestParameters(['id' => 1]);
+
+		$controller->actionSave();
 	}
 
 }

@@ -9,12 +9,12 @@ use \tests\unit\Test;
 class ReportTest extends Test
 {
 	public $class = '\common\models\Report';
+	public $goalClass = '\common\models\Goal';
+	public $userClass = '\common\models\User';
 
 	public function testStripTagsBeforeValidate()
 	{
-		$model = $this->getMockBuilder($this->class)
-			->setMethods(['trigger', 'stripTags'])
-			->getMock();
+		$model = $this->getMock($this->class, ['trigger', 'stripTags']);
 
 
 		$model->expects($this->once())
@@ -27,9 +27,7 @@ class ReportTest extends Test
 
 	public function testStripTagsWithDefaultAllowedTags()
 	{
-		$model = $this->getMockBuilder($this->class)
-			->setMethods(['trigger'])
-			->getMock();
+		$model = $this->getMock($this->class, ['trigger']);
 
 		$model->description = '<iframe></iframe><img/><input type="checkbox"/><p></p><script></script>';
 		$model->stripTags('description');
@@ -45,9 +43,7 @@ class ReportTest extends Test
 
 	public function testStripTagsWithCustomAllowedTags()
 	{
-		$model = $this->getMockBuilder($this->class)
-			->setMethods(['trigger'])
-			->getMock();
+		$model = $this->getMock($this->class, ['trigger']);
 
 		$model->description = '<iframe></iframe><img/><p></p><script></script>';
 		$model->stripTags('description', '<iframe><script>');
@@ -62,20 +58,42 @@ class ReportTest extends Test
 
 	public function testCreateQuery()
 	{
-		$model = $this->getMockBuilder($this->class)
-			->setMethods(null)
-			->getMock();
+		$model = $this->getMock($this->class, null);
 
 		$this->assertInstanceOf('common\models\ReportQuery', $model->createQuery());
 	}
 
 	public function testCreateRelation()
 	{
-		$model = $this->getMockBuilder($this->class)
-			->setMethods(null)
-			->getMock();
+		$model = $this->getMock($this->class, null);
 
 		$this->assertInstanceOf('common\models\ReportRelation', $model->createRelation());
+	}
+
+	public function testCheckUserPermissions()
+	{
+		$model                    = $this->getMock($this->class, ['getGoal']);
+		$goal                     = $this->getMock($this->class, ['getUser']);
+		$user                     = $this->getMock($this->class, null);
+		$userRight                = $this->getMockBuilder(get_class(Yii::$app->user))
+			->disableOriginalConstructor()
+			->setMethods(['getId'])
+			->getMock();
+		$userRight->identityClass = Yii::$app->user->identityClass;
+
+		$userWrong = clone $userRight;
+
+		$user->id = 1;
+		$model->expects($this->once())->method('getGoal')->will($this->returnValue($goal));
+		$goal->expects($this->once())->method('getUser')->will($this->returnValue($user));
+		$userRight->expects($this->once())->method('getId')->will($this->returnValue(1));
+		$userWrong->expects($this->once())->method('getId')->will($this->returnValue(2));
+
+		Yii::$app->setComponent('user', $userRight);
+		$this->assertTrue($model->checkUserPermissions());
+//
+//		Yii::$app->setComponent('user', $userRight);
+//		$this->assertFalse($model->checkUserPermissions());
 	}
 
 }

@@ -1,10 +1,16 @@
 <?php
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class Report
+ * @package common\models
+ * @property $goal
+ */
 class Report extends generated\Report
 {
     public static function createQuery()
@@ -64,6 +70,24 @@ class Report extends generated\Report
         return true;
     }
 
+
+	/**
+	 * @return \yii\db\ActiveRelation
+	 */
+	public function getFkGoal()
+	{
+		return $this->hasOne(Goal::className(), ['id' => 'fk_goal']);
+	}
+
+	public function getGoal()
+	{
+		return $this->getFkGoal()->one();
+	}
+
+	public function checkUserPermissions()
+	{
+		return $this->goal->user->id == Yii::$app->user->id;
+	}
 }
 
 trait ReportScopes

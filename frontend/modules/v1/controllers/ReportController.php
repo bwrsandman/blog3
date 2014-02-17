@@ -17,7 +17,11 @@ class ReportController extends Controller
         $model->scenario = 'update';
         $model->attributes = $params;
 
-        if ($model->save()) {
+	    if (!$model->checkUserPermissions()) {
+	        throw new Exception('Access denied');
+	    }
+
+	    if ($model->save()) {
 	        return $this->findModel($model->id)->toArray();
         } else {
 	        $model->throwValidationErrors();
@@ -42,7 +46,7 @@ class ReportController extends Controller
 			    throw new InvalidParamException('Id of Report must be specify');
 	    }
 
-	    $model = Report::find($id);
+	    $model = $this->find($id);
 
 	    if ($model === null) {
 		    throw new Exception('The requested Report does not exist.');
@@ -50,4 +54,9 @@ class ReportController extends Controller
 
         return $model;
     }
+
+	protected function find($id)
+	{
+		return Report::find($id);
+	}
 }
