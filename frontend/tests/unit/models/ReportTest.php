@@ -84,16 +84,16 @@ class ReportTest extends Test
 		$userWrong = clone $userRight;
 
 		$user->id = 1;
-		$model->expects($this->once())->method('getGoal')->will($this->returnValue($goal));
-		$goal->expects($this->once())->method('getUser')->will($this->returnValue($user));
+		$model->expects($this->exactly(2))->method('getGoal')->will($this->returnValue($goal));
+		$goal->expects($this->exactly(2))->method('getUser')->will($this->returnValue($user));
 		$userRight->expects($this->once())->method('getId')->will($this->returnValue(1));
-		$userWrong->expects($this->once())->method('getId')->will($this->returnValue(2));
+		$userWrong->expects($this->once(2))->method('getId')->will($this->returnValue(2));
 
 		Yii::$app->setComponent('user', $userRight);
 		$this->assertTrue($model->checkUserPermissions());
-//
-//		Yii::$app->setComponent('user', $userRight);
-//		$this->assertFalse($model->checkUserPermissions());
+
+		Yii::$app->setComponent('user', $userWrong);
+		$this->assertFalse($model->checkUserPermissions());
 	}
 
 }
