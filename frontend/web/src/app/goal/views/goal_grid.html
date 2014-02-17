@@ -34,7 +34,7 @@
                     placeholder="defaultPlaceholder"
                     model="goal"
                     ng-model="goal[day].report.description"
-                    ng-change="save(goal)"
+                    ng-change="save(goal[day].report)"
                     ng-focus="setFocus(goal)"
                     >
             </eg-editor>

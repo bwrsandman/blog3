@@ -1,24 +1,28 @@
 'use strict';
 
-angular.module('eg.goal').factory('Goal', ['$socketResource', function ($socketResource) {
+angular.module('eg.goal').factory('Goal', ['$socketResource', 'Report', function ($socketResource, Report) {
     var Goal = $socketResource('goal');
 
     var goals = [];
     var service = {
+        instantiate: function(raw) {
+            var goal = new Goal(raw);
+            goal['today'].report = Report.instantiate(raw['today'].report);
+            goal['yesterday'].report = Report.instantiate(raw['yesterday'].report);
+            return goal;
+        },
         set: function(goalsArray) {
-
-            angular.forEach(goalsArray, function (val) {
-                var goal = new Goal(val);
-                goals.push(goal);
+            angular.forEach(goalsArray, function (raw) {
+                goals.push(service.instantiate(raw));
             });
         },
         getAll: function () {
             return goals;
         },
         add: function(newGoalData) {
-            var goal = new Goal(newGoalData);
+            var goal = Goal.instantiate(newGoalData);
             goal.$save(function(response) {
-                goals.push(new Goal(response));
+                goals.push(Goal.instantiate(response));
             });
         }
     };

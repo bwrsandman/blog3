@@ -284,6 +284,7 @@ module.exports = function (grunt) {
                         '<%= conf.dist %>/concat/scripts/app/goal/services/goal.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/services/modal.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/services/category.js',
+                        '<%= conf.dist %>/concat/scripts/app/goal/services/report.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/services/tpl.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/services/user.js',
                         '<%= conf.dist %>/concat/scripts/app/goal/services/server.js',

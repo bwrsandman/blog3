@@ -72,7 +72,7 @@ class GoalController extends Controller
     {
 	    switch (true) {
 		    case is_numeric($params):
-			    $id = is_numeric($params);
+			    $id = $params;
 			    break;
 		    case isset($params['id']):
 			    $id = $params['id'];

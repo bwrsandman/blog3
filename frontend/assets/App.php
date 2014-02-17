@@ -27,6 +27,7 @@ class App extends AssetBundle
         'app/goal/services/modal.js',
         'app/goal/services/user.js',
         'app/goal/services/category.js',
+        'app/goal/services/report.js',
         'app/goal/services/goal.js',
 
         'app/goal/controllers/goal.js',

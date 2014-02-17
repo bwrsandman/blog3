@@ -5,16 +5,16 @@ angular.module('eg.goal').factory('User', ['$rootScope', '$socketResource', 'Cat
     var User = $socketResource('user');
 
     var service = {
+        instantiate: function(raw) {
+            var user = new User(raw);
+            Category.set(raw.categories);
+            Goal.set(raw.goals);
+            Conclusion.set(raw.conclusions);
+            return user;
+        } ,
         get: function (callback) {
-            var user = new User;
-            var response = storage.init;
-//            user.$get(function (response) {
-                Category.set(response.categories);
-                Goal.set(response.goals);
-                Conclusion.set(response.conclusions);
-                callback();
-            //$rootScope.$apply(callback);
-//            });
+            var user = service.instantiate(storage.init);
+            callback();
         },
         getAll: function () {
             return User;

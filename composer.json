@@ -16,7 +16,7 @@
         "yiisoft/yii2-debug": "*",
 
         "cboden/Ratchet": "*",
-        "michelf/php-markdown": "*",
+        "michelf/php-markdown": "*k",
 
         "kakserpom/phpdaemon": "*",
 

@@ -156,16 +156,6 @@ class Goal extends generated\Goal
 
 		return $res;
 	}
-
-    public function beforeSave($insert)
-    {
-	    if (parent::beforeSave($insert)) {
-		    $result = $this->getReport('today')->save() && $this->getReport('yesterday')->save();
-
-		    return $result;
-	    }
-	    return false;
-    }
 }
 
 trait GoalScopes
