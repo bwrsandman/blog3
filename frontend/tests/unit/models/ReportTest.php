@@ -73,8 +73,8 @@ class ReportTest extends Test
 	public function testCheckUserPermissions()
 	{
 		$model                    = $this->getMock($this->class, ['getGoal']);
-		$goal                     = $this->getMock($this->class, ['getUser']);
-		$user                     = $this->getMock($this->class, null);
+		$goal                     = $this->getMock($this->goalClass, ['getUser']);
+		$user                     = $this->getMock($this->userClass, null);
 		$userRight                = $this->getMockBuilder(get_class(Yii::$app->user))
 			->disableOriginalConstructor()
 			->setMethods(['getId'])
@@ -86,6 +86,8 @@ class ReportTest extends Test
 		$user->id = 1;
 		$model->expects($this->exactly(2))->method('getGoal')->will($this->returnValue($goal));
 		$goal->expects($this->exactly(2))->method('getUser')->will($this->returnValue($user));
+		$user->expects($this->exactly(2))->method('getId')->will($this->returnValue(1));
+
 		$userRight->expects($this->once())->method('getId')->will($this->returnValue(1));
 		$userWrong->expects($this->once(2))->method('getId')->will($this->returnValue(2));
 
