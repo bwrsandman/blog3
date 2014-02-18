@@ -11,8 +11,7 @@
 class_name: WebGuy
 modules:
     enabled:
-        - WebDriver
-        - WebHelper
+        - Selenium2
     config:
         WebDriver:
             url: 'http://blog3.ru/'
