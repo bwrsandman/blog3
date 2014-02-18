@@ -15,7 +15,7 @@ class JqueryUi extends AssetBundle
     public $baseUrl = '@web/src/vendor';
 
     public $js = array(
-        'jquery/dist/jquery.min.js',
+        'jquery/jquery.min.js',
         'jquery-ui/ui/minified/jquery-ui.min.js',
     );
 

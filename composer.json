@@ -36,12 +36,6 @@
             "yii\\composer\\InstallHandler::setPermissions"
         ]
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/nizsheanez/phpdaemon.git"
-        }
-    ],
     "extra": {
 
         "yii-install-writable": [
