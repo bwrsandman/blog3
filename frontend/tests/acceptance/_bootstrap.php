@@ -9,4 +9,4 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 $application = new yii\web\Application($config);
-$application->fixture->load(['goal']);
+//$application->fixture->load(['goal']);

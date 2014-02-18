@@ -1,15 +1,13 @@
 <?php
 require(__DIR__ . '/../../common/components/debug.php');
 
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
-ini_set('xdebug.max_nesting_level', 1000);
+// NOTE: Make sure this file is not accessible when deployed to production
+if (!in_array(@$_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1'])) {
+	die('You are not allowed to access this file.');
+}
 
-ini_set('session.cookie_lifetime', 60 * 60 * 24 * 30);
-
-// comment out the following line to disable debug mode
 defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('YII_ENV') or define('YII_ENV', 'test');
 
 require(__DIR__ . '/../../vendor/autoload.php');
 require(__DIR__ . '/../../vendor/yiisoft/yii2/Yii.php');
