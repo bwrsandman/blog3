@@ -6,11 +6,10 @@
 
 use \Codeception\Maybe;
 use Codeception\Module\CodeHelper;
-use Codeception\Module\Mockery;
 
 /**
  * Inherited methods
- * @method void haveFriend($name)
+ * @method void execute($callable)
  * @method void wantToTest($text)
  * @method void wantTo($text)
  * @method void expectTo($prediction)
@@ -18,20 +17,31 @@ use Codeception\Module\Mockery;
  * @method void amGoingTo($argumentation)
  * @method void am($role)
  * @method void lookForwardTo($achieveValue)
- * @method void comment($description)
+ * @method void offsetGet($offset)
+ * @method void offsetSet($offset, $value)
+ * @method void offsetExists($offset)
+ * @method void offsetUnset($offset)
 */
 
 class CodeGuy extends \Codeception\AbstractGuy
 {
     
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      *
      * @see Codeception\Module::getName()
+     * @return \Codeception\Maybe
      */
     public function getName() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('getName', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('getName', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 }
 

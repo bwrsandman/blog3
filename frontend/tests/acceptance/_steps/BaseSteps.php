@@ -18,7 +18,7 @@ class BaseSteps extends \WebGuy
     public function amOnPage($page)
     {
         parent::amOnPage($page);
-        $this->waitForElement('#goals-grid', 3);
+//        $this->waitForElement('#goals-grid', 3);
     }
 
     public function write($selector, $value)

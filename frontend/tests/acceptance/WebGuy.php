@@ -10,7 +10,7 @@ use Codeception\Module\WebHelper;
 
 /**
  * Inherited methods
- * @method void haveFriend($name)
+ * @method void execute($callable)
  * @method void wantToTest($text)
  * @method void wantTo($text)
  * @method void expectTo($prediction)
@@ -18,14 +18,19 @@ use Codeception\Module\WebHelper;
  * @method void amGoingTo($argumentation)
  * @method void am($role)
  * @method void lookForwardTo($achieveValue)
- * @method void comment($description)
+ * @method void offsetGet($offset)
+ * @method void offsetSet($offset, $value)
+ * @method void offsetExists($offset)
+ * @method void offsetUnset($offset)
 */
 
 class WebGuy extends \Codeception\AbstractGuy
 {
     
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Sets 'url' configuration parameter to hosts subdomain.
      * It does not open a page on subdomain. Use `amOnPage` for that
@@ -41,19 +46,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * // moves to http://user.mysite.com/
      * ?>
      * ```
-     *
      * @param $subdomain
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::amOnSubdomain()
+     * @return \Codeception\Maybe
      */
     public function amOnSubdomain($subdomain) {
-        return $this->scenario->runStep(new \Codeception\Step\Condition('amOnSubdomain', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Condition('amOnSubdomain', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Makes a screenshot of current window and saves it to `tests/_log/debug`.
      *
@@ -67,14 +78,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $name
      * @see Codeception\Module\WebDriver::makeScreenshot()
+     * @return \Codeception\Maybe
      */
     public function makeScreenshot($name) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('makeScreenshot', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('makeScreenshot', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Resize current window
      *
@@ -85,121 +104,178 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * ```
      *
-     * @param int $width
-     * @param int $height
+     * @param int    $width
+     * @param int    $height
      * @see Codeception\Module\WebDriver::resizeWindow()
+     * @return \Codeception\Maybe
      */
     public function resizeWindow($width, $height) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('resizeWindow', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('resizeWindow', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that cookie is set.
      *
      * @param $cookie
-     *
      * @return mixed
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeCookie()
+     * @return \Codeception\Maybe
      */
     public function canSeeCookie($cookie) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that cookie is set.
      *
      * @param $cookie
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::seeCookie()
+     * @return \Codeception\Maybe
      */
     public function seeCookie($cookie) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that cookie doesn't exist
      *
      * @param $cookie
-     *
      * @return mixed
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeCookie()
+     * @return \Codeception\Maybe
      */
     public function cantSeeCookie($cookie) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that cookie doesn't exist
      *
      * @param $cookie
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::dontSeeCookie()
+     * @return \Codeception\Maybe
      */
     public function dontSeeCookie($cookie) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Sets a cookie.
      *
      * @param $cookie
      * @param $value
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::setCookie()
+     * @return \Codeception\Maybe
      */
     public function setCookie($cookie, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('setCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('setCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Unsets cookie
      *
      * @param $cookie
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::resetCookie()
+     * @return \Codeception\Maybe
      */
     public function resetCookie($cookie) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('resetCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('resetCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Grabs a cookie value.
      *
      * @param $cookie
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::grabCookie()
+     * @return \Codeception\Maybe
      */
     public function grabCookie($cookie) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('grabCookie', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('grabCookie', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Opens the page.
      * Requires relative uri as parameter
@@ -217,14 +293,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $page
      * @see Codeception\Module\WebDriver::amOnPage()
+     * @return \Codeception\Maybe
      */
     public function amOnPage($page) {
-        return $this->scenario->runStep(new \Codeception\Step\Condition('amOnPage', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Condition('amOnPage', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Check if current page contains the text specified.
      * Specify the css selector to match only specific region.
@@ -239,16 +323,24 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $selector
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::see()
+     * @return \Codeception\Maybe
      */
     public function canSee($text, $selector = null) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('see', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('see', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Check if current page contains the text specified.
      * Specify the css selector to match only specific region.
@@ -263,17 +355,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $selector
      * @see Codeception\Module\WebDriver::see()
+     * @return \Codeception\Maybe
      */
     public function see($text, $selector = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('see', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('see', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Check if current page doesn't contain the text specified.
      * Specify the css selector to match only specific region.
@@ -288,16 +388,24 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $selector
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSee()
+     * @return \Codeception\Maybe
      */
     public function cantSee($text, $selector = null) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSee', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSee', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Check if current page doesn't contain the text specified.
      * Specify the css selector to match only specific region.
@@ -312,17 +420,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $selector
      * @see Codeception\Module\WebDriver::dontSee()
+     * @return \Codeception\Maybe
      */
     public function dontSee($text, $selector = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSee', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSee', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Perform a click on link or button.
      * Link or button are found by their names or CSS selector.
@@ -350,18 +466,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * $I->click('Logout', '#nav');
      * ?>
      * ```
-     *
      * @param $link
      * @param $context
      * @see Codeception\Module\WebDriver::click()
+     * @return \Codeception\Maybe
      */
     public function click($link, $context = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('click', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('click', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if there is a link with text specified.
      * Specify url to match link with exact this url.
@@ -375,16 +498,24 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $url
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeLink()
+     * @return \Codeception\Maybe
      */
     public function canSeeLink($text, $url = null) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeLink', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeLink', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if there is a link with text specified.
      * Specify url to match link with exact this url.
@@ -398,17 +529,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $url
      * @see Codeception\Module\WebDriver::seeLink()
+     * @return \Codeception\Maybe
      */
     public function seeLink($text, $url = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeLink', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeLink', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if page doesn't contain the link with text specified.
      * Specify url to narrow the results.
@@ -421,16 +560,24 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $url
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeLink()
+     * @return \Codeception\Maybe
      */
     public function cantSeeLink($text, $url = null) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeLink', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeLink', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if page doesn't contain the link with text specified.
      * Specify url to narrow the results.
@@ -443,17 +590,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * @param      $text
+     * @param $text
      * @param null $url
      * @see Codeception\Module\WebDriver::dontSeeLink()
+     * @return \Codeception\Maybe
      */
     public function dontSeeLink($text, $url = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeLink', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeLink', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current uri contains a value
      *
@@ -469,12 +624,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $uri
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeInCurrentUrl()
+     * @return \Codeception\Maybe
      */
     public function canSeeInCurrentUrl($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeInCurrentUrl', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInCurrentUrl', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current uri contains a value
      *
@@ -489,14 +652,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $uri
      * @see Codeception\Module\WebDriver::seeInCurrentUrl()
+     * @return \Codeception\Maybe
      */
     public function seeInCurrentUrl($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeInCurrentUrl', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInCurrentUrl', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url is equal to value.
      * Unlike `seeInCurrentUrl` performs a strict check.
@@ -511,12 +682,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $uri
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeCurrentUrlEquals()
+     * @return \Codeception\Maybe
      */
     public function canSeeCurrentUrlEquals($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeCurrentUrlEquals', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeCurrentUrlEquals', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url is equal to value.
      * Unlike `seeInCurrentUrl` performs a strict check.
@@ -530,14 +709,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $uri
      * @see Codeception\Module\WebDriver::seeCurrentUrlEquals()
+     * @return \Codeception\Maybe
      */
     public function seeCurrentUrlEquals($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeCurrentUrlEquals', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeCurrentUrlEquals', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url is matches a RegEx value
      *
@@ -551,12 +738,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $uri
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeCurrentUrlMatches()
+     * @return \Codeception\Maybe
      */
     public function canSeeCurrentUrlMatches($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeCurrentUrlMatches', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeCurrentUrlMatches', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url is matches a RegEx value
      *
@@ -569,14 +764,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $uri
      * @see Codeception\Module\WebDriver::seeCurrentUrlMatches()
+     * @return \Codeception\Maybe
      */
     public function seeCurrentUrlMatches($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeCurrentUrlMatches', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeCurrentUrlMatches', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current uri does not contain a value
      *
@@ -589,12 +792,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $uri
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeInCurrentUrl()
+     * @return \Codeception\Maybe
      */
     public function cantSeeInCurrentUrl($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeInCurrentUrl', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInCurrentUrl', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current uri does not contain a value
      *
@@ -606,14 +817,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $uri
      * @see Codeception\Module\WebDriver::dontSeeInCurrentUrl()
+     * @return \Codeception\Maybe
      */
     public function dontSeeInCurrentUrl($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeInCurrentUrl', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInCurrentUrl', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url is not equal to value.
      * Unlike `dontSeeInCurrentUrl` performs a strict check.
@@ -628,12 +847,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $uri
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeCurrentUrlEquals()
+     * @return \Codeception\Maybe
      */
     public function cantSeeCurrentUrlEquals($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeCurrentUrlEquals', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeCurrentUrlEquals', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url is not equal to value.
      * Unlike `dontSeeInCurrentUrl` performs a strict check.
@@ -647,14 +874,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $uri
      * @see Codeception\Module\WebDriver::dontSeeCurrentUrlEquals()
+     * @return \Codeception\Maybe
      */
     public function dontSeeCurrentUrlEquals($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeCurrentUrlEquals', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeCurrentUrlEquals', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url does not match a RegEx value
      *
@@ -668,12 +903,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $uri
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeCurrentUrlMatches()
+     * @return \Codeception\Maybe
      */
     public function cantSeeCurrentUrlMatches($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeCurrentUrlMatches', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeCurrentUrlMatches', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that current url does not match a RegEx value
      *
@@ -686,14 +929,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $uri
      * @see Codeception\Module\WebDriver::dontSeeCurrentUrlMatches()
+     * @return \Codeception\Maybe
      */
     public function dontSeeCurrentUrlMatches($uri) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeCurrentUrlMatches', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeCurrentUrlMatches', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Takes a parameters from current URI by RegEx.
      * If no url provided returns full URI.
@@ -706,18 +957,25 @@ class WebGuy extends \Codeception\AbstractGuy
      * ```
      *
      * @param null $uri
-     *
      * @internal param $url
      * @return mixed
      * @see Codeception\Module\WebDriver::grabFromCurrentUrl()
+     * @return \Codeception\Maybe
      */
     public function grabFromCurrentUrl($uri = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('grabFromCurrentUrl', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('grabFromCurrentUrl', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Assert if the specified checkbox is checked.
      * Use css selector or xpath to match.
@@ -735,12 +993,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $checkbox
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeCheckboxIsChecked()
+     * @return \Codeception\Maybe
      */
     public function canSeeCheckboxIsChecked($checkbox) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeCheckboxIsChecked', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeCheckboxIsChecked', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Assert if the specified checkbox is checked.
      * Use css selector or xpath to match.
@@ -757,14 +1023,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $checkbox
      * @see Codeception\Module\WebDriver::seeCheckboxIsChecked()
+     * @return \Codeception\Maybe
      */
     public function seeCheckboxIsChecked($checkbox) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeCheckboxIsChecked', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeCheckboxIsChecked', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Assert if the specified checkbox is unchecked.
      * Use css selector or xpath to match.
@@ -781,12 +1055,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $checkbox
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeCheckboxIsChecked()
+     * @return \Codeception\Maybe
      */
     public function cantSeeCheckboxIsChecked($checkbox) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeCheckboxIsChecked', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeCheckboxIsChecked', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Assert if the specified checkbox is unchecked.
      * Use css selector or xpath to match.
@@ -802,14 +1084,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $checkbox
      * @see Codeception\Module\WebDriver::dontSeeCheckboxIsChecked()
+     * @return \Codeception\Maybe
      */
     public function dontSeeCheckboxIsChecked($checkbox) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeCheckboxIsChecked', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeCheckboxIsChecked', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that an input field or textarea contains value.
      * Field is matched either by label or CSS or Xpath
@@ -830,12 +1120,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $value
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeInField()
+     * @return \Codeception\Maybe
      */
     public function canSeeInField($field, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeInField', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that an input field or textarea contains value.
      * Field is matched either by label or CSS or Xpath
@@ -855,14 +1153,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $field
      * @param $value
      * @see Codeception\Module\WebDriver::seeInField()
+     * @return \Codeception\Maybe
      */
     public function seeInField($field, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeInField', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that an input field or textarea doesn't contain value.
      * Field is matched either by label or CSS or Xpath
@@ -882,12 +1188,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $value
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeInField()
+     * @return \Codeception\Maybe
      */
     public function cantSeeInField($field, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeInField', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that an input field or textarea doesn't contain value.
      * Field is matched either by label or CSS or Xpath
@@ -906,14 +1220,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $field
      * @param $value
      * @see Codeception\Module\WebDriver::dontSeeInField()
+     * @return \Codeception\Maybe
      */
     public function dontSeeInField($field, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeInField', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Selects an option in select tag or in radio button group.
      *
@@ -938,25 +1260,41 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $select
      * @param $option
      * @see Codeception\Module\WebDriver::selectOption()
+     * @return \Codeception\Maybe
      */
     public function selectOption($select, $option) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('selectOption', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('selectOption', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      *
      * @see Codeception\Module\WebDriver::unselectOption()
+     * @return \Codeception\Maybe
      */
     public function unselectOption($select, $option) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('unselectOption', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('unselectOption', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Ticks a checkbox.
      * For radio buttons use `selectOption` method.
@@ -971,14 +1309,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $option
      * @see Codeception\Module\WebDriver::checkOption()
+     * @return \Codeception\Maybe
      */
     public function checkOption($option) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('checkOption', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('checkOption', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Unticks a checkbox.
      *
@@ -992,19 +1338,27 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $option
      * @see Codeception\Module\WebDriver::uncheckOption()
+     * @return \Codeception\Maybe
      */
     public function uncheckOption($option) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('uncheckOption', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('uncheckOption', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Fills a text field or textarea with value.
-     *
+     * 
      * Example:
-     *
+     * 
      * ``` php
      * <?php
      * $I->fillField("//input[@type='text']", "Hello World!");
@@ -1014,14 +1368,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $field
      * @param $value
      * @see Codeception\Module\WebDriver::fillField()
+     * @return \Codeception\Maybe
      */
     public function fillField($field, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('fillField', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('fillField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Attaches file from Codeception data directory to upload field.
      *
@@ -1037,14 +1399,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $field
      * @param $filename
      * @see Codeception\Module\WebDriver::attachFile()
+     * @return \Codeception\Maybe
      */
     public function attachFile($field, $filename) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('attachFile', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('attachFile', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Finds and returns text contents of element.
      * Element is searched by CSS selector, XPath or matcher by regex.
@@ -1060,17 +1430,24 @@ class WebGuy extends \Codeception\AbstractGuy
      * ```
      *
      * @param $cssOrXPathOrRegex
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::grabTextFrom()
+     * @return \Codeception\Maybe
      */
     public function grabTextFrom($cssOrXPathOrRegex) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('grabTextFrom', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('grabTextFrom', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Finds and returns field and returns it's value.
      * Searches by field name, then by CSS, then by XPath
@@ -1086,17 +1463,24 @@ class WebGuy extends \Codeception\AbstractGuy
      * ```
      *
      * @param $field
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::grabValueFrom()
+     * @return \Codeception\Maybe
      */
     public function grabValueFrom($field) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('grabValueFrom', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('grabValueFrom', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks for a visible element on a page, matching it by CSS or XPath
      *
@@ -1109,12 +1493,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $selector
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeElement()
+     * @return \Codeception\Maybe
      */
     public function canSeeElement($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeElement', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks for a visible element on a page, matching it by CSS or XPath
      *
@@ -1126,14 +1518,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * ```
      * @param $selector
      * @see Codeception\Module\WebDriver::seeElement()
+     * @return \Codeception\Maybe
      */
     public function seeElement($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeElement', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that element is invisible or not present on page.
      *
@@ -1147,12 +1547,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $selector
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeElement()
+     * @return \Codeception\Maybe
      */
     public function cantSeeElement($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeElement', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that element is invisible or not present on page.
      *
@@ -1165,14 +1573,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $selector
      * @see Codeception\Module\WebDriver::dontSeeElement()
+     * @return \Codeception\Maybe
      */
     public function dontSeeElement($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeElement', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if element exists on a page even it is invisible.
      *
@@ -1185,12 +1601,20 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $selector
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeElementInDOM()
+     * @return \Codeception\Maybe
      */
     public function canSeeElementInDOM($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeElementInDOM', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeElementInDOM', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if element exists on a page even it is invisible.
      *
@@ -1202,39 +1626,63 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $selector
      * @see Codeception\Module\WebDriver::seeElementInDOM()
+     * @return \Codeception\Maybe
      */
     public function seeElementInDOM($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeElementInDOM', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeElementInDOM', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Opposite to `seeElementInDOM`.
      *
      * @param $selector
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeElementInDOM()
+     * @return \Codeception\Maybe
      */
     public function cantSeeElementInDOM($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeElementInDOM', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeElementInDOM', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Opposite to `seeElementInDOM`.
      *
      * @param $selector
      * @see Codeception\Module\WebDriver::dontSeeElementInDOM()
+     * @return \Codeception\Maybe
      */
     public function dontSeeElementInDOM($selector) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeElementInDOM', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeElementInDOM', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if option is selected in select field.
      *
@@ -1246,16 +1694,23 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $selector
      * @param $optionText
-     *
      * @return mixed
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeOptionIsSelected()
+     * @return \Codeception\Maybe
      */
     public function canSeeOptionIsSelected($selector, $optionText) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeOptionIsSelected', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeOptionIsSelected', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if option is selected in select field.
      *
@@ -1267,17 +1722,24 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $selector
      * @param $optionText
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::seeOptionIsSelected()
+     * @return \Codeception\Maybe
      */
     public function seeOptionIsSelected($selector, $optionText) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeOptionIsSelected', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeOptionIsSelected', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if option is not selected in select field.
      *
@@ -1289,16 +1751,23 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $selector
      * @param $optionText
-     *
      * @return mixed
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeOptionIsSelected()
+     * @return \Codeception\Maybe
      */
     public function cantSeeOptionIsSelected($selector, $optionText) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeOptionIsSelected', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeOptionIsSelected', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks if option is not selected in select field.
      *
@@ -1310,17 +1779,24 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param $selector
      * @param $optionText
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::dontSeeOptionIsSelected()
+     * @return \Codeception\Maybe
      */
     public function dontSeeOptionIsSelected($selector, $optionText) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeOptionIsSelected', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeOptionIsSelected', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that page title contains text.
      *
@@ -1331,16 +1807,23 @@ class WebGuy extends \Codeception\AbstractGuy
      * ```
      *
      * @param $title
-     *
      * @return mixed
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeInTitle()
+     * @return \Codeception\Maybe
      */
     public function canSeeInTitle($title) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeInTitle', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that page title contains text.
      *
@@ -1351,141 +1834,226 @@ class WebGuy extends \Codeception\AbstractGuy
      * ```
      *
      * @param $title
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::seeInTitle()
+     * @return \Codeception\Maybe
      */
     public function seeInTitle($title) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeInTitle', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that page title does not contain text.
      *
      * @param $title
-     *
      * @return mixed
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::dontSeeInTitle()
+     * @return \Codeception\Maybe
      */
     public function cantSeeInTitle($title) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('dontSeeInTitle', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('dontSeeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that page title does not contain text.
      *
      * @param $title
-     *
      * @return mixed
      * @see Codeception\Module\WebDriver::dontSeeInTitle()
+     * @return \Codeception\Maybe
      */
     public function dontSeeInTitle($title) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeInTitle', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('dontSeeInTitle', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Accepts JavaScript native popup window created by `window.alert`|`window.confirm`|`window.prompt`.
      * Don't confuse it with modal windows, created by [various libraries](http://jster.net/category/windows-modals-popups).
      *
      * @see Codeception\Module\WebDriver::acceptPopup()
+     * @return \Codeception\Maybe
      */
     public function acceptPopup() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('acceptPopup', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('acceptPopup', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Dismisses active JavaScript popup created by `window.alert`|`window.confirm`|`window.prompt`.
      * @see Codeception\Module\WebDriver::cancelPopup()
+     * @return \Codeception\Maybe
      */
     public function cancelPopup() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('cancelPopup', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('cancelPopup', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that active JavaScript popup created by `window.alert`|`window.confirm`|`window.prompt` contain text.
      *
      * @param $text
     * Conditional Assertion: Test won't be stopped on fail
      * @see Codeception\Module\WebDriver::seeInPopup()
+     * @return \Codeception\Maybe
      */
     public function canSeeInPopup($text) {
-        return $this->scenario->runStep(new \Codeception\Step\ConditionalAssertion('seeInPopup', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\ConditionalAssertion('seeInPopup', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Checks that active JavaScript popup created by `window.alert`|`window.confirm`|`window.prompt` contain text.
      *
      * @param $text
      * @see Codeception\Module\WebDriver::seeInPopup()
+     * @return \Codeception\Maybe
      */
     public function seeInPopup($text) {
-        return $this->scenario->runStep(new \Codeception\Step\Assertion('seeInPopup', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Assertion('seeInPopup', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Enters text into native JavaScript prompt popup created by `window.prompt`.
      *
      * @param $keys
      * @see Codeception\Module\WebDriver::typeInPopup()
+     * @return \Codeception\Maybe
      */
     public function typeInPopup($keys) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('typeInPopup', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('typeInPopup', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Reloads current page
      * @see Codeception\Module\WebDriver::reloadPage()
+     * @return \Codeception\Maybe
      */
     public function reloadPage() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('reloadPage', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('reloadPage', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Moves back in history
      * @see Codeception\Module\WebDriver::moveBack()
+     * @return \Codeception\Maybe
      */
     public function moveBack() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('moveBack', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('moveBack', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Moves forward in history
      * @see Codeception\Module\WebDriver::moveForward()
+     * @return \Codeception\Maybe
      */
     public function moveForward() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('moveForward', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('moveForward', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Submits a form located on page.
      * Specify the form by it's css or xpath selector.
@@ -1524,14 +2092,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $params
      * @throws \Codeception\Exception\ElementNotFound
      * @see Codeception\Module\WebDriver::submitForm()
+     * @return \Codeception\Maybe
      */
     public function submitForm($selector, $params) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('submitForm', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('submitForm', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Waits for element to change or for $timeout seconds to pass. Element "change" is determined
      * by a callback function which is called repeatedly until the return value evaluates to true.
@@ -1549,14 +2125,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param int $timeout seconds
      * @throws \Codeception\Exception\ElementNotFound
      * @see Codeception\Module\WebDriver::waitForElementChange()
+     * @return \Codeception\Maybe
      */
     public function waitForElementChange($element, $callback, $timeout = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('waitForElementChange', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('waitForElementChange', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Waits for element to appear on page for $timeout seconds to pass.
      * If element not appears, timeout exception is thrown.
@@ -1572,14 +2156,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param int $timeout seconds
      * @throws \Exception
      * @see Codeception\Module\WebDriver::waitForElement()
+     * @return \Codeception\Maybe
      */
     public function waitForElement($element, $timeout = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('waitForElement', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('waitForElement', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Waits for element to be visible on the page for $timeout seconds to pass.
      * If element doesn't appear, timeout exception is thrown.
@@ -1595,14 +2187,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param int $timeout seconds
      * @throws \Exception
      * @see Codeception\Module\WebDriver::waitForElementVisible()
+     * @return \Codeception\Maybe
      */
     public function waitForElementVisible($element, $timeout = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('waitForElementVisible', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('waitForElementVisible', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Waits for element to not be visible on the page for $timeout seconds to pass.
      * If element stays visible, timeout exception is thrown.
@@ -1617,14 +2217,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param int $timeout seconds
      * @throws \Exception
      * @see Codeception\Module\WebDriver::waitForElementNotVisible()
+     * @return \Codeception\Maybe
      */
     public function waitForElementNotVisible($element, $timeout = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('waitForElementNotVisible', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('waitForElementNotVisible', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Waits for text to appear on the page for a specific amount of time.
      * Can also be passed a selector to search in.
@@ -1643,27 +2251,43 @@ class WebGuy extends \Codeception\AbstractGuy
      * @throws \Exception
      * @internal param string $element
      * @see Codeception\Module\WebDriver::waitForText()
+     * @return \Codeception\Maybe
      */
     public function waitForText($text, $timeout = null, $selector = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('waitForText', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('waitForText', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Explicit wait.
      *
      * @param $timeout secs
      * @see Codeception\Module\WebDriver::wait()
+     * @return \Codeception\Maybe
      */
     public function wait($timeout) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('wait', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('wait', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Low-level API method.
      * If Codeception commands are not enough, use Selenium WebDriver methods directly
@@ -1680,14 +2304,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param callable $function
      * @see Codeception\Module\WebDriver::executeInSelenium()
+     * @return \Codeception\Maybe
      */
     public function executeInSelenium($function) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('executeInSelenium', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('executeInSelenium', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Switch to another window identified by its name.
      *
@@ -1710,26 +2342,34 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * If the window has no name, the only way to access it is via the `executeInSelenium()` method like so:
      *
-     * ```
+     * ``` php
      * <?php
      * $I->executeInSelenium(function (\Webdriver $webdriver) {
-     *      $handles=$webDriver->getWindowHandles();
+     *      $handles=$webdriver->getWindowHandles();
      *      $last_window = end($handles);
-     *      $webDriver->switchTo()->window($name);
+     *      $webdriver->switchTo()->window($last_window);
      * });
      * ?>
      * ```
      *
      * @param string|null $name
      * @see Codeception\Module\WebDriver::switchToWindow()
+     * @return \Codeception\Maybe
      */
     public function switchToWindow($name = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('switchToWindow', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('switchToWindow', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Switch to another frame
      *
@@ -1750,14 +2390,22 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * @param string|null $name
      * @see Codeception\Module\WebDriver::switchToIFrame()
+     * @return \Codeception\Maybe
      */
     public function switchToIFrame($name = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('switchToIFrame', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('switchToIFrame', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Executes JavaScript and waits for it to return true or for the timeout.
      *
@@ -1772,39 +2420,63 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $script
      * @param $timeout int seconds
      * @see Codeception\Module\WebDriver::waitForJS()
+     * @return \Codeception\Maybe
      */
     public function waitForJS($script, $timeout = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('waitForJS', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('waitForJS', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Executes custom JavaScript
      *
      * @param $script
      * @return mixed
      * @see Codeception\Module\WebDriver::executeJS()
+     * @return \Codeception\Maybe
      */
     public function executeJS($script) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('executeJS', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('executeJS', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Maximizes current window
      * @see Codeception\Module\WebDriver::maximizeWindow()
+     * @return \Codeception\Maybe
      */
     public function maximizeWindow() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('maximizeWindow', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('maximizeWindow', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Performs a simple mouse drag and drop operation.
      *
@@ -1817,14 +2489,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param string $source (CSS ID or XPath)
      * @param string $target (CSS ID or XPath)
      * @see Codeception\Module\WebDriver::dragAndDrop()
+     * @return \Codeception\Maybe
      */
     public function dragAndDrop($source, $target) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('dragAndDrop', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('dragAndDrop', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Move mouse over the first element matched by css or xPath on page
      *
@@ -1837,56 +2517,88 @@ class WebGuy extends \Codeception\AbstractGuy
      * @throws \Codeception\Exception\ElementNotFound
      * @return null
      * @see Codeception\Module\WebDriver::moveMouseOver()
+     * @return \Codeception\Maybe
      */
     public function moveMouseOver($cssOrXPath, $offsetX = null, $offsetY = null) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('moveMouseOver', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('moveMouseOver', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Performs contextual click with right mouse button on element matched by CSS or XPath.
      *
      * @param $cssOrXPath
      * @throws \Codeception\Exception\ElementNotFound
      * @see Codeception\Module\WebDriver::clickWithRightButton()
+     * @return \Codeception\Maybe
      */
     public function clickWithRightButton($cssOrXPath) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('clickWithRightButton', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('clickWithRightButton', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Pauses test execution in debug mode.
      * To proceed test press "ENTER" in console.
      *
      * This method is recommended to use in test development, for additional page analysis, locator searing, etc.
      * @see Codeception\Module\WebDriver::pauseExecution()
+     * @return \Codeception\Maybe
      */
     public function pauseExecution() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('pauseExecution', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('pauseExecution', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Performs a double click on element matched by CSS or XPath.
      *
      * @param $cssOrXPath
      * @throws \Codeception\Exception\ElementNotFound
      * @see Codeception\Module\WebDriver::doubleClick()
+     * @return \Codeception\Maybe
      */
     public function doubleClick($cssOrXPath) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('doubleClick', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('doubleClick', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Presses key on element found by css, xpath is focused
      * A char and modifier (ctrl, alt, shift, meta) can be provided.
@@ -1909,14 +2621,22 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param $char can be char or array with modifier. You can provide several chars.
      * @throws \Codeception\Exception\ElementNotFound
      * @see Codeception\Module\WebDriver::pressKey()
+     * @return \Codeception\Maybe
      */
     public function pressKey($element, $char) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('pressKey', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('pressKey', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      * Append text to an element
      * Can add another selection to a select box
@@ -1931,20 +2651,34 @@ class WebGuy extends \Codeception\AbstractGuy
      * @param string $field
      * @param string $value
      * @see Codeception\Module\WebDriver::appendField()
+     * @return \Codeception\Maybe
      */
     public function appendField($field, $value) {
-        return $this->scenario->runStep(new \Codeception\Step\Action('appendField', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('appendField', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 
  
     /**
-     * [!] Method is generated. Documentation taken from corresponding module.
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
      *
      *
      * @see Codeception\Module::getName()
+     * @return \Codeception\Maybe
      */
     public function getName() {
-        return $this->scenario->runStep(new \Codeception\Step\Action('getName', func_get_args()));
+        $this->scenario->addStep(new \Codeception\Step\Action('getName', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
     }
 }
 
