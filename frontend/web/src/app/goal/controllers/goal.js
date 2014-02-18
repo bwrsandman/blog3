@@ -9,8 +9,8 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $s
     $scope.conclusions = [];
 
     $scope.sortableOptions = {
-        update: function(e, ui) {
-            console.log( e, ui )
+        update: function (e, ui) {
+            console.log(e, ui)
         },
         axis: 'x'
     };
@@ -25,6 +25,11 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $s
     $scope.setFocus = function (goal) {
         $scope.focusGoal = goal;
     };
+
+    $scope.inFocus = function (goal) {
+        return goal.id === $scope.focusGoal.id;
+    }
+
     $scope.defaultPlaceholder = 'Сделано';
 
     $scope.save = function (model) {
@@ -52,6 +57,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $s
         goal.completed = 2;
         goal.$save();
     };
+
 
     showScreen();
 });

@@ -141,7 +141,7 @@ class GoalsWriteSteps extends BaseSteps
         $I->clickBackLogButton($categoryId);
         $I->waitForElement('body .modal', 2);
 
-        $I->wait(1);
+//        $I->wait(1);
         $I->see($title, TodayPage::$goalBackLogPlanning);
         $I->dontSee($title, TodayPage::$goalBackLogDone);
         $I->clickOk(TodayPage::$goalBackLogModal);

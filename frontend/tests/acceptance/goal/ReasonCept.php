@@ -2,7 +2,7 @@
 use \Codeception\TestCase;
 
 $I = new \WebGuy\GoalsWriteSteps($scenario);
-/*
+
 $I->wantTo('ensure that frontpage works');
 $I->amOnPage('/?id=1');
 $I->seeElement('#goals-grid');
@@ -22,7 +22,6 @@ foreach($I->getGoals() as $id) {
 }
 
 $I->flushMessages();
-*/
 $I->amOnPage('/?id=1');
 
 
@@ -33,6 +32,7 @@ foreach($I->getGoals() as $id) {
 
 $I->waitForAutoSave();
 $I->amOnPage('/');
+
 //
 //$I->expect("reasons will visible after focus on report");
 //foreach($I->getGoals() as $id) {

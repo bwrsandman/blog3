@@ -44,7 +44,8 @@ class BaseSteps extends \WebGuy
         } else {
             $I->executeJs('$("' . $link . '").click()');
         }
-        $I->waitForJs("return $.active === 0", 5);
+//	    $I->wait(1);
+//        $I->waitForJs("return $.active === 0", 5);
 
 //        parent::click($link, $context);
     }
@@ -53,8 +54,8 @@ class BaseSteps extends \WebGuy
     {
         $I = $this;
 
-        $I->wait(1);
-        $this->waitForJs('return $.active == 0', 5);
+        $I->wait(2);
+//        $this->waitForJs('return $.active == 0', 5);
     }
 
     public function seeInField($field, $value)

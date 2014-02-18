@@ -1,5 +1,5 @@
 <div ng-if="focusGoal !== false" class="sidebar">
-    <div ng-repeat="(key, goal) in goals | filter:{id:focusGoal.id}">
+    <div ng-repeat="(key, goal) in goals | filter:inFocus">
         <eg-panel class="goal_reason sidebar_panel"
                   ng-transclude>
             <header>

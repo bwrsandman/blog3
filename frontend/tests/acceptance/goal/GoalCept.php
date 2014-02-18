@@ -16,13 +16,15 @@ foreach ($I->getGoals() as $id) {
     $I->clickCancel(TodayPage::$goalEditModal);
     $I->dontSee($msg, $editField);
 
-    $I->clickEditGoalButton($id);
-    $I->write(TodayPage::$goalTitleEditor, $msg);
-    $I->clickOk(TodayPage::$goalEditModal);
-    $I->see($msg, $editField);
+	/*
+		$I->clickEditGoalButton($id);
+		$I->write(TodayPage::$goalTitleEditor, $msg);
+		$I->clickOk(TodayPage::$goalEditModal);
+		$I->see($msg, $editField);
+	*/
 }
 
-
+/*
 $I->expect("that i can to change goals category");
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
@@ -38,7 +40,8 @@ $I->selectOption(TodayPage::$goalTitleCategorySelect, TodayPage::PROFESSIONAL_CA
 $I->clickOk(TodayPage::$goalEditModal);
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
-///*
+*/
+/*
 
 $I->expect("that i can to add goals in category");
 foreach ($I->getCategories() as $id => $name) {
@@ -52,4 +55,4 @@ foreach ($I->getCategories() as $id => $name) {
 $I->expect("that i can to complete goal");
 $I->clickCompleteGoalButton(1);
 $I->checkGoalIsDone($I->grabTextFrom(TodayPage::goalTitle(1)), 1);
-//*/
+*/
