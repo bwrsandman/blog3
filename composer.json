@@ -24,6 +24,7 @@
         "nizsheanez/yii2-websocket-application": "*",
 
         "danielstjules/stringy": "*",
+        "fzaninotto/faker": "*",
 
         "twbs/bootstrap": "3.1.*",
         "fabpot/goutte": "*",

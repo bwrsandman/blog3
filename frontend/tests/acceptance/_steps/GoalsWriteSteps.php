@@ -3,11 +3,11 @@ namespace WebGuy;
 
 use TodayPage;
 use \Codeception\TestCase;
-use yii\test\DbTestTrait;
+use yii\test\FixtureTrait;
 
 class GoalsWriteSteps extends BaseSteps
 {
-    use DbTestTrait;
+    use FixtureTrait;
 
     public $conclusionMsg;
 
