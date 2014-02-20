@@ -86,10 +86,9 @@ class ReportTest extends Test
 		$user->id = 1;
 		$model->expects($this->exactly(2))->method('getGoal')->will($this->returnValue($goal));
 		$goal->expects($this->exactly(2))->method('getUser')->will($this->returnValue($user));
-		$user->expects($this->exactly(2))->method('getId')->will($this->returnValue(1));
 
 		$userRight->expects($this->once())->method('getId')->will($this->returnValue(1));
-		$userWrong->expects($this->once(2))->method('getId')->will($this->returnValue(2));
+		$userWrong->expects($this->once())->method('getId')->will($this->returnValue(2));
 
 		Yii::$app->setComponent('user', $userRight);
 		$this->assertTrue($model->checkUserPermissions());

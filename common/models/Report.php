@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use Behat\Mink\Exception\Exception;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRelation;
