@@ -21,7 +21,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
                     ],
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
                 ],
-                'timestamp' => new Expression('NOW()')
+                'value' => new Expression('NOW()')
             ],
         ];
     }
