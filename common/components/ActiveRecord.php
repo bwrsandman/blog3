@@ -13,7 +13,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
     {
         return [
             'timestamp' => [
-                'class' => 'yii\behaviors\AutoTimestamp',
+                'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => [
                         'create_time',
