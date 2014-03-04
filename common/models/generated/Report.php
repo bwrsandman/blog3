@@ -53,7 +53,7 @@ class Report extends \common\components\ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getFkGoal()
 	{

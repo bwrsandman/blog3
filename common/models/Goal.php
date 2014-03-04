@@ -4,7 +4,6 @@ namespace common\models;
 use PHPDaemon\Core\Daemon;
 use yii\data\ArrayDataProvider;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
 use \Yii;
 
@@ -20,14 +19,9 @@ class Goal extends generated\Goal
     const COMPLETED_YES = 1;
     const COMPLETED_NO  = 0;
 
-    public static function createQuery()
+    public static function createQuery($config = [])
     {
         return new GoalQuery(['modelClass' => get_called_class()]);
-    }
-
-    public static function createRelation($config = [])
-    {
-        return new GoalRelation($config);
     }
 
     public function search()
@@ -172,7 +166,7 @@ class Goal extends generated\Goal
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getFkGoalCategory()
 	{
@@ -180,7 +174,7 @@ class Goal extends generated\Goal
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getFkUser()
 	{
@@ -188,7 +182,7 @@ class Goal extends generated\Goal
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getReports()
 	{
@@ -196,7 +190,7 @@ class Goal extends generated\Goal
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getSteps()
 	{
@@ -216,8 +210,4 @@ class GoalQuery extends ActiveQuery
     use GoalScopes;
 }
 
-class GoalRelation extends ActiveRelation
-{
-    use GoalScopes;
-}
 

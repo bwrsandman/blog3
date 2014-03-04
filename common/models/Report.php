@@ -4,7 +4,6 @@ namespace common\models;
 use Behat\Mink\Exception\Exception;
 use Yii;
 use yii\db\ActiveQuery;
-use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -14,16 +13,11 @@ use yii\helpers\ArrayHelper;
  */
 class Report extends generated\Report
 {
-    public static function createQuery()
+    public static function createQuery($config = [])
     {
         return new ReportQuery(['modelClass' => get_called_class()]);
     }
 
-
-    public static function createRelation($config = [])
-    {
-        return new ReportRelation($config);
-    }
 
     public function behaviors()
     {
@@ -73,7 +67,7 @@ class Report extends generated\Report
 
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\  ActiveQuery
 	 */
 	public function getFkGoal()
 	{
@@ -101,7 +95,3 @@ class ReportQuery extends ActiveQuery
     use ReportScopes;
 }
 
-class ReportRelation extends ActiveRelation
-{
-    use ReportScopes;
-}

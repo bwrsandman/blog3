@@ -63,13 +63,6 @@ class ReportTest extends Test
 		$this->assertInstanceOf('common\models\ReportQuery', $model->createQuery());
 	}
 
-	public function testCreateRelation()
-	{
-		$model = $this->getMock($this->class, null);
-
-		$this->assertInstanceOf('common\models\ReportRelation', $model->createRelation());
-	}
-
 	public function testCheckUserPermissions()
 	{
 		$model                    = $this->getMock($this->class, ['getGoal']);

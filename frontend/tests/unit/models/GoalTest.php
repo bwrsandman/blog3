@@ -28,12 +28,12 @@ class GoalTest extends Test
 	public function testGetReportFromDb($day)
 	{
 		$model = $this->getMock($this->class, ['hasOne']);
-		$relation = $this->getMock('\yii\db\ActiveRelation', ['day', 'one']);
+		$query = $this->getMock('\yii\db\ActiveQuery', ['day', 'one']);
 
-		$model->expects($this->any())->method('hasOne')->will($this->returnValue($relation));
+		$model->expects($this->any())->method('hasOne')->will($this->returnValue($query));
 
-		$relation->expects($this->once())->method('day')->will($this->returnSelf());
-		$relation->expects($this->once())->method('one')->will($this->returnValue(new $this->reportClass));
+        $query->expects($this->once())->method('day')->will($this->returnSelf());
+        $query->expects($this->once())->method('one')->will($this->returnValue(new $this->reportClass));
 
 		$this->assertInstanceOf($this->reportClass, $model->getReport($day));
 	}
@@ -46,13 +46,13 @@ class GoalTest extends Test
 	public function testGetReportIfNotExistsInDb($day)
 	{
 		$model = $this->getMock($this->class, ['hasOne', 'createReportByDay']);
-		$relation = $this->getMock('\yii\db\ActiveRelation', ['day', 'one']);
+		$query = $this->getMock('\yii\db\ActiveQuery', ['day', 'one']);
 
-		$model->expects($this->any())->method('hasOne')->will($this->returnValue($relation));
+		$model->expects($this->any())->method('hasOne')->will($this->returnValue($query));
 		$model->expects($this->once())->method('createReportByDay')->will($this->returnValue(new $this->reportClass));
 
-		$relation->expects($this->once())->method('day')->will($this->returnSelf());
-		$relation->expects($this->once())->method('one')->will($this->returnValue(null));
+        $query->expects($this->once())->method('day')->will($this->returnSelf());
+        $query->expects($this->once())->method('one')->will($this->returnValue(null));
 
 		$this->assertInstanceOf($this->reportClass, $model->getReport($day));
 	}
@@ -109,13 +109,6 @@ class GoalTest extends Test
 		$model = $this->getMock($this->class, null);
 
 		$this->assertInstanceOf('common\models\GoalQuery', $model->createQuery());
-	}
-
-	public function testCreateRelation()
-	{
-		$model = $this->getMock($this->class, null);
-
-		$this->assertInstanceOf('common\models\GoalRelation', $model->createRelation());
 	}
 
 	public function testSearch()

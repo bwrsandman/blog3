@@ -54,7 +54,7 @@ class BaseSteps extends \WebGuy
     {
         $I = $this;
 
-        $I->wait(2);
+        $I->wait(3);
 //        $this->waitForJs('return $.active == 0', 5);
     }
 

@@ -67,7 +67,7 @@ class Goal extends \common\components\ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getFkGoalCategory()
 	{
@@ -75,7 +75,7 @@ class Goal extends \common\components\ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getFkUser()
 	{
@@ -83,7 +83,7 @@ class Goal extends \common\components\ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getReports()
 	{
@@ -91,7 +91,7 @@ class Goal extends \common\components\ActiveRecord
 	}
 
 	/**
-	 * @return \yii\db\ActiveRelation
+	 * @return \yii\db\ActiveQuery
 	 */
 	public function getSteps()
 	{

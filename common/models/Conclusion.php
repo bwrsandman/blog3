@@ -1,21 +1,15 @@
 <?php
 namespace common\models;
 
-use yii\db\ActiveRelation;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveQuery;
 
 class Conclusion extends generated\Conclusion
 {
 
-    public static function createQuery()
+    public static function createQuery($config = [])
     {
         return new ConclusionQuery(['modelClass' => get_called_class()]);
-    }
-
-    public static function createRelation($config = [])
-    {
-        return new ConclusionRelation($config);
     }
 
     public function rules()
@@ -51,8 +45,3 @@ class ConclusionQuery extends ActiveQuery
     use ConclusionScopes;
 }
 
-
-class ConclusionRelation extends ActiveRelation
-{
-    use ConclusionScopes;
-}
