@@ -9,8 +9,10 @@ class Conclusion extends generated\Conclusion
 
     public static function createQuery($config = [])
     {
-        return new ConclusionQuery(['modelClass' => get_called_class()]);
+        $config['modelClass'] = get_called_class();
+        return new ConclusionQuery($config);
     }
+
 
     public function rules()
     {

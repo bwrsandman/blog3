@@ -21,7 +21,8 @@ class Goal extends generated\Goal
 
     public static function createQuery($config = [])
     {
-        return new GoalQuery(['modelClass' => get_called_class()]);
+        $config['modelClass'] = get_called_class();
+        return new GoalQuery($config);
     }
 
     public function search()

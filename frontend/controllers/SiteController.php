@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\Goal;
+use common\models\Report;
 use Yii;
 use yii\web\Controller;
 use common\models\User;
@@ -14,7 +16,7 @@ class SiteController extends Controller
 
 	public function actionIndex()
 	{
-		$request = Yii::$app->request;
+        $request = Yii::$app->request;
 		$user    = Yii::$app->user;
 
 		if ($user->isGuest) {

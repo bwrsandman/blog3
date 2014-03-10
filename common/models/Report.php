@@ -15,7 +15,8 @@ class Report extends generated\Report
 {
     public static function createQuery($config = [])
     {
-        return new ReportQuery(['modelClass' => get_called_class()]);
+        $config['modelClass'] = get_called_class();
+        return new ReportQuery($config);
     }
 
 
@@ -93,5 +94,6 @@ trait ReportScopes
 class ReportQuery extends ActiveQuery
 {
     use ReportScopes;
+
 }
 

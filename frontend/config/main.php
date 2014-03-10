@@ -13,8 +13,15 @@ return array(
     'basePath'            => dirname(__DIR__),
     'vendorPath'          => dirname(dirname(__DIR__)) . '/vendor',
     'controllerNamespace' => 'frontend\controllers',
+//    'preload'             => ['debug'],
     'modules'             => [
-        'gii' => [
+        'debug' => [
+            'class' => 'yii\debug\Module',
+            'allowedIPs' => [
+                '192.168.56.1'
+            ]
+        ],
+        'gii'   => [
             'class'      => 'yii\gii\Module',
             'allowedIPs' => [
                 '192.168.56.1'
@@ -28,16 +35,16 @@ return array(
                 ]
             ],
         ],
-        'v1'  => [
+        'v1'    => [
             'class' => 'frontend\modules\v1\V1',
         ]
 
     ],
     'extensions'          => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'components'          => [
-	    'models' => [
-		    'class' => '\common\components\ModelFactory'
-	    ],
+        'models'       => [
+            'class' => '\common\components\ModelFactory'
+        ],
         'db'           => $params['components.db'],
         'text'         => $params['components.text'],
         'sphinxDb'     => $params['components.sphinxDb'],
