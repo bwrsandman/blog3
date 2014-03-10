@@ -87,7 +87,16 @@ class User extends generated\User implements IdentityInterface
 		return $this->auth_key;
 	}
 
-	/**
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token)
+    {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+
+    /**
 	 * @inheritdoc
 	 */
 	public function validateAuthKey($authKey)

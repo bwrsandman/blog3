@@ -9,4 +9,8 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 $application = new yii\web\Application($config);
+//$f = new \frontend\tests\fixtures\InitDbFixture();
+//$f->beforeLoad();
+//$f->load();
+//$f->afterLoad();
 //$application->fixture->load(['goal']);

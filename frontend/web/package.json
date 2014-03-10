@@ -40,11 +40,10 @@
         "karma-phantomjs-launcher": "latest",
         "karma": "latest",
         "karma-ng-html2js-preprocessor": "latest",
-
+        "console-browserify": "latest",
         "generator-angular": "latest"
 
     },
     "scripts": {
-        "preinstall": "npm i -g yo express socket.io karma less phantomjs grunt grunt-cli"
     }
 }
