@@ -26,8 +26,3 @@ public function behaviors()
     ]);
 }
 ~~~
-
-###Where is compiled files?
-
-By default it present at @webroot/compiled
-But you can change it by destinationDir property from config
