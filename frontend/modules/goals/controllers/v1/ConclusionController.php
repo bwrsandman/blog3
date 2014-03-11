@@ -1,5 +1,5 @@
 <?php
-namespace frontend\modules\v1\controllers;
+namespace frontend\modules\goals\controllers\v1;
 
 use common\models\Conclusion;
 use PHPDaemon\Core\Daemon;

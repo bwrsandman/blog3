@@ -35,8 +35,8 @@ return array(
                 ]
             ],
         ],
-        'v1'    => [
-            'class' => 'frontend\modules\v1\V1',
+        'goals'    => [
+            'class' => 'frontend\modules\goals\Goals',
         ]
 
     ],
@@ -72,7 +72,7 @@ return array(
                                 'api/v1/<controller:\w+>/<id:\d+>'        => 'v1/<controller>/view',
                                 'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
                 */
-                'api/v1/<controller:\w+>/<action:\w+>' => 'v1/<controller>/<action>',
+                'api/goals/<version>/<controller:\w+>/<action:\w+>' => 'goals/<version>/<controller>/<action>',
             ]
         ],
         'assetManager' => [

@@ -35,7 +35,7 @@
                 url: 'save'
             },
             'query': {
-                url: 'api/v1/user',
+                url: 'api/goals/v1/user',
                 isArray: true
             },
             'delete': {

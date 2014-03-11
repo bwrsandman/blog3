@@ -1,11 +1,11 @@
 <?php
-namespace frontend\modules\v1;
+namespace frontend\modules\goals;
 
 use yii\base\Module;
 use Yii;
 use yii\web\Response;
 
-class V1 extends Module
+class Goals extends Module
 {
 
     public function beforeAction($action)
