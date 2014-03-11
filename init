@@ -2,6 +2,7 @@
 
 <?php
 
+
 $root = str_replace('\\', '/', __DIR__);
 
 $envs = require("$root/environments/index.php");
