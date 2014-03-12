@@ -19,13 +19,14 @@ class SubtreeUpdateController extends Controller
         $currentDir  = getcwd();
         $splitScript = Yii::getAlias('@ext') . '/git-simple-split.sh';
 
-        chmod($splitScript, 0776);
+        chmod($splitScript, 0777);
         foreach ($this->map as $prefix => $repo) {
             chdir($this->repoDir);
             $this->runCommand('git checkout master');
             $this->runCommand('git reset --hard');
             $this->runCommand('git pull');
-            $cmd = $splitScript . ' ' . $prefix . ' ' . $repo;
+
+            $cmd = $splitScript . ' ' . $prefix . ' ' . $repo . ' --branches "master"';
 
             $this->runCommand($cmd);
         }
@@ -35,8 +36,9 @@ class SubtreeUpdateController extends Controller
 
     protected function runCommand($command)
     {
-        $res = exec($command, $out);
-        $this->echoPre("command: " . $command . "\n" . "Out: " . print_r($out, true));
+        ob_start();
+        system($command);
+        $this->echoPre("command: " . $command . "\n" . "StdOut: " . ob_get_clean());
     }
 
     protected function echoPre($str)

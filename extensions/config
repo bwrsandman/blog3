@@ -1,0 +1,5 @@
+Host github.com
+    User nizsheanez
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/github_eg
