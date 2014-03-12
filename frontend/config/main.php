@@ -37,8 +37,10 @@ return array(
         ],
         'goals'    => [
             'class' => 'frontend\modules\goals\Goals',
+        ],
+        'gitHooks'    => [
+            'class' => 'frontend\modules\gitHooks\GitHooks',
         ]
-
     ],
     'extensions'          => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'components'          => [
@@ -73,6 +75,8 @@ return array(
                                 'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
                 */
                 'api/goals/<version>/<controller:\w+>/<action:\w+>' => 'goals/<version>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
             ]
         ],
         'assetManager' => [
