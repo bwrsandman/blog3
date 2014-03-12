@@ -67,6 +67,7 @@ do
 		git subtree split --prefix="$SUBPATH" --branch="subsplit/$SUBPATH/$BRANCH" --rejoin "subsplit-track/$SUBPATH/$BRANCH"
 
 		echo "    pushing changes to remote..."
+		echo "    git push -q --force $REMOTE subsplit/$SUBPATH/$BRANCH:$BRANCH"
 		git push -q --force "$REMOTE" "subsplit/$SUBPATH/$BRANCH:$BRANCH"
 	else
 		echo "  failed to merge changes for branch $BRANCH!"
@@ -96,7 +97,8 @@ do
 
 	if [ $? -eq 0 ]
 	then
-		git push -q --force "$REMOTE" "$LOCALTAG:refs/tags/$TAG"
+		echo "       git push --force $REMOTE $LOCALTAG:refs/tags/$TAG"
+		git push --force "$REMOTE" "$LOCALTAG:refs/tags/$TAG"
 	else
 		echo "    failed to create subsplit for tag $TAG!"
 	fi
