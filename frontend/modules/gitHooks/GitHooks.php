@@ -16,7 +16,7 @@ class GitHooks extends Module
         $rightIp = in_array($_SERVER['REMOTE_ADDR'], $github_ips);
         $rightChildIp = $this->cidr_match($_SERVER['REMOTE_ADDR'], $github_cidrs);
         if(!$rightIp && !$rightChildIp) {
-//            throw new HttpException(404, 'Wrong IP access.');
+            throw new HttpException(404, 'Wrong IP access.');
         }
 
         return parent::beforeAction($action);

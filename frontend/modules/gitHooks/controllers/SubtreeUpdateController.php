@@ -16,8 +16,7 @@ class SubtreeUpdateController extends Controller
 
     public function beforeAction($action)
     {
-        echo 5;die;
-    return true;
+        return true;
     }
 
     public function actionIndex()
