@@ -21,6 +21,7 @@ class SubtreeUpdateController extends Controller
 
     public function actionIndex()
     {
+        set_time_limit(-1);
         $currentDir  = getcwd();
         $splitScript = Yii::getAlias('@ext') . '/git-simple-split.sh';
 
