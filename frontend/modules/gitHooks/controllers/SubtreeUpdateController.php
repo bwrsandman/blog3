@@ -14,6 +14,12 @@ class SubtreeUpdateController extends Controller
         'extensions/yii2-html-encode-behavior' => 'git@github.com:nizsheanez/yii2-html-encode-behavior'
     ];
 
+    public function beforeAction($action)
+    {
+        echo 5;die;
+    return true;
+    }
+
     public function actionIndex()
     {
         $currentDir  = getcwd();
