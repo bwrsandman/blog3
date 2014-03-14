@@ -7,6 +7,7 @@
 use \Codeception\Maybe;
 use Codeception\Module\WebDriver;
 use Codeception\Module\WebHelper;
+use common\tests\_helpers\FixtureHelper;
 
 /**
  * Inherited methods
@@ -2674,6 +2675,44 @@ class WebGuy extends \Codeception\AbstractGuy
      */
     public function getName() {
         $this->scenario->addStep(new \Codeception\Step\Action('getName', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see common\tests\_helpers\FixtureHelper::fixtures()
+     * @return \Codeception\Maybe
+     */
+    public function fixtures() {
+        $this->scenario->addStep(new \Codeception\Step\Action('fixtures', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     *
+     * @see common\tests\_helpers\FixtureHelper::globalFixtures()
+     * @return \Codeception\Maybe
+     */
+    public function globalFixtures() {
+        $this->scenario->addStep(new \Codeception\Step\Action('globalFixtures', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
