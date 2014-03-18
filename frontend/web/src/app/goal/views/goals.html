@@ -1,11 +1,8 @@
 <div style="height: 600px; overflow: hidden;">
-    <section id="goals" class="col-md-3" style="height: inherit; overflow: auto">
-        <header>
-            <h5>Сделано за сегодня</h5>
-        </header>
+    <section id="goals" class="col-md-4" style="height: inherit; overflow: auto">
         <ng-include class="goals-grid-container" ng-if="goals.length" src="tpl.grid"/>
     </section>
-    <aside id="sidebar" class="col-md-9" style="height: inherit; overflow: auto">
+    <aside id="sidebar" class="col-md-8" style="height: inherit; overflow: auto">
         <ng-include class="" src="tpl.sidebar"/>
     </aside>
 </div>

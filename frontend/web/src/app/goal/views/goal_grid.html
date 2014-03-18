@@ -2,9 +2,12 @@
     <div ng-repeat="category in categories" class="category-panel sel-cat-{{category.id}}">
         <p>
             {{category.name}}
-            <a href="#" ng-click="addGoalModal(category)" class="goal-add-button"><i class="fa fa-plus-square-o"></i></a>
-            <a href="#" ng-click="backLogModal(category)" class="category-backlog-button"><i class="fa fa-tasks"></i></a>
+            <a href="#" ng-click="addGoalModal(category)" class="goal-add-button"><i
+                    class="fa fa-plus-square-o"></i></a>
+            <a href="#" ng-click="backLogModal(category)" class="category-backlog-button"><i
+                    class="fa fa-tasks"></i></a>
         </p>
+
         <div
                 ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
                 ng-if="key < 3"
@@ -12,24 +15,30 @@
                 ng-click="setFocus(goal)"
                 >
             <header class="goal_title">
-                <p>{{goal.title}}</p>
+                <div class="row">
+                    <div class="col-md-9">
+                        <p class="title">
+                            {{goal.title}}
+                        </p>
+                    </div>
 
-                <div class="eg-control-panel pull-right" ng-class="{active: focusGoal === goal}">
-                    <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
-                        <i class="fa fa-pencil-square-o"></i>
-                    </a>
-                    <a class="btn goal-complete-button" ng-click="complete(goal)" href="#">
-                        <i class="fa fa-smile-o"></i>
-                    </a>
-                    <a class="btn goal-fail-button" ng-click="fail(goal)" href="#">
-                        <i class="fa fa-ban"></i>
-                    </a>
+                    <div class="eg-control-panel col-md-3" ng-class="{active: focusGoal === goal}">
+                        <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                        <a class="btn goal-complete-button" ng-click="complete(goal)" href="#">
+                            <i class="fa fa-smile-o"></i>
+                        </a>
+                        <a class="btn goal-fail-button" ng-click="fail(goal)" href="#">
+                            <i class="fa fa-ban"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
-                <div class="clearfix"></div>
             </header>
 
         </div>
-   </div>
+    </div>
 </div>
 <div class="conclusion">
     <eg-panel ng-transclude>
