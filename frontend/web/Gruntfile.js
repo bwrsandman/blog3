@@ -75,10 +75,10 @@ module.exports = function (grunt) {
                     stdout: true,
                     stderr: true,
                     execOptions: {
-                        cwd: '<%= conf.root %>frontend',
+                        cwd: '<%= conf.root %>frontend'
                     }
                 },
-                command: 'php ../vendor/codeception/codeception/package/codecept.phar run unit | grep -v " Ok"'
+                command: 'php ../vendor/bin/codecept run unit | grep -v " Ok"'
             }
         },
 

@@ -8,6 +8,7 @@ angular.module('eg.goal').controller('GoalCtrl', function ($q, $http, $scope, $s
     $scope.categories = [];
     $scope.conclusions = [];
 
+
     $scope.sortableOptions = {
         update: function (e, ui) {
             console.log(e, ui)

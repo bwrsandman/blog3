@@ -49,8 +49,7 @@
         "gulp-watch": "latest",
         "gulp-shell": "latest",
         "gulp-spawn": "latest",
-        "tiny-lr": "latest"
-
+        "gulp-livereload": "latest"
 
     },
     "scripts": {

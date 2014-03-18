@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     uglify = require('gulp-uglify'),
     shell = require('gulp-shell'),
+    livereload = require('gulp-livereload'),
     lr = require('tiny-lr'),
     server = lr();
 
@@ -27,7 +28,7 @@ var conf = {
 var js = [
     conf.app + '/vendor/jquery/jquery.min.js',
     conf.app + '/vendor/jquery-ui/minified/jquery-ui.min.js',
-    conf.dist + 'concat/scripts/vendor/angular/angular.min.js',
+    conf.dist + '/ngmin/vendor/angular/angular.min.js',
     conf.app + '/vendor/angular-bootstrap/ui-bootstrap.min.js',
     conf.app + '/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
     conf.app + '/vendor/angular-route/angular-route.min.js',
@@ -37,28 +38,31 @@ var js = [
     conf.app + '/vendor/angular-ui-utils/*.min.js',
     conf.app + '/vendor/angular-sanitize/*.min.js',
     conf.app + '/vendor/textAngular/*.min.js',
-    conf.dist + '/concat/scripts/vendor/angular-elastic/elastic.js',
+    conf.dist + '/ngmin/vendor/angular-elastic/elastic.js',
 
 
-    conf.dist + '/concat/scripts/common/**/*.js',
-    conf.dist + '/concat/scripts/app/app.js',
-    conf.dist + '/concat/scripts/app/goal/services/goal.js',
-    conf.dist + '/concat/scripts/app/goal/services/modal.js',
-    conf.dist + '/concat/scripts/app/goal/services/category.js',
-    conf.dist + '/concat/scripts/app/goal/services/report.js',
-    conf.dist + '/concat/scripts/app/goal/services/tpl.js',
-    conf.dist + '/concat/scripts/app/goal/services/user.js',
-    conf.dist + '/concat/scripts/app/goal/services/server.js',
-    conf.dist + '/concat/scripts/app/goal/services/alert.js',
+    conf.dist + '/ngmin/common/**/*.js',
+    conf.dist + '/ngmin/app/app.js',
+    conf.dist + '/ngmin/app/goal/services/goal.js',
+    conf.dist + '/ngmin/app/goal/services/modal.js',
+    conf.dist + '/ngmin/app/goal/services/category.js',
+    conf.dist + '/ngmin/app/goal/services/report.js',
+    conf.dist + '/ngmin/app/goal/services/tpl.js',
+    conf.dist + '/ngmin/app/goal/services/user.js',
+    conf.dist + '/ngmin/app/goal/services/server.js',
+    conf.dist + '/ngmin/app/goal/services/alert.js',
 
-//                        conf.dist + '/concat/scripts/app/goal/services/*.js',
-    conf.dist + '/concat/scripts/app/goal/controllers/*.js',
-    conf.dist + '/concat/scripts/app/goal/directives/*.js'
+//                        conf.dist + '/ngmin/app/goal/services/*.js',
+    conf.dist + '/ngmin/app/goal/controllers/*.js',
+    conf.dist + '/ngmin/app/goal/directives/*.js'
 ];
 
-gulp.task('js', function () {
+gulp.task('fonts', function() {
     gulp.src(conf.app + '/vendor/components-font-awesome/fonts/*')
         .pipe(gulp.dest(conf.dist + '/fonts/'));
+});
+
+gulp.task('js.copy', function() {
 
     gulp.src(conf.app + '/vendor/angular-route/angular-route*')
         .pipe(gulp.dest(conf.dist));
@@ -69,11 +73,42 @@ gulp.task('js', function () {
     gulp.src(conf.app + '/vendor/angular/*.map')
         .pipe(gulp.dest(conf.dist));
 
-    gulp.src(js)
+});
+
+gulp.task('js.ngmin', function () {
+
+    gulp.src(conf.app + '/app/**/*.js')
         .pipe(ngmin())
-        .pipe(uglify({outSourceMap: true}))
-        .pipe(concat('all.min.js'))
+        .pipe(gulp.dest(conf.dist + '/ngmin/app'));
+
+    gulp.src([conf.app +  '/vendor/angular-elastic/elastic.js', conf.app +  '/vendor/angular/angular.min.js'])
+        .pipe(ngmin())
+        .pipe(gulp.dest(conf.dist + '/ngmin/vendor'));
+
+    gulp.src([conf.app +  '/common/**/*.js'])
+        .pipe(ngmin())
+        .pipe(gulp.dest(conf.dist + '/ngmin/common'));
+
+});
+
+gulp.task('js.concat', function () {
+
+    gulp.start('js.ngmin');
+
+    return gulp.src(js)
+        .pipe(concat('all.js'))
         .pipe(gulp.dest(conf.dist));
+});
+
+gulp.task('js.compile', function () {
+
+    gulp.start('js.concat');
+
+    return gulp.src(conf.dist + '/all.js')
+        .pipe(concat('all.min.js'))
+        .pipe(uglify({outSourceMap: true}))
+        .pipe(gulp.dest(conf.dist))
+        .pipe(livereload(server));
 });
 
 
@@ -83,7 +118,8 @@ gulp.task('less', function () {
             paths: [ path.join(__dirname, 'less', 'includes') ]
         }))
         .pipe(concat('site.css'))
-        .pipe(gulp.dest(conf.dist + '/css'));
+        .pipe(gulp.dest(conf.dist + '/css'))
+        .pipe(livereload(server));
 });
 
 gulp.task('clean', function () {
@@ -106,7 +142,7 @@ gulp.task('watch', function () {
             return console.log(err)
         }
 
-        gulp.watch(conf.app + '/**/*.js', ['js']);
+        gulp.watch(conf.app + '/**/*.js', ['js.compile']);
         gulp.watch([conf.root + 'frontend/**/*.php', conf.root + 'common/**/*.php'], ['phpUnitTests']);
         gulp.watch(conf.app + 'less/**/*', ['less']);
 
