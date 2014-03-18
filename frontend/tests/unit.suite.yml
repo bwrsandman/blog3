@@ -7,3 +7,9 @@ class_name: CodeGuy
 modules:
     enabled:
         - CodeHelper
+        - Yii2
+    config:
+        Yii2:
+            configFile: 'tests/unit/_config.php'
+            entryScript: 'index.php'
+            url: 'http://blog3.ru'

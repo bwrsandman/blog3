@@ -48,7 +48,7 @@ module.exports = function (grunt) {
                 }
             },
             html: {
-                files: ['<%= conf.app %>/**/*.html'],
+                    files: ['<%= conf.app %>/**/*.html'],
                 tasks: [],
                 options: {
                     livereload: true

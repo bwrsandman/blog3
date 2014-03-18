@@ -5,15 +5,14 @@
             <a href="#" ng-click="addGoalModal(category)" class="goal-add-button"><i class="fa fa-plus-square-o"></i></a>
             <a href="#" ng-click="backLogModal(category)" class="category-backlog-button"><i class="fa fa-tasks"></i></a>
         </p>
-        <eg-panel
+        <div
                 ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
                 ng-if="key < 3"
                 class="goal-detail sel-goal-{{goal.id}}"
                 ng-click="setFocus(goal)"
-                ng-transclude
                 >
             <header class="goal_title">
-                <p class="panel-title">{{goal.title}}</p>
+                <p>{{goal.title}}</p>
 
                 <div class="eg-control-panel pull-right" ng-class="{active: focusGoal === goal}">
                     <a class="btn goal-edit-button" ng-click="editGoalModal(goal)" href="#">
@@ -26,19 +25,10 @@
                         <i class="fa fa-ban"></i>
                     </a>
                 </div>
-                <div class="eg-control-panel editor-controls pull-left" ng-class="{active: focusGoal === goal}"></div>
                 <div class="clearfix"></div>
             </header>
-            <eg-editor
-                    class="panel-body"
-                    placeholder="defaultPlaceholder"
-                    model="goal"
-                    ng-model="goal[day].report.description"
-                    ng-change="save(goal[day].report)"
-                    ng-focus="setFocus(goal)"
-                    >
-            </eg-editor>
-        </eg-panel>
+
+        </div>
    </div>
 </div>
 <div class="conclusion">

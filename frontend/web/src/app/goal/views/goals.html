@@ -1,10 +1,12 @@
-<section id="goals" class="col-md-8">
-    <header>
-        <h5>Сделано за сегодня</h5>
-    </header>
-    <ng-include class="goals-grid-container" ng-if="goals.length" src="tpl.grid" />
-</section>
-<aside id="sidebar" class="col-md-4" style="position: relative">
-    <ng-include class="sidebar" src="tpl.sidebar" style="position: fixed" />
-</aside>
+<div style="height: 600px; overflow: hidden;">
+    <section id="goals" class="col-md-3" style="height: inherit; overflow: auto">
+        <header>
+            <h5>Сделано за сегодня</h5>
+        </header>
+        <ng-include class="goals-grid-container" ng-if="goals.length" src="tpl.grid"/>
+    </section>
+    <aside id="sidebar" class="col-md-9" style="height: inherit; overflow: auto">
+        <ng-include class="" src="tpl.sidebar"/>
+    </aside>
+</div>
 

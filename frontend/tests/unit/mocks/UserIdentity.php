@@ -1,9 +1,7 @@
 <?php
 namespace frontend\tests\unit\mocks;
 
-use yii\web\User;
-
-class UserMock extends User
+class UserIdentity extends \common\models\User
 {
 	public function getId()
 	{

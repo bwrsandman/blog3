@@ -18,10 +18,5 @@ modules:
         WebDriver:
             url: 'http://blog3.ru/'
             browser: phantomjs
-        Selenium2:
+        PhpBrowser:
             url: 'http://blog3.ru/'
-            browser: phantomjs
-            capabilities:
-              webStorageEnabled: true
-              javascriptEnabled: true
-              browserConnectionEnabled: true

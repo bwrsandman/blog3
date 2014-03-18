@@ -5,7 +5,7 @@ use \common\models\Goal;
 
 class GoalControllerTest extends Test
 {
-	public $class = '\frontend\modules\v1\controllers\GoalController';
+	public $class = '\frontend\modules\goals\controllers\v1\GoalController';
 	public $goalClass = '\common\models\Goal';
 
 	public function testActionIndex()

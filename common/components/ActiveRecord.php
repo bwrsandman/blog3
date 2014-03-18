@@ -1,6 +1,7 @@
 <?php
 namespace common\components;
 
+use \Yii;
 use yii\base\Exception;
 use yii\db\Expression;
 use yii\db\Query;
@@ -32,7 +33,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
             'model' => $this->className(),
             'errors' => $this->getErrors(),
             'attributes' => $this->attributes,
-            'session' => $_SESSION
+            'session' => iterator_to_array(Yii::$app->session)
         ];
         throw new Exception(json_encode($data));
     }

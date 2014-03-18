@@ -5,7 +5,7 @@ use \common\models\Goal;
 
 class ReportControllerTest extends Test
 {
-	public $class = '\frontend\modules\v1\controllers\ReportController';
+	public $class = '\frontend\modules\goals\controllers\v1\ReportController';
 	public $reportClass = '\common\models\Report';
 	public $goalClass = '\common\models\Goal';
 
