@@ -1,13 +1,14 @@
 <div id="goals-grid">
     <div ng-repeat="category in categories" class="category-panel sel-cat-{{category.id}}">
-        <p>
-            {{category.name}}
-            <a href="#" ng-click="addGoalModal(category)" class="goal-add-button"><i
-                    class="fa fa-plus-square-o"></i></a>
-            <a href="#" ng-click="backLogModal(category)" class="category-backlog-button"><i
-                    class="fa fa-tasks"></i></a>
-        </p>
-
+        <div class="category-title-wrapper">
+            <p class="category-title">
+                {{category.name}}
+                <a href="#" ng-click="addGoalModal(category)" class="goal-add-button"><i
+                        class="fa fa-plus-square-o"></i></a>
+                <a href="#" ng-click="backLogModal(category)" class="category-backlog-button"><i
+                        class="fa fa-tasks"></i></a>
+            </p>
+        </div>
         <div
                 ng-repeat="(key, goal) in goals | filter:{ fk_goal_category: category.id, completed: 0 }"
                 ng-if="key < 3"
@@ -33,7 +34,6 @@
                             <i class="fa fa-ban"></i>
                         </a>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
             </header>
 

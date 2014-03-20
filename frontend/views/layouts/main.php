@@ -66,9 +66,7 @@ if (YII_DEBUG) {
         <div>
             <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
         </div>
-        <div class="row">
-            <ng-view/>
-        </div>
+        <ng-view/>
     </div>
 </div>
 <footer class="footer">

@@ -9,14 +9,14 @@
                 <textarea msd-elastic="\n\n"
                           type="text"
                           ng-model="goal.title"
-                          class="form-control"
+                          class="eg-form-control"
                           id="modalGoalTitle"
                           placeholder="Enter email"></textarea>
             </div>
             <div class="form-group">
                 <label for="modalGoalCategory">Category</label>
                 <select
-                        class="form-control"
+                        class="eg-form-control"
                         ng-model="goal.fk_goal_category"
                         id="modalGoalCategory"
                         ng-options="cat.id as cat.name for cat in categories"

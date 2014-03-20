@@ -7,7 +7,11 @@
  *  evolve-games
  */
 
-
+@body-bg: #EEE;
+@legend-border-color: #dddddd;
+@border-color: @legend-border-color;
+@border-style: 1px solid @border-color;
+@input-border-focus: #bbbbbb;
 
 .text-rendering(@model) {
   -webkit-text-rendering: @model;
@@ -38,10 +42,9 @@
 
 body {
   -webkit-font-smoothing: antialiased;
-  background-color: #EEE;
 
   .footer {
-    border-top: 1px solid #ddd;
+    border-top: @border-style;
     margin-top: 30px;
     padding-top: 15px;
     padding-bottom: 30px;
@@ -57,7 +60,7 @@ body {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
 
-  border: 1px solid #CCC;
+  border: @border-style;
 }
 .modal{
   display: block;
@@ -65,10 +68,13 @@ body {
 
 #sidebar{
 
+  padding-left: 5px;
+  border-left: @border-style;
   .sidebar_panel{
     min-height: 75px;
   }
 }
+
 
 
 @import "navigation";

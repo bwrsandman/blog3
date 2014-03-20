@@ -12,6 +12,7 @@ var lang = 'ru';
 
 var translations = [];
 
+
 angular.module('eg.goal', [
     'eg.components',
     'ui.sortable',
@@ -85,6 +86,10 @@ angular.module('eg.goal').run(function ($rootScope, $templateCache, $compile) {
                     }
                 }
 
+
+
+
+
                 var element = $compile('<input type="checkbox" eg-todo />')(this.$parent);
 
                 this.$parent.displayElements.text[0].focus();
@@ -146,8 +151,8 @@ angular.module('eg.goal').run(function ($rootScope, $templateCache, $compile) {
             toolbarGroup: "btn-group",
             toolbarButton: "btn",
             toolbarButtonActive: "active",
-            textEditor: 'form-control',
-            htmlEditor: 'form-control'
+            textEditor: 'eg-form-control',
+            htmlEditor: 'eg-form-control'
         }
     }
 });

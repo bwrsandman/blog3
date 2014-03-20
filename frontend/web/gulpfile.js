@@ -6,10 +6,12 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     clean = require('gulp-clean'),
 //    notify = require('gulp-notify'),
-    cache = require('gulp-cache'),
+    cache = require('gulp-cached'),
+    changed = require('gulp-changed'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
     imagemin = require('gulp-imagemin'),
+    newer = require('gulp-newer'),
     path = require('path'),
     ngmin = require('gulp-ngmin'),
     watch = require('gulp-watch'),
@@ -65,12 +67,15 @@ gulp.task('fonts', function() {
 gulp.task('js.copy', function() {
 
     gulp.src(conf.app + '/vendor/angular-route/angular-route*')
+        .pipe(newer(conf.dist))
         .pipe(gulp.dest(conf.dist));
 
     gulp.src(conf.app + '/vendor/jquery/jquery.min.map')
+        .pipe(newer(conf.dist))
         .pipe(gulp.dest(conf.dist));
 
     gulp.src(conf.app + '/vendor/angular/*.map')
+        .pipe(newer(conf.dist))
         .pipe(gulp.dest(conf.dist));
 
 });
@@ -79,41 +84,43 @@ gulp.task('js.ngmin', function () {
 
     gulp.src(conf.app + '/app/**/*.js')
         .pipe(ngmin())
+        .pipe(newer(conf.dist + '/ngmin/app'))
+//        .pipe(changed(conf.dist + '/ngmin/app'))
         .pipe(gulp.dest(conf.dist + '/ngmin/app'));
 
     gulp.src([conf.app +  '/vendor/angular-elastic/elastic.js', conf.app +  '/vendor/angular/angular.min.js'])
         .pipe(ngmin())
+        .pipe(newer(conf.dist + '/ngmin/vendor'))
+//        .pipe(changed(conf.dist + '/ngmin/vendor'))
         .pipe(gulp.dest(conf.dist + '/ngmin/vendor'));
 
     gulp.src([conf.app +  '/common/**/*.js'])
         .pipe(ngmin())
+        .pipe(newer(conf.dist + '/ngmin/common'))
+//        .pipe(changed(conf.dist + '/ngmin/common'))
         .pipe(gulp.dest(conf.dist + '/ngmin/common'));
 
 });
 
-gulp.task('js.concat', function () {
-
-    gulp.start('js.ngmin');
+gulp.task('js.concat', ['js.ngmin', 'js.copy'], function () {
 
     return gulp.src(js)
+        .pipe(newer(conf.dist+'all.js'))
         .pipe(concat('all.js'))
         .pipe(gulp.dest(conf.dist));
 });
 
-gulp.task('js.compile', function () {
-
-    gulp.start('js.concat');
+gulp.task('js.compress', ['js.concat'], function () {
 
     return gulp.src(conf.dist + '/all.js')
         .pipe(concat('all.min.js'))
         .pipe(uglify({outSourceMap: true}))
-        .pipe(gulp.dest(conf.dist))
-        .pipe(livereload(server));
+        .pipe(gulp.dest(conf.dist));
 });
 
 
 gulp.task('less', function () {
-    gulp.src(conf.app + '/less/site.less')
+    return gulp.src(conf.app + '/less/site.less')
         .pipe(less({
             paths: [ path.join(__dirname, 'less', 'includes') ]
         }))
@@ -127,14 +134,26 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 
-gulp.task('phpUnitTests', function () {
+gulp.task('php.tests.unit', function () {
     gulp.src('')
         .pipe(shell('php ../vendor/bin/codecept run unit | grep -v " Ok"', {
             cwd: conf.root + "/frontend"
         }));
 });
 
-gulp.task('watch', function () {
+gulp.task('js', ['js.compress']);
+gulp.task('js.dev', ['js.concat'], function() {
+    gulp.src('').pipe(livereload(server));
+});
+
+gulp.task('build', ['clean'], function() {
+    gulp.start('fonts', 'js', 'less');
+});
+gulp.task('build.dev', ['clean'], function() {
+    gulp.start('fonts', 'js.dev', 'less', 'php.tests.unit');
+});
+
+gulp.task('watch', ['build.dev'], function () {
 
     // Listen on port 35729
     server.listen(35729, function (err) {
@@ -142,8 +161,8 @@ gulp.task('watch', function () {
             return console.log(err)
         }
 
-        gulp.watch(conf.app + '/**/*.js', ['js.compile']);
-        gulp.watch([conf.root + 'frontend/**/*.php', conf.root + 'common/**/*.php'], ['phpUnitTests']);
+        gulp.watch(conf.app + '/**/*.js', ['js.dev']);
+        gulp.watch([conf.root + 'frontend/**/*.php', conf.root + 'common/**/*.php'], ['php.tests.unit']);
         gulp.watch(conf.app + 'less/**/*', ['less']);
 
 //        gulp.watch([conf.app + '/**/*', conf.root + '/views/layouts/main.php', conf.app + '../less/**/*'], ['livereload']);
