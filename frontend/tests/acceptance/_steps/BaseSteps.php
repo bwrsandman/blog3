@@ -42,19 +42,6 @@ class BaseSteps extends \WebGuy
     }
 
 
-    public function click($link, $context = null)
-    {
-        $I = $this;
-
-        if ($context) {
-            $I->executeJs('$("' . $context . '").find(":contains(\'' . $link . '\')").click()');
-        } else {
-            $I->executeJs('$("' . $link . '").click()');
-        }
-
-//        parent::click($link, $context);
-    }
-
     public function waitForAutoSave()
     {
         $I = $this;

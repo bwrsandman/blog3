@@ -65,7 +65,7 @@ class BaseDayPage
 
     public static function goalEditingPanel($n)
     {
-        return static::goal($n) . " .editor-controls";
+        return static::goal($n) . " .eg-control-panel";
     }
 
     public static function goalEditButton($n)

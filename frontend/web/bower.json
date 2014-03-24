@@ -5,7 +5,7 @@
   "dependencies": {
     "jquery": "2.*",
     "jquery-ui": "1.*",
-    "angular": "1.2.15",
+    "angular": "1.*",
     "bootstrap": "*",
     "angular-route": "*",
     "angular-resource": "*",
@@ -22,6 +22,5 @@
     "textAngular": "https://github.com/nizsheanez/textAngular.git#directives_support"
   },
   "resolutions": {
-    "angular": "1.2.14"
   }
 }

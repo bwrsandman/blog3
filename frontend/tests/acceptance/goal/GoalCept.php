@@ -10,6 +10,8 @@ foreach ($I->getGoals() as $id) {
     $editField = TodayPage::goalTitle($id);
     $editBtn = TodayPage::goalEditButton($id);
 
+
+    $I->clickGoal($id);
     $I->clickEditGoalButton($id);
     $I->write(TodayPage::$goalTitleEditor, $msg);
     $I->dontSee($msg, $editField);
@@ -28,12 +30,14 @@ $I->expect("that i can to change goals category");
 
 $I->seeGoalInCategory(1, TodayPage::PROFESSIONAL_ID);
 
+$I->clickGoal(1);
 $I->clickEditGoalButton(1);
 $I->selectOption(TodayPage::$goalTitleCategorySelect, TodayPage::HEALTH_CAT);
 $I->clickOk(TodayPage::$goalEditModal);
 
 $I->seeGoalInCategory(1, TodayPage::HEALTH_ID);
 
+$I->clickGoal(1);
 $I->clickEditGoalButton(1);
 $I->selectOption(TodayPage::$goalTitleCategorySelect, TodayPage::PROFESSIONAL_CAT);
 $I->clickOk(TodayPage::$goalEditModal);
