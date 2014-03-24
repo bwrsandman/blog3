@@ -12,7 +12,7 @@ angular.module('eg.goal').directive('egEditor', function ($debounce) {
             placeholder: '&',
             fg: '&'
         },
-        template: '<div text-angular ng-model="ngModel" ng-change="onChange()" ng-focus="ngFocus()"></div>',
+        template: '<div text-angular ng-model="ngModel" ng-change="onChange()"></div>',
         link: function ($scope, element, attrs) {
             var editor = element.children('div');
 

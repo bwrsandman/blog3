@@ -3,7 +3,6 @@
 angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($modal, Tpl, Goal) {
     var service = {
         editGoalModal: function (goal) {
-            console.log($('body').is(':animated'))
             $.animationCount++;
             var promise = $modal.open({
                 templateUrl: Tpl.modal.edit,
@@ -23,11 +22,8 @@ angular.module('eg.goal').factory('Modal', ['$modal', 'Tpl', 'Goal', function ($
                     }
                 }
             });
-            console.log($('body').is(':animated'))
 
             promise.opened.then(function() {
-                console.log($('body').is(':animated'))
-
                 $.animationCount--;
             });
             promise.result.then(function (newGoal) {

@@ -9,7 +9,7 @@
                 <textarea msd-elastic="\n\n"
                           type="text"
                           ng-model="goal.title"
-                          class="eg-form-control"
+                          class="form-control eg-form-control"
                           id="modalGoalTitle"
                           placeholder="Enter email"></textarea>
             </div>
@@ -20,7 +20,8 @@
                         ng-model="goal.fk_goal_category"
                         id="modalGoalCategory"
                         ng-options="cat.id as cat.name for cat in categories"
-                        ></select>
+                        >
+                        </select>
             </div>
         </form>
     </div>

@@ -8,7 +8,7 @@ $I->wantTo('ensure that frontpage works');
 //click
 $I->amOnPage('/?id=1');
 foreach($I->getGoals() as $id) {
-    $I->clickReport($id);
+    $I->clickGoal($id);
     $I->writeDecomposition($id);
 }
 
@@ -18,7 +18,7 @@ $I->amOnPage('/?id=1');
 
 $I->expect("Decompositions will visible after click on report");
 foreach($I->getGoals() as $id) {
-    $I->clickReport($id);
+    $I->clickGoal($id);
     $I->see($I->message('decomposition', $id), TodayPage::$decompositionEditor);
 }
 /*
@@ -27,7 +27,7 @@ $I->flushMessages();
 $I->amOnPage('/?id=1');
 
 foreach($I->getGoals() as $id) {
-    $I->focusReport($id);
+    $I->focusGoal($id);
     $I->writeDecomposition($id);
 }
 
@@ -36,7 +36,7 @@ $I->amOnPage('/');
 
 $I->expect("Decompositions will visible after focus on report");
 foreach($I->getGoals() as $id) {
-    $I->focusReport($id);
+    $I->focusGoal($id);
     $I->see($I->message('decomposition', $id), TodayPage::$decompositionEditor);
 }
 

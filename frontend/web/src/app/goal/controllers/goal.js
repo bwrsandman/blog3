@@ -67,6 +67,7 @@ angular.module('eg.goal').controller('GoalEditModalCtrl', function ($scope, $mod
 
     $scope.goal = params.goal;
     $scope.categories = Category.getAll();
+
     $scope.html = params.html;
 
     $scope.ok = function () {

@@ -74,7 +74,7 @@ return array(
                                 'api/v1/<controller:\w+>/<id:\d+>'        => 'v1/<controller>/view',
                                 'api/v1/<controller:\w+>'                 => 'v1/<controller>/index',
                 */
-                'api/goals/<version>/<controller:\w+>/<action:\w+>' => 'goals/<version>/<controller>/<action>',
+                'api/<version>/<controller:\w+>/<action:\w+>' => 'goals/<version>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>' => '<module>/<controller>',
             ]

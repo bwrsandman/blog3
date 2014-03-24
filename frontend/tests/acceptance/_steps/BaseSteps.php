@@ -7,6 +7,13 @@ class BaseSteps extends \WebGuy
 {
     protected $messages = [];
 
+    public function __construct(\Codeception\Scenario $scenario)
+    {
+        parent::__construct($scenario);
+
+        $this->resizeWindow(1024, 768);
+    }
+
     public function focus($el)
     {
         $I = $this;
@@ -44,8 +51,6 @@ class BaseSteps extends \WebGuy
         } else {
             $I->executeJs('$("' . $link . '").click()');
         }
-//	    $I->wait(1);
-//        $I->waitForJs("return $.active === 0", 5);
 
 //        parent::click($link, $context);
     }

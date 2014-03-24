@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\models\generated\GoalCategory;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
 
@@ -227,15 +228,19 @@ class User extends generated\User implements IdentityInterface
 		];
 
 		/** @var $models Goal[] */
-//        echo Yii::$app->user->getId();die;
 		$user        = User::find(1);
 		$conclusions = [];
 		foreach ($days as $day) {
 			$conclusions[$day] = $user->getConclusion($day)->toArray();
 		}
 
+        $categories = [];
+        foreach (GoalCategory::find()->all() as $cat) {
+            $categories[$cat->id] = $cat->toArray();
+        }
+
 		$response = [
-			'categories'  => GoalCategory::find()->asArray()->all(),
+			'categories'  => $categories,
 			'goals'       => $goals,
 			'conclusions' => $conclusions,
 		];

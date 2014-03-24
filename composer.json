@@ -14,6 +14,7 @@
         "yiisoft/yii2-faker": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-apidoc": "*",
 
         "cboden/Ratchet": "*",
         "michelf/php-markdown": "*",
@@ -29,6 +30,9 @@
         "twbs/bootstrap": "3.1.*",
         "fabpot/goutte": "*",
         "codeception/codeception": "1.8.*",
+        "phpunit/php-invoker": "*",
+        "rollbar/rollbar": "*",
+        "baibaratsky/yii-rollbar": "*",
 
         "evernote/evernote": "1.*"
     },

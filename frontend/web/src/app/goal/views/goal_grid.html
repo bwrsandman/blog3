@@ -14,6 +14,8 @@
                 ng-if="key < 3"
                 class="goal-detail sel-goal-{{goal.id}}"
                 ng-click="setFocus(goal)"
+                ng-focus="setFocus(goal)"
+                tabindex="{{ index + 1 }}"
                 >
             <header class="goal_title">
                 <div class="row">

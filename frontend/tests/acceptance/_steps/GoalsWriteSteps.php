@@ -2,7 +2,7 @@
 namespace WebGuy;
 
 use TodayPage;
-use \Codeception\TestCase;
+use Codeception\TestCase;
 use yii\test\FixtureTrait;
 
 class GoalsWriteSteps extends BaseSteps
@@ -39,23 +39,21 @@ class GoalsWriteSteps extends BaseSteps
     {
         $I = $this;
 
-        $field = TodayPage::reportDescription($i);
-        $I->write($field, $this->message('report', $i));
+        $I->write(TodayPage::$reportEditor, $this->message('report', $i));
     }
 
-    public function focusReport($i)
+    public function focusGoal($i)
     {
         $I = $this;
 
-        $I->focus(TodayPage::reportDescription($i));
+        $I->focus(TodayPage::goal($i));
     }
 
-
-    public function clickReport($i)
+    public function clickGoal($i)
     {
         $I = $this;
 
-        $I->click(TodayPage::reportDescription($i));
+        $I->click(TodayPage::goal($i));
     }
 
     function writeReason($i)
