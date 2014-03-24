@@ -28,7 +28,7 @@ var conf = {
 };
 
 var js = [
-    conf.app + '/vendor/jquery/jquery.min.js',
+    conf.app + '/vendor/jquery/dist/jquery.min.js',
     conf.app + '/vendor/jquery-ui/minified/jquery-ui.min.js',
     conf.dist + '/ngmin/vendor/angular/angular.min.js',
     conf.app + '/vendor/angular-bootstrap/ui-bootstrap.min.js',
@@ -70,7 +70,7 @@ gulp.task('js.copy', function() {
         .pipe(newer(conf.dist))
         .pipe(gulp.dest(conf.dist));
 
-    gulp.src(conf.app + '/vendor/jquery/jquery.min.map')
+    gulp.src(conf.app + '/vendor/jquery/dist/jquery.min.map')
         .pipe(newer(conf.dist))
         .pipe(gulp.dest(conf.dist));
 
