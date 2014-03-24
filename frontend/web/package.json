@@ -4,6 +4,7 @@
     "devDependencies": {
         "karma-junit-reporter": "latest",
 
+        "grunt-gremlins": "latest",
         "grunt-autoprefixer": "latest",
         "grunt-bower-install": "latest",
         "grunt-concurrent": "latest",
@@ -50,7 +51,9 @@
         "gulp-watch": "latest",
         "gulp-shell": "latest",
         "gulp-spawn": "latest",
-        "gulp-livereload": "latest"
+        "gulp-livereload": "latest",
+
+        "tiny-lr": "latest"
 
     },
     "scripts": {
