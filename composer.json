@@ -27,7 +27,6 @@
         "danielstjules/stringy": "*",
         "fzaninotto/faker": "*",
 
-        "twbs/bootstrap": "3.1.*",
         "fabpot/goutte": "*",
         "codeception/codeception": "1.8.*",
         "phpunit/php-invoker": "*",
