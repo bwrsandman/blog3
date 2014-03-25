@@ -18,7 +18,7 @@ class ProductionApp extends AssetBundle
 	public $js = array(
 //        'src/vendor/jquery/dist/jquery.min.js',
 //        'src/vendor/angular/angular.min.js',
-        'assets/build/all.min.js',
+        'assets/build/min/all.js',
     );
 
 	public $depends = array(
