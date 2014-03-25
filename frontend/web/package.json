@@ -49,6 +49,7 @@
         "gulp-inject": "latest",
         "gulp-ngmin": "latest",
         "gulp-watch": "latest",
+        "gulp-debug": "latest",
         "gulp-shell": "latest",
         "gulp-spawn": "latest",
         "gulp-livereload": "latest",

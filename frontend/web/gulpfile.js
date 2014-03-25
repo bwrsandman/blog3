@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     shell = require('gulp-shell'),
     livereload = require('gulp-livereload'),
+    debug = require('gulp-debug'),
     lr = require('tiny-lr'),
     server = lr();
 
@@ -27,32 +28,32 @@ var conf = {
 var js = [
     conf.app + '/vendor/jquery/dist/jquery.min.js',
     conf.app + '/vendor/jquery-ui/minified/jquery-ui.min.js',
-    conf.dist + '/ngmin/vendor/angular.min.js'
-//    conf.app + '/vendor/angular-bootstrap/ui-bootstrap.min.js',
-//    conf.app + '/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
-//    conf.app + '/vendor/angular-route/angular-route.min.js',
-//    conf.app + '/vendor/angular-translate/*.min.js',
-//    conf.app + '/vendor/angular-ui/*.min.js',
-//    conf.app + '/vendor/angular-sortable/src/sortable.js',
-//    conf.app + '/vendor/angular-ui-utils/*.min.js',
-//    conf.app + '/vendor/angular-sanitize/*.min.js',
-//    conf.app + '/vendor/textAngular/*.min.js',
-//    conf.dist + '/ngmin/vendor/angular-elastic/elastic.js',
-//
-//
-//    conf.dist + '/ngmin/common/**/*.js',
-//    conf.dist + '/ngmin/app/app.js',
-//    conf.dist + '/ngmin/app/goal/services/goal.js',
-//    conf.dist + '/ngmin/app/goal/services/modal.js',
-//    conf.dist + '/ngmin/app/goal/services/category.js',
-//    conf.dist + '/ngmin/app/goal/services/report.js',
-//    conf.dist + '/ngmin/app/goal/services/tpl.js',
-//    conf.dist + '/ngmin/app/goal/services/user.js',
-//    conf.dist + '/ngmin/app/goal/services/server.js',
-//    conf.dist + '/ngmin/app/goal/services/alert.js',
+    conf.dist + '/ngmin/vendor/angular.min.js',
+    conf.app + '/vendor/angular-bootstrap/ui-bootstrap.min.js',
+    conf.app + '/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
+    conf.app + '/vendor/angular-route/angular-route.min.js',
+    conf.app + '/vendor/angular-translate/*.min.js',
+    conf.app + '/vendor/angular-ui/*.min.js',
+    conf.app + '/vendor/angular-sortable/src/sortable.js',
+    conf.app + '/vendor/angular-ui-utils/*.min.js',
+    conf.app + '/vendor/angular-sanitize/*.min.js',
+    conf.app + '/vendor/textAngular/*.min.js',
+    conf.dist + '/ngmin/vendor/angular-elastic/elastic.js',
 
-//    conf.dist + '/ngmin/app/goal/controllers/*.js',
-//    conf.dist + '/ngmin/app/goal/directives/*.js'
+
+    conf.dist + '/ngmin/common/**/*.js',
+    conf.dist + '/ngmin/app/app.js',
+    conf.dist + '/ngmin/app/goal/services/goal.js',
+    conf.dist + '/ngmin/app/goal/services/modal.js',
+    conf.dist + '/ngmin/app/goal/services/category.js',
+    conf.dist + '/ngmin/app/goal/services/report.js',
+    conf.dist + '/ngmin/app/goal/services/tpl.js',
+    conf.dist + '/ngmin/app/goal/services/user.js',
+    conf.dist + '/ngmin/app/goal/services/server.js',
+    conf.dist + '/ngmin/app/goal/services/alert.js',
+
+    conf.dist + '/ngmin/app/goal/controllers/*.js',
+    conf.dist + '/ngmin/app/goal/directives/*.js'
 ];
 
 gulp.task('fonts', function() {
@@ -92,6 +93,7 @@ gulp.task('js.ngmin', function () {
 gulp.task('js.concat', ['js.ngmin', 'js.copy'], function () {
 
     gulp.src(js)
+        .pipe(debug({verbose: true}))
         .pipe(concat('all.js'))
         .pipe(gulp.dest(conf.dist))
 });
@@ -99,6 +101,7 @@ gulp.task('js.concat', ['js.ngmin', 'js.copy'], function () {
 gulp.task('js.compress', ['js.concat'], function () {
 
     return gulp.src(conf.dist + '/all.js')
+        .pipe(debug({verbose: true}))
         .pipe(uglify({outSourceMap: true}))
         .pipe(gulp.dest(conf.dist + '/min'));
 });
@@ -132,7 +135,7 @@ gulp.task('js.dev', ['js.concat'], function() {
 });
 
 gulp.task('build', ['clean'], function() {
-    gulp.start('less', 'fonts', 'js');
+    gulp.start('js.compress');
 });
 gulp.task('build.dev', ['clean'], function() {
     gulp.start('fonts', 'js.dev', 'less', 'php.tests.unit');
