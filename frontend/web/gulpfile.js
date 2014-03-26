@@ -26,8 +26,8 @@ var conf = {
 };
 
 var js = [
-    conf.app + '/vendor/jquery/dist/jquery.min.js',
-    conf.app + '/vendor/jquery-ui/minified/jquery-ui.min.js',
+    conf.app + '/vendor/jquery/jquery.min.js',
+    conf.app + '/vendor/jquery-ui/ui/minified/jquery-ui.min.js',
     conf.dist + '/ngmin/vendor/angular.min.js',
     conf.app + '/vendor/angular-bootstrap/ui-bootstrap.min.js',
     conf.app + '/vendor/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -93,7 +93,7 @@ gulp.task('js.ngmin', function () {
 gulp.task('js.concat', ['js.ngmin', 'js.copy'], function () {
 
     gulp.src(js)
-        .pipe(debug({verbose: true}))
+        .pipe(debug({verbose: false}))
         .pipe(concat('all.js'))
         .pipe(gulp.dest(conf.dist))
 });
@@ -101,7 +101,7 @@ gulp.task('js.concat', ['js.ngmin', 'js.copy'], function () {
 gulp.task('js.compress', ['js.concat'], function () {
 
     return gulp.src(conf.dist + '/all.js')
-        .pipe(debug({verbose: true}))
+        .pipe(debug({verbose: false}))
         .pipe(uglify({outSourceMap: true}))
         .pipe(gulp.dest(conf.dist + '/min'));
 });
@@ -135,7 +135,7 @@ gulp.task('js.dev', ['js.concat'], function() {
 });
 
 gulp.task('build', ['clean'], function() {
-    gulp.start('js.compress');
+    gulp.start('js', 'less', 'fonts');
 });
 gulp.task('build.dev', ['clean'], function() {
     gulp.start('fonts', 'js.dev', 'less', 'php.tests.unit');
