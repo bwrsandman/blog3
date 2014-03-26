@@ -42,6 +42,9 @@ var js = [
     conf.app + '/vendor/textAngular/*.min.js',
 
 
+
+    conf.dist + '/ngmin/websocket/**/*.js',
+
     conf.dist + '/ngmin/common/**/*.js',
     conf.dist + '/ngmin/app/app.js',
     conf.dist + '/ngmin/app/goal/services/goal.js',
@@ -73,6 +76,7 @@ gulp.task('js.copy', function() {
     gulp.src(conf.app + '/vendor/angular/*.map')
         .pipe(gulp.dest(conf.dist));
 
+
 });
 
 gulp.task('js.ngmin', function () {
@@ -88,6 +92,11 @@ gulp.task('js.ngmin', function () {
     gulp.src([conf.app +  '/common/**/*.js'])
         .pipe(ngmin())
         .pipe(gulp.dest(conf.dist + '/ngmin/common'));
+
+    gulp.src(conf.app + '/../../../vendor/nizsheanez/yii2-websocket-application/src/wamp/assets/js/*')
+        .pipe(ngmin())
+        .pipe(gulp.dest(conf.dist + "ngmin/websocket"));
+
 
 });
 
