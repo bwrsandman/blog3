@@ -56,11 +56,11 @@ class ReportTest extends Test
 		$this->assertNotContains('<input type="checkbox"/>', $model->description);
 	}
 
-	public function testCreateQuery()
+	public function testFind()
 	{
 		$model = $this->getMock($this->class, null);
 
-		$this->assertInstanceOf('common\models\ReportQuery', $model->createQuery());
+		$this->assertInstanceOf('common\models\ReportQuery', $model->find());
 	}
 
 	public function testCheckUserPermissions()
@@ -83,10 +83,10 @@ class ReportTest extends Test
 		$userRight->expects($this->once())->method('getId')->will($this->returnValue(1));
 		$userWrong->expects($this->once())->method('getId')->will($this->returnValue(2));
 
-		Yii::$app->setComponent('user', $userRight);
+		Yii::$app->set('user', $userRight);
 		$this->assertTrue($model->checkUserPermissions());
 
-		Yii::$app->setComponent('user', $userWrong);
+		Yii::$app->set('user', $userWrong);
 		$this->assertFalse($model->checkUserPermissions());
 	}
 

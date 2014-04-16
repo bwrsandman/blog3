@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\models\generated\GoalCategory;
+use yii\base\NotSupportedException;
 use yii\helpers\Security;
 use yii\web\IdentityInterface;
 
@@ -34,7 +35,7 @@ class User extends generated\User implements IdentityInterface
 	 */
 	public static function findIdentity($id)
 	{
-		return static::find($id);
+		return static::findOne($id);
 	}
 
 	/**
@@ -228,7 +229,7 @@ class User extends generated\User implements IdentityInterface
 		];
 
 		/** @var $models Goal[] */
-		$user        = User::find(1);
+		$user        = User::findOne(1);
 		$conclusions = [];
 		foreach ($days as $day) {
 			$conclusions[$day] = $user->getConclusion($day)->toArray();

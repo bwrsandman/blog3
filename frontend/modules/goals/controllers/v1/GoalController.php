@@ -81,7 +81,7 @@ class GoalController extends Controller
 			    throw new InvalidParamException('Id of Goal must be specify');
 	    }
 
-	    $model = Goal::find($id);
+	    $model = Goal::findOne($id);
 
 	    if ($model === null) {
 		    throw new Exception('The requested goal does not exist.');

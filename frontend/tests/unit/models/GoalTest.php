@@ -28,7 +28,7 @@ class GoalTest extends Test
 	public function testGetReportFromDb($day)
 	{
 		$model = $this->getMock($this->class, ['hasOne']);
-		$query = $this->getMock('\yii\db\ActiveQuery', ['day', 'one']);
+		$query = $this->getMock('\yii\db\ActiveQuery', ['day', 'one'], [$this->class]);
 
 		$model->expects($this->any())->method('hasOne')->will($this->returnValue($query));
 
@@ -46,7 +46,7 @@ class GoalTest extends Test
 	public function testGetReportIfNotExistsInDb($day)
 	{
 		$model = $this->getMock($this->class, ['hasOne', 'createReportByDay']);
-		$query = $this->getMock('\yii\db\ActiveQuery', ['day', 'one']);
+		$query = $this->getMock('\yii\db\ActiveQuery', ['day', 'one'], [$this->class]);
 
 		$model->expects($this->any())->method('hasOne')->will($this->returnValue($query));
 		$model->expects($this->once())->method('createReportByDay')->will($this->returnValue(new $this->reportClass));
@@ -104,11 +104,11 @@ class GoalTest extends Test
 		$this->assertArrayHasKey('report', $result[$day]);
 	}
 
-	public function testCreateQuery()
+	public function testFind()
 	{
 		$model = $this->getMock($this->class, null);
 
-		$this->assertInstanceOf('common\models\GoalQuery', $model->createQuery());
+		$this->assertInstanceOf('common\models\GoalQuery', $model->find());
 	}
 
 	public function testSearch()

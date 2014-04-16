@@ -65,7 +65,7 @@ class GoalCategoryController extends Controller
      */
     protected function findModel($params)
     {
-        if (($model = GoalCategory::find($params['id'])) !== null) {
+        if (($model = GoalCategory::findOne($params['id'])) !== null) {
             return $model;
         } else {
             throw new Exception('The requested GoalCategory does not exist.');

@@ -57,6 +57,6 @@ class ReportController extends Controller
 
 	protected function find($id)
 	{
-		return Report::find($id);
+		return Report::findOne($id);
 	}
 }

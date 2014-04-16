@@ -19,10 +19,12 @@ class Goal extends generated\Goal
     const COMPLETED_YES = 1;
     const COMPLETED_NO  = 0;
 
-    public static function createQuery($config = [])
+    /**
+     * @return GoalQuery|ActiveQuery|\yii\db\ActiveQueryInterface
+     */
+    public static function find()
     {
-        $config['modelClass'] = get_called_class();
-        return new GoalQuery($config);
+        return new GoalQuery(get_called_class());
     }
 
     public function search()

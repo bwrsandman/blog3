@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     protected function findModel($params)
     {
-        if (($model = Conclusion::find($params['id'])) !== null) {
+        if (($model = Conclusion::findOne($params['id'])) !== null) {
             return $model;
         } else {
             throw new Exception('The requested goal does not exist.');

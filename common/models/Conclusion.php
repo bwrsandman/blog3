@@ -7,10 +7,9 @@ use yii\db\ActiveQuery;
 class Conclusion extends generated\Conclusion
 {
 
-    public static function createQuery($config = [])
+    public static function find()
     {
-        $config['modelClass'] = get_called_class();
-        return new ConclusionQuery($config);
+        return new ConclusionQuery(get_called_class());
     }
 
 

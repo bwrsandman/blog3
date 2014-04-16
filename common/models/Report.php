@@ -13,10 +13,9 @@ use yii\helpers\ArrayHelper;
  */
 class Report extends generated\Report
 {
-    public static function createQuery($config = [])
+    public static function find()
     {
-        $config['modelClass'] = get_called_class();
-        return new ReportQuery($config);
+        return new ReportQuery(get_called_class());
     }
 
 
@@ -82,7 +81,7 @@ class Report extends generated\Report
 
 	public function checkUserPermissions()
 	{
-		return $this->goal->user->id == Yii::$app->user->id;
+		return $this->goal->user->id == Yii::$app->user->getId();
 	}
 }
 
