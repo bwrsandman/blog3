@@ -11,9 +11,11 @@ use yii\web\AssetBundle;
 
 class App extends AssetBundle
 {
-	public $basePath = '@webroot';
+	public $basePath = '@webroot/src/';
 	public $baseUrl = '@web/src/';
-	public $css = array();
+	public $css = [
+        'less/site.less'
+    ];
 
 	public $js = array(
         'common/fixes.js',
@@ -38,6 +40,7 @@ class App extends AssetBundle
 
         'app/goal/services/alert.js',
     );
+
 	public $depends = array(
 		'frontend\assets\JqueryUi',
 //		'yii\bootstrap\BootstrapAsset',

@@ -57,5 +57,4 @@ class Test extends TestCase
 		return parent::atLeastOnce();
 	}
 
-
 }

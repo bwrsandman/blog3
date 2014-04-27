@@ -27,12 +27,13 @@
         "fzaninotto/faker": "*",
 
         "fabpot/goutte": "*",
-        "codeception/codeception": "1.8.*",
+        "twbs/bootstrap": "3.*",
+        "codeception/codeception": "2.0.0-beta",
         "phpunit/php-invoker": "*",
         "rollbar/rollbar": "*",
         "baibaratsky/yii-rollbar": "*",
 
-        "evernote/evernote": "1.*"
+        "evernote/evernote": "*"
     },
     "scripts": {
         "post-create-project-cmd": [

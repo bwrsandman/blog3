@@ -13,7 +13,6 @@ modules:
     enabled:
         - WebDriver
         - WebHelper
-        - common\tests\_helpers\FixtureHelper
     config:
         WebDriver:
             url: 'http://blog3.ru/'
