@@ -27,7 +27,7 @@ var conf = {
 
 var js = [
     conf.app + '/vendor/jquery/dist/jquery.min.js',
-    conf.app + '/vendor/jquery-ui/ui/minified/jquery-ui.min.js',
+//    conf.app + '/vendor/jquery-ui/ui/minified/jquery-ui.min.js',
     conf.dist + '/ngmin/vendor/angular.min.js',
     conf.app + '/vendor/angular-resource/angular-resource.min.js',
     conf.app + '/vendor/angular-route/angular-route.min.js',

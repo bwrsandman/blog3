@@ -15,7 +15,6 @@ var translations = [];
 
 angular.module('eg.goal', [
     'eg.components',
-    'ui.sortable',
     'ngRoute',
     'ui.bootstrap',
     'monospaced.elastic',

@@ -9,13 +9,13 @@ namespace frontend\assets;
 
 use yii\web\AssetBundle;
 
-class JqueryUi extends AssetBundle
+class Jquery extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web/src/vendor';
 
     public $js = array(
-        'jquery-ui/ui/minified/jquery-ui.min.js',
+        'jquery/dist/jquery.min.js'
     );
 
 }

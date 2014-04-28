@@ -24,6 +24,7 @@ class SiteController extends Controller
 				$identity     = new User();
 				$identity->id = $request->get('id');
 				$user->login($identity);
+
 			} else {
 				echo '<a href="/?id=1">dev</a>';
 				echo "\n\n\n\n";

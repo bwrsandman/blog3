@@ -42,7 +42,8 @@ class App extends AssetBundle
     );
 
 	public $depends = array(
-		'frontend\assets\JqueryUi',
+		'frontend\assets\Jquery',
+//		'frontend\assets\JqueryUi',
 //		'yii\bootstrap\BootstrapAsset',
         'frontend\assets\Angular',
         'frontend\assets\AngularUi',

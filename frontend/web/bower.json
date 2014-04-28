@@ -4,7 +4,6 @@
   "appPath": "src",
   "dependencies": {
     "jquery": "2.*",
-    "jquery-ui": "1.*",
     "angular": "1.*",
     "bootstrap": "*",
     "angular-route": "*",
